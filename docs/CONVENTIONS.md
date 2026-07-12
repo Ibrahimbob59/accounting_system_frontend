@@ -262,13 +262,14 @@ rules:
   `::after`-based double-rule in `.ledger-rule`).
 - **When you do write CSS, scope it — don't add unscoped global classes.**
   - A motif meant to be shared and reused by class name across features
-    (like `.ledger-rule`) is the rare, deliberate exception: it lives in
-    `globals.css`, inside `@layer components` (Tailwind v4's own cascade
-    layer, declared by `@import 'tailwindcss'`). Any Tailwind utility class
-    is in the later `utilities` layer, so it always wins a specificity tie
-    against a `components`-layer class — composing
-    `cn('ledger-rule', 'text-lg')` behaves exactly as it reads, with no
-    "which one wins" ambiguity to reason about.
+    (`.ledger-rule`, `.field-line`/`.field-label` for form fields,
+    `.ledger-texture` for the auth brand panel) is the rare, deliberate
+    exception: it lives in `globals.css`, inside `@layer components`
+    (Tailwind v4's own cascade layer, declared by `@import 'tailwindcss'`).
+    Any Tailwind utility class is in the later `utilities` layer, so it
+    always wins a specificity tie against a `components`-layer class —
+    composing `cn('ledger-rule', 'text-lg')` behaves exactly as it reads,
+    with no "which one wins" ambiguity to reason about.
   - Everything else — CSS that's specific to one component, not a shared
     system motif — goes in a co-located CSS Module:
     `ComponentName.module.css` next to `ComponentName.tsx`, imported as

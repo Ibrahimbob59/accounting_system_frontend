@@ -2,6 +2,7 @@ import * as React from 'react'
 
 import { cn } from '@/lib/utils'
 
+/** Bare control only — see input.tsx's header comment; meant for `.field-line`. */
 const Textarea = React.forwardRef<
   HTMLTextAreaElement,
   React.ComponentProps<'textarea'>
@@ -10,7 +11,7 @@ const Textarea = React.forwardRef<
     <textarea
       ref={ref}
       className={cn(
-        'flex min-h-20 w-full rounded-md border border-input bg-surface px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+        'flex min-h-20 w-full resize-y bg-transparent px-0 py-1.5 text-sm text-text-primary outline-none placeholder:text-text-disabled disabled:cursor-not-allowed disabled:text-text-disabled',
         className
       )}
       {...props}

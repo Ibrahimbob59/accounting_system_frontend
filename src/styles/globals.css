@@ -168,4 +168,80 @@ body {
     background: var(--secondary-500);
     box-shadow: 0 0.25rem 0 0 var(--secondary-500);
   }
+
+  /*
+   * Ledger-line form fields — the shared look for text inputs, textareas,
+   * and the native select (docs/CONVENTIONS.md → Style scoping). No box: a
+   * single hairline rule under the control, like a line in a ledger. The
+   * rule turns brass and grows a second line beneath it on focus — the same
+   * two-line device as `.ledger-rule` above, just triggered by focus instead
+   * of being permanent. `.field-line` owns the rule; the <input>/<textarea>/
+   * <select> it wraps stays fully transparent and borderless itself (see
+   * input.tsx/textarea.tsx/SelectField.tsx) so this is the one place the
+   * visual lives.
+   */
+  .field-line {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border);
+    transition:
+      border-color 150ms ease,
+      background-color 150ms ease;
+  }
+  .field-line:focus-within {
+    border-color: var(--secondary-500);
+    background: color-mix(in oklch, var(--secondary-500) 5%, transparent);
+  }
+  .field-line:has(:disabled) {
+    opacity: 0.6;
+  }
+  .field-line[data-invalid='true'] {
+    border-color: var(--danger);
+  }
+  .field-line::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    bottom: -0.25rem;
+    height: 1px;
+    background: var(--secondary-500);
+    opacity: 0;
+    transition: opacity 150ms ease;
+  }
+  .field-line:focus-within::after {
+    opacity: 1;
+  }
+  .field-line[data-invalid='true']::after {
+    opacity: 1;
+    background: var(--danger);
+  }
+
+  /* Eyebrow label sitting above a `.field-line` field — small-caps, matches
+     the section-heading style already used elsewhere (e.g. RegisterPage's
+     "Company"/"Your account" dividers). */
+  .field-label {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /*
+   * Faint ruled-paper texture for the auth ink panel (AuthLayout) — ledger
+   * paper's horizontal rules, barely-there. Ledger-themed background instead
+   * of a plain flat fill, without competing with the wordmark/tagline on
+   * top of it.
+   */
+  .ledger-texture {
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent,
+      transparent 2.75rem,
+      color-mix(in oklch, var(--neutral-0) 8%, transparent) 2.75rem,
+      color-mix(in oklch, var(--neutral-0) 8%, transparent) calc(2.75rem + 1px)
+    );
+  }
 }

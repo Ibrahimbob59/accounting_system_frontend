@@ -6,6 +6,7 @@ import { LandingPage } from '@/features/landing/pages/LandingPage'
 import { LoginPage } from '@/features/auth/pages/LoginPage'
 import { RegisterPage } from '@/features/auth/pages/RegisterPage'
 import { ForgotPasswordPage } from '@/features/auth/pages/ForgotPasswordPage'
+import { PrivacyPolicyPage } from '@/features/legal/pages/PrivacyPolicyPage'
 import { NotFoundPage } from './NotFoundPage'
 import { RouteErrorBoundary } from './RouteErrorBoundary'
 
@@ -13,6 +14,8 @@ import { RouteErrorBoundary } from './RouteErrorBoundary'
  * Route tree. Public marketing + auth screens are gated by PublicOnlyGuard (an
  * authenticated visitor is bounced to `/app`); the product lives behind
  * AuthGuard under the `/app` prefix — a placeholder until Phase 2's app shell.
+ * A third, ungated group holds pages that make sense regardless of auth state
+ * (e.g. the privacy policy) — no redirect either way.
  *
  * Every top-level group carries an errorElement so a genuine render/loader
  * exception gets RouteErrorBoundary's page instead of React Router's default
@@ -39,6 +42,13 @@ export const router = createBrowserRouter([
     element: <AuthGuard />,
     errorElement: <RouteErrorBoundary />,
     children: [{ path: '/app', element: <div>TODO: Phase 2</div> }],
+  },
+
+  // Ungated — accessible regardless of auth state (unlike the public group
+  // above, an authenticated visitor is NOT redirected away from these).
+  {
+    errorElement: <RouteErrorBoundary />,
+    children: [{ path: '/privacy-policy', element: <PrivacyPolicyPage /> }],
   },
 
   // Unmatched path — independent of auth state.

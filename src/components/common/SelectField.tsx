@@ -19,11 +19,12 @@ interface SelectFieldProps extends React.ComponentProps<'select'> {
 
 /**
  * Label + native <select> + error. A native select is the pragmatic, fully
- * accessible and RTL-correct choice for a simple bounded option list; styled
- * to match Input via tokens. `appearance-none` strips the browser's own
- * disclosure arrow (which can't be restyled and reads as unthemed) in favor
- * of our own ChevronDown, positioned with logical properties so it mirrors
- * correctly under RTL.
+ * accessible and RTL-correct choice for a simple bounded option list, given
+ * the same `.field-line` ledger treatment as Input/Textarea (globals.css →
+ * Form fields). `appearance-none` strips the browser's own disclosure arrow
+ * (which can't be restyled and reads as unthemed) in favor of our own
+ * ChevronDown, positioned with logical properties so it mirrors correctly
+ * under RTL.
  */
 export const SelectField = React.forwardRef<
   HTMLSelectElement,
@@ -31,17 +32,18 @@ export const SelectField = React.forwardRef<
 >(({ id, label, error, options, placeholder, className, ...props }, ref) => {
   const errorId = `${id}-error`
   return (
-    <div className="space-y-1.5">
-      <Label htmlFor={id}>{label}</Label>
-      <div className="relative">
+    <div className="space-y-1">
+      <Label htmlFor={id} className="field-label">
+        {label}
+      </Label>
+      <div className="field-line" data-invalid={error ? true : undefined}>
         <select
           id={id}
           ref={ref}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
           className={cn(
-            'flex h-10 w-full appearance-none rounded-md border border-input bg-surface px-3 py-2 pe-9 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-            error && 'border-danger focus-visible:ring-danger',
+            'h-9 w-full appearance-none bg-transparent px-0 py-1.5 pe-6 text-sm text-text-primary outline-none disabled:cursor-not-allowed disabled:text-text-disabled',
             className
           )}
           {...props}
@@ -53,7 +55,7 @@ export const SelectField = React.forwardRef<
             </option>
           ))}
         </select>
-        <ChevronDown className="pointer-events-none absolute inset-y-0 end-3 my-auto size-4 text-text-muted" />
+        <ChevronDown className="pointer-events-none absolute inset-y-0 end-0 my-auto size-4 text-text-muted" />
       </div>
       {error && (
         <p id={errorId} className="text-sm text-danger">

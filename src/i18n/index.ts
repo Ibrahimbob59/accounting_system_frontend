@@ -6,14 +6,17 @@ import enCommon from './locales/en/common.json'
 import enAuth from './locales/en/auth.json'
 import enLanding from './locales/en/landing.json'
 import enLeads from './locales/en/leads.json'
+import enLegal from './locales/en/legal.json'
 import frCommon from './locales/fr/common.json'
 import frAuth from './locales/fr/auth.json'
 import frLanding from './locales/fr/landing.json'
 import frLeads from './locales/fr/leads.json'
+import frLegal from './locales/fr/legal.json'
 import arCommon from './locales/ar/common.json'
 import arAuth from './locales/ar/auth.json'
 import arLanding from './locales/ar/landing.json'
 import arLeads from './locales/ar/leads.json'
+import arLegal from './locales/ar/legal.json'
 
 export const RTL_LANGUAGES = ['ar'] as const
 
@@ -30,9 +33,27 @@ export const SUPPORTED_LANGUAGES = [
 const SUPPORTED_CODES = SUPPORTED_LANGUAGES.map((l) => l.code)
 
 export const resources = {
-  en: { common: enCommon, auth: enAuth, landing: enLanding, leads: enLeads },
-  fr: { common: frCommon, auth: frAuth, landing: frLanding, leads: frLeads },
-  ar: { common: arCommon, auth: arAuth, landing: arLanding, leads: arLeads },
+  en: {
+    common: enCommon,
+    auth: enAuth,
+    landing: enLanding,
+    leads: enLeads,
+    legal: enLegal,
+  },
+  fr: {
+    common: frCommon,
+    auth: frAuth,
+    landing: frLanding,
+    leads: frLeads,
+    legal: frLegal,
+  },
+  ar: {
+    common: arCommon,
+    auth: arAuth,
+    landing: arLanding,
+    leads: arLeads,
+    legal: arLegal,
+  },
 } as const
 
 /**
@@ -58,7 +79,7 @@ i18n
     nonExplicitSupportedLngs: true,
     load: 'languageOnly',
     defaultNS: 'common',
-    ns: ['common', 'auth', 'landing', 'leads'],
+    ns: ['common', 'auth', 'landing', 'leads', 'legal'],
     interpolation: { escapeValue: false },
     detection: {
       order: ['localStorage', 'navigator'],

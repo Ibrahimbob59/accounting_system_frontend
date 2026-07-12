@@ -1,0 +1,41 @@
+{
+  "privacyPolicy": {
+    "title": "Privacy Policy",
+    "lastUpdated": "Last updated: [date pending]",
+    "draftNotice": "This page is a placeholder scaffold, not a published policy. Every section below is pending legal review and must be completed before this page is used in production.",
+    "sections": [
+      {
+        "title": "Information we collect",
+        "body": "Pending legal review."
+      },
+      {
+        "title": "How we use your information",
+        "body": "Pending legal review."
+      },
+      {
+        "title": "Data sharing and disclosure",
+        "body": "Pending legal review."
+      },
+      {
+        "title": "Data retention",
+        "body": "Pending legal review."
+      },
+      {
+        "title": "Your rights and choices",
+        "body": "Pending legal review."
+      },
+      {
+        "title": "Security",
+        "body": "Pending legal review."
+      },
+      {
+        "title": "Changes to this policy",
+        "body": "Pending legal review."
+      },
+      {
+        "title": "Contact us",
+        "body": "Pending legal review."
+      }
+    ]
+  }
+}

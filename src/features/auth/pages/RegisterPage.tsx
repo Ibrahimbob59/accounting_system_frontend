@@ -121,13 +121,17 @@ export function RegisterPage() {
   }
 
   return (
-    <AuthLayout title={t('register.title')} subtitle={t('register.subtitle')}>
+    <AuthLayout
+      title={t('register.title')}
+      subtitle={t('register.subtitle')}
+      wide
+    >
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6" noValidate>
         {banner && <FormBanner variant="error">{banner}</FormBanner>}
 
         {/* Company section */}
         <section className="space-y-4">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-text-muted">
+          <h2 className="ledger-rule field-label">
             {t('register.companySection')}
           </h2>
           <TextField
@@ -161,7 +165,7 @@ export function RegisterPage() {
 
         {/* Account section */}
         <section className="space-y-4">
-          <h2 className="text-xs font-semibold uppercase tracking-wide text-text-muted">
+          <h2 className="ledger-rule field-label">
             {t('register.accountSection')}
           </h2>
           <div className="grid grid-cols-2 gap-4">
@@ -221,6 +225,16 @@ export function RegisterPage() {
           {t('register.haveAccount')}{' '}
           <Link to="/login" className="text-primary-700 hover:underline">
             {t('register.login')}
+          </Link>
+        </p>
+
+        <p className="text-center text-xs text-text-muted">
+          {t('register.privacyNotice')}{' '}
+          <Link
+            to="/privacy-policy"
+            className="text-primary-700 hover:underline"
+          >
+            {t('register.privacyPolicyLink')}
           </Link>
         </p>
       </form>
