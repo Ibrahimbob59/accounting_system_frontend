@@ -15,6 +15,7 @@ import { FormBanner } from '@/components/common/FormBanner'
 import { useForgotPassword } from '@/features/auth/hooks/useForgotPassword'
 import { useResetPassword } from '@/features/auth/hooks/useResetPassword'
 import { ApiException } from '@/types/api'
+import { toast } from '@/lib/swal'
 
 const RESEND_COOLDOWN_SECONDS = 30
 
@@ -43,8 +44,6 @@ function makeResetSchema(t: TFunction<'auth'>) {
 type RequestForm = z.infer<ReturnType<typeof makeRequestSchema>>
 type ResetForm = z.infer<ReturnType<typeof makeResetSchema>>
 
-type Banner = { variant: 'error' | 'success'; message: string } | null
-
 export function ForgotPasswordPage() {
   const { t } = useTranslation('auth')
   const navigate = useNavigate()
@@ -53,7 +52,9 @@ export function ForgotPasswordPage() {
 
   const [step, setStep] = useState<'request' | 'reset'>('request')
   const [email, setEmail] = useState('')
-  const [banner, setBanner] = useState<Banner>(null)
+  // Transient "code sent" confirmations go through toast() instead (see
+  // goToResetStep/onResend) — this banner is error-only now.
+  const [banner, setBanner] = useState<string | null>(null)
   const [locked, setLocked] = useState(false)
   const [cooldown, setCooldown] = useState(0)
   const [done, setDone] = useState(false)
@@ -104,7 +105,7 @@ export function ForgotPasswordPage() {
     setStep('reset')
     setLocked(false)
     setCooldown(RESEND_COOLDOWN_SECONDS)
-    setBanner({ variant: 'success', message: t('forgotPassword.codeSent') })
+    toast('success', t('forgotPassword.codeSent'))
   }
 
   const onRequest = (values: RequestForm) => {
@@ -115,11 +116,7 @@ export function ForgotPasswordPage() {
         // The backend always returns the same generic success — move on
         // regardless of response content.
         onSuccess: () => goToResetStep(values.email),
-        onError: () =>
-          setBanner({
-            variant: 'error',
-            message: t('forgotPassword.errors.generic'),
-          }),
+        onError: () => setBanner(t('forgotPassword.errors.generic')),
       }
     )
   }
@@ -132,16 +129,9 @@ export function ForgotPasswordPage() {
         onSuccess: () => {
           setLocked(false)
           setCooldown(RESEND_COOLDOWN_SECONDS)
-          setBanner({
-            variant: 'success',
-            message: t('forgotPassword.codeSent'),
-          })
+          toast('success', t('forgotPassword.codeSent'))
         },
-        onError: () =>
-          setBanner({
-            variant: 'error',
-            message: t('forgotPassword.errors.generic'),
-          }),
+        onError: () => setBanner(t('forgotPassword.errors.generic')),
       }
     )
   }
@@ -166,17 +156,11 @@ export function ForgotPasswordPage() {
             }
             if (err.code === 'AUTH_TOO_MANY_ATTEMPTS') {
               setLocked(true)
-              setBanner({
-                variant: 'error',
-                message: t('forgotPassword.errors.tooManyAttempts'),
-              })
+              setBanner(t('forgotPassword.errors.tooManyAttempts'))
               return
             }
           }
-          setBanner({
-            variant: 'error',
-            message: t('forgotPassword.errors.generic'),
-          })
+          setBanner(t('forgotPassword.errors.generic'))
         },
       }
     )
@@ -211,9 +195,7 @@ export function ForgotPasswordPage() {
     >
       {step === 'request' ? (
         <form onSubmit={handleReq(onRequest)} className="space-y-5" noValidate>
-          {banner && (
-            <FormBanner variant={banner.variant}>{banner.message}</FormBanner>
-          )}
+          {banner && <FormBanner variant="error">{banner}</FormBanner>}
           <TextField
             id="email"
             type="email"
@@ -239,9 +221,7 @@ export function ForgotPasswordPage() {
         </form>
       ) : (
         <form onSubmit={handleRes(onReset)} className="space-y-5" noValidate>
-          {banner && (
-            <FormBanner variant={banner.variant}>{banner.message}</FormBanner>
-          )}
+          {banner && <FormBanner variant="error">{banner}</FormBanner>}
 
           <div className="flex items-center justify-between text-sm">
             <span className="text-text-secondary">{email}</span>

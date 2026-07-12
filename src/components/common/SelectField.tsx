@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { ChevronDown } from 'lucide-react'
 
 import { Label } from '@/components/ui/label'
 import { cn } from '@/lib/utils'
@@ -18,8 +19,11 @@ interface SelectFieldProps extends React.ComponentProps<'select'> {
 
 /**
  * Label + native <select> + error. A native select is the pragmatic, fully
- * accessible and RTL-correct choice for a simple bounded option list; styled to
- * match Input via tokens.
+ * accessible and RTL-correct choice for a simple bounded option list; styled
+ * to match Input via tokens. `appearance-none` strips the browser's own
+ * disclosure arrow (which can't be restyled and reads as unthemed) in favor
+ * of our own ChevronDown, positioned with logical properties so it mirrors
+ * correctly under RTL.
  */
 export const SelectField = React.forwardRef<
   HTMLSelectElement,
@@ -29,25 +33,28 @@ export const SelectField = React.forwardRef<
   return (
     <div className="space-y-1.5">
       <Label htmlFor={id}>{label}</Label>
-      <select
-        id={id}
-        ref={ref}
-        aria-invalid={error ? true : undefined}
-        aria-describedby={error ? errorId : undefined}
-        className={cn(
-          'flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
-          error && 'border-danger focus-visible:ring-danger',
-          className
-        )}
-        {...props}
-      >
-        {placeholder && <option value="">{placeholder}</option>}
-        {options.map((o) => (
-          <option key={o.value} value={o.value}>
-            {o.label}
-          </option>
-        ))}
-      </select>
+      <div className="relative">
+        <select
+          id={id}
+          ref={ref}
+          aria-invalid={error ? true : undefined}
+          aria-describedby={error ? errorId : undefined}
+          className={cn(
+            'flex h-10 w-full appearance-none rounded-md border border-input bg-surface px-3 py-2 pe-9 text-sm ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',
+            error && 'border-danger focus-visible:ring-danger',
+            className
+          )}
+          {...props}
+        >
+          {placeholder && <option value="">{placeholder}</option>}
+          {options.map((o) => (
+            <option key={o.value} value={o.value}>
+              {o.label}
+            </option>
+          ))}
+        </select>
+        <ChevronDown className="pointer-events-none absolute inset-y-0 end-3 my-auto size-4 text-text-muted" />
+      </div>
       {error && (
         <p id={errorId} className="text-sm text-danger">
           {error}

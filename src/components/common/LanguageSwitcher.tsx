@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next'
+import { ChevronDown } from 'lucide-react'
 
 import { SUPPORTED_LANGUAGES } from '@/i18n'
 import { cn } from '@/lib/utils'
@@ -18,20 +19,20 @@ export function LanguageSwitcher({ className }: { className?: string }) {
     'en'
 
   return (
-    <select
-      aria-label={t('language')}
-      value={current}
-      onChange={(e) => void i18n.changeLanguage(e.target.value)}
-      className={cn(
-        'h-9 cursor-pointer rounded-md border border-border bg-surface px-2 text-sm text-text-secondary hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
-        className
-      )}
-    >
-      {SUPPORTED_LANGUAGES.map((l) => (
-        <option key={l.code} value={l.code}>
-          {l.label}
-        </option>
-      ))}
-    </select>
+    <div className={cn('relative', className)}>
+      <select
+        aria-label={t('language')}
+        value={current}
+        onChange={(e) => void i18n.changeLanguage(e.target.value)}
+        className="h-9 w-full cursor-pointer appearance-none rounded-md border border-border bg-surface py-0 ps-2 pe-7 text-sm text-text-secondary hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+      >
+        {SUPPORTED_LANGUAGES.map((l) => (
+          <option key={l.code} value={l.code}>
+            {l.label}
+          </option>
+        ))}
+      </select>
+      <ChevronDown className="pointer-events-none absolute inset-y-0 end-2 my-auto size-3.5 text-text-muted" />
+    </div>
   )
 }
