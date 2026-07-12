@@ -1,0 +1,10 @@
+{
+  "appName": "Paradox",
+  "loading": "جارٍ التحميل...",
+  "language": "اللغة",
+  "actions": {
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "confirm": "تأكيد"
+  }
+}

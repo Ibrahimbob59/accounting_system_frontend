@@ -1,0 +1,37 @@
+import { useTranslation } from 'react-i18next'
+
+import { SUPPORTED_LANGUAGES } from '@/i18n'
+import { cn } from '@/lib/utils'
+
+/**
+ * Language selector shown by native name (English / Français / العربية),
+ * regardless of the active language. Lives in components/common so it's a
+ * one-line drop-in for AuthLayout and the Phase 2 app shell later — not a
+ * one-off. Selecting a language calls i18n.changeLanguage, which already
+ * triggers the <html dir> RTL sync (Phase 0 §0.10) and persists the choice
+ * via the language detector's localStorage cache.
+ */
+export function LanguageSwitcher({ className }: { className?: string }) {
+  const { i18n, t } = useTranslation('common')
+  const current =
+    SUPPORTED_LANGUAGES.find((l) => l.code === i18n.resolvedLanguage)?.code ??
+    'en'
+
+  return (
+    <select
+      aria-label={t('language')}
+      value={current}
+      onChange={(e) => void i18n.changeLanguage(e.target.value)}
+      className={cn(
+        'h-9 cursor-pointer rounded-md border border-border bg-surface px-2 text-sm text-text-secondary hover:text-text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+        className
+      )}
+    >
+      {SUPPORTED_LANGUAGES.map((l) => (
+        <option key={l.code} value={l.code}>
+          {l.label}
+        </option>
+      ))}
+    </select>
+  )
+}

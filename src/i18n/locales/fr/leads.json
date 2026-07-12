@@ -1,0 +1,32 @@
+{
+  "form": {
+    "fullName": "Nom complet",
+    "fullNamePlaceholder": "Jean Dupont",
+    "workEmail": "E-mail professionnel",
+    "workEmailPlaceholder": "jean@entreprise.com",
+    "companyName": "Nom de l'entreprise",
+    "phone": "Téléphone (facultatif)",
+    "companySize": "Taille de l'entreprise (facultatif)",
+    "companySizePlaceholder": "Sélectionner…",
+    "message": "Que cherchez-vous à résoudre ? (facultatif)",
+    "messagePlaceholder": "Parlez-nous un peu de vos besoins",
+    "submit": "Demander une démo"
+  },
+  "companySize": {
+    "1-10": "1 à 10 employés",
+    "11-50": "11 à 50 employés",
+    "51-200": "51 à 200 employés",
+    "200+": "Plus de 200 employés"
+  },
+  "success": {
+    "title": "Merci — nous vous contacterons sous peu.",
+    "body": "Nous avons bien reçu votre demande et nous vous contacterons pour planifier votre démo."
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer."
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire",
+    "emailInvalid": "Saisissez un e-mail valide"
+  }
+}

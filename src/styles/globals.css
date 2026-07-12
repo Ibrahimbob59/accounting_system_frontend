@@ -1,0 +1,102 @@
+@import 'tailwindcss';
+@import './tokens.css';
+@import 'tw-animate-css';
+
+/*
+ * shadcn/ui semantic tokens (§0.4), reconciled to our design tokens (§0.3).
+ * Every shadcn variable is an alias to one of our tokens — there is exactly one
+ * token system in this project.
+ *
+ * Note: --background, --card, --popover and --border are intentionally NOT
+ * redeclared here. Our token names in tokens.css are byte-for-byte identical to
+ * shadcn's variable names, so the token already *is* the shadcn variable.
+ * Re-declaring them as `--background: var(--background)` would be a circular,
+ * guaranteed-invalid CSS value.
+ */
+:root {
+  --foreground: var(--text-primary);
+  --card-foreground: var(--text-primary);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--primary-900);
+  --primary-foreground: var(--text-on-primary);
+  --secondary: var(--surface-secondary);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--surface-secondary);
+  --muted-foreground: var(--text-muted);
+  --accent: var(--primary-100);
+  --accent-foreground: var(--primary-900);
+  --destructive: var(--danger);
+  --destructive-foreground: var(--text-on-primary);
+  --input: var(--border);
+  --ring: var(--primary-500);
+  --radius: var(--radius-md);
+}
+
+@theme inline {
+  /* Brand scale */
+  --color-primary-900: var(--primary-900);
+  --color-primary-700: var(--primary-700);
+  --color-primary-500: var(--primary-500);
+  --color-primary-300: var(--primary-300);
+  --color-primary-200: var(--primary-200);
+  --color-primary-100: var(--primary-100);
+
+  /* Semantic */
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+
+  /* Backgrounds */
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-secondary: var(--surface-secondary);
+  --color-sidebar: var(--sidebar);
+  --color-card: var(--card);
+
+  /* Text */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-muted: var(--text-muted);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-on-primary: var(--text-on-primary);
+
+  /* Borders */
+  --color-border: var(--border);
+  --color-border-light: var(--border-light);
+
+  /* shadcn/ui semantic color aliases (so bg-primary, text-foreground, etc. work) */
+  --color-foreground: var(--foreground);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Radius */
+  --radius-xs: var(--radius-xs);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --radius-xl: var(--radius-xl);
+
+  /* Typography */
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--background);
+  color: var(--text-primary);
+}

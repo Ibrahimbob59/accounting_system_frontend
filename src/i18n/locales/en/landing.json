@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "login": "Log in",
+    "requestDemo": "Request a Demo"
+  },
+  "hero": {
+    "headline": "The modern back office for Lebanese trading companies.",
+    "subheadline": "Dual-currency accounting, real-time inventory, and point of sale — in one secure, multi-branch platform. Built to replace legacy systems, not just modernize them.",
+    "primaryCta": "Request a Demo",
+    "secondaryCta": "Log in",
+    "previewCaption": "Product preview coming soon"
+  },
+  "features": {
+    "heading": "Everything your back office needs",
+    "subheading": "One platform for accounting, inventory, and sales.",
+    "dualCurrency": {
+      "title": "Dual-currency, built in",
+      "desc": "Every transaction, report, and statement in USD and LBP, automatically — not bolted on."
+    },
+    "accounting": {
+      "title": "Real double-entry accounting",
+      "desc": "Automatic posting, VAT handling, and financial statements that reconcile, every time."
+    },
+    "inventory": {
+      "title": "Live inventory across branches",
+      "desc": "Stock levels, transfers, and valuation, always accurate, never a manual count away from reality."
+    },
+    "pos": {
+      "title": "Point of sale that keeps working",
+      "desc": "Offline-capable, barcode-ready, synced the moment you're back online."
+    },
+    "roles": {
+      "title": "Built for how you actually work",
+      "desc": "Role-based access, multi-branch, multi-company, in Arabic, French, and English."
+    },
+    "audit": {
+      "title": "Full audit trail, always",
+      "desc": "Every action logged, every posted record immutable, every period lockable."
+    }
+  },
+  "whySwitch": {
+    "heading": "Why switch",
+    "body": "Twenty-five years of legacy desktop software got the job done. It's time for something built for how business works today — the same accounting rules you rely on, on modern infrastructure."
+  },
+  "demo": {
+    "heading": "See Paradox in action",
+    "subheading": "Tell us a bit about your business and we'll set up a personalized demo."
+  },
+  "footer": {
+    "copyright": "© {{year}} Paradox. All rights reserved."
+  }
+}

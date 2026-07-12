@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "login": "Se connecter",
+    "requestDemo": "Demander une démo"
+  },
+  "hero": {
+    "headline": "Le back-office moderne pour les entreprises commerciales libanaises.",
+    "subheadline": "Comptabilité bi-devise, inventaire en temps réel et point de vente — dans une seule plateforme sécurisée et multi-succursales. Conçue pour remplacer les systèmes hérités, pas seulement les moderniser.",
+    "primaryCta": "Demander une démo",
+    "secondaryCta": "Se connecter",
+    "previewCaption": "Aperçu du produit bientôt disponible"
+  },
+  "features": {
+    "heading": "Tout ce dont votre back-office a besoin",
+    "subheading": "Une seule plateforme pour la comptabilité, l'inventaire et les ventes.",
+    "dualCurrency": {
+      "title": "Bi-devise, intégré",
+      "desc": "Chaque transaction, rapport et relevé en USD et LBP, automatiquement — pas ajouté après coup."
+    },
+    "accounting": {
+      "title": "Véritable comptabilité en partie double",
+      "desc": "Écritures automatiques, gestion de la TVA et états financiers qui se rapprochent, à chaque fois."
+    },
+    "inventory": {
+      "title": "Inventaire en direct sur toutes les succursales",
+      "desc": "Niveaux de stock, transferts et valorisation, toujours exacts, jamais à un comptage manuel de la réalité."
+    },
+    "pos": {
+      "title": "Un point de vente qui continue de fonctionner",
+      "desc": "Capable de fonctionner hors ligne, prêt pour les codes-barres, synchronisé dès votre retour en ligne."
+    },
+    "roles": {
+      "title": "Conçu pour votre façon de travailler",
+      "desc": "Accès basé sur les rôles, multi-succursales, multi-entreprises, en arabe, français et anglais."
+    },
+    "audit": {
+      "title": "Piste d'audit complète, toujours",
+      "desc": "Chaque action enregistrée, chaque écriture comptabilisée immuable, chaque période verrouillable."
+    }
+  },
+  "whySwitch": {
+    "heading": "Pourquoi changer",
+    "body": "Vingt-cinq ans de logiciels de bureau hérités ont fait le travail. Il est temps d'adopter une solution conçue pour le fonctionnement des entreprises d'aujourd'hui — les mêmes règles comptables sur lesquelles vous comptez, sur une infrastructure moderne."
+  },
+  "demo": {
+    "heading": "Découvrez Paradox en action",
+    "subheading": "Parlez-nous un peu de votre entreprise et nous organiserons une démo personnalisée."
+  },
+  "footer": {
+    "copyright": "© {{year}} Paradox. Tous droits réservés."
+  }
+}

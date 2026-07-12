@@ -1,0 +1,32 @@
+{
+  "form": {
+    "fullName": "Full name",
+    "fullNamePlaceholder": "Jane Doe",
+    "workEmail": "Work email",
+    "workEmailPlaceholder": "jane@company.com",
+    "companyName": "Company name",
+    "phone": "Phone (optional)",
+    "companySize": "Company size (optional)",
+    "companySizePlaceholder": "Select…",
+    "message": "What are you looking to solve? (optional)",
+    "messagePlaceholder": "Tell us a bit about your needs",
+    "submit": "Request a Demo"
+  },
+  "companySize": {
+    "1-10": "1–10 employees",
+    "11-50": "11–50 employees",
+    "51-200": "51–200 employees",
+    "200+": "200+ employees"
+  },
+  "success": {
+    "title": "Thanks — we'll be in touch shortly.",
+    "body": "We've received your request and will reach out to schedule your demo."
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again."
+  },
+  "validation": {
+    "required": "This field is required",
+    "emailInvalid": "Enter a valid email"
+  }
+}
