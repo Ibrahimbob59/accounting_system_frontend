@@ -42,11 +42,39 @@ features/{feature}/
   `FormBanner`, `LanguageSwitcher`). A component only belongs here once a
   second feature needs it — don't pre-emptively generalize a one-off.
 - Every field-style common component (`TextField`, `PasswordField`,
-  `SelectField`, `TextareaField`) follows the same shape: `id` + `label` +
-  optional `error`, a real `<Label htmlFor={id}>`, `aria-invalid` when an
-  error is present, and `aria-describedby` pointing at a `{id}-error`
-  paragraph. Match this shape for any new field component instead of
-  inventing a different error-display pattern.
+  `SelectField`, `TextareaField`, `CheckboxField`, `RadioGroupField`,
+  `SwitchField`) follows the same shape: `id`/`name` + `label` + optional
+  `error`, a real `<Label htmlFor={...}>`, `aria-invalid` when an error is
+  present, and `aria-describedby` pointing at a `{id}-error` paragraph.
+  Match this shape for any new field component instead of inventing a
+  different error-display pattern.
+  - **`TextField`/`PasswordField`/`SelectField`/`TextareaField` integrate
+    with react-hook-form via `{...register('name')}`** — they're native
+    form elements, so register's ref+onChange shape works directly.
+  - **`CheckboxField`/`RadioGroupField`/`SwitchField` do NOT** — Radix's
+    Checkbox/RadioGroup/Switch are buttons under the hood (role="checkbox"
+    /"radio", not `<input>`), so integrate them via `Controller` instead:
+    `<Controller name="x" control={control} render={({field}) => <CheckboxField checked={field.value} onCheckedChange={field.onChange} .../>} />`.
+- `Modal` (wraps shadcn's Dialog) is the one place modal-wide layout lives
+  — title/description/footer slots, title in the display font. Compose a
+  `Modal` rather than reaching for `Dialog`/`DialogContent`/etc. directly.
+- `DataTable` (wraps TanStack Table + shadcn's Table) comes with sorting
+  built in; add pagination/filtering per-screen via TanStack's
+  `getPaginationRowModel`/`getFilteredRowModel` only once a real list needs
+  them. **Sort operates on the raw accessor value** — a money/date column
+  must keep the raw number/Date in the row data and format only inside
+  `cell`, or it sorts as a string ("$1,200.00" < "$450.00" lexicographically,
+  which is wrong for money).
+- `StatusBadge` (success/warning/danger/info/neutral) is for domain status
+  chips (invoice status, roles, ...) and is intentionally separate from
+  shadcn's own `Badge` (`components/ui/badge.tsx`) rather than added to its
+  cva config — keeps that file a clean, regeneratable shadcn primitive.
+- `src/lib/swal.ts` wraps SweetAlert2 for confirm dialogs/alerts/toasts
+  (`confirm()`, `alert()`, `toast()`) — chosen over building a themed
+  equivalent from scratch, at the cost of shallower theme integration than
+  every other component here (see ARCHITECTURE.md → Shared component
+  library). Import from `@/lib/swal`, never call the `sweetalert2` package
+  directly from a feature — same "one seam" reasoning as the axios client.
 - Feature components accept props, not global reads, wherever practical;
   read from a store only where the feature genuinely needs session-wide
   state (e.g. guards reading `auth-store`).
@@ -312,3 +340,23 @@ Two behavioral rules carry over directly from that pattern:
 - No rendering raw `err.message` from a caught `ApiException` — always
   translate by `err.code`.
 - No `any` — this project runs TypeScript strict; narrow `unknown` instead.
+- No raw `<table>` markup for tabular data — use `DataTable`
+  (`components/common/DataTable.tsx`), even for a simple read-only list.
+- No reaching for shadcn's `Dialog`/`DialogContent`/etc. directly — compose
+  `Modal` (`components/common/Modal.tsx`) instead, so modal-wide layout
+  stays in one place.
+- No bare shadcn `Checkbox`/`RadioGroup`/`Switch` (or a native
+  `<input type="checkbox">`/`type="radio">`) in a form — use
+  `CheckboxField`/`RadioGroupField`/`SwitchField`
+  (`components/common/`), same a11y-wiring reasoning as
+  TextField/SelectField.
+- No ad-hoc status color chips (`<span className="bg-green-100 ...">`) —
+  use `StatusBadge` (`components/common/StatusBadge.tsx`) with a
+  success/warning/danger/info/neutral variant.
+- No calling `sweetalert2` directly, and no `window.alert`/
+  `window.confirm` — use `src/lib/swal.ts`'s `confirm()`/`alert()`/
+  `toast()`, the same "one seam" reasoning as the axios client.
+- No building a new shared UI primitive from scratch before checking
+  `components/ui/` (shadcn's registry may already have it —
+  `npx shadcn add <name>`) and `components/common/` (a themed wrapper may
+  already exist) first.

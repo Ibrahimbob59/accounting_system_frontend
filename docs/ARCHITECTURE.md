@@ -38,10 +38,14 @@ src/
     providers/      <- composition root: QueryProvider, AppProviders
     router/          <- route tree (createBrowserRouter)
   components/
-    ui/              <- shadcn-generated primitives (button, input, label, textarea, ...)
-    common/           <- hand-written, cross-feature building blocks
-                        (TextField, PasswordField, SelectField, TextareaField,
-                        FormBanner, LanguageSwitcher)
+    ui/              <- shadcn-generated primitives (button, input, label,
+                        textarea, dialog, checkbox, radio-group, switch,
+                        badge, dropdown-menu, popover, table, ...)
+    common/           <- hand-written, cross-feature building blocks:
+                        form fields (TextField, PasswordField, SelectField,
+                        TextareaField, CheckboxField, RadioGroupField,
+                        SwitchField), Modal, DataTable, StatusBadge,
+                        FormBanner, LanguageSwitcher
   features/
     auth/            <- api/, components/, hooks/, lib/, pages/, store/, types/
     landing/          <- components/, pages/
@@ -49,7 +53,7 @@ src/
     (future: invoicing/, partners/, inventory/, gl/, reports/, ...
      one folder per business domain, mirroring the backend's module list)
   i18n/               <- i18next setup + locales/{en,fr,ar}/{namespace}.json
-  lib/                <- api-client.ts, query-client.ts, utils.ts
+  lib/                <- api-client.ts, query-client.ts, utils.ts, swal.ts
   styles/             <- tokens.css (design tokens), vendors.css (shadcn
                         bridge), globals.css (Tailwind entry + base styles)
   types/              <- shared cross-feature types (API envelope, etc.)
@@ -174,6 +178,35 @@ later phase, one route subtree per backend module.
   utilities always win a specificity tie) or a co-located
   `ComponentName.module.css` for anything component-specific — see
   CONVENTIONS.md → Style scoping.
+- `globals.css` binds Tailwind's `dark:` variant to our own dark-mode
+  trigger via `@custom-variant dark (&:where([data-theme='dark'], ...))`.
+  Tailwind defaults `dark:` to `@media (prefers-color-scheme: dark)` — a
+  different mechanism than our own `[data-theme="dark"]` attribute
+  (tokens.css). Without this line, any `dark:` utility (shadcn/ui's
+  generated components use them throughout) would silently only follow OS
+  preference, never our own theme system — verified by confirming a
+  `dark:bg-*` utility only takes effect after `data-theme="dark"` is set.
+
+## Shared component library
+`components/common/` (see CONVENTIONS.md → Component conventions) covers:
+form fields (`TextField`, `PasswordField`, `SelectField`, `TextareaField`,
+`CheckboxField`, `RadioGroupField`, `SwitchField`), `Modal` (wraps shadcn's
+Dialog), `DataTable` (wraps TanStack Table + shadcn's Table primitives),
+`StatusBadge` (success/warning/danger/info/neutral status chips), and
+`src/lib/swal.ts` (a themed SweetAlert2 wrapper: `confirm()`/`alert()`/
+`toast()`). Two library choices worth knowing the reasoning behind:
+- **Tables: TanStack Table, not MUI DataGrid.** TanStack Table is headless
+  (no styling of its own), so `DataTable` renders our own styled Table
+  primitives and inherits tokens/radius/dark-mode automatically. MUI brings
+  Material Design styling and its own CSS-in-JS system — a second design
+  system that would sit awkwardly next to Tailwind/shadcn, plus its
+  DataGrid's more advanced features are paywalled.
+- **Alerts/confirm dialogs: real SweetAlert2, not a custom-built
+  equivalent.** Chosen deliberately for familiarity with this team's other
+  project's API, at a known cost: SweetAlert2 ships its own CSS, so
+  `swal.ts`'s `customClass` hooks only approximate our tokens (buttons,
+  fonts, radius) rather than fully inheriting them the way every other
+  component here does.
 
 ## Multi-tenancy
 Tenant scoping (`company_id`) is entirely a backend concern — see the

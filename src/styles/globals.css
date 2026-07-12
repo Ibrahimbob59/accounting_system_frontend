@@ -3,6 +3,19 @@
 @import './vendors.css';
 @import 'tw-animate-css';
 
+/*
+ * Bind Tailwind's `dark:` variant to OUR dark-mode trigger. Tailwind v4
+ * defaults `dark:` to `@media (prefers-color-scheme: dark)` — a DIFFERENT
+ * mechanism than the `[data-theme="dark"]` attribute our own tokens use
+ * (tokens.css). Without this, any `dark:` utility (shadcn/ui's generated
+ * components use them throughout, e.g. checkbox.tsx's `dark:bg-input/30`)
+ * would silently only respond to OS-level preference, never to our own
+ * theme system — the same class of bug as the shadow tokens that were
+ * defined but never wired into @theme. This line is what makes `dark:`
+ * utilities actually follow `data-theme="dark"` on <html>.
+ */
+@custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
+
 @theme inline {
   /* Our own design system → Tailwind utilities. Vendor (shadcn/ui) bridging
      lives in vendors.css instead — see that file's header comment. */
