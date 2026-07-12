@@ -6,6 +6,7 @@ import type {
   LoginRequest,
   RegisterRequest,
   ResetPasswordRequest,
+  VerifyResetCodeRequest,
 } from '@/features/auth/types/auth.types'
 
 /**
@@ -28,6 +29,10 @@ export const authApi = {
 
   forgotPassword(body: ForgotPasswordRequest): Promise<void> {
     return http.post<void>('/auth/forgot-password', body)
+  },
+
+  verifyResetCode(body: VerifyResetCodeRequest): Promise<void> {
+    return http.post<void>('/auth/verify-reset-code', body)
   },
 
   resetPassword(body: ResetPasswordRequest): Promise<void> {

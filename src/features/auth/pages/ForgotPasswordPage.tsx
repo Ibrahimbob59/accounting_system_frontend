@@ -13,6 +13,7 @@ import { TextField } from '@/components/common/TextField'
 import { PasswordField } from '@/components/common/PasswordField'
 import { FormBanner } from '@/components/common/FormBanner'
 import { useForgotPassword } from '@/features/auth/hooks/useForgotPassword'
+import { useVerifyResetCode } from '@/features/auth/hooks/useVerifyResetCode'
 import { useResetPassword } from '@/features/auth/hooks/useResetPassword'
 import { ApiException } from '@/types/api'
 import { toast } from '@/lib/swal'
@@ -28,10 +29,15 @@ function makeRequestSchema(t: TFunction<'auth'>) {
   })
 }
 
-function makeResetSchema(t: TFunction<'auth'>) {
+function makeCodeSchema(t: TFunction<'auth'>) {
+  return z.object({
+    code: z.string().regex(/^\d{6}$/, t('validation.codeLength')),
+  })
+}
+
+function makePasswordSchema(t: TFunction<'auth'>) {
   return z
     .object({
-      code: z.string().regex(/^\d{6}$/, t('validation.codeLength')),
       newPassword: z.string().min(8, t('validation.passwordMin')),
       confirmPassword: z.string(),
     })
@@ -42,25 +48,32 @@ function makeResetSchema(t: TFunction<'auth'>) {
 }
 
 type RequestForm = z.infer<ReturnType<typeof makeRequestSchema>>
-type ResetForm = z.infer<ReturnType<typeof makeResetSchema>>
+type CodeForm = z.infer<ReturnType<typeof makeCodeSchema>>
+type PasswordForm = z.infer<ReturnType<typeof makePasswordSchema>>
 
 export function ForgotPasswordPage() {
   const { t } = useTranslation('auth')
   const navigate = useNavigate()
   const forgot = useForgotPassword()
+  const verifyCode = useVerifyResetCode()
   const reset = useResetPassword()
 
-  const [step, setStep] = useState<'request' | 'reset'>('request')
+  const [step, setStep] = useState<'request' | 'code' | 'password'>('request')
   const [email, setEmail] = useState('')
+  // The code that just passed verify-reset-code — carried into the final
+  // reset-password call, which re-validates it itself and is what actually
+  // spends it (verifying alone never consumes the code).
+  const [verifiedCode, setVerifiedCode] = useState('')
   // Transient "code sent" confirmations go through toast() instead (see
-  // goToResetStep/onResend) — this banner is error-only now.
+  // goToCodeStep/onResend) — this banner is error-only now.
   const [banner, setBanner] = useState<string | null>(null)
   const [locked, setLocked] = useState(false)
   const [cooldown, setCooldown] = useState(0)
   const [done, setDone] = useState(false)
 
   const requestSchema = useMemo(() => makeRequestSchema(t), [t])
-  const resetSchema = useMemo(() => makeResetSchema(t), [t])
+  const codeSchema = useMemo(() => makeCodeSchema(t), [t])
+  const passwordSchema = useMemo(() => makePasswordSchema(t), [t])
 
   const {
     register: registerReq,
@@ -74,15 +87,25 @@ export function ForgotPasswordPage() {
   })
 
   const {
-    register: registerRes,
-    handleSubmit: handleRes,
-    setError: setErrorRes,
-    setFocus: setFocusRes,
-    formState: { errors: errRes, isValid: validRes },
-  } = useForm<ResetForm>({
-    resolver: zodResolver(resetSchema),
+    register: registerCode,
+    handleSubmit: handleCode,
+    setError: setErrorCode,
+    setFocus: setFocusCode,
+    formState: { errors: errCode, isValid: validCode },
+  } = useForm<CodeForm>({
+    resolver: zodResolver(codeSchema),
     mode: 'onChange',
-    defaultValues: { code: '', newPassword: '', confirmPassword: '' },
+    defaultValues: { code: '' },
+  })
+
+  const {
+    register: registerPwd,
+    handleSubmit: handlePwd,
+    formState: { errors: errPwd, isValid: validPwd },
+  } = useForm<PasswordForm>({
+    resolver: zodResolver(passwordSchema),
+    mode: 'onChange',
+    defaultValues: { newPassword: '', confirmPassword: '' },
   })
 
   // Autofocus the relevant first field for each step.
@@ -90,8 +113,8 @@ export function ForgotPasswordPage() {
     if (step === 'request') setFocusReq('email')
   }, [step, setFocusReq])
   useEffect(() => {
-    if (step === 'reset') setFocusRes('code')
-  }, [step, setFocusRes])
+    if (step === 'code') setFocusCode('code')
+  }, [step, setFocusCode])
 
   // Resend cooldown countdown.
   useEffect(() => {
@@ -100,9 +123,9 @@ export function ForgotPasswordPage() {
     return () => clearTimeout(id)
   }, [cooldown])
 
-  const goToResetStep = (submittedEmail: string) => {
+  const goToCodeStep = (submittedEmail: string) => {
     setEmail(submittedEmail)
-    setStep('reset')
+    setStep('code')
     setLocked(false)
     setCooldown(RESEND_COOLDOWN_SECONDS)
     toast('success', t('forgotPassword.codeSent'))
@@ -115,7 +138,7 @@ export function ForgotPasswordPage() {
       {
         // The backend always returns the same generic success — move on
         // regardless of response content.
-        onSuccess: () => goToResetStep(values.email),
+        onSuccess: () => goToCodeStep(values.email),
         onError: () => setBanner(t('forgotPassword.errors.generic')),
       }
     )
@@ -136,25 +159,58 @@ export function ForgotPasswordPage() {
     )
   }
 
-  const onReset = (values: ResetForm) => {
+  const onVerifyCode = (values: CodeForm) => {
+    setBanner(null)
+    verifyCode.mutate(
+      { email, code: values.code },
+      {
+        onSuccess: () => {
+          setVerifiedCode(values.code)
+          setStep('password')
+        },
+        onError: (err) => {
+          if (err instanceof ApiException) {
+            if (err.code === 'AUTH_INVALID_RESET_CODE') {
+              setErrorCode('code', {
+                message: t('forgotPassword.errors.invalidCode'),
+              })
+              setFocusCode('code')
+              return
+            }
+            if (err.code === 'AUTH_TOO_MANY_ATTEMPTS') {
+              setLocked(true)
+              setBanner(t('forgotPassword.errors.tooManyAttempts'))
+              return
+            }
+          }
+          setBanner(t('forgotPassword.errors.generic'))
+        },
+      }
+    )
+  }
+
+  const onResetPassword = (values: PasswordForm) => {
     setBanner(null)
     reset.mutate(
-      { email, code: values.code, newPassword: values.newPassword },
+      { email, code: verifiedCode, newPassword: values.newPassword },
       {
         onSuccess: () => {
           setDone(true)
           setTimeout(() => navigate('/login', { replace: true }), 2000)
         },
         onError: (err) => {
+          // The code was accepted by verify-reset-code moments ago but
+          // reset-password re-checks it itself — if it expired or was
+          // superseded by a resend in between, send the user back to
+          // re-enter a fresh one instead of failing silently here.
           if (err instanceof ApiException) {
             if (err.code === 'AUTH_INVALID_RESET_CODE') {
-              setErrorRes('code', {
-                message: t('forgotPassword.errors.invalidCode'),
-              })
-              setFocusRes('code')
+              setStep('code')
+              setBanner(t('forgotPassword.errors.invalidCode'))
               return
             }
             if (err.code === 'AUTH_TOO_MANY_ATTEMPTS') {
+              setStep('code')
               setLocked(true)
               setBanner(t('forgotPassword.errors.tooManyAttempts'))
               return
@@ -184,16 +240,16 @@ export function ForgotPasswordPage() {
     )
   }
 
+  const subtitle =
+    step === 'request'
+      ? t('forgotPassword.subtitleRequest')
+      : step === 'code'
+        ? t('forgotPassword.subtitleReset')
+        : t('forgotPassword.subtitleNewPassword')
+
   return (
-    <AuthLayout
-      title={t('forgotPassword.title')}
-      subtitle={
-        step === 'request'
-          ? t('forgotPassword.subtitleRequest')
-          : t('forgotPassword.subtitleReset')
-      }
-    >
-      {step === 'request' ? (
+    <AuthLayout title={t('forgotPassword.title')} subtitle={subtitle}>
+      {step === 'request' && (
         <form onSubmit={handleReq(onRequest)} className="space-y-5" noValidate>
           {banner && <FormBanner variant="error">{banner}</FormBanner>}
           <TextField
@@ -219,8 +275,10 @@ export function ForgotPasswordPage() {
             </Link>
           </p>
         </form>
-      ) : (
-        <form onSubmit={handleRes(onReset)} className="space-y-5" noValidate>
+      )}
+
+      {step === 'code' && (
+        <form onSubmit={handleCode(onVerifyCode)} className="space-y-5" noValidate>
           {banner && <FormBanner variant="error">{banner}</FormBanner>}
 
           <div className="flex items-center justify-between text-sm">
@@ -246,37 +304,17 @@ export function ForgotPasswordPage() {
             label={t('forgotPassword.code')}
             autoComplete="one-time-code"
             disabled={locked}
-            error={errRes.code?.message}
-            {...registerRes('code')}
-          />
-          <PasswordField
-            id="newPassword"
-            label={t('forgotPassword.newPassword')}
-            autoComplete="new-password"
-            showLabel={t('login.showPassword')}
-            hideLabel={t('login.hidePassword')}
-            disabled={locked}
-            error={errRes.newPassword?.message}
-            {...registerRes('newPassword')}
-          />
-          <PasswordField
-            id="confirmNewPassword"
-            label={t('forgotPassword.confirmPassword')}
-            autoComplete="new-password"
-            showLabel={t('login.showPassword')}
-            hideLabel={t('login.hidePassword')}
-            disabled={locked}
-            error={errRes.confirmPassword?.message}
-            {...registerRes('confirmPassword')}
+            error={errCode.code?.message}
+            {...registerCode('code')}
           />
 
           <Button
             type="submit"
             className="w-full"
-            disabled={locked || !validRes || reset.isPending}
+            disabled={locked || !validCode || verifyCode.isPending}
           >
-            {reset.isPending && <Loader2 className="animate-spin" />}
-            {t('forgotPassword.submit')}
+            {verifyCode.isPending && <Loader2 className="animate-spin" />}
+            {t('forgotPassword.verifyCode')}
           </Button>
 
           <div className="text-center text-sm">
@@ -291,6 +329,40 @@ export function ForgotPasswordPage() {
                 : t('forgotPassword.resend')}
             </button>
           </div>
+        </form>
+      )}
+
+      {step === 'password' && (
+        <form onSubmit={handlePwd(onResetPassword)} className="space-y-5" noValidate>
+          {banner && <FormBanner variant="error">{banner}</FormBanner>}
+
+          <PasswordField
+            id="newPassword"
+            label={t('forgotPassword.newPassword')}
+            autoComplete="new-password"
+            showLabel={t('login.showPassword')}
+            hideLabel={t('login.hidePassword')}
+            error={errPwd.newPassword?.message}
+            {...registerPwd('newPassword')}
+          />
+          <PasswordField
+            id="confirmNewPassword"
+            label={t('forgotPassword.confirmPassword')}
+            autoComplete="new-password"
+            showLabel={t('login.showPassword')}
+            hideLabel={t('login.hidePassword')}
+            error={errPwd.confirmPassword?.message}
+            {...registerPwd('confirmPassword')}
+          />
+
+          <Button
+            type="submit"
+            className="w-full"
+            disabled={!validPwd || reset.isPending}
+          >
+            {reset.isPending && <Loader2 className="animate-spin" />}
+            {t('forgotPassword.submit')}
+          </Button>
         </form>
       )}
     </AuthLayout>
