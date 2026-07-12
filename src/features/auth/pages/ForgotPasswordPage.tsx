@@ -5,7 +5,7 @@ import { z } from 'zod'
 import { Link, useNavigate } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import type { TFunction } from 'i18next'
-import { Loader2 } from 'lucide-react'
+import { Info, Loader2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { AuthLayout } from '@/features/auth/components/AuthLayout'
@@ -232,6 +232,11 @@ export function ForgotPasswordPage() {
             >
               {t('forgotPassword.editEmail')}
             </button>
+          </div>
+
+          <div className="flex items-start gap-2 rounded-md border border-border-light bg-surface-secondary p-3 text-sm text-text-secondary">
+            <Info className="mt-0.5 size-4 shrink-0 text-text-secondary" />
+            <span>{t('forgotPassword.conditionalNotice')}</span>
           </div>
 
           <TextField

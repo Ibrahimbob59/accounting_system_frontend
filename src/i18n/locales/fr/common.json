@@ -6,5 +6,16 @@
     "save": "Enregistrer",
     "cancel": "Annuler",
     "confirm": "Confirmer"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "body": "La page que vous recherchez n'existe pas ou a peut-être été déplacée.",
+    "backHome": "Retour à l'accueil"
+  },
+  "error": {
+    "title": "Une erreur est survenue",
+    "body": "Une erreur inattendue s'est produite. Essayez de recharger la page.",
+    "reload": "Recharger la page",
+    "backHome": "Retour à l'accueil"
   }
 }
