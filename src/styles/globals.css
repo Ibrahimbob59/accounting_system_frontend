@@ -1,39 +1,13 @@
 @import 'tailwindcss';
 @import './tokens.css';
+@import './vendors.css';
 @import 'tw-animate-css';
 
-/*
- * shadcn/ui semantic tokens (§0.4), reconciled to our design tokens (§0.3).
- * Every shadcn variable is an alias to one of our tokens — there is exactly one
- * token system in this project.
- *
- * Note: --background, --card, --popover and --border are intentionally NOT
- * redeclared here. Our token names in tokens.css are byte-for-byte identical to
- * shadcn's variable names, so the token already *is* the shadcn variable.
- * Re-declaring them as `--background: var(--background)` would be a circular,
- * guaranteed-invalid CSS value.
- */
-:root {
-  --foreground: var(--text-primary);
-  --card-foreground: var(--text-primary);
-  --popover-foreground: var(--text-primary);
-  --primary: var(--primary-900);
-  --primary-foreground: var(--text-on-primary);
-  --secondary: var(--surface-secondary);
-  --secondary-foreground: var(--text-primary);
-  --muted: var(--surface-secondary);
-  --muted-foreground: var(--text-muted);
-  --accent: var(--primary-100);
-  --accent-foreground: var(--primary-900);
-  --destructive: var(--danger);
-  --destructive-foreground: var(--text-on-primary);
-  --input: var(--border);
-  --ring: var(--primary-500);
-  --radius: var(--radius-md);
-}
-
 @theme inline {
-  /* Brand scale */
+  /* Our own design system → Tailwind utilities. Vendor (shadcn/ui) bridging
+     lives in vendors.css instead — see that file's header comment. */
+
+  /* Theme — primary (see tokens.css → THEME) */
   --color-primary-900: var(--primary-900);
   --color-primary-700: var(--primary-700);
   --color-primary-500: var(--primary-500);
@@ -41,18 +15,49 @@
   --color-primary-200: var(--primary-200);
   --color-primary-100: var(--primary-100);
 
+  /* Theme — secondary. Numbered (bg-secondary-700, our brass brand scale) —
+     distinct from the unnumbered bg-secondary below (shadcn's vendor
+     neutral "secondary button" semantic). */
+  --color-secondary-900: var(--secondary-900);
+  --color-secondary-700: var(--secondary-700);
+  --color-secondary-500: var(--secondary-500);
+  --color-secondary-300: var(--secondary-300);
+  --color-secondary-100: var(--secondary-100);
+
+  /* Theme — tertiary (reserved, not consumed anywhere yet) */
+  --color-tertiary-900: var(--tertiary-900);
+  --color-tertiary-700: var(--tertiary-700);
+  --color-tertiary-500: var(--tertiary-500);
+  --color-tertiary-300: var(--tertiary-300);
+  --color-tertiary-100: var(--tertiary-100);
+
   /* Semantic */
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
   --color-info: var(--info);
 
-  /* Backgrounds */
+  /* Neutral surface scale — the light/dark-aware standard grayscale */
+  --color-neutral-0: var(--neutral-0);
+  --color-neutral-50: var(--neutral-50);
+  --color-neutral-100: var(--neutral-100);
+  --color-neutral-200: var(--neutral-200);
+  --color-neutral-300: var(--neutral-300);
+  --color-neutral-400: var(--neutral-400);
+  --color-neutral-500: var(--neutral-500);
+  --color-neutral-600: var(--neutral-600);
+  --color-neutral-700: var(--neutral-700);
+  --color-neutral-800: var(--neutral-800);
+  --color-neutral-900: var(--neutral-900);
+  --color-neutral-950: var(--neutral-950);
+
+  /* Backgrounds — aliases onto the neutral scale, light/dark-aware */
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-secondary: var(--surface-secondary);
   --color-sidebar: var(--sidebar);
   --color-card: var(--card);
+  --color-modal: var(--modal);
 
   /* Text */
   --color-text-primary: var(--text-primary);
@@ -64,24 +69,7 @@
   /* Borders */
   --color-border: var(--border);
   --color-border-light: var(--border-light);
-
-  /* shadcn/ui semantic color aliases (so bg-primary, text-foreground, etc. work) */
-  --color-foreground: var(--foreground);
-  --color-card-foreground: var(--card-foreground);
-  --color-popover: var(--popover);
-  --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
-  --color-muted: var(--muted);
-  --color-muted-foreground: var(--muted-foreground);
-  --color-accent: var(--accent);
-  --color-accent-foreground: var(--accent-foreground);
-  --color-destructive: var(--destructive);
-  --color-destructive-foreground: var(--destructive-foreground);
-  --color-input: var(--input);
-  --color-ring: var(--ring);
+  --color-divider: var(--divider);
 
   /* Radius */
   --radius-xs: var(--radius-xs);
@@ -89,14 +77,82 @@
   --radius-md: var(--radius-md);
   --radius-lg: var(--radius-lg);
   --radius-xl: var(--radius-xl);
+  --radius-2xl: var(--radius-2xl);
+
+  /* Shadows — ink-tinted, not Tailwind's default gray (docs/CONVENTIONS.md
+     → Sizing units for why these stay px). Registering them here is what
+     makes `shadow-sm`/`shadow-lg` etc. resolve to OUR values instead of
+     silently falling back to Tailwind's built-in defaults. */
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-xl: var(--shadow-xl);
 
   /* Typography */
+  --font-display: var(--font-display);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+}
+
+/*
+ * Root sizing (docs/CONVENTIONS.md → Sizing units). Every rem value in this
+ * app — Tailwind's own spacing/type scale, our tokens, custom CSS — is a
+ * multiple of this root, so stepping it up at wider breakpoints scales the
+ * *entire* UI (spacing, radius, type) proportionally, in one place, instead
+ * of re-tuning every component at every breakpoint. Expressed in %, not a
+ * fixed px, so it still composes with the user's browser zoom/OS text-size
+ * setting rather than overriding it. Breakpoints match Tailwind's own
+ * (sm 640px / lg 1024px) so this never drifts out of sync with `sm:`/`lg:`
+ * utilities used throughout the app.
+ */
+html {
+  font-size: 100%; /* 16px baseline, below sm */
+}
+@media (min-width: 640px) {
+  html {
+    font-size: 106.25%; /* 17px, sm and up */
+  }
+}
+@media (min-width: 1024px) {
+  html {
+    font-size: 112.5%; /* 18px, lg and up */
+  }
 }
 
 body {
   font-family: var(--font-sans);
   background: var(--background);
   color: var(--text-primary);
+}
+
+/*
+ * Signature motif — "the ledger rule": real bookkeeping notation (a single
+ * rule under a subtotal, a double rule under a total) repurposed as a
+ * section accent. Apply to one heading/eyebrow per section — it marks a
+ * boundary, it isn't a page-wide grid system.
+ *
+ * Scoped into Tailwind's own `components` layer (declared by the
+ * `@import 'tailwindcss'` above) rather than left unlayered — that
+ * guarantees any Tailwind utility class always wins a specificity tie
+ * against this rule, so composing `cn('ledger-rule', 'text-lg')` behaves
+ * exactly as it reads, with no "which one wins" surprises. See
+ * docs/CONVENTIONS.md → Style scoping.
+ */
+@layer components {
+  .ledger-rule {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 0.625rem;
+  }
+  .ledger-rule::after {
+    content: '';
+    position: absolute;
+    inset-inline-start: 0;
+    bottom: 0;
+    width: 3.5rem;
+    height: 1px; /* hairline — stays px, doesn't scale with root size */
+    background: var(--secondary-500);
+    box-shadow: 0 0.25rem 0 0 var(--secondary-500);
+  }
 }

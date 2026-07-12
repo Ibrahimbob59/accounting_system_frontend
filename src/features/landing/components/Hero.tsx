@@ -33,10 +33,10 @@ export function Hero() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-20 text-center sm:py-28">
-      <h1 className="mx-auto max-w-3xl text-4xl font-bold tracking-tight text-text-primary sm:text-5xl">
+      <h1 className="font-display mx-auto max-w-3xl text-4xl font-semibold tracking-tight text-text-primary sm:text-5xl">
         {t('hero.headline')}
       </h1>
-      <p className="mx-auto mt-6 max-w-2xl text-lg text-text-secondary">
+      <p className="ledger-rule mt-6 max-w-2xl text-lg text-text-secondary">
         {t('hero.subheadline')}
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

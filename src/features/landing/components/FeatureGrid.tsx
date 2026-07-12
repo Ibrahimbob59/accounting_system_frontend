@@ -22,32 +22,36 @@ export function FeatureGrid() {
   const { t } = useTranslation('landing')
 
   return (
-    <section className="mx-auto max-w-6xl px-6 py-20">
-      <div className="mx-auto max-w-2xl text-center">
-        <h2 className="text-3xl font-bold tracking-tight text-text-primary">
+    <section className="mx-auto max-w-4xl px-6 py-20">
+      <div className="max-w-2xl">
+        <h2 className="font-display text-3xl font-semibold tracking-tight text-text-primary">
           {t('features.heading')}
         </h2>
-        <p className="mt-3 text-text-secondary">{t('features.subheading')}</p>
+        <p className="ledger-rule mt-3 text-text-secondary">
+          {t('features.subheading')}
+        </p>
       </div>
 
-      <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {/* A ledger, not a card grid — each feature is a full-width line item
+          (icon + name, then description), separated by hairlines. */}
+      <dl className="mt-10 divide-y divide-border">
         {FEATURES.map(({ key, Icon }) => (
           <div
             key={key}
-            className="rounded-lg border border-border bg-surface p-6 shadow-xs"
+            className="flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:gap-8"
           >
-            <div className="flex size-11 items-center justify-center rounded-md bg-primary-100 text-primary-900">
-              <Icon className="size-5" />
+            <div className="flex items-center gap-3 sm:w-64 sm:shrink-0">
+              <Icon className="size-5 shrink-0 text-secondary-700" />
+              <dt className="font-semibold text-text-primary">
+                {t(`features.${key}.title`)}
+              </dt>
             </div>
-            <h3 className="mt-4 text-lg font-semibold text-text-primary">
-              {t(`features.${key}.title`)}
-            </h3>
-            <p className="mt-2 text-sm text-text-secondary">
+            <dd className="text-text-secondary sm:flex-1">
               {t(`features.${key}.desc`)}
-            </p>
+            </dd>
           </div>
         ))}
-      </div>
+      </dl>
     </section>
   )
 }

@@ -1,6 +1,8 @@
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 
+import { cn } from '@/lib/utils'
+
 interface AuthLayoutProps {
   children: ReactNode
   title?: string
@@ -10,7 +12,7 @@ interface AuthLayoutProps {
 function Wordmark({ className }: { className?: string }) {
   const { t } = useTranslation('common')
   return (
-    <span className={className}>
+    <span className={cn('font-display', className)}>
       {/* Logo asset slot — a client's white-label mark drops in here. */}
       {t('appName')}
     </span>
@@ -41,9 +43,9 @@ export function AuthLayout({ children, title, subtitle }: AuthLayoutProps) {
         {/* Mobile wordmark — brand never disappears entirely. */}
         <Wordmark className="mb-8 text-xl font-bold text-primary-900 lg:hidden" />
 
-        <div className="w-full max-w-[400px]">
+        <div className="w-full max-w-[25rem]">
           {title && (
-            <h1 className="text-2xl font-semibold text-text-primary">
+            <h1 className="font-display text-2xl font-semibold text-text-primary">
               {title}
             </h1>
           )}

@@ -1,3 +1,44 @@
+# accounting-system-frontend
+
+Web back-office frontend for the accounting-system ERP platform — a
+multi-tenant, dual-currency ERP for Lebanese trading companies. This is one
+of several clients of the accounting-system backend (a separate NestJS repo);
+the others are a Flutter POS terminal and a Flutter mobile app.
+
+## Tech stack
+- React 19 + Vite
+- TypeScript (strict)
+- React Router v7, TanStack Query v5, Zustand v5
+- react-hook-form + Zod
+- shadcn/ui + Tailwind CSS v4
+- i18next (en / fr / ar, with RTL support)
+
+## Documentation
+Before writing any code, read these files in order:
+
+1. docs/ARCHITECTURE.md — stack, folder structure, state layers, auth flow
+2. docs/CONVENTIONS.md — naming, structure, forms/API patterns, forbidden patterns
+3. docs/API-CONTRACTS.md — how this app consumes the backend API, envelope/error handling, endpoints in use
+
+## Getting started
+
+### Prerequisites
+- Node.js 22 LTS
+- npm
+- The accounting-system backend running locally (see that repo's README)
+
+### Local development setup
+
+1. Clone the repository
+2. Install dependencies:
+   npm install
+3. Copy the environment file:
+   cp .env.example .env
+4. Start the dev server:
+   npm run dev
+
+---
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
