@@ -8,14 +8,28 @@
      neutral surface scale only, brand colors stay constant in both modes).
      ========================================================================== */
 
+  /* Each scale below has exactly ONE literal hex value — the -900 seed.
+     Every other step is color-mix(in oklch, seed N%, white): the same tint
+     ramp (88% / 55% / 30% / 18% / 10%) reused across all three scales, so a
+     full re-skin means picking one hex per color group, not six. This is
+     the same derivation technique as the neutral surface scale further
+     down this file — see that section's comment for why oklch, not srgb.
+     The 88% step (vs. a more even-looking ~80%) is deliberate, not
+     decorative: --secondary-700 at this step is the button background, and
+     it must clear 4.5:1 contrast against --text-on-primary for button-label
+     accessibility — measured empirically (80% only cleared 4.05:1, an
+     accessibility regression; 88% clears 4.83:1). If you change a seed hue
+     drastically, re-measure that pairing rather than assuming it still
+     holds — see docs/CONVENTIONS.md → Theming and dark mode. */
+
   /* Primary — "Ink". Structure/identity: sidebar, headings, nav. Never used
      for actions. */
   --primary-900: #1b2a4a;
-  --primary-700: #33507a;
-  --primary-500: #6b87ac;
-  --primary-300: #a9bdd4;
-  --primary-200: #c9d7e5;
-  --primary-100: #e3eaf2;
+  --primary-700: color-mix(in oklch, var(--primary-900) 88%, white);
+  --primary-500: color-mix(in oklch, var(--primary-900) 55%, white);
+  --primary-300: color-mix(in oklch, var(--primary-900) 30%, white);
+  --primary-200: color-mix(in oklch, var(--primary-900) 18%, white);
+  --primary-100: color-mix(in oklch, var(--primary-900) 10%, white);
 
   /* Secondary — "Brass". The one warm accent: actions (buttons, links) and
      the ledger-rule motif. Note: this is our brand scale (bg-secondary-700,
@@ -23,19 +37,19 @@
      semantic token below (a vendor neutral "secondary button" style). Same
      numbered-vs-flat distinction as --primary-900 vs shadcn's --primary. */
   --secondary-900: #7a5424;
-  --secondary-700: #9c6b31; /* passes 4.5:1 vs. --text-on-primary for button labels */
-  --secondary-500: #b8813f;
-  --secondary-300: #d3a468;
-  --secondary-100: #f5ebda;
+  --secondary-700: color-mix(in oklch, var(--secondary-900) 88%, white); /* button/link color — 4.83:1 vs. --text-on-primary, measured */
+  --secondary-500: color-mix(in oklch, var(--secondary-900) 55%, white);
+  --secondary-300: color-mix(in oklch, var(--secondary-900) 30%, white);
+  --secondary-100: color-mix(in oklch, var(--secondary-900) 10%, white);
 
   /* Tertiary — reserved third brand accent (tertiary buttons/badges/tags),
      not consumed anywhere yet. Placeholder muted teal — swap freely, it has
      no meaning baked in elsewhere the way primary/secondary do. */
   --tertiary-900: #1f4d47;
-  --tertiary-700: #2f6b62;
-  --tertiary-500: #4c8880;
-  --tertiary-300: #96beb8;
-  --tertiary-100: #dcece9;
+  --tertiary-700: color-mix(in oklch, var(--tertiary-900) 88%, white);
+  --tertiary-500: color-mix(in oklch, var(--tertiary-900) 55%, white);
+  --tertiary-300: color-mix(in oklch, var(--tertiary-900) 30%, white);
+  --tertiary-100: color-mix(in oklch, var(--tertiary-900) 10%, white);
 
   /* ==========================================================================
      STRUCTURAL — typography, radius, shadows
@@ -61,18 +75,25 @@
   /* px on purpose, not rem — a shadow's blur/offset is a physical depth
      effect tied to the screen, not a text-relative size, so it should NOT
      grow when the root font-size steps up (same reasoning as border-width).
-     Not yet re-tuned for dark mode — a known, deliberate gap for now. */
-  --shadow-xs: 0 1px 2px rgba(22, 33, 58, 0.05);
+     Not yet re-tuned for dark mode — a known, deliberate gap for now.
+     Color is derived from --primary via color-mix(), not a hardcoded rgba —
+     `color-mix(in srgb, X N%, transparent)` is the standard way to get
+     "color X at N% opacity" while keeping it a function of the theme, so
+     shadows re-tint automatically with a client's primary color instead of
+     needing their own hand-picked value. */
+  --shadow-xs: 0 1px 2px color-mix(in srgb, var(--primary-900) 5%, transparent);
   --shadow-sm:
-    0 1px 3px rgba(22, 33, 58, 0.08), 0 1px 2px rgba(22, 33, 58, 0.04);
+    0 1px 3px color-mix(in srgb, var(--primary-900) 8%, transparent),
+    0 1px 2px color-mix(in srgb, var(--primary-900) 4%, transparent);
   --shadow-md:
-    0 4px 8px -2px rgba(22, 33, 58, 0.08), 0 2px 4px -2px rgba(22, 33, 58, 0.04);
+    0 4px 8px -2px color-mix(in srgb, var(--primary-900) 8%, transparent),
+    0 2px 4px -2px color-mix(in srgb, var(--primary-900) 4%, transparent);
   --shadow-lg:
-    0 12px 16px -4px rgba(22, 33, 58, 0.08),
-    0 4px 6px -2px rgba(22, 33, 58, 0.03);
+    0 12px 16px -4px color-mix(in srgb, var(--primary-900) 8%, transparent),
+    0 4px 6px -2px color-mix(in srgb, var(--primary-900) 3%, transparent);
   --shadow-xl:
-    0 20px 24px -4px rgba(22, 33, 58, 0.08),
-    0 8px 8px -4px rgba(22, 33, 58, 0.03);
+    0 20px 24px -4px color-mix(in srgb, var(--primary-900) 8%, transparent),
+    0 8px 8px -4px color-mix(in srgb, var(--primary-900) 3%, transparent);
 
   /* ==========================================================================
      SEMANTIC — success / warning / danger / info
@@ -86,24 +107,33 @@
   --info: #2e5f8a;
 
   /* ==========================================================================
-     NEUTRAL SURFACE SCALE — standard grayscale
+     NEUTRAL SURFACE SCALE — derived from --primary, not hardcoded
      Every background/surface/text/border token below is an alias onto one of
-     these steps. This is the one scale the light/dark toggle actually
-     touches — see the [data-theme="dark"] block, which only remaps these
-     aliases to different steps of the SAME scale.
+     these steps, and every step here is itself a color-mix() of --primary-900
+     with white (or black, at the very dark end) — NOT its own hex. This is
+     what makes "change the theme" mean "change primary/secondary/tertiary
+     and nothing else": the whole neutral ramp (and therefore every
+     background/text/border in the app) re-tints automatically to match a new
+     --primary-900, using the SAME percentages, without anyone hand-picking a
+     new gray scale per client. Mixed `in oklch` rather than plain `srgb` so
+     the ten intermediate steps read as evenly-spaced lightness, not
+     compressed at the light end (a known issue with linear sRGB mixing).
+     This is the one scale the light/dark toggle also touches — see the
+     [data-theme="dark"] block, which only remaps these aliases to different
+     steps of this same derived scale.
      ========================================================================== */
-  --neutral-0: #ffffff;
-  --neutral-50: #f6f8f9;
-  --neutral-100: #f3f5f7;
-  --neutral-200: #eaeef2;
-  --neutral-300: #dce2e8;
-  --neutral-400: #b7c1cc;
-  --neutral-500: #a3aebd;
-  --neutral-600: #8492a6;
-  --neutral-700: #6b7a90;
-  --neutral-800: #47566e;
-  --neutral-900: #16213a;
-  --neutral-950: #0c1220;
+  --neutral-0: #ffffff; /* pure white on purpose — the one step NOT tinted, so a true paper-white surface is always available regardless of theme */
+  --neutral-50: color-mix(in oklch, var(--primary-900) 3%, white);
+  --neutral-100: color-mix(in oklch, var(--primary-900) 6%, white);
+  --neutral-200: color-mix(in oklch, var(--primary-900) 12%, white);
+  --neutral-300: color-mix(in oklch, var(--primary-900) 20%, white);
+  --neutral-400: color-mix(in oklch, var(--primary-900) 32%, white);
+  --neutral-500: color-mix(in oklch, var(--primary-900) 44%, white);
+  --neutral-600: color-mix(in oklch, var(--primary-900) 58%, white);
+  --neutral-700: color-mix(in oklch, var(--primary-900) 72%, white);
+  --neutral-800: color-mix(in oklch, var(--primary-900) 86%, white);
+  --neutral-900: var(--primary-900); /* 100% mix with white is just --primary-900 itself */
+  --neutral-950: color-mix(in oklch, var(--primary-900) 80%, black); /* darker than --primary-900, for a true near-black dark-mode background */
 
   /* Light mode (default) — aliases onto the neutral scale above. */
   --background: var(--neutral-100);

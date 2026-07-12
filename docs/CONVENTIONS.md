@@ -119,25 +119,66 @@ features/{feature}/
 `src/styles/tokens.css` is organized into four tiers, top to bottom, by how
 often each one is expected to change:
 - **Theme** (`--primary-*`, `--secondary-*`, `--tertiary-*`) — the only
-  tokens a white-label client's re-skin touches. Nothing else in the file
-  should need to change for a new client; these three shouldn't need to
-  change for anything else.
+  tokens a white-label client's re-skin touches, and each scale has exactly
+  ONE literal hex value: the `-900` seed. Every other step in that scale
+  (`-700`/`-500`/`-300`/`-200`/`-100`) is
+  `color-mix(in oklch, var(--X-900) N%, white)` — the same ramp
+  (88%/55%/30%/18%/10%) reused across all three scales — not its own
+  hand-picked hex. A full re-skin is genuinely "pick one hex per color
+  group," not six: change `--primary-900` and `--secondary-900` and every
+  derived shade follows (verified by swapping both to unrelated hues and
+  confirming the sidebar, links, gradient, buttons, icons, and ledger-rule
+  accent all re-tint together — nothing stayed on the old hue). The `88%`
+  step is deliberately not the "nicest-looking" even ramp — `--secondary-700`
+  is a button background and must clear 4.5:1 contrast against
+  `--text-on-primary`; 80% only measured 4.05:1 (a real accessibility
+  regression, caught by measuring, not by eye), 88% measures 4.83:1. If you
+  change a seed to a very different lightness/hue, re-measure that pairing
+  rather than assuming the percentage still holds.
 - **Structural** (fonts, radius, shadows) and **Semantic**
   (success/warning/danger/info) — both rarely change, and are independent
   of the theme tier above (swapping a client's secondary/brass accent
   doesn't touch their "danger" red).
-- **Neutral surface scale** — a standard grayscale, `--neutral-0` through
-  `--neutral-950`. Every background/surface/text/border token is an alias
-  onto one of these steps (e.g. `--text-primary: var(--neutral-900)`), never
-  its own hardcoded hex. This indirection is what makes light/dark mode
-  cheap: the `:root[data-theme='dark']` block at the bottom of the file
-  remaps only these aliases to a different point on the same scale —
-  `--background` moves from `--neutral-100` to `--neutral-950`, etc.
+- **Neutral surface scale** — `--neutral-0` through `--neutral-950`, and
+  critically: every step *except* `--neutral-0` (pure white) is a
+  `color-mix(in oklch, var(--primary-900) N%, white)` (or `black`, at the
+  darkest end) — not its own hardcoded hex. Every background/surface/text/
+  border token is then an alias onto one of these steps (e.g.
+  `--text-primary: var(--neutral-900)`). Two layers of indirection, two
+  payoffs:
+  1. **A theme swap only ever touches primary/secondary/tertiary.** Change
+     `--primary-900` and the entire neutral ramp — every background,
+     surface, text color, and border in the app — re-tints to match
+     automatically, because they're mathematically derived from it, not
+     independently chosen to merely *look* coordinated. (Verified by
+     swapping `--primary-900` alone to an unrelated hue and confirming
+     `--background`/`--text-primary`/`--border`/`--sidebar` all update; the
+     brass secondary/action color is correctly unaffected.)
+  2. Light/dark mode is cheap: the `:root[data-theme='dark']` block at the
+     bottom of the file remaps only these aliases to a different point on
+     the same derived scale — `--background` moves from `--neutral-100` to
+     `--neutral-950`, etc. — and it inherits the re-tinting for free.
+  - Mixed `in oklch`, not plain `srgb`: oklch interpolates lightness
+    perceptually, so the ten intermediate steps read as evenly spaced.
+    Plain sRGB channel mixing compresses badly at the light end (the first
+    few percent of mix barely move the lightness), which is the kind of
+    subtle bug you'd only catch by actually measuring computed colors.
+  - Shadows (`--shadow-xs`...`--shadow-xl`) are derived the same way —
+    `color-mix(in srgb, var(--primary-900) N%, transparent)` — so they
+    re-tint with the theme too, instead of an independently hand-picked
+    rgba that happened to look close to ink.
 - When adding a new UI-chrome color (a new background/border/text shade),
-  add it as an alias onto an existing (or new) neutral step, then, if it
-  should darken, add the override in the `[data-theme='dark']` block. Never
-  add a bespoke hex value outside the neutral scale for something that's
-  conceptually a background/surface/text/border color.
+  add it as an alias onto an existing (or new) neutral step — and if that
+  step doesn't exist yet, add it as another `color-mix()` percentage
+  against `--primary-900`, not a bespoke hex. If it should darken in dark
+  mode, add the override in the `[data-theme='dark']` block. Never add a
+  hardcoded hex outside this derivation for something that's conceptually a
+  background/surface/text/border color.
+- Semantic colors (success/warning/danger/info) are the deliberate
+  exception to "derive everything from theme" — they stay fixed,
+  brand-independent colors. Tying "danger" to a client's primary/secondary
+  risks a client whose brand happens to be red or green producing a status
+  color that reads as the wrong thing, or nothing at all.
 - The `--primary`/`--secondary`/`--accent`/etc. tokens shadcn/ui expects
   (unnumbered, e.g. `bg-primary`) are a *different* namespace from our
   numbered brand scale (`--primary-900`, `bg-primary-900`) — the former is
