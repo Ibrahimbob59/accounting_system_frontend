@@ -8,7 +8,7 @@ import type {
 
 import { useAuthStore } from '@/features/auth/store/auth-store'
 import { ApiException } from '@/types/api'
-import type { ApiErrorBody } from '@/types/api'
+import type { ApiErrorBody, ApiSuccess } from '@/types/api'
 import type { AuthResponse } from '@/features/auth/types/auth.types'
 
 const baseURL = import.meta.env.VITE_API_BASE_URL as string
@@ -19,8 +19,12 @@ export const apiClient = axios.create({
 })
 
 // Requests we've already retried once carry this flag so we don't loop forever.
+// `returnEnvelope` opts a request out of the default `.data.data` unwrap so the
+// caller receives the full `{ data, meta }` envelope — needed when `meta.total`
+// matters (e.g. dashboard counts from a `?limit=1` list call).
 interface RetriableConfig extends InternalAxiosRequestConfig {
   _retry?: boolean
+  returnEnvelope?: boolean
 }
 
 /** Shape the backend returns from /auth/refresh — a full AuthResponse. */
@@ -83,7 +87,11 @@ function redirectToLogin() {
 // ---------------------------------------------------------------------------
 apiClient.interceptors.response.use(
   (response: AxiosResponse) => {
-    // Unwrap `{ data, meta }` so callers never touch the envelope.
+    // Opt-out: hand back the full envelope when the caller needs `meta`.
+    if ((response.config as RetriableConfig).returnEnvelope) {
+      return response.data
+    }
+    // Default: unwrap `{ data, meta }` so callers never touch the envelope.
     return response.data?.data ?? response.data
   },
   async (error: AxiosError<ApiErrorBody>) => {
@@ -129,6 +137,15 @@ apiClient.interceptors.response.use(
 export const http = {
   get: <T>(url: string, config?: AxiosRequestConfig) =>
     apiClient.get(url, config) as unknown as Promise<T>,
+  /**
+   * Like `get`, but resolves to the full `{ data, meta }` envelope instead of
+   * just the payload — use when `meta` (pagination totals) is what you need.
+   */
+  getPage: <T>(url: string, config?: AxiosRequestConfig) =>
+    apiClient.get(url, {
+      ...config,
+      returnEnvelope: true,
+    } as AxiosRequestConfig) as unknown as Promise<ApiSuccess<T>>,
   post: <T>(url: string, body?: unknown, config?: AxiosRequestConfig) =>
     apiClient.post(url, body, config) as unknown as Promise<T>,
   put: <T>(url: string, body?: unknown, config?: AxiosRequestConfig) =>

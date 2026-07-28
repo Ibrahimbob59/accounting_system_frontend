@@ -6,6 +6,7 @@ import type {
   ForgotPasswordRequest,
   LoginRequest,
   RegisterRequest,
+  LogoutRequest,
   ResetPasswordRequest,
   SwitchCompanyRequest,
   VerifyResetCodeRequest,
@@ -49,7 +50,7 @@ export const authApi = {
     return http.post<void>('/auth/reset-password', body)
   },
 
-  logout(): Promise<void> {
-    return http.post<void>('/auth/logout')
+  logout(body: LogoutRequest): Promise<void> {
+    return http.post<void>('/auth/logout', body)
   },
 }

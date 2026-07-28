@@ -8,18 +8,24 @@ import enLanding from './locales/en/landing.json'
 import enLeads from './locales/en/leads.json'
 import enLegal from './locales/en/legal.json'
 import enInvitations from './locales/en/invitations.json'
+import enShell from './locales/en/shell.json'
+import enDashboard from './locales/en/dashboard.json'
 import frCommon from './locales/fr/common.json'
 import frAuth from './locales/fr/auth.json'
 import frLanding from './locales/fr/landing.json'
 import frLeads from './locales/fr/leads.json'
 import frLegal from './locales/fr/legal.json'
 import frInvitations from './locales/fr/invitations.json'
+import frShell from './locales/fr/shell.json'
+import frDashboard from './locales/fr/dashboard.json'
 import arCommon from './locales/ar/common.json'
 import arAuth from './locales/ar/auth.json'
 import arLanding from './locales/ar/landing.json'
 import arLeads from './locales/ar/leads.json'
 import arLegal from './locales/ar/legal.json'
 import arInvitations from './locales/ar/invitations.json'
+import arShell from './locales/ar/shell.json'
+import arDashboard from './locales/ar/dashboard.json'
 
 export const RTL_LANGUAGES = ['ar'] as const
 
@@ -43,6 +49,8 @@ export const resources = {
     leads: enLeads,
     legal: enLegal,
     invitations: enInvitations,
+    shell: enShell,
+    dashboard: enDashboard,
   },
   fr: {
     common: frCommon,
@@ -51,6 +59,8 @@ export const resources = {
     leads: frLeads,
     legal: frLegal,
     invitations: frInvitations,
+    shell: frShell,
+    dashboard: frDashboard,
   },
   ar: {
     common: arCommon,
@@ -59,6 +69,8 @@ export const resources = {
     leads: arLeads,
     legal: arLegal,
     invitations: arInvitations,
+    shell: arShell,
+    dashboard: arDashboard,
   },
 } as const
 
@@ -85,7 +97,16 @@ i18n
     nonExplicitSupportedLngs: true,
     load: 'languageOnly',
     defaultNS: 'common',
-    ns: ['common', 'auth', 'landing', 'leads', 'legal', 'invitations'],
+    ns: [
+      'common',
+      'auth',
+      'landing',
+      'leads',
+      'legal',
+      'invitations',
+      'shell',
+      'dashboard',
+    ],
     interpolation: { escapeValue: false },
     detection: {
       order: ['localStorage', 'navigator'],

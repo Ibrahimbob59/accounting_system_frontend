@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "dashboard": "Tableau de bord"
+  },
+  "breadcrumbs": {
+    "label": "Fil d'Ariane"
+  },
+  "sidebar": {
+    "collapse": "Réduire la barre latérale",
+    "expand": "Développer la barre latérale",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "theme": {
+    "switchToLight": "Passer en mode clair",
+    "switchToDark": "Passer en mode sombre"
+  },
+  "userMenu": {
+    "changePassword": "Changer le mot de passe",
+    "switchCompany": "Changer d'entreprise",
+    "logout": "Se déconnecter"
+  }
+}

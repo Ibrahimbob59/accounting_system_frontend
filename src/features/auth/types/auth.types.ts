@@ -77,9 +77,14 @@ export interface CurrentUser {
   email: string
   companyId: string | null
   preferredLanguage: 'EN' | 'FR' | 'AR'
+  avatarUrl?: string | null
   // MeResponseDto extends the profile with the same three session-state fields
   // the AuthResponse carries, so the guards can route straight off /auth/me.
   activeCompanyId: string | null
   companies: AuthCompany[]
   mustChangePassword: boolean
+}
+
+export interface LogoutRequest {
+  refreshToken: string
 }

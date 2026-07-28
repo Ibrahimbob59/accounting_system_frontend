@@ -11,6 +11,8 @@ import { ChangePasswordPage } from '@/features/auth/pages/ChangePasswordPage'
 import { SelectCompanyPage } from '@/features/auth/pages/SelectCompanyPage'
 import { AcceptInvitationPage } from '@/features/invitations/pages/AcceptInvitationPage'
 import { PrivacyPolicyPage } from '@/features/legal/pages/PrivacyPolicyPage'
+import { AppLayout } from '@/app/shell/AppLayout'
+import { DashboardPage } from '@/features/dashboard/pages/DashboardPage'
 import { NotFoundPage } from './NotFoundPage'
 import { RouteErrorBoundary } from './RouteErrorBoundary'
 
@@ -55,11 +57,18 @@ export const router = createBrowserRouter([
   },
 
   // Protected group — gated by the full §2 decision. Every future business
-  // screen nests under '/app'.
+  // screen nests under '/app', inside the AppLayout shell.
   {
     element: <AuthGuard />,
     errorElement: <RouteErrorBoundary />,
-    children: [{ path: '/app', element: <div>TODO: Phase 2</div> }],
+    children: [
+      {
+        path: '/app',
+        element: <AppLayout />,
+        handle: { crumbKey: 'shell:nav.dashboard' },
+        children: [{ index: true, element: <DashboardPage /> }],
+      },
+    ],
   },
 
   // Ungated — accessible regardless of auth state (unlike the public group

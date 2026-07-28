@@ -1,0 +1,13 @@
+{
+  "welcome": "Bon retour, {{name}}",
+  "welcomeGeneric": "Bon retour",
+  "cards": {
+    "partners": "Total des partenaires",
+    "users": "Membres de l'équipe",
+    "accounts": "Plan comptable"
+  },
+  "platformAdmin": {
+    "title": "Administrateur de la plateforme",
+    "body": "Vous êtes connecté en tant qu'administrateur de la plateforme. Les tableaux de bord d'entreprise apparaîtront ici dans une version ultérieure."
+  }
+}

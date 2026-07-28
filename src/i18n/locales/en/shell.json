@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "dashboard": "Dashboard"
+  },
+  "breadcrumbs": {
+    "label": "Breadcrumb"
+  },
+  "sidebar": {
+    "collapse": "Collapse sidebar",
+    "expand": "Expand sidebar",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "theme": {
+    "switchToLight": "Switch to light mode",
+    "switchToDark": "Switch to dark mode"
+  },
+  "userMenu": {
+    "changePassword": "Change password",
+    "switchCompany": "Switch company",
+    "logout": "Log out"
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "nav": {
+    "dashboard": "لوحة التحكم"
+  },
+  "breadcrumbs": {
+    "label": "مسار التنقل"
+  },
+  "sidebar": {
+    "collapse": "طيّ الشريط الجانبي",
+    "expand": "توسيع الشريط الجانبي",
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة"
+  },
+  "theme": {
+    "switchToLight": "التبديل إلى الوضع الفاتح",
+    "switchToDark": "التبديل إلى الوضع الداكن"
+  },
+  "userMenu": {
+    "changePassword": "تغيير كلمة المرور",
+    "switchCompany": "تبديل الشركة",
+    "logout": "تسجيل الخروج"
+  }
+}

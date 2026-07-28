@@ -1,0 +1,13 @@
+{
+  "welcome": "Welcome back, {{name}}",
+  "welcomeGeneric": "Welcome back",
+  "cards": {
+    "partners": "Total Partners",
+    "users": "Team members",
+    "accounts": "Chart of Accounts"
+  },
+  "platformAdmin": {
+    "title": "Platform admin",
+    "body": "You're signed in as a platform administrator. Company dashboards will appear here in a later release."
+  }
+}
