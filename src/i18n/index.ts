@@ -7,16 +7,19 @@ import enAuth from './locales/en/auth.json'
 import enLanding from './locales/en/landing.json'
 import enLeads from './locales/en/leads.json'
 import enLegal from './locales/en/legal.json'
+import enInvitations from './locales/en/invitations.json'
 import frCommon from './locales/fr/common.json'
 import frAuth from './locales/fr/auth.json'
 import frLanding from './locales/fr/landing.json'
 import frLeads from './locales/fr/leads.json'
 import frLegal from './locales/fr/legal.json'
+import frInvitations from './locales/fr/invitations.json'
 import arCommon from './locales/ar/common.json'
 import arAuth from './locales/ar/auth.json'
 import arLanding from './locales/ar/landing.json'
 import arLeads from './locales/ar/leads.json'
 import arLegal from './locales/ar/legal.json'
+import arInvitations from './locales/ar/invitations.json'
 
 export const RTL_LANGUAGES = ['ar'] as const
 
@@ -39,6 +42,7 @@ export const resources = {
     landing: enLanding,
     leads: enLeads,
     legal: enLegal,
+    invitations: enInvitations,
   },
   fr: {
     common: frCommon,
@@ -46,6 +50,7 @@ export const resources = {
     landing: frLanding,
     leads: frLeads,
     legal: frLegal,
+    invitations: frInvitations,
   },
   ar: {
     common: arCommon,
@@ -53,6 +58,7 @@ export const resources = {
     landing: arLanding,
     leads: arLeads,
     legal: arLegal,
+    invitations: arInvitations,
   },
 } as const
 
@@ -79,7 +85,7 @@ i18n
     nonExplicitSupportedLngs: true,
     load: 'languageOnly',
     defaultNS: 'common',
-    ns: ['common', 'auth', 'landing', 'leads', 'legal'],
+    ns: ['common', 'auth', 'landing', 'leads', 'legal', 'invitations'],
     interpolation: { escapeValue: false },
     detection: {
       order: ['localStorage', 'navigator'],

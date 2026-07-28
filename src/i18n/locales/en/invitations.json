@@ -1,0 +1,15 @@
+{
+  "title": "Accept invitation",
+  "loading": "Accepting your invitation…",
+  "goToLogin": "Go to login",
+  "success": {
+    "newUser": "Your account is ready. Check your email for a temporary password, then log in.",
+    "existing": "You've been added to the company. Log in to switch to it."
+  },
+  "errors": {
+    "invalid": "This invitation link isn't valid.",
+    "expired": "This invitation has expired — ask whoever invited you to send a new one.",
+    "alreadyAccepted": "This invitation was already used.",
+    "generic": "Something went wrong. Please try again."
+  }
+}

@@ -9,7 +9,7 @@ import type {
 import { useAuthStore } from '@/features/auth/store/auth-store'
 import { ApiException } from '@/types/api'
 import type { ApiErrorBody } from '@/types/api'
-import type { AuthTokens } from '@/features/auth/types/auth.types'
+import type { AuthResponse } from '@/features/auth/types/auth.types'
 
 const baseURL = import.meta.env.VITE_API_BASE_URL as string
 
@@ -23,9 +23,9 @@ interface RetriableConfig extends InternalAxiosRequestConfig {
   _retry?: boolean
 }
 
-/** Shape the backend returns from /auth/refresh (tokens only, no user). */
+/** Shape the backend returns from /auth/refresh — a full AuthResponse. */
 interface RefreshResponse {
-  data: AuthTokens
+  data: AuthResponse
 }
 
 // ---------------------------------------------------------------------------
@@ -57,7 +57,7 @@ export function refreshAccessToken(): Promise<string> {
       `${baseURL}/auth/refresh`,
       { refreshToken }
     )
-    useAuthStore.getState().setTokens(data.data)
+    useAuthStore.getState().setSession(data.data)
     return data.data.accessToken
   })()
 

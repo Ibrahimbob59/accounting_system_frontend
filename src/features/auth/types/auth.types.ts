@@ -19,12 +19,31 @@ export interface RegisterRequest {
   }
 }
 
+export interface AuthCompany {
+  id: string
+  name: string
+}
+
+/** Token-only subset — the base every auth response builds on. */
 export interface AuthTokens {
   accessToken: string
   refreshToken: string
   tokenType: 'Bearer'
   /** Access token lifetime in seconds (backend sends 900 = 15 min). */
   expiresIn: number
+}
+
+/**
+ * Full AuthResponseDto — returned by login, register, refresh, switch-company
+ * and change-password. Richer than tokens alone: it also carries the membership
+ * and forced-password-change state the guards route on (§2).
+ */
+export interface AuthResponse extends AuthTokens {
+  /** Every company the user belongs to (empty for a platform admin). */
+  companies: AuthCompany[]
+  /** null = not yet selected, or platform admin. */
+  activeCompanyId: string | null
+  mustChangePassword: boolean
 }
 
 export interface ForgotPasswordRequest {
@@ -42,6 +61,15 @@ export interface ResetPasswordRequest {
   newPassword: string
 }
 
+export interface ChangePasswordRequest {
+  currentPassword: string
+  newPassword: string
+}
+
+export interface SwitchCompanyRequest {
+  companyId: string
+}
+
 export interface CurrentUser {
   id: string
   firstName: string
@@ -49,5 +77,9 @@ export interface CurrentUser {
   email: string
   companyId: string | null
   preferredLanguage: 'EN' | 'FR' | 'AR'
-  // extend as /auth/me's real response shape is confirmed in Phase 2
+  // MeResponseDto extends the profile with the same three session-state fields
+  // the AuthResponse carries, so the guards can route straight off /auth/me.
+  activeCompanyId: string | null
+  companies: AuthCompany[]
+  mustChangePassword: boolean
 }
