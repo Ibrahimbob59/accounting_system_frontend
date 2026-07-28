@@ -2,7 +2,6 @@ import * as React from 'react'
 
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import { cn } from '@/lib/utils'
 
 interface TextFieldProps extends React.ComponentProps<'input'> {
   id: string
