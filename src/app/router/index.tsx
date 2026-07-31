@@ -13,6 +13,10 @@ import { AcceptInvitationPage } from '@/features/invitations/pages/AcceptInvitat
 import { PrivacyPolicyPage } from '@/features/legal/pages/PrivacyPolicyPage'
 import { AppLayout } from '@/app/shell/AppLayout'
 import { DashboardPage } from '@/features/dashboard/pages/DashboardPage'
+import { PartnersListPage } from '@/features/partners/pages/PartnersListPage'
+import { PartnerCreatePage } from '@/features/partners/pages/PartnerCreatePage'
+import { PartnerEditPage } from '@/features/partners/pages/PartnerEditPage'
+import { PartnerDetailPage } from '@/features/partners/pages/PartnerDetailPage'
 import { NotFoundPage } from './NotFoundPage'
 import { RouteErrorBoundary } from './RouteErrorBoundary'
 
@@ -66,7 +70,19 @@ export const router = createBrowserRouter([
         path: '/app',
         element: <AppLayout />,
         handle: { crumbKey: 'shell:nav.dashboard' },
-        children: [{ index: true, element: <DashboardPage /> }],
+        children: [
+          { index: true, element: <DashboardPage /> },
+          {
+            path: 'partners',
+            handle: { crumbKey: 'shell:nav.partners' },
+            children: [
+              { index: true, element: <PartnersListPage /> },
+              { path: 'new', element: <PartnerCreatePage /> },
+              { path: ':id', element: <PartnerDetailPage /> },
+              { path: ':id/edit', element: <PartnerEditPage /> },
+            ],
+          },
+        ],
       },
     ],
   },

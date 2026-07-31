@@ -1,0 +1,166 @@
+{
+  "list": {
+    "title": "Partenaires",
+    "newPartner": "Nouveau partenaire",
+    "empty": {
+      "title": "Aucun partenaire pour l'instant",
+      "body": "Les clients et fournisseurs que vous ajoutez apparaîtront ici.",
+      "cta": "Ajouter votre premier partenaire"
+    },
+    "filters": {
+      "search": "Recherche",
+      "searchPlaceholder": "Rechercher par référence, nom ou matricule fiscal",
+      "type": "Type",
+      "typeAll": "Tous",
+      "typeCustomer": "Client",
+      "typeSupplier": "Fournisseur",
+      "status": "Statut",
+      "statusAll": "Tous",
+      "statusActive": "Actif",
+      "statusInactive": "Inactif"
+    },
+    "columns": {
+      "ref": "Réf.",
+      "name": "Nom",
+      "type": "Type",
+      "typeBoth": "Client et fournisseur",
+      "typeCustomer": "Client",
+      "typeSupplier": "Fournisseur",
+      "phone": "Téléphone",
+      "email": "Email",
+      "vip": "VIP",
+      "vipBadge": "VIP",
+      "status": "Statut",
+      "active": "Actif",
+      "inactive": "Inactif"
+    },
+    "filteredEmpty": "Aucun partenaire ne correspond à vos filtres.",
+    "pagination": {
+      "summary": "Page {{page}} sur {{totalPages}} ({{total}} au total)",
+      "prev": "Précédent",
+      "next": "Suivant"
+    }
+  },
+  "create": {
+    "title": "Nouveau partenaire"
+  },
+  "edit": {
+    "title": "Modifier le partenaire",
+    "notFound": "Ce partenaire est introuvable."
+  },
+  "form": {
+    "sections": {
+      "role": "Rôle",
+      "identity": "Identité",
+      "contact": "Contact",
+      "financial": "Finances",
+      "advanced": "Avancé",
+      "addresses": "Adresses"
+    },
+    "customer": "Client",
+    "supplier": "Fournisseur",
+    "name": "Nom",
+    "ref": "Référence",
+    "refPlaceholder": "Laisser vide pour générer automatiquement",
+    "category": "Catégorie",
+    "translationsHeading": "Traductions du nom (optionnel)",
+    "nameAr": "Nom (arabe)",
+    "nameFr": "Nom (français)",
+    "nameEn": "Nom (anglais)",
+    "contactName": "Nom du contact",
+    "email": "Email",
+    "phone": "Téléphone",
+    "phone2": "Téléphone 2",
+    "vip": "Partenaire VIP",
+    "creditLimit": "Limite de crédit",
+    "creditCurrency": "Devise de crédit",
+    "creditCurrencyPlaceholder": "Sélectionner une devise",
+    "receivableAccount": "Compte client (override)",
+    "payableAccount": "Compte fournisseur (override)",
+    "accountPlaceholder": "Utilise la valeur par défaut de l'entreprise",
+    "accountSearchPlaceholder": "Rechercher un compte…",
+    "accountEmpty": "Aucun compte trouvé.",
+    "accountClear": "Utiliser la valeur par défaut",
+    "advancedShow": "Afficher les champs avancés",
+    "advancedHide": "Masquer les champs avancés",
+    "submitCreate": "Créer le partenaire",
+    "submitEdit": "Enregistrer les modifications",
+    "addresses": {
+      "empty": "Aucune adresse ajoutée pour l'instant.",
+      "typeLabel": "Type",
+      "type": {
+        "BILLING": "Facturation",
+        "SHIPPING": "Livraison",
+        "BRANCH": "Succursale"
+      },
+      "line1": "Adresse ligne 1",
+      "city": "Ville",
+      "country": "Pays",
+      "region": "Région",
+      "phone": "Téléphone",
+      "isDefault": "Adresse par défaut",
+      "remove": "Supprimer l'adresse",
+      "add": "Ajouter une adresse"
+    }
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire.",
+    "emailInvalid": "Entrez une adresse email valide.",
+    "roleRequired": "Sélectionnez Client et/ou Fournisseur.",
+    "creditLimitInvalid": "Entrez un montant valide et non négatif.",
+    "singleDefaultAddress": "Une seule adresse peut être définie par défaut."
+  },
+  "errors": {
+    "refAlreadyExists": "Cette référence est déjà utilisée.",
+    "refGenerationFailed": "Impossible de générer une référence — veuillez réessayer.",
+    "generic": "Une erreur est survenue. Veuillez réessayer."
+  },
+  "detail": {
+    "actions": {
+      "edit": "Modifier",
+      "deactivate": "Désactiver",
+      "activate": "Activer",
+      "delete": "Supprimer"
+    },
+    "tabs": {
+      "info": "Infos",
+      "addresses": "Adresses",
+      "ledger": "Grand livre"
+    },
+    "info": {
+      "notSet": "Non renseigné"
+    },
+    "addresses": {
+      "empty": "Aucune adresse enregistrée.",
+      "default": "Par défaut"
+    },
+    "ledger": {
+      "totalDebit": "Total débit",
+      "totalCredit": "Total crédit",
+      "netBalance": "Solde net",
+      "asOf": "À la date du",
+      "currency": "Devise",
+      "transactionsEmpty": "Aucune transaction pour l'instant.",
+      "columns": {
+        "date": "Date",
+        "entryNumber": "N° d'écriture",
+        "reference": "Référence",
+        "description": "Description",
+        "account": "Compte",
+        "debit": "Débit",
+        "credit": "Crédit"
+      }
+    },
+    "deleteConfirm": {
+      "title": "Supprimer ce partenaire ?",
+      "body": "Cela retirera {{name}} de votre liste de partenaires actifs. Cette action ne peut pas être annulée depuis cet écran.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    },
+    "toasts": {
+      "deactivated": "Partenaire désactivé.",
+      "activated": "Partenaire activé.",
+      "deleted": "Partenaire supprimé."
+    }
+  }
+}

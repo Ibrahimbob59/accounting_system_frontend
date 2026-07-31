@@ -1,4 +1,4 @@
-import { LayoutDashboard } from 'lucide-react'
+import { LayoutDashboard, Users } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface NavItem {
@@ -23,5 +23,10 @@ export const NAV_ITEMS: NavItem[] = [
     path: '/app',
     icon: LayoutDashboard,
     end: true,
+  },
+  {
+    labelKey: 'shell:nav.partners',
+    path: '/app/partners',
+    icon: Users,
   },
 ]

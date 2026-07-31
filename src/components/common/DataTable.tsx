@@ -25,6 +25,9 @@ interface DataTableProps<TData, TValue> {
   /** Shown in place of rows when `data` is empty — e.g. "No invoices yet." */
   emptyState?: ReactNode
   className?: string
+  /** Navigate-to-detail pattern (partners, and any future master list). Adds
+   * a pointer cursor + click handler per row; omit for a purely static table. */
+  onRowClick?: (row: TData) => void
 }
 
 /**
@@ -51,6 +54,7 @@ export function DataTable<TData, TValue>({
   data,
   emptyState,
   className,
+  onRowClick,
 }: DataTableProps<TData, TValue>) {
   const [sorting, setSorting] = useState<SortingState>([])
 
@@ -107,7 +111,11 @@ export function DataTable<TData, TValue>({
         <TableBody>
           {table.getRowModel().rows.length ? (
             table.getRowModel().rows.map((row) => (
-              <TableRow key={row.id}>
+              <TableRow
+                key={row.id}
+                onClick={onRowClick ? () => onRowClick(row.original) : undefined}
+                className={cn(onRowClick && 'cursor-pointer hover:bg-surface-secondary')}
+              >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}

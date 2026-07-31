@@ -1,6 +1,7 @@
 {
   "nav": {
-    "dashboard": "Dashboard"
+    "dashboard": "Dashboard",
+    "partners": "Partners"
   },
   "breadcrumbs": {
     "label": "Breadcrumb"

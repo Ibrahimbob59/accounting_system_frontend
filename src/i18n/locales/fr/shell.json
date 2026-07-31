@@ -1,6 +1,7 @@
 {
   "nav": {
-    "dashboard": "Tableau de bord"
+    "dashboard": "Tableau de bord",
+    "partners": "Partenaires"
   },
   "breadcrumbs": {
     "label": "Fil d'Ariane"

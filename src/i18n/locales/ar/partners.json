@@ -1,0 +1,166 @@
+{
+  "list": {
+    "title": "الشركاء",
+    "newPartner": "شريك جديد",
+    "empty": {
+      "title": "لا يوجد شركاء بعد",
+      "body": "سيظهر هنا العملاء والموردون الذين تضيفهم.",
+      "cta": "أضف شريكك الأول"
+    },
+    "filters": {
+      "search": "بحث",
+      "searchPlaceholder": "ابحث بالمرجع أو الاسم أو الرقم الضريبي",
+      "type": "النوع",
+      "typeAll": "الكل",
+      "typeCustomer": "عميل",
+      "typeSupplier": "مورد",
+      "status": "الحالة",
+      "statusAll": "الكل",
+      "statusActive": "نشط",
+      "statusInactive": "غير نشط"
+    },
+    "columns": {
+      "ref": "المرجع",
+      "name": "الاسم",
+      "type": "النوع",
+      "typeBoth": "عميل ومورد",
+      "typeCustomer": "عميل",
+      "typeSupplier": "مورد",
+      "phone": "الهاتف",
+      "email": "البريد الإلكتروني",
+      "vip": "VIP",
+      "vipBadge": "VIP",
+      "status": "الحالة",
+      "active": "نشط",
+      "inactive": "غير نشط"
+    },
+    "filteredEmpty": "لا يوجد شركاء يطابقون عوامل التصفية.",
+    "pagination": {
+      "summary": "صفحة {{page}} من {{totalPages}} ({{total}} إجمالاً)",
+      "prev": "السابق",
+      "next": "التالي"
+    }
+  },
+  "create": {
+    "title": "شريك جديد"
+  },
+  "edit": {
+    "title": "تعديل الشريك",
+    "notFound": "تعذر العثور على هذا الشريك."
+  },
+  "form": {
+    "sections": {
+      "role": "الدور",
+      "identity": "الهوية",
+      "contact": "التواصل",
+      "financial": "الماليات",
+      "advanced": "متقدم",
+      "addresses": "العناوين"
+    },
+    "customer": "عميل",
+    "supplier": "مورد",
+    "name": "الاسم",
+    "ref": "المرجع",
+    "refPlaceholder": "اتركه فارغًا للتوليد التلقائي",
+    "category": "الفئة",
+    "translationsHeading": "ترجمات الاسم (اختياري)",
+    "nameAr": "الاسم (عربي)",
+    "nameFr": "الاسم (فرنسي)",
+    "nameEn": "الاسم (إنجليزي)",
+    "contactName": "اسم جهة الاتصال",
+    "email": "البريد الإلكتروني",
+    "phone": "الهاتف",
+    "phone2": "هاتف 2",
+    "vip": "شريك VIP",
+    "creditLimit": "سقف الائتمان",
+    "creditCurrency": "عملة الائتمان",
+    "creditCurrencyPlaceholder": "اختر عملة",
+    "receivableAccount": "حساب المدينين (تجاوز)",
+    "payableAccount": "حساب الدائنين (تجاوز)",
+    "accountPlaceholder": "يستخدم الإعداد الافتراضي للشركة",
+    "accountSearchPlaceholder": "ابحث عن حساب…",
+    "accountEmpty": "لا توجد حسابات.",
+    "accountClear": "استخدام الإعداد الافتراضي",
+    "advancedShow": "إظهار الحقول المتقدمة",
+    "advancedHide": "إخفاء الحقول المتقدمة",
+    "submitCreate": "إنشاء الشريك",
+    "submitEdit": "حفظ التغييرات",
+    "addresses": {
+      "empty": "لم تتم إضافة أي عناوين بعد.",
+      "typeLabel": "النوع",
+      "type": {
+        "BILLING": "الفوترة",
+        "SHIPPING": "الشحن",
+        "BRANCH": "فرع"
+      },
+      "line1": "العنوان - السطر 1",
+      "city": "المدينة",
+      "country": "الدولة",
+      "region": "المنطقة",
+      "phone": "الهاتف",
+      "isDefault": "العنوان الافتراضي",
+      "remove": "إزالة العنوان",
+      "add": "إضافة عنوان"
+    }
+  },
+  "validation": {
+    "required": "هذا الحقل مطلوب.",
+    "emailInvalid": "أدخل بريدًا إلكترونيًا صالحًا.",
+    "roleRequired": "اختر عميل و/أو مورد.",
+    "creditLimitInvalid": "أدخل مبلغًا صالحًا وغير سالب.",
+    "singleDefaultAddress": "يمكن تحديد عنوان افتراضي واحد فقط."
+  },
+  "errors": {
+    "refAlreadyExists": "هذا المرجع مستخدم بالفعل.",
+    "refGenerationFailed": "تعذر توليد مرجع — يرجى المحاولة مرة أخرى.",
+    "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى."
+  },
+  "detail": {
+    "actions": {
+      "edit": "تعديل",
+      "deactivate": "تعطيل",
+      "activate": "تفعيل",
+      "delete": "حذف"
+    },
+    "tabs": {
+      "info": "المعلومات",
+      "addresses": "العناوين",
+      "ledger": "دفتر الأستاذ"
+    },
+    "info": {
+      "notSet": "غير محدد"
+    },
+    "addresses": {
+      "empty": "لا توجد عناوين مسجلة.",
+      "default": "افتراضي"
+    },
+    "ledger": {
+      "totalDebit": "إجمالي المدين",
+      "totalCredit": "إجمالي الدائن",
+      "netBalance": "الرصيد الصافي",
+      "asOf": "حتى تاريخ",
+      "currency": "العملة",
+      "transactionsEmpty": "لا توجد معاملات بعد.",
+      "columns": {
+        "date": "التاريخ",
+        "entryNumber": "رقم القيد",
+        "reference": "المرجع",
+        "description": "الوصف",
+        "account": "الحساب",
+        "debit": "مدين",
+        "credit": "دائن"
+      }
+    },
+    "deleteConfirm": {
+      "title": "حذف هذا الشريك؟",
+      "body": "سيؤدي هذا إلى إزالة {{name}} من قائمة الشركاء النشطين. لا يمكن التراجع عن هذا من هنا.",
+      "confirm": "حذف",
+      "cancel": "إلغاء"
+    },
+    "toasts": {
+      "deactivated": "تم تعطيل الشريك.",
+      "activated": "تم تفعيل الشريك.",
+      "deleted": "تم حذف الشريك."
+    }
+  }
+}

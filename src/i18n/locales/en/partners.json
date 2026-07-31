@@ -1,0 +1,166 @@
+{
+  "list": {
+    "title": "Partners",
+    "newPartner": "New Partner",
+    "empty": {
+      "title": "No partners yet",
+      "body": "Customers and suppliers you add will show up here.",
+      "cta": "Add your first partner"
+    },
+    "filters": {
+      "search": "Search",
+      "searchPlaceholder": "Search by ref, name, or TIN",
+      "type": "Type",
+      "typeAll": "All",
+      "typeCustomer": "Customer",
+      "typeSupplier": "Supplier",
+      "status": "Status",
+      "statusAll": "All",
+      "statusActive": "Active",
+      "statusInactive": "Inactive"
+    },
+    "columns": {
+      "ref": "Ref",
+      "name": "Name",
+      "type": "Type",
+      "typeBoth": "Customer & Supplier",
+      "typeCustomer": "Customer",
+      "typeSupplier": "Supplier",
+      "phone": "Phone",
+      "email": "Email",
+      "vip": "VIP",
+      "vipBadge": "VIP",
+      "status": "Status",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "filteredEmpty": "No partners match your filters.",
+    "pagination": {
+      "summary": "Page {{page}} of {{totalPages}} ({{total}} total)",
+      "prev": "Previous",
+      "next": "Next"
+    }
+  },
+  "create": {
+    "title": "New Partner"
+  },
+  "edit": {
+    "title": "Edit Partner",
+    "notFound": "This partner couldn't be found."
+  },
+  "form": {
+    "sections": {
+      "role": "Role",
+      "identity": "Identity",
+      "contact": "Contact",
+      "financial": "Financial",
+      "advanced": "Advanced",
+      "addresses": "Addresses"
+    },
+    "customer": "Customer",
+    "supplier": "Supplier",
+    "name": "Name",
+    "ref": "Reference",
+    "refPlaceholder": "Leave blank to auto-generate",
+    "category": "Category",
+    "translationsHeading": "Name translations (optional)",
+    "nameAr": "Name (Arabic)",
+    "nameFr": "Name (French)",
+    "nameEn": "Name (English)",
+    "contactName": "Contact name",
+    "email": "Email",
+    "phone": "Phone",
+    "phone2": "Phone 2",
+    "vip": "VIP partner",
+    "creditLimit": "Credit limit",
+    "creditCurrency": "Credit currency",
+    "creditCurrencyPlaceholder": "Select a currency",
+    "receivableAccount": "Receivable account override",
+    "payableAccount": "Payable account override",
+    "accountPlaceholder": "Uses the company default",
+    "accountSearchPlaceholder": "Search accounts…",
+    "accountEmpty": "No accounts found.",
+    "accountClear": "Use company default",
+    "advancedShow": "Show advanced fields",
+    "advancedHide": "Hide advanced fields",
+    "submitCreate": "Create partner",
+    "submitEdit": "Save changes",
+    "addresses": {
+      "empty": "No addresses added yet.",
+      "typeLabel": "Type",
+      "type": {
+        "BILLING": "Billing",
+        "SHIPPING": "Shipping",
+        "BRANCH": "Branch"
+      },
+      "line1": "Address line 1",
+      "city": "City",
+      "country": "Country",
+      "region": "Region",
+      "phone": "Phone",
+      "isDefault": "Default address",
+      "remove": "Remove address",
+      "add": "Add address"
+    }
+  },
+  "validation": {
+    "required": "This field is required.",
+    "emailInvalid": "Enter a valid email address.",
+    "roleRequired": "Select Customer and/or Supplier.",
+    "creditLimitInvalid": "Enter a valid, non-negative amount.",
+    "singleDefaultAddress": "Only one address can be marked default."
+  },
+  "errors": {
+    "refAlreadyExists": "That reference is already in use.",
+    "refGenerationFailed": "Couldn't generate a reference — please try again.",
+    "generic": "Something went wrong. Please try again."
+  },
+  "detail": {
+    "actions": {
+      "edit": "Edit",
+      "deactivate": "Deactivate",
+      "activate": "Activate",
+      "delete": "Delete"
+    },
+    "tabs": {
+      "info": "Info",
+      "addresses": "Addresses",
+      "ledger": "Ledger"
+    },
+    "info": {
+      "notSet": "Not set"
+    },
+    "addresses": {
+      "empty": "No addresses on file.",
+      "default": "Default"
+    },
+    "ledger": {
+      "totalDebit": "Total Debit",
+      "totalCredit": "Total Credit",
+      "netBalance": "Net Balance",
+      "asOf": "As of",
+      "currency": "Currency",
+      "transactionsEmpty": "No transactions yet.",
+      "columns": {
+        "date": "Date",
+        "entryNumber": "Entry #",
+        "reference": "Reference",
+        "description": "Description",
+        "account": "Account",
+        "debit": "Debit",
+        "credit": "Credit"
+      }
+    },
+    "deleteConfirm": {
+      "title": "Delete this partner?",
+      "body": "This will remove {{name}} from your active partners list. This can't be undone from here.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    },
+    "toasts": {
+      "deactivated": "Partner deactivated.",
+      "activated": "Partner activated.",
+      "deleted": "Partner deleted."
+    }
+  }
+}

@@ -10,6 +10,7 @@ import enLegal from './locales/en/legal.json'
 import enInvitations from './locales/en/invitations.json'
 import enShell from './locales/en/shell.json'
 import enDashboard from './locales/en/dashboard.json'
+import enPartners from './locales/en/partners.json'
 import frCommon from './locales/fr/common.json'
 import frAuth from './locales/fr/auth.json'
 import frLanding from './locales/fr/landing.json'
@@ -18,6 +19,7 @@ import frLegal from './locales/fr/legal.json'
 import frInvitations from './locales/fr/invitations.json'
 import frShell from './locales/fr/shell.json'
 import frDashboard from './locales/fr/dashboard.json'
+import frPartners from './locales/fr/partners.json'
 import arCommon from './locales/ar/common.json'
 import arAuth from './locales/ar/auth.json'
 import arLanding from './locales/ar/landing.json'
@@ -26,6 +28,7 @@ import arLegal from './locales/ar/legal.json'
 import arInvitations from './locales/ar/invitations.json'
 import arShell from './locales/ar/shell.json'
 import arDashboard from './locales/ar/dashboard.json'
+import arPartners from './locales/ar/partners.json'
 
 export const RTL_LANGUAGES = ['ar'] as const
 
@@ -51,6 +54,7 @@ export const resources = {
     invitations: enInvitations,
     shell: enShell,
     dashboard: enDashboard,
+    partners: enPartners,
   },
   fr: {
     common: frCommon,
@@ -61,6 +65,7 @@ export const resources = {
     invitations: frInvitations,
     shell: frShell,
     dashboard: frDashboard,
+    partners: frPartners,
   },
   ar: {
     common: arCommon,
@@ -71,6 +76,7 @@ export const resources = {
     invitations: arInvitations,
     shell: arShell,
     dashboard: arDashboard,
+    partners: arPartners,
   },
 } as const
 
@@ -106,6 +112,7 @@ i18n
       'invitations',
       'shell',
       'dashboard',
+      'partners',
     ],
     interpolation: { escapeValue: false },
     detection: {

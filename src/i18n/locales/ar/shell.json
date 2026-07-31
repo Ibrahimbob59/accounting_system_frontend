@@ -1,6 +1,7 @@
 {
   "nav": {
-    "dashboard": "لوحة التحكم"
+    "dashboard": "لوحة التحكم",
+    "partners": "الشركاء"
   },
   "breadcrumbs": {
     "label": "مسار التنقل"
