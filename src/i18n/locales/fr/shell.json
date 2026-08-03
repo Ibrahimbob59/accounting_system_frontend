@@ -1,7 +1,10 @@
 {
   "nav": {
     "dashboard": "Tableau de bord",
-    "partners": "Partenaires"
+    "partners": "Partenaires",
+    "users": "Équipe",
+    "accounts": "Plan comptable",
+    "companies": "Sociétés"
   },
   "breadcrumbs": {
     "label": "Fil d'Ariane"

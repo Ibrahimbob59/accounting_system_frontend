@@ -1,7 +1,10 @@
 {
   "nav": {
     "dashboard": "لوحة التحكم",
-    "partners": "الشركاء"
+    "partners": "الشركاء",
+    "users": "الفريق",
+    "accounts": "دليل الحسابات",
+    "companies": "الشركات"
   },
   "breadcrumbs": {
     "label": "مسار التنقل"

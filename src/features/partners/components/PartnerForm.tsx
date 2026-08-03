@@ -13,8 +13,8 @@ import { SwitchField } from '@/components/common/SwitchField'
 import { FormBanner } from '@/components/common/FormBanner'
 import { AccountCombobox } from '@/features/partners/components/AccountCombobox'
 import { PartnerAddressesSection } from '@/features/partners/components/PartnerAddressesSection'
-import { useCurrencies } from '@/features/partners/hooks/useCurrencies'
-import { useAccounts } from '@/features/partners/hooks/useAccounts'
+import { useCurrencies } from '@/features/currencies/hooks/useCurrencies'
+import { useAllAccounts } from '@/features/accounts/hooks/useAllAccounts'
 import { useCreatePartner } from '@/features/partners/hooks/useCreatePartner'
 import { useUpdatePartner } from '@/features/partners/hooks/useUpdatePartner'
 import { makeAddressRow, makePartnerFormSchema } from '@/features/partners/types/partners.types'
@@ -135,7 +135,7 @@ export function PartnerForm({ partner, onSuccess }: PartnerFormProps) {
   const [advancedOpen, setAdvancedOpen] = useState(false)
 
   const currencies = useCurrencies()
-  const accounts = useAccounts()
+  const accounts = useAllAccounts()
   const create = useCreatePartner()
   const update = useUpdatePartner()
   const isPending = create.isPending || update.isPending
@@ -418,7 +418,7 @@ export function PartnerForm({ partner, onSuccess }: PartnerFormProps) {
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="space-y-4">
-      <h2 className="font-display text-lg font-semibold text-text-primary">{title}</h2>
+      <h2 className="font-display text-base font-bold text-text-primary">{title}</h2>
       {children}
     </section>
   )

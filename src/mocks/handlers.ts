@@ -1,7 +1,9 @@
 import { http, HttpResponse } from 'msw'
 
 import {
-  MOCK_ACCOUNTS,
+  MOCK_ACCOUNT_TREE,
+  MOCK_COMPANIES,
+  MOCK_COMPANY_SETTINGS,
   MOCK_CREDENTIALS,
   MOCK_CURRENCIES,
   MOCK_USER,
@@ -12,6 +14,7 @@ import {
   partnersDb,
 } from '@/mocks/db'
 import type { ApiErrorBody } from '@/types/api'
+import { flattenAccountTree as flattenTree } from '@/features/accounts/types/accounts.types'
 import type {
   Partner,
   PartnerAddress,
@@ -294,12 +297,49 @@ export const handlers = [
     return new HttpResponse(null, { status: 204 })
   }),
 
-  // ---- Currencies / Accounts (no dedicated feature yet — see partners.api.ts) ----
+  // ---- Currencies (no dedicated feature yet — see partners.api.ts) ----
   http.get(url('/currencies'), () => ok(MOCK_CURRENCIES)),
 
-  http.get(url('/accounts'), () =>
-    page(MOCK_ACCOUNTS, { total: MOCK_ACCOUNTS.length, page: 1, limit: MOCK_ACCOUNTS.length })
+  // ---- Companies ------------------------------------------------------------
+  http.get(url('/companies'), () =>
+    page(MOCK_COMPANIES, {
+      total: MOCK_COMPANIES.length,
+      page: 1,
+      limit: MOCK_COMPANIES.length,
+    })
   ),
+
+  http.get(url('/companies/:id/settings'), () => ok(MOCK_COMPANY_SETTINGS)),
+
+  http.get(url('/companies/:id'), ({ params }) => {
+    const company = MOCK_COMPANIES.find((c) => c.id === params.id)
+    return company ? ok(company) : ok(MOCK_COMPANIES[0])
+  }),
+
+  // ---- Accounts -------------------------------------------------------------
+  // The tree is the source of truth; the flat list is derived from it so the
+  // two endpoints can never disagree about which accounts exist. Note the real
+  // /accounts caps `limit` at 100 while /accounts/tree is unpaginated — which
+  // is why anything needing the whole chart reads the tree.
+  http.get(url('/accounts/tree'), () => ok(MOCK_ACCOUNT_TREE)),
+
+  http.get(url('/accounts'), ({ request }) => {
+    const flat = flattenTree(MOCK_ACCOUNT_TREE)
+    const params = new URL(request.url).searchParams
+    const search = params.get('search')?.toLowerCase() ?? ''
+    const filtered = search
+      ? flat.filter(
+          (a) =>
+            a.number.toLowerCase().includes(search) ||
+            a.name.toLowerCase().includes(search)
+        )
+      : flat
+    return page(filtered, {
+      total: filtered.length,
+      page: 1,
+      limit: filtered.length || 1,
+    })
+  }),
 
   // ---- Invitations ----------------------------------------------------------
   http.post(url('/invitations/accept'), () => {

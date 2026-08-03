@@ -11,7 +11,7 @@ import { StatusBadge } from '@/components/common/StatusBadge'
 import { DataTable } from '@/components/common/DataTable'
 import { PartnerTypeBadges } from '@/features/partners/components/PartnerTypeBadges'
 import { usePartners } from '@/features/partners/hooks/usePartners'
-import { useDebouncedValue } from '@/features/partners/hooks/useDebouncedValue'
+import { useDebouncedValue } from '@/hooks/useDebouncedValue'
 import type { ListPartnersQuery, Partner } from '@/features/partners/types/partners.types'
 
 type TypeFilter = 'all' | 'customer' | 'supplier'
@@ -156,7 +156,7 @@ export function PartnersListPage() {
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-center justify-between gap-4">
-        <h1 className="font-display text-2xl font-semibold text-text-primary">
+        <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
           {t('list.title')}
         </h1>
         <Button onClick={() => navigate('/app/partners/new')}>
@@ -180,12 +180,14 @@ export function PartnersListPage() {
       ) : (
         <>
           <div className="flex flex-wrap items-end gap-4">
-            <div className="w-full max-w-xs space-y-1">
-              <label htmlFor="partners-search" className="field-label text-sm font-medium">
+            {/* Fixed widths per handoff §4: search 280px, each select 160px.
+                They shrink only below that on a narrow viewport. */}
+            <div className="w-full space-y-2 sm:w-[280px]">
+              <label htmlFor="partners-search" className="field-label">
                 {t('list.filters.search')}
               </label>
-              <div className="field-line">
-                <Search className="ms-2 size-4 shrink-0 text-text-muted" />
+              <div className="field-box">
+                <Search className="size-4 shrink-0 text-text-muted" />
                 <Input
                   id="partners-search"
                   value={searchInput}
@@ -194,12 +196,12 @@ export function PartnersListPage() {
                     setPage(1)
                   }}
                   placeholder={t('list.filters.searchPlaceholder')}
-                  className="border-0"
                 />
               </div>
             </div>
 
             <SelectField
+              className="w-[136px]"
               id="partners-type-filter"
               label={t('list.filters.type')}
               value={typeFilter}
@@ -212,6 +214,7 @@ export function PartnersListPage() {
             />
 
             <SelectField
+              className="w-[136px]"
               id="partners-status-filter"
               label={t('list.filters.status')}
               value={statusFilter}

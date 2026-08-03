@@ -1,4 +1,10 @@
-import { LayoutDashboard, Users } from 'lucide-react'
+import {
+  BookOpen,
+  Building2,
+  Contact,
+  LayoutDashboard,
+  UsersRound,
+} from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
 export interface NavItem {
@@ -25,8 +31,26 @@ export const NAV_ITEMS: NavItem[] = [
     end: true,
   },
   {
+    // `Contact` (an address-card glyph), not `Users` — Partners are external
+    // customers/suppliers, and reusing the people icon would make them read as
+    // the same concept as the internal Team below.
     labelKey: 'shell:nav.partners',
     path: '/app/partners',
-    icon: Users,
+    icon: Contact,
+  },
+  {
+    labelKey: 'shell:nav.accounts',
+    path: '/app/accounts',
+    icon: BookOpen,
+  },
+  {
+    labelKey: 'shell:nav.users',
+    path: '/app/users',
+    icon: UsersRound,
+  },
+  {
+    labelKey: 'shell:nav.companies',
+    path: '/app/companies',
+    icon: Building2,
   },
 ]

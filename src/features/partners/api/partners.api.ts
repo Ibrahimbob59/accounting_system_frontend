@@ -1,9 +1,7 @@
 import { http } from '@/lib/api-client'
 import type { ApiSuccess } from '@/types/api'
 import type {
-  Account,
   CreatePartnerDto,
-  Currency,
   ListPartnersQuery,
   Partner,
   PartnerBalance,
@@ -13,10 +11,9 @@ import type {
 } from '@/features/partners/types/partners.types'
 
 /**
- * `listCurrencies`/`listAccounts` don't belong to the partners domain, but
- * there's no currencies/accounts feature yet — same precedent as
- * dashboard.api.ts calling `/partners`/`/users`/`/accounts` directly. Move
- * these once real Currencies/Accounts modules exist.
+ * Partners only. `listAccounts` and `listCurrencies` used to live here as
+ * stopgaps; both have since moved to their own features (features/accounts,
+ * features/currencies), which partners imports from.
  */
 export const partnersApi = {
   listPartners(query: ListPartnersQuery): Promise<ApiSuccess<Partner[]>> {
@@ -52,13 +49,5 @@ export const partnersApi = {
     return http.getPage<PartnerTransaction[]>(`/partners/${id}/transactions`, {
       params: query,
     })
-  },
-
-  listCurrencies(): Promise<Currency[]> {
-    return http.get<Currency[]>('/currencies')
-  },
-
-  listAccounts(): Promise<Account[]> {
-    return http.get<Account[]>('/accounts')
   },
 }

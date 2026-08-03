@@ -11,6 +11,9 @@ import enInvitations from './locales/en/invitations.json'
 import enShell from './locales/en/shell.json'
 import enDashboard from './locales/en/dashboard.json'
 import enPartners from './locales/en/partners.json'
+import enUsers from './locales/en/users.json'
+import enAccounts from './locales/en/accounts.json'
+import enCompanies from './locales/en/companies.json'
 import frCommon from './locales/fr/common.json'
 import frAuth from './locales/fr/auth.json'
 import frLanding from './locales/fr/landing.json'
@@ -20,6 +23,9 @@ import frInvitations from './locales/fr/invitations.json'
 import frShell from './locales/fr/shell.json'
 import frDashboard from './locales/fr/dashboard.json'
 import frPartners from './locales/fr/partners.json'
+import frUsers from './locales/fr/users.json'
+import frAccounts from './locales/fr/accounts.json'
+import frCompanies from './locales/fr/companies.json'
 import arCommon from './locales/ar/common.json'
 import arAuth from './locales/ar/auth.json'
 import arLanding from './locales/ar/landing.json'
@@ -29,6 +35,9 @@ import arInvitations from './locales/ar/invitations.json'
 import arShell from './locales/ar/shell.json'
 import arDashboard from './locales/ar/dashboard.json'
 import arPartners from './locales/ar/partners.json'
+import arUsers from './locales/ar/users.json'
+import arAccounts from './locales/ar/accounts.json'
+import arCompanies from './locales/ar/companies.json'
 
 export const RTL_LANGUAGES = ['ar'] as const
 
@@ -55,6 +64,9 @@ export const resources = {
     shell: enShell,
     dashboard: enDashboard,
     partners: enPartners,
+    users: enUsers,
+    accounts: enAccounts,
+    companies: enCompanies,
   },
   fr: {
     common: frCommon,
@@ -66,6 +78,9 @@ export const resources = {
     shell: frShell,
     dashboard: frDashboard,
     partners: frPartners,
+    users: frUsers,
+    accounts: frAccounts,
+    companies: frCompanies,
   },
   ar: {
     common: arCommon,
@@ -77,6 +92,9 @@ export const resources = {
     shell: arShell,
     dashboard: arDashboard,
     partners: arPartners,
+    users: arUsers,
+    accounts: arAccounts,
+    companies: arCompanies,
   },
 } as const
 

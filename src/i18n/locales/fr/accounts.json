@@ -1,0 +1,143 @@
+{
+  "title": "Plan comptable",
+  "subtitle": "Les comptes du grand livre auxquels chaque écriture est imputée.",
+  "newAccount": "Nouveau compte",
+  "emptyFiltered": "Aucun compte ne correspond à ces filtres.",
+  "views": {
+    "tree": "Arborescence",
+    "list": "Liste"
+  },
+  "columns": {
+    "number": "Numéro",
+    "name": "Nom",
+    "type": "Type",
+    "normalBalance": "Solde normal"
+  },
+  "filters": {
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher par numéro ou nom…",
+    "type": "Type",
+    "status": "Statut",
+    "all": "Tous"
+  },
+  "status": {
+    "active": "Actif",
+    "inactive": "Inactif"
+  },
+  "type": {
+    "ASSET": "Actif",
+    "LIABILITY": "Passif",
+    "EQUITY": "Capitaux propres",
+    "REVENUE": "Produit",
+    "EXPENSE": "Charge"
+  },
+  "normalBalance": {
+    "DEBIT": "Débit",
+    "CREDIT": "Crédit"
+  },
+  "controlType": {
+    "AR": "Clients",
+    "AP": "Fournisseurs",
+    "VAT_OUT": "TVA collectée",
+    "VAT_IN": "TVA déductible",
+    "CASH": "Caisse",
+    "BANK": "Banque"
+  },
+  "tree": {
+    "expand": "Développer {{name}}",
+    "collapse": "Réduire {{name}}"
+  },
+  "empty": {
+    "title": "Aucun compte pour le moment",
+    "body": "Importez le plan comptable libanais officiel pour démarrer, ou créez les comptes un par un."
+  },
+  "import": {
+    "action": "Importer le plan officiel",
+    "done": "{{count}} comptes importés.",
+    "confirm": {
+      "title": "Importer le plan comptable officiel ?",
+      "body": "Cette action ajoute le plan comptable libanais officiel complet (des centaines de comptes) à cette société. Elle est prévue pour être faite une seule fois, et les comptes existants ne sont pas modifiés.",
+      "confirm": "Importer",
+      "cancel": "Annuler"
+    }
+  },
+  "form": {
+    "sections": {
+      "identity": "Identité",
+      "classification": "Classification",
+      "behaviour": "Comportement"
+    },
+    "number": "Numéro de compte",
+    "numberPlaceholder": "ex. 4111",
+    "accountClass": "Classe",
+    "name": "Nom",
+    "nameAr": "Nom arabe",
+    "nameFr": "Nom français",
+    "nameEn": "Nom anglais",
+    "type": "Type",
+    "normalBalance": "Solde normal",
+    "parent": "Compte parent",
+    "noParent": "Aucun parent (niveau supérieur)",
+    "currencyRestriction": "Restriction de devise",
+    "currencyRestrictionPlaceholder": "Laisser vide pour autoriser toute devise",
+    "isControl": "Il s'agit d'un compte collectif",
+    "controlType": "Type de compte collectif",
+    "controlTypePlaceholder": "Choisissez ce que ce compte contrôle"
+  },
+  "create": {
+    "title": "Nouveau compte",
+    "submit": "Créer le compte",
+    "created": "Compte créé."
+  },
+  "edit": {
+    "title": "Modifier {{number}}",
+    "submit": "Enregistrer",
+    "saved": "Modifications enregistrées.",
+    "back": "Retour au compte"
+  },
+  "detail": {
+    "back": "Retour au plan comptable",
+    "notSet": "Non renseigné",
+    "noParent": "Niveau supérieur",
+    "anyCurrency": "Toute devise",
+    "notControl": "Pas un compte collectif",
+    "activated": "Compte activé.",
+    "deactivated": "Compte désactivé.",
+    "deleted": "Compte supprimé.",
+    "deleteBlocked": "Ce compte a des sous-comptes. Supprimez-les ou déplacez-les d'abord.",
+    "actions": {
+      "edit": "Modifier",
+      "activate": "Activer",
+      "deactivate": "Désactiver",
+      "delete": "Supprimer"
+    },
+    "deleteConfirm": {
+      "title": "Supprimer ce compte ?",
+      "body": "Le compte {{number}} sera retiré du plan comptable. Les écritures déjà comptabilisées qui le référencent ne sont pas affectées.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    },
+    "balance": {
+      "title": "Solde",
+      "asOf": "Au",
+      "totalDebit": "Total débit",
+      "totalCredit": "Total crédit",
+      "balance": "Solde",
+      "unavailable": "Le solde n'est pas disponible pour ce compte."
+    }
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire",
+    "classRange": "La classe doit être comprise entre 1 et 9",
+    "controlTypeRequired": "Choisissez un type pour un compte collectif"
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "importFailed": "Le plan comptable n'a pas pu être importé. Veuillez réessayer.",
+    "numberExists": "Un compte portant ce numéro existe déjà.",
+    "parentCycle": "Ce parent créerait une boucle dans la hiérarchie des comptes.",
+    "invalidControl": "Cette combinaison d'indicateurs de compte collectif n'est pas autorisée.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci."
+  }
+}

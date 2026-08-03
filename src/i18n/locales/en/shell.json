@@ -1,7 +1,10 @@
 {
   "nav": {
     "dashboard": "Dashboard",
-    "partners": "Partners"
+    "partners": "Partners",
+    "users": "Team",
+    "accounts": "Chart of Accounts",
+    "companies": "Companies"
   },
   "breadcrumbs": {
     "label": "Breadcrumb"

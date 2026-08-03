@@ -1,0 +1,95 @@
+{
+  "title": "Sociétés",
+  "subtitle": "Les sociétés auxquelles vous avez accès, et la configuration de chacune.",
+  "newCompany": "Nouvelle société",
+  "empty": "Aucune société pour le moment.",
+  "active": "Société active",
+  "columns": {
+    "name": "Nom",
+    "taxNumber": "Numéro fiscal",
+    "baseCurrency": "Devise de base",
+    "fiscalYearStart": "Début d'exercice",
+    "status": "Statut"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "pagination": {
+    "summary": "Page {{page}} sur {{totalPages}} · {{total}} sociétés",
+    "prev": "Précédent",
+    "next": "Suivant"
+  },
+  "tabs": {
+    "profile": "Profil",
+    "settings": "Paramètres"
+  },
+  "form": {
+    "sections": {
+      "identity": "Société",
+      "accounting": "Comptabilité"
+    },
+    "name": "Nom de la société",
+    "taxNumber": "Numéro fiscal",
+    "phone": "Téléphone",
+    "email": "E-mail",
+    "baseCurrency": "Devise de base",
+    "baseCurrencyPlaceholder": "Choisissez la devise de tenue des comptes",
+    "fiscalYearStart": "Début d'exercice",
+    "roundingDecimals": "Décimales d'arrondi",
+    "roundingMode": "Mode d'arrondi",
+    "accountingNote": "Ces deux paramètres déterminent l'enregistrement et la présentation de tous les montants. Les modifier une fois des écritures saisies est perturbant : réglez-les correctement dès le départ."
+  },
+  "roundingMode": {
+    "HALF_UP": "Au supérieur (0,5)",
+    "HALF_DOWN": "À l'inférieur (0,5)",
+    "HALF_EVEN": "Au pair (bancaire)",
+    "UP": "Au supérieur",
+    "DOWN": "À l'inférieur"
+  },
+  "settings": {
+    "save": "Enregistrer les paramètres",
+    "saved": "Paramètres enregistrés.",
+    "note": "Les modules, indicateurs de fonctionnalités et modèles de documents sont également stockés ici, mais n'ont pas encore d'écran — les enregistrer ici les laisse inchangés."
+  },
+  "create": {
+    "title": "Nouvelle société",
+    "subtitle": "Vous en deviendrez le propriétaire ; le plan comptable, le taux de TVA et la numérotation des documents sont créés automatiquement.",
+    "submit": "Créer la société",
+    "created": "{{name}} créée."
+  },
+  "edit": {
+    "title": "Modifier {{name}}",
+    "submit": "Enregistrer",
+    "saved": "Modifications enregistrées.",
+    "back": "Retour à la société"
+  },
+  "detail": {
+    "back": "Retour aux sociétés",
+    "notSet": "Non renseigné",
+    "deleted": "Société supprimée.",
+    "actions": {
+      "switchTo": "Basculer vers cette société",
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "deleteConfirm": {
+      "title": "Supprimer cette société ?",
+      "body": "{{name}} et tout ce qui y est enregistré ne seront plus accessibles. À ne pas faire sur une société contenant une comptabilité réelle.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    }
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire",
+    "emailInvalid": "Saisissez une adresse e-mail valide",
+    "decimalsRange": "Les décimales doivent être comprises entre 0 et 6"
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "nameExists": "Une société portant ce nom existe déjà.",
+    "currencyNotFound": "Cette devise n'est pas reconnue.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci."
+  }
+}

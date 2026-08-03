@@ -1,0 +1,143 @@
+{
+  "title": "Chart of Accounts",
+  "subtitle": "The ledger accounts every transaction posts to.",
+  "newAccount": "New account",
+  "emptyFiltered": "No accounts match these filters.",
+  "views": {
+    "tree": "Tree",
+    "list": "List"
+  },
+  "columns": {
+    "number": "Number",
+    "name": "Name",
+    "type": "Type",
+    "normalBalance": "Normal balance"
+  },
+  "filters": {
+    "search": "Search",
+    "searchPlaceholder": "Search by number or name…",
+    "type": "Type",
+    "status": "Status",
+    "all": "All"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "type": {
+    "ASSET": "Asset",
+    "LIABILITY": "Liability",
+    "EQUITY": "Equity",
+    "REVENUE": "Revenue",
+    "EXPENSE": "Expense"
+  },
+  "normalBalance": {
+    "DEBIT": "Debit",
+    "CREDIT": "Credit"
+  },
+  "controlType": {
+    "AR": "Receivables",
+    "AP": "Payables",
+    "VAT_OUT": "Output VAT",
+    "VAT_IN": "Input VAT",
+    "CASH": "Cash",
+    "BANK": "Bank"
+  },
+  "tree": {
+    "expand": "Expand {{name}}",
+    "collapse": "Collapse {{name}}"
+  },
+  "empty": {
+    "title": "No accounts yet",
+    "body": "Import the official Lebanese chart of accounts to get started, or create accounts one at a time."
+  },
+  "import": {
+    "action": "Import official chart",
+    "done": "Imported {{count}} accounts.",
+    "confirm": {
+      "title": "Import the official chart of accounts?",
+      "body": "This adds the full official Lebanese chart (hundreds of accounts) to this company. It's meant to be done once, and existing accounts are left alone.",
+      "confirm": "Import",
+      "cancel": "Cancel"
+    }
+  },
+  "form": {
+    "sections": {
+      "identity": "Identity",
+      "classification": "Classification",
+      "behaviour": "Behaviour"
+    },
+    "number": "Account number",
+    "numberPlaceholder": "e.g. 4111",
+    "accountClass": "Class",
+    "name": "Name",
+    "nameAr": "Arabic name",
+    "nameFr": "French name",
+    "nameEn": "English name",
+    "type": "Type",
+    "normalBalance": "Normal balance",
+    "parent": "Parent account",
+    "noParent": "No parent (top level)",
+    "currencyRestriction": "Currency restriction",
+    "currencyRestrictionPlaceholder": "Leave empty to allow any currency",
+    "isControl": "This is a control account",
+    "controlType": "Control type",
+    "controlTypePlaceholder": "Choose what this account controls"
+  },
+  "create": {
+    "title": "New account",
+    "submit": "Create account",
+    "created": "Account created."
+  },
+  "edit": {
+    "title": "Edit {{number}}",
+    "submit": "Save changes",
+    "saved": "Changes saved.",
+    "back": "Back to account"
+  },
+  "detail": {
+    "back": "Back to chart of accounts",
+    "notSet": "Not set",
+    "noParent": "Top level",
+    "anyCurrency": "Any currency",
+    "notControl": "Not a control account",
+    "activated": "Account activated.",
+    "deactivated": "Account deactivated.",
+    "deleted": "Account deleted.",
+    "deleteBlocked": "This account has sub-accounts. Delete or move those first.",
+    "actions": {
+      "edit": "Edit",
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "delete": "Delete"
+    },
+    "deleteConfirm": {
+      "title": "Delete this account?",
+      "body": "Account {{number}} will be removed from the chart of accounts. Posted journal entries that reference it are not affected.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    },
+    "balance": {
+      "title": "Balance",
+      "asOf": "As of",
+      "totalDebit": "Total debit",
+      "totalCredit": "Total credit",
+      "balance": "Balance",
+      "unavailable": "Balance is unavailable for this account."
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "classRange": "Class must be between 1 and 9",
+    "controlTypeRequired": "Choose a control type for a control account"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "importFailed": "The chart couldn't be imported. Please try again.",
+    "numberExists": "An account with this number already exists.",
+    "parentCycle": "That parent would create a loop in the account hierarchy.",
+    "invalidControl": "That combination of control flags isn't allowed.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this."
+  }
+}

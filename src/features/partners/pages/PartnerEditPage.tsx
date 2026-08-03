@@ -13,13 +13,13 @@ export function PartnerEditPage() {
 
   return (
     <div className="space-y-6">
-      <h1 className="font-display text-2xl font-semibold text-text-primary">
+      <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
         {t('edit.title')}
       </h1>
 
       {isLoading && (
         <div className="flex justify-center py-16">
-          <Loader2 className="size-8 animate-spin text-primary-700" />
+          <Loader2 className="size-8 animate-spin text-brand" />
         </div>
       )}
 

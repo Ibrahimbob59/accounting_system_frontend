@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { Loader2, Pencil, Trash2 } from 'lucide-react'
+import { ArrowLeft, Loader2, Pencil, Trash2 } from 'lucide-react'
 
 import { Button } from '@/components/ui/button'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
@@ -11,7 +11,7 @@ import { PartnerLedgerTab } from '@/features/partners/components/PartnerLedgerTa
 import { usePartner } from '@/features/partners/hooks/usePartner'
 import { useUpdatePartner } from '@/features/partners/hooks/useUpdatePartner'
 import { useDeletePartner } from '@/features/partners/hooks/useDeletePartner'
-import { useAccounts } from '@/features/partners/hooks/useAccounts'
+import { useAllAccounts } from '@/features/accounts/hooks/useAllAccounts'
 import { confirm, toast } from '@/lib/swal'
 
 export function PartnerDetailPage() {
@@ -19,14 +19,14 @@ export function PartnerDetailPage() {
   const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
   const { data: partner, isLoading } = usePartner(id)
-  const accounts = useAccounts()
+  const accounts = useAllAccounts()
   const updatePartner = useUpdatePartner()
   const deletePartner = useDeletePartner()
 
   if (isLoading || !partner) {
     return (
       <div className="flex justify-center py-16">
-        <Loader2 className="size-8 animate-spin text-primary-700" />
+        <Loader2 className="size-8 animate-spin text-brand" />
       </div>
     )
   }
@@ -74,10 +74,18 @@ export function PartnerDetailPage() {
 
   return (
     <div className="space-y-6">
+      <Link
+        to="/app/partners"
+        className="inline-flex items-center gap-1.5 text-sm text-text-muted hover:text-text-primary"
+      >
+        <ArrowLeft className="size-4 rtl:rotate-180" />
+        {t('detail.back')}
+      </Link>
+
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div className="space-y-2">
           <div className="flex flex-wrap items-center gap-2">
-            <h1 className="font-display text-2xl font-semibold text-text-primary">
+            <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
               {partner.ref} — {partner.name}
             </h1>
             <PartnerTypeBadges isCustomer={partner.isCustomer} isSupplier={partner.isSupplier} />
@@ -100,7 +108,7 @@ export function PartnerDetailPage() {
             </Link>
           </Button>
           <Button
-            variant="secondary"
+            variant="outline"
             onClick={handleToggleActive}
             disabled={updatePartner.isPending}
           >
@@ -109,8 +117,7 @@ export function PartnerDetailPage() {
               : t('detail.actions.activate')}
           </Button>
           <Button
-            variant="ghost"
-            className="text-danger hover:text-danger"
+            variant="destructive"
             onClick={handleDelete}
             disabled={deletePartner.isPending}
           >
@@ -120,14 +127,25 @@ export function PartnerDetailPage() {
         </div>
       </div>
 
+      {/* `line` variant + a rule on the list itself: the active tab's
+          underline sits ON that rule rather than floating above it. */}
       <Tabs defaultValue="info">
-        <TabsList>
-          <TabsTrigger value="info">{t('detail.tabs.info')}</TabsTrigger>
-          <TabsTrigger value="addresses">{t('detail.tabs.addresses')}</TabsTrigger>
-          <TabsTrigger value="ledger">{t('detail.tabs.ledger')}</TabsTrigger>
+        <TabsList
+          variant="line"
+          className="h-auto w-full justify-start gap-6 border-b border-border p-0"
+        >
+          <TabsTrigger value="info" className="flex-none px-1 py-2.5">
+            {t('detail.tabs.info')}
+          </TabsTrigger>
+          <TabsTrigger value="addresses" className="flex-none px-1 py-2.5">
+            {t('detail.tabs.addresses')}
+          </TabsTrigger>
+          <TabsTrigger value="ledger" className="flex-none px-1 py-2.5">
+            {t('detail.tabs.ledger')}
+          </TabsTrigger>
         </TabsList>
 
-        <TabsContent value="info" className="space-y-8 pt-4">
+        <TabsContent value="info" className="space-y-7 pt-6">
           <InfoSection title={t('form.sections.identity')}>
             <InfoRow label={t('form.name')} value={partner.name} />
             <InfoRow label={t('form.ref')} value={partner.ref} />
@@ -167,7 +185,7 @@ export function PartnerDetailPage() {
           </InfoSection>
         </TabsContent>
 
-        <TabsContent value="addresses" className="pt-4">
+        <TabsContent value="addresses" className="pt-6">
           {!partner.addresses?.length ? (
             <p className="text-text-muted">{t('detail.addresses.empty')}</p>
           ) : (
@@ -199,7 +217,7 @@ export function PartnerDetailPage() {
           )}
         </TabsContent>
 
-        <TabsContent value="ledger" className="pt-4">
+        <TabsContent value="ledger" className="pt-6">
           <PartnerLedgerTab partnerId={partner.id} />
         </TabsContent>
       </Tabs>
@@ -210,8 +228,8 @@ export function PartnerDetailPage() {
 function InfoSection({ title, children }: { title: string; children: ReactNode }) {
   return (
     <section className="space-y-3">
-      <h2 className="font-display text-lg font-semibold text-text-primary">{title}</h2>
-      <div className="grid gap-x-8 gap-y-3 sm:grid-cols-2">{children}</div>
+      <h2 className="font-display text-base font-bold text-text-primary">{title}</h2>
+      <div className="grid gap-x-8 gap-y-4 sm:grid-cols-2">{children}</div>
     </section>
   )
 }
@@ -219,8 +237,8 @@ function InfoSection({ title, children }: { title: string; children: ReactNode }
 function InfoRow({ label, value }: { label: string; value: string }) {
   return (
     <div>
-      <dt className="text-sm text-text-secondary">{label}</dt>
-      <dd className="text-text-primary">{value}</dd>
+      <dt className="text-[13px] text-text-muted">{label}</dt>
+      <dd className="mt-0.5 text-[15px] text-text-primary">{value}</dd>
     </div>
   )
 }

@@ -72,8 +72,9 @@ export function AccountCombobox({
             aria-invalid={error ? true : undefined}
             aria-describedby={error ? errorId : undefined}
             className={cn(
-              'flex h-9 w-full items-center justify-between gap-2 rounded-md border border-border bg-transparent px-3 text-start text-sm text-text-primary outline-none',
-              'focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2',
+              // Matches `.field-box` so the combobox reads as one of the
+              // form fields rather than a button that happens to sit in a form.
+              'flex w-full items-center justify-between gap-2 rounded-md border border-border bg-surface px-[length:var(--field-pad-x)] py-[length:var(--field-pad-y)] text-start text-[15px] text-text-primary outline-none',
               !selected && 'text-text-muted'
             )}
           >
@@ -126,7 +127,7 @@ export function AccountCombobox({
               >
                 <span className="truncate">{option.label}</span>
                 {option.value === value && (
-                  <Check className="size-3.5 shrink-0 text-primary-700" />
+                  <Check className="size-3.5 shrink-0 text-brand" />
                 )}
               </button>
             ))}

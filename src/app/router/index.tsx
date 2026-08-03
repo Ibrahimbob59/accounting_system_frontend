@@ -17,6 +17,16 @@ import { PartnersListPage } from '@/features/partners/pages/PartnersListPage'
 import { PartnerCreatePage } from '@/features/partners/pages/PartnerCreatePage'
 import { PartnerEditPage } from '@/features/partners/pages/PartnerEditPage'
 import { PartnerDetailPage } from '@/features/partners/pages/PartnerDetailPage'
+import { AccountsListPage } from '@/features/accounts/pages/AccountsListPage'
+import { AccountCreatePage } from '@/features/accounts/pages/AccountCreatePage'
+import { AccountEditPage } from '@/features/accounts/pages/AccountEditPage'
+import { AccountDetailPage } from '@/features/accounts/pages/AccountDetailPage'
+import { CompaniesListPage } from '@/features/companies/pages/CompaniesListPage'
+import { CompanyCreatePage } from '@/features/companies/pages/CompanyCreatePage'
+import { CompanyEditPage } from '@/features/companies/pages/CompanyEditPage'
+import { CompanyDetailPage } from '@/features/companies/pages/CompanyDetailPage'
+import { UsersListPage } from '@/features/users/pages/UsersListPage'
+import { UserDetailPage } from '@/features/users/pages/UserDetailPage'
 import { NotFoundPage } from './NotFoundPage'
 import { RouteErrorBoundary } from './RouteErrorBoundary'
 
@@ -80,6 +90,34 @@ export const router = createBrowserRouter([
               { path: 'new', element: <PartnerCreatePage /> },
               { path: ':id', element: <PartnerDetailPage /> },
               { path: ':id/edit', element: <PartnerEditPage /> },
+            ],
+          },
+          {
+            path: 'accounts',
+            handle: { crumbKey: 'shell:nav.accounts' },
+            children: [
+              { index: true, element: <AccountsListPage /> },
+              { path: 'new', element: <AccountCreatePage /> },
+              { path: ':id', element: <AccountDetailPage /> },
+              { path: ':id/edit', element: <AccountEditPage /> },
+            ],
+          },
+          {
+            path: 'companies',
+            handle: { crumbKey: 'shell:nav.companies' },
+            children: [
+              { index: true, element: <CompaniesListPage /> },
+              { path: 'new', element: <CompanyCreatePage /> },
+              { path: ':id', element: <CompanyDetailPage /> },
+              { path: ':id/edit', element: <CompanyEditPage /> },
+            ],
+          },
+          {
+            path: 'users',
+            handle: { crumbKey: 'shell:nav.users' },
+            children: [
+              { index: true, element: <UsersListPage /> },
+              { path: ':id', element: <UserDetailPage /> },
             ],
           },
         ],

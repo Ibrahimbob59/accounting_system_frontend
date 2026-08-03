@@ -6,16 +6,15 @@ import { Loader2 } from 'lucide-react'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { DataTable } from '@/components/common/DataTable'
+import { useCurrencyLookup } from '@/features/currencies/hooks/useCurrencyLookup'
+import { useBaseCurrency } from '@/features/companies/hooks/useBaseCurrency'
+import { formatMoney } from '@/lib/format'
 import { usePartnerBalance } from '@/features/partners/hooks/usePartnerBalance'
 import { usePartnerTransactions } from '@/features/partners/hooks/usePartnerTransactions'
 import type {
   PartnerCurrencyBalance,
   PartnerTransaction,
 } from '@/features/partners/types/partners.types'
-
-function formatAmount(amount: number, currency: string) {
-  return `${amount.toLocaleString()} ${currency}`
-}
 
 /**
  * §3's Partner Detail → Ledger tab. Split out of PartnerDetailPage since it
@@ -24,8 +23,12 @@ function formatAmount(amount: number, currency: string) {
  * postings, see src/mocks/db.ts's partnerTransactionsDb comment.
  */
 export function PartnerLedgerTab({ partnerId }: { partnerId: string }) {
-  const { t } = useTranslation('partners')
+  const { t, i18n } = useTranslation('partners')
   const [asOf, setAsOf] = useState('')
+  // Rows carry their own currency code; the summary cards are base-currency
+  // numbers with no code, so they need the company's configured one.
+  const currency = useCurrencyLookup()
+  const baseCurrency = useBaseCurrency()
   const balance = usePartnerBalance(partnerId, asOf || undefined)
   const transactions = usePartnerTransactions(partnerId, { page: 1, limit: 50 })
 
@@ -34,17 +37,17 @@ export function PartnerLedgerTab({ partnerId }: { partnerId: string }) {
     {
       accessorKey: 'debit',
       header: t('detail.ledger.columns.debit'),
-      cell: ({ row }) => formatAmount(row.original.debit, row.original.currency),
+      cell: ({ row }) => formatMoney(row.original.debit, currency(row.original.currency), i18n.language),
     },
     {
       accessorKey: 'credit',
       header: t('detail.ledger.columns.credit'),
-      cell: ({ row }) => formatAmount(row.original.credit, row.original.currency),
+      cell: ({ row }) => formatMoney(row.original.credit, currency(row.original.currency), i18n.language),
     },
     {
       accessorKey: 'net',
       header: t('detail.ledger.netBalance'),
-      cell: ({ row }) => formatAmount(row.original.net, row.original.currency),
+      cell: ({ row }) => formatMoney(row.original.net, currency(row.original.currency), i18n.language),
     },
   ]
 
@@ -78,7 +81,11 @@ export function PartnerLedgerTab({ partnerId }: { partnerId: string }) {
       header: t('detail.ledger.columns.debit'),
       cell: ({ row }) =>
         row.original.side === 'DEBIT'
-          ? formatAmount(row.original.amountOriginal, row.original.currency)
+          ? formatMoney(
+              row.original.amountOriginal,
+              currency(row.original.currency),
+              i18n.language
+            )
           : '—',
     },
     {
@@ -86,7 +93,11 @@ export function PartnerLedgerTab({ partnerId }: { partnerId: string }) {
       header: t('detail.ledger.columns.credit'),
       cell: ({ row }) =>
         row.original.side === 'CREDIT'
-          ? formatAmount(row.original.amountOriginal, row.original.currency)
+          ? formatMoney(
+              row.original.amountOriginal,
+              currency(row.original.currency),
+              i18n.language
+            )
           : '—',
     },
   ]
@@ -97,23 +108,29 @@ export function PartnerLedgerTab({ partnerId }: { partnerId: string }) {
         <div className="grid gap-4 sm:grid-cols-3 sm:flex-1">
           <SummaryCard
             label={t('detail.ledger.totalDebit')}
-            value={balance.data ? formatAmount(balance.data.totalDebitBase, '') : '—'}
+            value={balance.data
+                ? formatMoney(balance.data.totalDebitBase, baseCurrency, i18n.language)
+                : '—'}
           />
           <SummaryCard
             label={t('detail.ledger.totalCredit')}
-            value={balance.data ? formatAmount(balance.data.totalCreditBase, '') : '—'}
+            value={balance.data
+                ? formatMoney(balance.data.totalCreditBase, baseCurrency, i18n.language)
+                : '—'}
           />
           <SummaryCard
             label={t('detail.ledger.netBalance')}
-            value={balance.data ? formatAmount(balance.data.balanceBase, '') : '—'}
+            value={balance.data
+                ? formatMoney(balance.data.balanceBase, baseCurrency, i18n.language)
+                : '—'}
             emphasize
           />
         </div>
-        <div className="space-y-1">
+        <div className="space-y-2">
           <Label htmlFor="ledger-as-of" className="field-label">
             {t('detail.ledger.asOf')}
           </Label>
-          <div className="field-line">
+          <div className="field-box">
             <Input
               id="ledger-as-of"
               type="date"
@@ -130,7 +147,7 @@ export function PartnerLedgerTab({ partnerId }: { partnerId: string }) {
 
       {transactions.isLoading ? (
         <div className="flex justify-center py-10">
-          <Loader2 className="size-6 animate-spin text-primary-700" />
+          <Loader2 className="size-6 animate-spin text-brand" />
         </div>
       ) : (
         <DataTable
@@ -153,13 +170,13 @@ function SummaryCard({
   emphasize?: boolean
 }) {
   return (
-    <div className="rounded-lg border border-border bg-surface p-4">
-      <p className="text-sm text-text-secondary">{label}</p>
+    <div className="rounded-lg border border-border bg-surface p-card">
+      <p className="text-sm font-medium text-text-muted">{label}</p>
       <p
         className={
           emphasize
-            ? 'mt-1 text-xl font-semibold text-text-primary'
-            : 'mt-1 text-lg font-medium text-text-primary'
+            ? 'mt-3 font-display text-2xl font-bold text-text-primary'
+            : 'mt-3 font-display text-xl font-semibold text-text-primary'
         }
       >
         {value}

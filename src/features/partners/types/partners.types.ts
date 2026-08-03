@@ -82,18 +82,7 @@ export interface PartnerTransaction {
 }
 
 /** Minimal shape consumed from the real, existing `GET /currencies`. */
-export interface Currency {
-  code: string
-  name: string
-}
-
 /** Minimal shape consumed from `GET /accounts` for the read-only §3.5 combobox. */
-export interface Account {
-  id: string
-  number: string
-  name: string
-}
-
 // -----------------------------------------------------------------------------
 // Requests
 // -----------------------------------------------------------------------------

@@ -1,0 +1,95 @@
+{
+  "title": "Companies",
+  "subtitle": "The companies you have access to, and how each one is configured.",
+  "newCompany": "New company",
+  "empty": "No companies yet.",
+  "active": "Active company",
+  "columns": {
+    "name": "Name",
+    "taxNumber": "Tax number",
+    "baseCurrency": "Base currency",
+    "fiscalYearStart": "Fiscal year starts",
+    "status": "Status"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "pagination": {
+    "summary": "Page {{page}} of {{totalPages}} · {{total}} companies",
+    "prev": "Prev",
+    "next": "Next"
+  },
+  "tabs": {
+    "profile": "Profile",
+    "settings": "Settings"
+  },
+  "form": {
+    "sections": {
+      "identity": "Company",
+      "accounting": "Accounting"
+    },
+    "name": "Company name",
+    "taxNumber": "Tax number",
+    "phone": "Phone",
+    "email": "Email",
+    "baseCurrency": "Base currency",
+    "baseCurrencyPlaceholder": "Choose the currency the books are kept in",
+    "fiscalYearStart": "Fiscal year starts",
+    "roundingDecimals": "Rounding decimals",
+    "roundingMode": "Rounding mode",
+    "accountingNote": "Both settings affect how every amount is recorded and reported. Changing them once transactions exist is disruptive, so set them correctly up front."
+  },
+  "roundingMode": {
+    "HALF_UP": "Half up",
+    "HALF_DOWN": "Half down",
+    "HALF_EVEN": "Half even (banker's)",
+    "UP": "Up",
+    "DOWN": "Down"
+  },
+  "settings": {
+    "save": "Save settings",
+    "saved": "Settings saved.",
+    "note": "Module toggles, feature flags and document templates are also stored here, but have no screen yet — saving this form leaves them untouched."
+  },
+  "create": {
+    "title": "New company",
+    "subtitle": "You'll become its owner, and its chart of accounts, VAT rate and document numbering are set up automatically.",
+    "submit": "Create company",
+    "created": "{{name}} created."
+  },
+  "edit": {
+    "title": "Edit {{name}}",
+    "submit": "Save changes",
+    "saved": "Changes saved.",
+    "back": "Back to company"
+  },
+  "detail": {
+    "back": "Back to companies",
+    "notSet": "Not set",
+    "deleted": "Company deleted.",
+    "actions": {
+      "switchTo": "Switch to this company",
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "deleteConfirm": {
+      "title": "Delete this company?",
+      "body": "{{name}} and everything recorded in it will no longer be reachable. This is not something to do to a company with real bookkeeping in it.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "emailInvalid": "Enter a valid email address",
+    "decimalsRange": "Decimals must be between 0 and 6"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "nameExists": "A company with this name already exists.",
+    "currencyNotFound": "That currency isn't recognised.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this."
+  }
+}
