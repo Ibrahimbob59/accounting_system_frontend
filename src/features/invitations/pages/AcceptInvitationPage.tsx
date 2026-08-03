@@ -1,4 +1,3 @@
-import { useEffect, useRef } from 'react'
 import type { ReactNode } from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
@@ -15,24 +14,20 @@ import { ApiException } from '@/types/api'
  * joining a second company), so it never redirects on auth state.
  *
  * There's no form: arriving on the page with a valid token IS the action, so it
- * auto-submits once on mount. Success never logs the person in — the response
- * carries no tokens by design — it just points them to /login.
+ * fires once on mount. Success never logs the person in — the response carries
+ * no tokens by design — it just points them to /login.
+ *
+ * The run-once guarantee comes from the query cache being keyed by token (see
+ * useAcceptInvitation), NOT from a ref in this component. A ref-based guard
+ * outlives the request state it's guarding under StrictMode's remount, which
+ * left this page spinning forever after a successful accept.
  */
 export function AcceptInvitationPage() {
   const { t } = useTranslation('invitations')
   const [params] = useSearchParams()
   const token = params.get('token') ?? ''
 
-  const accept = useAcceptInvitation()
-  const { mutate } = accept
-  // Guard against React StrictMode's double-invoked effect firing two POSTs.
-  const firedRef = useRef(false)
-
-  useEffect(() => {
-    if (firedRef.current || !token) return
-    firedRef.current = true
-    mutate({ token })
-  }, [token, mutate])
+  const accept = useAcceptInvitation(token)
 
   let body: ReactNode
 
@@ -40,7 +35,7 @@ export function AcceptInvitationPage() {
     // Missing token → error immediately, without calling the API.
     body = (
       <StatusCard variant="error" message={t('errors.invalid')}>
-        <Button asChild variant="outline" className="w-full">
+        <Button asChild variant="outline" size="lg" className="w-full">
           <Link to="/login">{t('goToLogin')}</Link>
         </Button>
       </StatusCard>
@@ -53,7 +48,7 @@ export function AcceptInvitationPage() {
           accept.data.isNewUser ? t('success.newUser') : t('success.existing')
         }
       >
-        <Button asChild className="w-full">
+        <Button asChild size="lg" className="w-full">
           <Link to="/login">{t('goToLogin')}</Link>
         </Button>
       </StatusCard>
@@ -61,7 +56,7 @@ export function AcceptInvitationPage() {
   } else if (accept.isError) {
     body = (
       <StatusCard variant="error" message={errorMessage(accept.error, t)}>
-        <Button asChild variant="outline" className="w-full">
+        <Button asChild variant="outline" size="lg" className="w-full">
           <Link to="/login">{t('goToLogin')}</Link>
         </Button>
       </StatusCard>
@@ -69,7 +64,7 @@ export function AcceptInvitationPage() {
   } else {
     body = (
       <div className="flex flex-col items-center gap-3 py-6 text-text-secondary">
-        <Loader2 className="size-8 animate-spin text-primary-700" />
+        <Loader2 className="size-8 animate-spin text-brand" />
         <p>{t('loading')}</p>
       </div>
     )
