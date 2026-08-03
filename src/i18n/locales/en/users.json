@@ -1,0 +1,108 @@
+{
+  "list": {
+    "title": "Team",
+    "subtitle": "People with access to this company, and invitations you've sent.",
+    "invite": "Invite user",
+    "empty": "No team members yet.",
+    "columns": {
+      "name": "Name",
+      "email": "Email",
+      "roles": "Roles",
+      "lastLogin": "Last login",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "pagination": {
+      "summary": "Page {{page}} of {{totalPages}} · {{total}} members",
+      "prev": "Prev",
+      "next": "Next"
+    }
+  },
+  "tabs": {
+    "members": "Members",
+    "invitations": "Pending invitations"
+  },
+  "roles": {
+    "permissionCount_one": "{{count}} permission",
+    "permissionCount_other": "{{count}} permissions",
+    "loadFailed": "Couldn't load roles. An invitation needs at least one role, so try again before inviting."
+  },
+  "invite": {
+    "title": "Invite a user",
+    "description": "They'll get an email with a link to set up their account.",
+    "email": "Email",
+    "emailPlaceholder": "name@company.com",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "roles": "Roles",
+    "duration": "Invitation expires",
+    "durationPlaceholder": "Choose how long the link stays valid",
+    "durationOption": "{{label}} ({{count}} days)",
+    "submit": "Send invitation",
+    "cancel": "Cancel",
+    "sent": "Invitation sent to {{email}}."
+  },
+  "invitations": {
+    "columns": {
+      "email": "Email",
+      "name": "Name",
+      "roles": "Roles",
+      "expires": "Expires"
+    },
+    "expired": "Expired",
+    "revoke": "Revoke",
+    "revoked": "Invitation revoked.",
+    "revokeConfirm": {
+      "title": "Revoke this invitation?",
+      "body": "The link sent to {{email}} will stop working. You can always send a new one.",
+      "confirm": "Revoke",
+      "cancel": "Cancel"
+    },
+    "empty": {
+      "title": "No pending invitations",
+      "body": "Invitations you send will appear here until they're accepted."
+    }
+  },
+  "detail": {
+    "back": "Back to team",
+    "profile": "Profile",
+    "save": "Save changes",
+    "saved": "Changes saved.",
+    "never": "Never",
+    "activated": "User activated.",
+    "deactivated": "User deactivated.",
+    "removed": "User removed from this company.",
+    "fields": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "language": "Preferred language",
+      "lastLogin": "Last login"
+    },
+    "actions": {
+      "activate": "Activate",
+      "deactivate": "Deactivate",
+      "remove": "Remove from company"
+    },
+    "removeConfirm": {
+      "title": "Remove this user from the company?",
+      "body": "{{name}} will lose access to this company. Their account itself isn't deleted, and they can be invited back later.",
+      "confirm": "Remove",
+      "cancel": "Cancel"
+    }
+  },
+  "validation": {
+    "required": "This field is required",
+    "emailInvalid": "Enter a valid email address",
+    "roleRequired": "Select at least one role"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this."
+  }
+}

@@ -1,0 +1,108 @@
+{
+  "list": {
+    "title": "Équipe",
+    "subtitle": "Les personnes ayant accès à cette société, et les invitations envoyées.",
+    "invite": "Inviter un utilisateur",
+    "empty": "Aucun membre pour le moment.",
+    "columns": {
+      "name": "Nom",
+      "email": "E-mail",
+      "roles": "Rôles",
+      "lastLogin": "Dernière connexion",
+      "status": "Statut"
+    },
+    "status": {
+      "active": "Actif",
+      "inactive": "Inactif"
+    },
+    "pagination": {
+      "summary": "Page {{page}} sur {{totalPages}} · {{total}} membres",
+      "prev": "Précédent",
+      "next": "Suivant"
+    }
+  },
+  "tabs": {
+    "members": "Membres",
+    "invitations": "Invitations en attente"
+  },
+  "roles": {
+    "permissionCount_one": "{{count}} permission",
+    "permissionCount_other": "{{count}} permissions",
+    "loadFailed": "Impossible de charger les rôles. Une invitation nécessite au moins un rôle ; réessayez avant d'inviter."
+  },
+  "invite": {
+    "title": "Inviter un utilisateur",
+    "description": "Un e-mail contenant un lien de configuration lui sera envoyé.",
+    "email": "E-mail",
+    "emailPlaceholder": "nom@societe.com",
+    "firstName": "Prénom",
+    "lastName": "Nom",
+    "roles": "Rôles",
+    "duration": "Expiration de l'invitation",
+    "durationPlaceholder": "Choisissez la durée de validité du lien",
+    "durationOption": "{{label}} ({{count}} jours)",
+    "submit": "Envoyer l'invitation",
+    "cancel": "Annuler",
+    "sent": "Invitation envoyée à {{email}}."
+  },
+  "invitations": {
+    "columns": {
+      "email": "E-mail",
+      "name": "Nom",
+      "roles": "Rôles",
+      "expires": "Expire le"
+    },
+    "expired": "Expirée",
+    "revoke": "Révoquer",
+    "revoked": "Invitation révoquée.",
+    "revokeConfirm": {
+      "title": "Révoquer cette invitation ?",
+      "body": "Le lien envoyé à {{email}} cessera de fonctionner. Vous pourrez toujours en envoyer un nouveau.",
+      "confirm": "Révoquer",
+      "cancel": "Annuler"
+    },
+    "empty": {
+      "title": "Aucune invitation en attente",
+      "body": "Les invitations envoyées apparaîtront ici jusqu'à leur acceptation."
+    }
+  },
+  "detail": {
+    "back": "Retour à l'équipe",
+    "profile": "Profil",
+    "save": "Enregistrer",
+    "saved": "Modifications enregistrées.",
+    "never": "Jamais",
+    "activated": "Utilisateur activé.",
+    "deactivated": "Utilisateur désactivé.",
+    "removed": "Utilisateur retiré de cette société.",
+    "fields": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "language": "Langue préférée",
+      "lastLogin": "Dernière connexion"
+    },
+    "actions": {
+      "activate": "Activer",
+      "deactivate": "Désactiver",
+      "remove": "Retirer de la société"
+    },
+    "removeConfirm": {
+      "title": "Retirer cet utilisateur de la société ?",
+      "body": "{{name}} perdra l'accès à cette société. Son compte n'est pas supprimé et il pourra être réinvité plus tard.",
+      "confirm": "Retirer",
+      "cancel": "Annuler"
+    }
+  },
+  "validation": {
+    "required": "Ce champ est obligatoire",
+    "emailInvalid": "Saisissez une adresse e-mail valide",
+    "roleRequired": "Sélectionnez au moins un rôle"
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci."
+  }
+}
