@@ -231,7 +231,7 @@ export function ForgotPasswordPage() {
           </FormBanner>
           <Link
             to="/login"
-            className="block text-center text-sm text-primary-700 hover:underline"
+            className="block text-center text-sm text-brand hover:underline"
           >
             {t('forgotPassword.backToLogin')}
           </Link>
@@ -263,6 +263,7 @@ export function ForgotPasswordPage() {
           />
           <Button
             type="submit"
+            size="lg"
             className="w-full"
             disabled={!validReq || forgot.isPending}
           >
@@ -270,7 +271,7 @@ export function ForgotPasswordPage() {
             {t('forgotPassword.sendCode')}
           </Button>
           <p className="text-center text-sm text-text-secondary">
-            <Link to="/login" className="text-primary-700 hover:underline">
+            <Link to="/login" className="text-brand hover:underline">
               {t('forgotPassword.backToLogin')}
             </Link>
           </p>
@@ -286,7 +287,7 @@ export function ForgotPasswordPage() {
             <button
               type="button"
               onClick={() => setStep('request')}
-              className="text-primary-700 hover:underline"
+              className="text-brand hover:underline"
             >
               {t('forgotPassword.editEmail')}
             </button>
@@ -297,10 +298,15 @@ export function ForgotPasswordPage() {
             <span>{t('forgotPassword.conditionalNotice')}</span>
           </div>
 
+          {/* The one field with its own type treatment (handoff §5): wide
+              tracking and a display face turn six characters into six
+              discrete glyphs, so a mistyped digit is visible at a glance. */}
           <TextField
             id="code"
             inputMode="numeric"
             maxLength={6}
+            placeholder="000000"
+            className="text-center font-display text-[22px] tracking-[0.3em]"
             label={t('forgotPassword.code')}
             autoComplete="one-time-code"
             disabled={locked}
@@ -310,6 +316,7 @@ export function ForgotPasswordPage() {
 
           <Button
             type="submit"
+            size="lg"
             className="w-full"
             disabled={locked || !validCode || verifyCode.isPending}
           >
@@ -322,7 +329,7 @@ export function ForgotPasswordPage() {
               type="button"
               onClick={onResend}
               disabled={cooldown > 0 || forgot.isPending}
-              className="text-primary-700 hover:underline disabled:cursor-not-allowed disabled:text-text-disabled disabled:no-underline"
+              className="text-brand hover:underline disabled:cursor-not-allowed disabled:text-text-disabled disabled:no-underline"
             >
               {cooldown > 0
                 ? t('forgotPassword.resendIn', { seconds: cooldown })
@@ -357,6 +364,7 @@ export function ForgotPasswordPage() {
 
           <Button
             type="submit"
+            size="lg"
             className="w-full"
             disabled={!validPwd || reset.isPending}
           >

@@ -144,112 +144,79 @@ features/{feature}/
   automatically.
 
 ### Theming and dark mode
-`src/styles/tokens.css` is organized into four tiers, top to bottom, by how
-often each one is expected to change:
-- **Theme** (`--primary-*`, `--secondary-*`, `--tertiary-*`) — the only
-  tokens a white-label client's re-skin touches, and each scale has exactly
-  ONE literal hex value: the `-900` seed. Every other step in that scale
-  (`-700`/`-500`/`-300`/`-200`/`-100`) is
-  `color-mix(in oklch, var(--X-900) N%, white)` — the same ramp
-  (88%/55%/30%/18%/10%) reused across all three scales — not its own
-  hand-picked hex. A full re-skin is genuinely "pick one hex per color
-  group," not six: change `--primary-900` and `--secondary-900` and every
-  derived shade follows (verified by swapping both to unrelated hues and
-  confirming the sidebar, links, gradient, buttons, icons, and ledger-rule
-  accent all re-tint together — nothing stayed on the old hue). The `88%`
-  step is deliberately not the "nicest-looking" even ramp — `--secondary-700`
-  is a button background and must clear 4.5:1 contrast against
-  `--text-on-primary`; 80% only measured 4.05:1 (a real accessibility
-  regression, caught by measuring, not by eye), 88% measures 4.83:1. If you
-  change a seed to a very different lightness/hue, re-measure that pairing
-  rather than assuming the percentage still holds.
-- **Structural** (fonts, radius, shadows) and **Semantic**
-  (success/warning/danger/info) — both rarely change, and are independent
-  of the theme tier above (swapping a client's secondary/brass accent
-  doesn't touch their "danger" red).
-- **Neutral surface scale** — `--neutral-0` through `--neutral-950`, and
-  critically: every step *except* `--neutral-0` (pure white) is a
-  `color-mix(in oklch, var(--primary-900) N%, white)` (or `black`, at the
-  darkest end) — not its own hardcoded hex. Every background/surface/text/
-  border token is then an alias onto one of these steps (e.g.
-  `--text-primary: var(--neutral-900)`). Two layers of indirection, two
-  payoffs:
-  1. **A theme swap only ever touches primary/secondary/tertiary.** Change
-     `--primary-900` and the entire neutral ramp — every background,
-     surface, text color, and border in the app — re-tints to match
-     automatically, because they're mathematically derived from it, not
-     independently chosen to merely *look* coordinated. (Verified by
-     swapping `--primary-900` alone to an unrelated hue and confirming
-     `--background`/`--text-primary`/`--border`/`--sidebar` all update; the
-     brass secondary/action color is correctly unaffected.)
-  2. Light/dark mode is cheap: the `:root[data-theme='dark']` block at the
-     bottom of the file remaps only these aliases to a different point on
-     the same derived scale — `--background` moves from `--neutral-100` to
-     `--neutral-950`, etc. — and it inherits the re-tinting for free.
-  - Mixed `in oklch`, not plain `srgb`: oklch interpolates lightness
-    perceptually, so the ten intermediate steps read as evenly spaced.
-    Plain sRGB channel mixing compresses badly at the light end (the first
-    few percent of mix barely move the lightness), which is the kind of
-    subtle bug you'd only catch by actually measuring computed colors.
-  - Shadows (`--shadow-xs`...`--shadow-xl`) are derived the same way —
-    `color-mix(in srgb, var(--primary-900) N%, transparent)` — so they
-    re-tint with the theme too, instead of an independently hand-picked
-    rgba that happened to look close to ink.
-- When adding a new UI-chrome color (a new background/border/text shade),
-  add it as an alias onto an existing (or new) neutral step — and if that
-  step doesn't exist yet, add it as another `color-mix()` percentage
-  against `--primary-900`, not a bespoke hex. If it should darken in dark
-  mode, add the override in the `[data-theme='dark']` block. Never add a
-  hardcoded hex outside this derivation for something that's conceptually a
-  background/surface/text/border color.
-- Semantic colors (success/warning/danger/info) are the deliberate
-  exception to "derive everything from theme" — they stay fixed,
-  brand-independent colors. Tying "danger" to a client's primary/secondary
-  risks a client whose brand happens to be red or green producing a status
-  color that reads as the wrong thing, or nothing at all.
-- The `--primary`/`--secondary`/`--accent`/etc. tokens shadcn/ui expects
-  (unnumbered, e.g. `bg-primary`) are a *different* namespace from our
-  numbered brand scale (`--primary-900`, `bg-primary-900`) — the former is
-  shadcn's own vendor semantic (currently pointed at our secondary/brass
-  scale, since brass is the action color), the latter is our brand token.
-  `bg-secondary` (shadcn's neutral "secondary button" style) and
-  `bg-secondary-700` (our brass brand color) are unrelated for the same
-  reason — always check whether a class has a number suffix before assuming
-  what it maps to.
-- **No theme-switcher UI exists yet.** The tokens are dark-mode-ready
-  (verified by setting `data-theme="dark"` on `<html>` directly), but no
-  toggle component/store reads or writes that attribute — that's a separate
-  feature, not implied by the token structure existing.
-- **Known gap:** brand colors (`--primary-700` used for link text, etc.)
-  are deliberately left unchanged between themes, per the tiering above —
-  but at least one of them (`--primary-700` text on the dark
-  `--neutral-950` background) measures under WCAG AA contrast (~2.3:1
-  against a 4.5:1 minimum). Revisit if dark mode ships for real — likely
-  fix is a dark-mode-only *link* color exception, not changing the brand
-  scale itself.
+`src/styles/tokens.css` is the single source of truth for the Flowstack
+design system, and it is organized by **four independent axes**. The whole
+point of the split is that changing one axis never requires touching
+another:
+
+1. **Brand** — `--brand`, `--brand-hover`, `--brand-soft`. Exactly one
+   accent color in the product (emerald `#10B981`). `--brand-soft` is a
+   `color-mix()` of `--brand`, not a hand-picked tint, so a rebrand is a
+   one-line change and the soft fills follow automatically. The numbered
+   `--secondary-*` scale is kept as an alias onto these for components that
+   address the accent by step.
+   - **No gradients, anywhere.** Every fill in the UI is a flat color. A
+     `bg-gradient-*` utility in this codebase is a bug.
+   - **One accent, total.** Status colors are semantic, not decorative —
+     don't reach for `--info` because you want a second blue.
+2. **Neutrals** — `--page-bg`, `--surface-bg`, `--border-color`,
+   `--row-border`, `--table-head-bg`, and the text ramp. Components never
+   read these directly; they read the aliases (`--background`, `--surface`,
+   `--text-primary`, `--border`, ...). **This is the only axis light/dark
+   swaps**, which is what makes `:root[data-theme='dark']` a short remap
+   rather than a second copy of the system.
+3. **Semantic** — danger/warning/info/neutral-badge, each paired with a
+   `-soft` fill token. Deliberately **identical in both themes**: a "danger"
+   red that shifted with the theme would stop reading as danger. Note these
+   are real paired tokens, *not* an opacity of the text color — a `/10` fill
+   over a dark surface all but vanishes, which is the bug the pairing avoids.
+4. **Feel** — density (`spacious`|`compact`) and corners (`rounded`|`sharp`),
+   toggled by `data-density`/`data-corners` on `<html>` (see
+   `src/app/shell/feel.ts`). Both are pure token remaps: page/card padding,
+   grid gap, top-bar height, sidebar width, field padding, h1 and stat sizes,
+   and the radius scale. **No component knows which mode is active** — adding
+   a spacing or radius difference between modes is an edit to `tokens.css`
+   alone. Express page padding as `p-page`, card padding as `p-card`, grid
+   gaps as `gap-grid`; a hardcoded `p-6` on a card silently opts out of
+   compact mode.
+
+Two things sit deliberately *outside* the light/dark swap:
+- **The sidebar** (`--sidebar`, `--sidebar-border`, `--sidebar-text`,
+  `--sidebar-text-muted`) is dark in both themes — an intentional fixed
+  "chrome" treatment. It is absent from the dark block on purpose; don't
+  "fix" that by aliasing it onto a neutral.
+- **Badge radius.** Badges are always `999px`; the `sharp` corner mode
+  deliberately does not override `--radius-pill`.
+
+Other rules:
+- The `--primary`/`--secondary`/`--accent` tokens shadcn/ui expects
+  (unnumbered, e.g. `bg-primary`) are a *different* namespace from our own.
+  Notably **shadcn's `--accent` is its hover/highlight fill, not our brand
+  accent** — ours is `--brand`/`bg-brand`. Always check for a number suffix
+  or the `brand` name before assuming what a class maps to.
+- When adding a new UI-chrome color, add it as an alias in the neutral
+  section and add its dark-mode counterpart in the `[data-theme='dark']`
+  block. Never inline a hex in a component.
+- The theme toggle is real and ships (`app/shell/ThemeToggle.tsx`). The feel
+  toggles have no UI yet by design — `feel.ts` exists so the choice is
+  settable and persisted without a rework.
 
 ### Sizing units
-- Every size in this app — spacing, type, radius, arbitrary Tailwind values —
-  is in `rem`, never a raw `px`. Tailwind's own default scale (`p-4`,
-  `text-lg`, `h-10`, ...) is already rem-based, so this falls out for free
-  in most components; it only needs attention in hand-authored CSS
-  (`tokens.css`, `globals.css`) and arbitrary bracket values
-  (`max-w-[25rem]`, not `max-w-[400px]`).
-- `html { font-size }` steps up at `sm` (640px) and `lg` (1024px) in
-  `globals.css` — 16px → 17px → 18px — so every rem value in the app scales
-  proportionally at wider breakpoints from one place, instead of
-  re-tuning spacing/type per component per breakpoint. Match any new
-  breakpoint-dependent root change to Tailwind's own breakpoints so it never
-  drifts out of sync with `sm:`/`lg:` utilities elsewhere.
-- Exception, by design: physical/depth effects — `border-width`, shadow
-  blur/offset, hairline rule thickness — stay in `px`. These represent a
-  fixed visual thickness on the screen, not a text-relative size, and
-  shouldn't grow just because the root font-size stepped up. Radius,
-  by contrast, is in `rem` — it's a component size that should scale with
-  everything else.
-- Use `%` (not a fixed `px`) for the root `html` rule itself, so it composes
-  with the user's browser zoom / OS text-size accessibility setting instead
-  of overriding it.
+- **The root stays at a flat 16px** (`html { font-size: 100% }`). The design
+  handoff specifies its entire type and spacing scale in exact pixels, so
+  Tailwind's rem scale maps 1:1 onto those numbers (`text-sm` = 14px, as
+  specified). Density is handled by the token toggle above rather than by
+  scaling the root — that keeps "compact" a designed step rather than a
+  uniform shrink of everything. Still expressed as `%` so it composes with
+  browser zoom / OS text-size settings instead of overriding them.
+- Tailwind's own scale (`p-4`, `text-lg`, ...) is rem-based and is the
+  default choice. Reach for an exact px bracket value
+  (`text-[15px]`, `size-[34px]`) only where the handoff names an exact pixel
+  size that has no scale step — and prefer a density/radius token over a
+  bracket value whenever one exists.
+- Radius tokens are in `px`, not rem: the handoff specifies exact pixel
+  corners, and a corner is a fixed physical detail. Same reasoning as
+  `border-width` and shadow blur/offset, which also stay in px.
 
 ### Style scoping — avoiding cascade conflicts
 Tailwind's atomic utility classes rarely collide with each other. The risk
@@ -258,31 +225,32 @@ combinator selector like `.section .cta` silently out-specificity-ing a
 utility class applied alongside it. This project avoids that with two
 rules:
 - **Prefer Tailwind utilities composed via `cn()` over hand-written CSS.**
-  Only write actual CSS when a utility genuinely can't express it (e.g. the
-  `::after`-based double-rule in `.ledger-rule`).
+  Only write actual CSS when a utility genuinely can't express it, or when a
+  visual must be defined in exactly one place.
 - **When you do write CSS, scope it — don't add unscoped global classes.**
-  - A motif meant to be shared and reused by class name across features
-    (`.ledger-rule`, `.field-line`/`.field-label` for form fields,
-    `.ledger-texture` for the auth brand panel) is the rare, deliberate
-    exception: it lives in `globals.css`, inside `@layer components`
-    (Tailwind v4's own cascade layer, declared by `@import 'tailwindcss'`).
-    Any Tailwind utility class is in the later `utilities` layer, so it
-    always wins a specificity tie against a `components`-layer class —
-    composing `cn('ledger-rule', 'text-lg')` behaves exactly as it reads,
-    with no "which one wins" ambiguity to reason about.
-  - Everything else — CSS that's specific to one component, not a shared
-    system motif — goes in a co-located CSS Module:
-    `ComponentName.module.css` next to `ComponentName.tsx`, imported as
-    `import styles from './ComponentName.module.css'`. Vite/TypeScript
-    support this natively (no config needed — see `vite-env.d.ts`'s
-    `vite/client` reference); the build hashes every class name, so two
-    components can both have a `.row` class and never collide.
-  - Inside any hand-written CSS (global or a module), selectors stay flat —
-    one class per rule, plus pseudo-classes/pseudo-elements on that same
-    class. Never a combinator (`.section .cta`, `.card > h3`) — that's
-    exactly the pattern that silently out-specificities a sibling utility
-    class. Express conditional styling by composing Tailwind classes in JS
-    via `cn()`, not by nesting CSS selectors.
+  - A motif meant to be shared and reused by class name across features is
+    the rare, deliberate exception: it lives in `globals.css`, inside
+    `@layer components`. The current set is `.field-box` (the bordered form
+    field, which owns the border/radius/focus ring so the `<input>` inside
+    stays bare), `.field-label`, `.section-label` (form group headings),
+    `.table-label` (column headers) and `.icon-chip`. Any Tailwind utility
+    is in the later `utilities` layer, so it always wins a specificity tie
+    against a `components`-layer class — composing
+    `cn('icon-chip', 'size-10')` behaves exactly as it reads.
+  - Everything else — CSS specific to one component, not a shared system
+    motif — goes in a co-located CSS Module: `ComponentName.module.css`
+    next to `ComponentName.tsx`. Vite/TypeScript support this natively; the
+    build hashes every class name, so two components can both have a `.row`
+    class and never collide.
+  - Inside any hand-written CSS, selectors stay flat — one class per rule,
+    plus pseudo-classes/pseudo-elements on that same class. Never a
+    combinator (`.section .cta`, `.card > h3`) — exactly the pattern that
+    silently out-specificities a sibling utility class. Express conditional
+    styling by composing Tailwind classes in JS via `cn()`, not by nesting.
+- Keyboard focus is defined **once**, as a base-layer `:focus-visible` rule
+  in `globals.css`, rather than per-component. Don't add
+  `focus-visible:ring-*` utilities to new interactive elements — they're
+  already covered, and a per-component ring will fight the global one.
 
 ### Where CSS lives — the five tiers
 This project's styling maps onto the same five-tier separation used in this
@@ -331,7 +299,13 @@ Two behavioral rules carry over directly from that pattern:
 ## Forbidden patterns
 - No calling `axios`/`apiClient` directly outside `src/lib/api-client.ts`.
 - No hardcoded user-facing strings — must go through i18n.
-- No inline hex colors, arbitrary shadows, or pixel values — use tokens.
+- No inline hex colors or arbitrary shadows — use tokens. Exact px bracket
+  values are allowed only where the design handoff names a size with no
+  scale step; a density or radius token always wins if one exists.
+- No gradients (`bg-gradient-*`, `linear-gradient`) anywhere in the UI —
+  every fill in this design system is a flat color.
+- No hardcoded page/card padding (`p-6` on a page wrapper or card) — use
+  `p-page`/`p-card`/`gap-grid`, or compact density silently won't apply.
 - No physical-direction spacing/positioning utilities (`left-`, `right-`,
   `ml-`, `mr-`) — use logical properties for RTL correctness.
 - No cross-feature imports of another feature's `components/`, `hooks/`,

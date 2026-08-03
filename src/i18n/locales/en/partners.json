@@ -161,6 +161,7 @@
       "deactivated": "Partner deactivated.",
       "activated": "Partner activated.",
       "deleted": "Partner deleted."
-    }
+    },
+    "back": "Back to partners"
   }
 }

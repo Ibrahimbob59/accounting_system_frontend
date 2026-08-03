@@ -8,11 +8,8 @@
  * defaults `dark:` to `@media (prefers-color-scheme: dark)` — a DIFFERENT
  * mechanism than the `[data-theme="dark"]` attribute our own tokens use
  * (tokens.css). Without this, any `dark:` utility (shadcn/ui's generated
- * components use them throughout, e.g. checkbox.tsx's `dark:bg-input/30`)
- * would silently only respond to OS-level preference, never to our own
- * theme system — the same class of bug as the shadow tokens that were
- * defined but never wired into @theme. This line is what makes `dark:`
- * utilities actually follow `data-theme="dark"` on <html>.
+ * components use them throughout) would silently only respond to OS-level
+ * preference, never to our own theme system.
  */
 @custom-variant dark (&:where([data-theme='dark'], [data-theme='dark'] *));
 
@@ -20,7 +17,12 @@
   /* Our own design system → Tailwind utilities. Vendor (shadcn/ui) bridging
      lives in vendors.css instead — see that file's header comment. */
 
-  /* Theme — primary (see tokens.css → THEME) */
+  /* Brand — the single accent (tokens.css §1). `bg-brand`, `text-brand`,
+     `bg-brand-soft`, `hover:bg-brand-hover`. */
+  --color-brand: var(--brand);
+  --color-brand-hover: var(--brand-hover);
+  --color-brand-soft: var(--brand-soft);
+
   --color-primary-900: var(--primary-900);
   --color-primary-700: var(--primary-700);
   --color-primary-500: var(--primary-500);
@@ -28,49 +30,45 @@
   --color-primary-200: var(--primary-200);
   --color-primary-100: var(--primary-100);
 
-  /* Theme — secondary. Numbered (bg-secondary-700, our brass brand scale) —
-     distinct from the unnumbered bg-secondary below (shadcn's vendor
-     neutral "secondary button" semantic). */
   --color-secondary-900: var(--secondary-900);
   --color-secondary-700: var(--secondary-700);
   --color-secondary-500: var(--secondary-500);
   --color-secondary-300: var(--secondary-300);
   --color-secondary-100: var(--secondary-100);
 
-  /* Theme — tertiary (reserved, not consumed anywhere yet) */
   --color-tertiary-900: var(--tertiary-900);
   --color-tertiary-700: var(--tertiary-700);
   --color-tertiary-500: var(--tertiary-500);
   --color-tertiary-300: var(--tertiary-300);
   --color-tertiary-100: var(--tertiary-100);
 
-  /* Semantic */
+  /* Semantic — status, not brand. Each has a paired `-soft` fill so badges
+     never hand-roll an opacity (tokens.css §3). */
   --color-success: var(--success);
+  --color-success-soft: var(--success-soft);
   --color-warning: var(--warning);
+  --color-warning-soft: var(--warning-soft);
   --color-danger: var(--danger);
+  --color-danger-soft: var(--danger-soft);
+  --color-danger-border: var(--danger-border);
   --color-info: var(--info);
+  --color-info-soft: var(--info-soft);
+  --color-neutral-badge: var(--neutral-badge-bg);
+  --color-neutral-badge-text: var(--neutral-badge-text);
 
-  /* Neutral surface scale — the light/dark-aware standard grayscale */
-  --color-neutral-0: var(--neutral-0);
-  --color-neutral-50: var(--neutral-50);
-  --color-neutral-100: var(--neutral-100);
-  --color-neutral-200: var(--neutral-200);
-  --color-neutral-300: var(--neutral-300);
-  --color-neutral-400: var(--neutral-400);
-  --color-neutral-500: var(--neutral-500);
-  --color-neutral-600: var(--neutral-600);
-  --color-neutral-700: var(--neutral-700);
-  --color-neutral-800: var(--neutral-800);
-  --color-neutral-900: var(--neutral-900);
-  --color-neutral-950: var(--neutral-950);
-
-  /* Backgrounds — aliases onto the neutral scale, light/dark-aware */
+  /* Surfaces — light/dark-aware aliases */
   --color-background: var(--background);
   --color-surface: var(--surface);
   --color-surface-secondary: var(--surface-secondary);
-  --color-sidebar: var(--sidebar);
   --color-card: var(--card);
   --color-modal: var(--modal);
+  --color-table-head: var(--table-head-bg);
+
+  /* Sidebar — fixed dark chrome in both themes */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-text: var(--sidebar-text);
+  --color-sidebar-muted: var(--sidebar-text-muted);
 
   /* Text */
   --color-text-primary: var(--text-primary);
@@ -82,6 +80,7 @@
   /* Borders */
   --color-border: var(--border);
   --color-border-light: var(--border-light);
+  --color-row-border: var(--border-light);
   --color-divider: var(--divider);
 
   /* Radius */
@@ -92,10 +91,6 @@
   --radius-xl: var(--radius-xl);
   --radius-2xl: var(--radius-2xl);
 
-  /* Shadows — ink-tinted, not Tailwind's default gray (docs/CONVENTIONS.md
-     → Sizing units for why these stay px). Registering them here is what
-     makes `shadow-sm`/`shadow-lg` etc. resolve to OUR values instead of
-     silently falling back to Tailwind's built-in defaults. */
   --shadow-xs: var(--shadow-xs);
   --shadow-sm: var(--shadow-sm);
   --shadow-md: var(--shadow-md);
@@ -106,142 +101,149 @@
   --font-display: var(--font-display);
   --font-sans: var(--font-sans);
   --font-mono: var(--font-mono);
+
+  /* Density-aware spacing (tokens.css §4b) → `p-page`, `p-card`, `gap-grid`,
+     `h-topbar`, `w-sidebar`. These are the ONLY way a component should express
+     page/card padding, so flipping to compact density is a token change and
+     never a component change. */
+  --spacing-page: var(--page-pad);
+  --spacing-card: var(--card-pad);
+  --spacing-grid: var(--grid-gap);
+  --spacing-topbar: var(--topbar-h);
+  --spacing-sidebar: var(--sidebar-w);
+  --spacing-sidebar-collapsed: var(--sidebar-w-collapsed);
 }
 
 /*
- * Root sizing (docs/CONVENTIONS.md → Sizing units). Every rem value in this
- * app — Tailwind's own spacing/type scale, our tokens, custom CSS — is a
- * multiple of this root, so stepping it up at wider breakpoints scales the
- * *entire* UI (spacing, radius, type) proportionally, in one place, instead
- * of re-tuning every component at every breakpoint. Expressed in %, not a
- * fixed px, so it still composes with the user's browser zoom/OS text-size
- * setting rather than overriding it. Breakpoints match Tailwind's own
- * (sm 640px / lg 1024px) so this never drifts out of sync with `sm:`/`lg:`
- * utilities used throughout the app.
+ * Flat 16px root. The handoff specifies its whole type and spacing scale in
+ * exact pixels, so the root stays at the browser default and Tailwind's rem
+ * scale maps 1:1 onto those numbers (text-sm = 14px, as specified). Density is
+ * handled by the token toggle above instead of by scaling the root — that
+ * keeps "compact" a deliberate, designed step rather than a uniform shrink.
+ * Left as a % so it still composes with browser zoom / OS text-size settings.
  */
 html {
-  font-size: 100%; /* 16px baseline, below sm */
-}
-@media (min-width: 640px) {
-  html {
-    font-size: 106.25%; /* 17px, sm and up */
-  }
-}
-@media (min-width: 1024px) {
-  html {
-    font-size: 112.5%; /* 18px, lg and up */
-  }
+  font-size: 100%;
 }
 
 body {
   font-family: var(--font-sans);
   background: var(--background);
   color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
 }
 
-/*
- * Signature motif — "the ledger rule": real bookkeeping notation (a single
- * rule under a subtotal, a double rule under a total) repurposed as a
- * section accent. Apply to one heading/eyebrow per section — it marks a
- * boundary, it isn't a page-wide grid system.
- *
- * Scoped into Tailwind's own `components` layer (declared by the
- * `@import 'tailwindcss'` above) rather than left unlayered — that
- * guarantees any Tailwind utility class always wins a specificity tie
- * against this rule, so composing `cn('ledger-rule', 'text-lg')` behaves
- * exactly as it reads, with no "which one wins" surprises. See
- * docs/CONVENTIONS.md → Style scoping.
- */
-@layer components {
-  .ledger-rule {
-    position: relative;
-    display: inline-block;
-    padding-bottom: 0.625rem;
-  }
-  .ledger-rule::after {
-    content: '';
-    position: absolute;
-    inset-inline-start: 0;
-    bottom: 0;
-    width: 3.5rem;
-    height: 1px; /* hairline — stays px, doesn't scale with root size */
-    background: var(--secondary-500);
-    box-shadow: 0 0.25rem 0 0 var(--secondary-500);
-  }
+::placeholder {
+  color: var(--text-placeholder);
+}
 
+@layer components {
   /*
-   * Ledger-line form fields — the shared look for text inputs, textareas,
-   * and the native select (docs/CONVENTIONS.md → Style scoping). No box: a
-   * single hairline rule under the control, like a line in a ledger. The
-   * rule turns brass and grows a second line beneath it on focus — the same
-   * two-line device as `.ledger-rule` above, just triggered by focus instead
-   * of being permanent. `.field-line` owns the rule; the <input>/<textarea>/
-   * <select> it wraps stays fully transparent and borderless itself (see
-   * input.tsx/textarea.tsx/SelectField.tsx) so this is the one place the
-   * visual lives.
+   * FORM FIELDS — handoff §5.
+   * A bordered box on --surface, radius = the medium token, with an accent
+   * focus ring. `.field-box` owns the entire visual so the <input>/<select>/
+   * <textarea> inside stays transparent and borderless — one place to change
+   * the field look, and the wrapper can hold adornments (password eye, select
+   * chevron) inside the same border.
    */
-  .field-line {
+  .field-box {
     position: relative;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid var(--border);
+    gap: 0.5rem;
+    padding: var(--field-pad-y) var(--field-pad-x);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--surface);
+    color: var(--text-strong);
+    /* Explicit, not inherited: the narrow auth screens center their whole
+       column (AuthLayout), and typed input must not follow the labels into
+       the middle of the box. */
+    text-align: start;
     transition:
-      border-color 150ms ease,
-      background-color 150ms ease;
+      border-color 120ms ease,
+      box-shadow 120ms ease;
   }
-  .field-line:focus-within {
-    border-color: var(--secondary-500);
-    background: color-mix(in oklch, var(--secondary-500) 5%, transparent);
+  .field-box:focus-within {
+    border-color: var(--brand);
+    box-shadow: 0 0 0 3px var(--brand-soft);
   }
-  .field-line:has(:disabled) {
+  .field-box[data-invalid='true'] {
+    border-color: var(--danger-border);
+  }
+  .field-box[data-invalid='true']:focus-within {
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--danger) 15%, transparent);
+  }
+  .field-box:has(:disabled) {
     opacity: 0.6;
   }
-  .field-line[data-invalid='true'] {
-    border-color: var(--danger);
-  }
-  .field-line::after {
-    content: '';
-    position: absolute;
-    inset-inline: 0;
-    bottom: -0.25rem;
-    height: 1px;
-    background: var(--secondary-500);
-    opacity: 0;
-    transition: opacity 150ms ease;
-  }
-  .field-line:focus-within::after {
-    opacity: 1;
-  }
-  .field-line[data-invalid='true']::after {
-    opacity: 1;
-    background: var(--danger);
-  }
 
-  /* Eyebrow label sitting above a `.field-line` field — small-caps, matches
-     the section-heading style already used elsewhere (e.g. RegisterPage's
-     "Company"/"Your account" dividers). */
+  /* Field label — 13px/500, sentence case (handoff §2 type scale). Distinct
+     from `.section-label` below, which marks a whole form GROUP. */
   .field-label {
     display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: var(--text-body);
+  }
+
+  /* Form section heading ("Company", "Your account") — 12px uppercase 700 in
+     the accent, over a 2px accent underline (handoff §4, Register layout). */
+  .section-label {
+    display: inline-block;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--brand);
+    color: var(--brand);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  /* Table column header — 12px uppercase 600, muted, tighter tracking than
+     the section label above (handoff §2). */
+  .table-label {
     font-size: 0.75rem;
     font-weight: 600;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     color: var(--text-muted);
   }
 
   /*
-   * Faint ruled-paper texture for the auth ink panel (AuthLayout) — ledger
-   * paper's horizontal rules, barely-there. Ledger-themed background instead
-   * of a plain flat fill, without competing with the wordmark/tagline on
-   * top of it.
+   * Icon chip — 36×36 accent-soft square holding an accent glyph (handoff §5).
+   * Used by stat cards and anywhere an icon needs to read as a labelled token
+   * rather than loose decoration.
    */
-  .ledger-texture {
-    background-image: repeating-linear-gradient(
-      to bottom,
-      transparent,
-      transparent 2.75rem,
-      color-mix(in oklch, var(--neutral-0) 8%, transparent) 2.75rem,
-      color-mix(in oklch, var(--neutral-0) 8%, transparent) calc(2.75rem + 1px)
-    );
+  .icon-chip {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+    border-radius: var(--radius-md);
+    background: var(--brand-soft);
+    color: var(--brand);
+  }
+}
+
+/*
+ * Keyboard focus (handoff §7). The prototype styled hover only; every
+ * interactive element needs a visible focus ring in production. Applied once
+ * here as a base rule rather than per-component so nothing can be added later
+ * and quietly miss it. Uses the same ring as the input focus state so focus
+ * reads identically everywhere.
+ */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--brand);
+    outline-offset: 2px;
+  }
+  /* Fields draw their own ring on the wrapper (`.field-box:focus-within`), so
+     the inner control must not stack a second outline on top of it. */
+  .field-box :focus-visible {
+    outline: none;
   }
 }

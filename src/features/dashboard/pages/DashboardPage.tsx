@@ -27,7 +27,7 @@ export function DashboardPage() {
   if (isPlatformAdmin) {
     return (
       <div>
-        <h1 className="font-display text-2xl font-semibold text-text-primary">
+        <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
           {t('platformAdmin.title')}
         </h1>
         <p className="mt-2 text-text-secondary">{t('platformAdmin.body')}</p>
@@ -36,14 +36,17 @@ export function DashboardPage() {
   }
 
   return (
-    <div className="space-y-8">
-      <h1 className="font-display text-2xl font-semibold text-text-primary">
+    <div>
+      <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
         {user?.firstName
           ? t('welcome', { name: user.firstName })
           : t('welcomeGeneric')}
       </h1>
+      <p className="mt-2 text-[15px] text-text-muted">
+        {t('welcomeSubtitle')}
+      </p>
 
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <div className="mt-9 grid gap-grid sm:grid-cols-2 lg:grid-cols-3">
         <StatCard
           label={t('cards.partners')}
           icon={Users}

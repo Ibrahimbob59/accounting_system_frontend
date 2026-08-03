@@ -95,7 +95,7 @@ export function LoginPage() {
           <div className="text-end">
             <Link
               to="/forgot-password"
-              className="text-sm text-primary-700 hover:underline"
+              className="text-sm text-brand hover:underline"
             >
               {t('login.forgotPassword')}
             </Link>
@@ -104,6 +104,7 @@ export function LoginPage() {
 
         <Button
           type="submit"
+          size="lg"
           className="w-full"
           disabled={!isValid || login.isPending}
         >
@@ -113,7 +114,7 @@ export function LoginPage() {
 
         <p className="text-center text-sm text-text-secondary">
           {t('login.noAccount')}{' '}
-          <Link to="/register" className="text-primary-700 hover:underline">
+          <Link to="/register" className="text-brand hover:underline">
             {t('login.createOne')}
           </Link>
         </p>
@@ -122,7 +123,7 @@ export function LoginPage() {
             than the login form itself. */}
         <p className="text-center text-xs text-text-muted">
           {t('login.interestedPrefix')}{' '}
-          <Link to="/#demo-form" className="text-primary-700 hover:underline">
+          <Link to="/#demo-form" className="text-brand hover:underline">
             {t('login.requestDemo')}
           </Link>
         </p>

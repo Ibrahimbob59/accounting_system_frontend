@@ -11,7 +11,7 @@ export function LandingNav() {
     <header className="sticky top-0 z-40 border-b border-border bg-surface/80 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between gap-2 px-4 sm:px-6">
         {/* Logo asset slot — white-label swap point, same as the auth brand panel. */}
-        <span className="font-display shrink-0 text-lg font-semibold tracking-tight text-primary-900 sm:text-xl">
+        <span className="font-display shrink-0 text-lg font-bold tracking-tight text-text-primary sm:text-xl">
           {t('appName', { ns: 'common' })}
         </span>
 

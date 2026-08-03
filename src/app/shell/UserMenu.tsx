@@ -40,14 +40,16 @@ export function UserMenu() {
       <DropdownMenuTrigger asChild>
         <button
           type="button"
-          className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-surface-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+          className="flex items-center gap-2 rounded-md px-2 py-1.5 text-sm hover:bg-surface-secondary"
         >
-          <span className="flex size-8 items-center justify-center overflow-hidden rounded-full bg-primary-100 text-sm font-medium text-primary-900">
+          {/* Round in the top bar, square-ish in the sidebar (handoff §5) —
+              same avatar, two contexts. */}
+          <span className="flex size-[34px] items-center justify-center overflow-hidden rounded-full bg-brand text-[13px] font-bold text-white">
             {user?.avatarUrl ? (
               <img
                 src={user.avatarUrl}
                 alt=""
-                className="size-8 object-cover"
+                className="size-full object-cover"
               />
             ) : (
               initials(user?.firstName, user?.lastName)

@@ -25,32 +25,36 @@ export const PasswordField = React.forwardRef<
   const errorId = `${id}-error`
 
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <Label htmlFor={id} className="field-label">
         {label}
       </Label>
-      <div className="field-line" data-invalid={error ? true : undefined}>
+      <div className="field-box" data-invalid={error ? true : undefined}>
         <Input
           id={id}
           ref={ref}
           type={visible ? 'text' : 'password'}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? errorId : undefined}
-          className={cn('pe-8', className)}
+          className={cn(className)}
           {...props}
         />
+        {/* A flex sibling inside `.field-box`, not an absolutely-positioned
+            overlay: the wrapper's padding already reserves the space, so the
+            toggle can never sit on top of long input text, and it mirrors
+            correctly under RTL for free. */}
         <button
           type="button"
           onClick={() => setVisible((v) => !v)}
           aria-label={visible ? hideLabel : showLabel}
-          className="absolute inset-y-0 end-0 flex items-center text-text-muted hover:text-text-secondary"
+          className="flex shrink-0 items-center text-text-muted hover:text-text-secondary"
           tabIndex={-1}
         >
           {visible ? <EyeOff className="size-4" /> : <Eye className="size-4" />}
         </button>
       </div>
       {error && (
-        <p id={errorId} className="text-sm text-danger">
+        <p id={errorId} role="alert" className="text-[13px] text-danger">
           {error}
         </p>
       )}

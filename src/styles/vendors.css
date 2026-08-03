@@ -23,21 +23,23 @@
   --foreground: var(--text-primary);
   --card-foreground: var(--text-primary);
   --popover-foreground: var(--text-primary);
-  /* Action color is secondary (brass), not primary (ink) — ink stays the
-     structural/brand color (sidebar, headings, nav), brass marks the thing
-     you're meant to click. */
-  --primary: var(--secondary-700);
+  /* Action color is the brand accent — the emerald is the one thing in the
+     system that means "click me" (handoff §1). Ink (--primary-900) stays
+     structural: headings and dark chrome, never a button. */
+  --primary: var(--brand);
   --primary-foreground: var(--text-on-primary);
   --secondary: var(--surface-secondary);
   --secondary-foreground: var(--text-primary);
   --muted: var(--surface-secondary);
   --muted-foreground: var(--text-muted);
-  --accent: var(--primary-100);
-  --accent-foreground: var(--primary-900);
+  /* shadcn's `accent` is its hover/highlight fill, NOT our brand accent —
+     the name collision is shadcn's. Ours is `--brand`. */
+  --accent: var(--surface-secondary);
+  --accent-foreground: var(--text-primary);
   --destructive: var(--danger);
   --destructive-foreground: var(--text-on-primary);
   --input: var(--border);
-  --ring: var(--primary-500);
+  --ring: var(--brand);
   --radius: var(--radius-md);
 }
 

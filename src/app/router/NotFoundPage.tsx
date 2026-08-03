@@ -17,13 +17,13 @@ export function NotFoundPage() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background px-6 text-center">
-      <p className="font-display text-7xl font-semibold text-primary-900">
+      <p className="font-display text-7xl font-bold text-text-primary">
         404
       </p>
       <h1 className="mt-2 text-2xl font-semibold text-text-primary">
         {t('notFound.title')}
       </h1>
-      <p className="ledger-rule mt-3 max-w-sm text-text-secondary">
+      <p className="mt-3 max-w-sm text-text-secondary">
         {t('notFound.body')}
       </p>
       <Button asChild className="mt-6">

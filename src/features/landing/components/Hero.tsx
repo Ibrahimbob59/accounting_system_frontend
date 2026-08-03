@@ -19,8 +19,10 @@ function ProductPreview() {
         <span className="size-3 rounded-full bg-border" />
       </div>
       {/* Preview surface */}
-      <div className="flex h-64 items-center justify-center bg-gradient-to-br from-primary-100 via-primary-200 to-primary-300 sm:h-80">
-        <span className="text-sm font-medium text-primary-900/70">
+      {/* Flat fill, not a gradient — handoff §1 rules gradients out of the UI
+          entirely, and that applies to decorative surfaces too. */}
+      <div className="flex h-64 items-center justify-center bg-brand-soft sm:h-80">
+        <span className="text-sm font-medium text-brand">
           {t('hero.previewCaption')}
         </span>
       </div>
@@ -33,10 +35,10 @@ export function Hero() {
 
   return (
     <section className="mx-auto max-w-6xl px-6 py-20 text-center sm:py-28">
-      <h1 className="font-display mx-auto max-w-3xl text-4xl font-semibold tracking-tight text-text-primary sm:text-5xl">
+      <h1 className="font-display mx-auto max-w-3xl text-4xl font-bold tracking-[-0.02em] text-text-primary sm:text-5xl">
         {t('hero.headline')}
       </h1>
-      <p className="ledger-rule mt-6 max-w-2xl text-lg text-text-secondary">
+      <p className="mx-auto mt-6 max-w-2xl text-lg text-text-secondary">
         {t('hero.subheadline')}
       </p>
       <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

@@ -161,6 +161,7 @@
       "deactivated": "Partenaire désactivé.",
       "activated": "Partenaire activé.",
       "deleted": "Partenaire supprimé."
-    }
+    },
+    "back": "Retour aux partenaires"
   }
 }

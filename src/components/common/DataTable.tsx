@@ -68,7 +68,14 @@ export function DataTable<TData, TValue>({
   })
 
   return (
-    <div className={cn('rounded-lg border border-border', className)}>
+    // `overflow-hidden` is load-bearing, not cosmetic: without it the header
+    // row's fill squares off the container's rounded top corners.
+    <div
+      className={cn(
+        'overflow-hidden rounded-lg border border-border bg-surface',
+        className
+      )}
+    >
       <Table>
         <TableHeader>
           {table.getHeaderGroups().map((headerGroup) => (
@@ -114,7 +121,7 @@ export function DataTable<TData, TValue>({
               <TableRow
                 key={row.id}
                 onClick={onRowClick ? () => onRowClick(row.original) : undefined}
-                className={cn(onRowClick && 'cursor-pointer hover:bg-surface-secondary')}
+                className={cn(onRowClick && 'cursor-pointer')}
               >
                 {row.getVisibleCells().map((cell) => (
                   <TableCell key={cell.id}>

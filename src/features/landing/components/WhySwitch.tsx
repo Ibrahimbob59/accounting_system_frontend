@@ -6,7 +6,7 @@ export function WhySwitch() {
   return (
     <section className="bg-surface-secondary">
       <div className="mx-auto max-w-3xl px-6 py-20 text-center">
-        <p className="ledger-rule text-sm font-semibold uppercase tracking-wide text-secondary-700">
+        <p className="text-sm font-semibold uppercase tracking-wide text-brand">
           {t('whySwitch.heading')}
         </p>
         <p className="font-display mt-6 text-2xl leading-relaxed text-text-primary sm:text-3xl">

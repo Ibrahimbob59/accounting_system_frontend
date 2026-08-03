@@ -9,5 +9,6 @@
   "platformAdmin": {
     "title": "Administrateur de la plateforme",
     "body": "Vous êtes connecté en tant qu'administrateur de la plateforme. Les tableaux de bord d'entreprise apparaîtront ici dans une version ultérieure."
-  }
+  },
+  "welcomeSubtitle": "Voici ce qui se passe dans votre entreprise aujourd'hui."
 }

@@ -22,14 +22,16 @@ export function StatCard({
   icon: Icon,
 }: StatCardProps) {
   return (
-    <div className="rounded-lg border border-border bg-card p-5 shadow-xs">
+    // Flat: 1px border on --surface, no shadow (handoff §5). Padding is the
+    // density token, so compact mode retunes every card at once.
+    <div className="rounded-lg border border-border bg-card p-card">
       <div className="flex items-center justify-between">
         <span className="text-sm font-medium text-text-muted">{label}</span>
-        <span className="flex size-9 items-center justify-center rounded-md bg-primary-100 text-primary-900">
-          <Icon className="size-5" />
+        <span className="icon-chip">
+          <Icon className="size-4" />
         </span>
       </div>
-      <div className="mt-3 font-display text-3xl font-semibold text-text-primary">
+      <div className="mt-4 font-display text-[length:var(--stat-size)] font-bold text-text-primary">
         {isLoading ? (
           <span
             aria-hidden="true"

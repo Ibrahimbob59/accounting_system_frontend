@@ -20,13 +20,15 @@ import Swal from 'sweetalert2'
 const themedSwal = Swal.mixin({
   buttonsStyling: false,
   customClass: {
-    popup: 'rounded-lg font-sans shadow-lg',
-    title: 'font-display text-text-primary',
+    popup: 'rounded-lg bg-surface font-sans shadow-lg',
+    title: 'font-display font-bold text-text-primary',
     htmlContainer: 'text-text-secondary',
+    /* Mirrors Button's `default` and `outline` variants (components/ui/
+       button.tsx) — flat accent fill, darkened on hover, no shadow. */
     confirmButton:
-      'mx-1 inline-flex h-10 items-center justify-center rounded-md bg-primary px-4 text-sm font-medium text-primary-foreground hover:bg-primary/90',
+      'mx-1 inline-flex items-center justify-center rounded-md bg-brand px-4 py-2.5 text-sm font-semibold text-white hover:bg-brand-hover',
     cancelButton:
-      'mx-1 inline-flex h-10 items-center justify-center rounded-md border border-input bg-background px-4 text-sm font-medium hover:bg-accent',
+      'mx-1 inline-flex items-center justify-center rounded-md border border-border bg-surface px-4 py-2.5 text-sm font-medium text-text-secondary hover:bg-surface-secondary',
   },
 })
 
@@ -36,7 +38,7 @@ export interface ConfirmOptions {
   confirmLabel?: string
   cancelLabel?: string
   /** 'danger' just swaps the icon to a warning triangle — the confirm
-   * button intentionally stays the same brass action color in both cases,
+   * button intentionally stays the same accent action color in both cases,
    * to avoid SweetAlert2 shallow-merging a partial customClass override
    * and dropping the rest of the mixin's classes (fire()'s customClass
    * replaces the mixin's object wholesale, it doesn't deep-merge). */

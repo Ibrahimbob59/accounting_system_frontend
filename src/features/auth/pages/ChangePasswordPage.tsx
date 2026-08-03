@@ -130,6 +130,7 @@ export function ChangePasswordPage() {
 
         <Button
           type="submit"
+          size="lg"
           className="w-full"
           disabled={!isValid || changePassword.isPending}
         >

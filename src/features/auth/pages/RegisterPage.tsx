@@ -131,7 +131,7 @@ export function RegisterPage() {
 
         {/* Company section */}
         <section className="space-y-4">
-          <h2 className="ledger-rule field-label">
+          <h2 className="section-label">
             {t('register.companySection')}
           </h2>
           <TextField
@@ -165,7 +165,7 @@ export function RegisterPage() {
 
         {/* Account section */}
         <section className="space-y-4">
-          <h2 className="ledger-rule field-label">
+          <h2 className="section-label">
             {t('register.accountSection')}
           </h2>
           <div className="grid grid-cols-2 gap-4">
@@ -214,6 +214,7 @@ export function RegisterPage() {
 
         <Button
           type="submit"
+          size="lg"
           className="w-full"
           disabled={!isValid || registerMutation.isPending}
         >
@@ -223,7 +224,7 @@ export function RegisterPage() {
 
         <p className="text-center text-sm text-text-secondary">
           {t('register.haveAccount')}{' '}
-          <Link to="/login" className="text-primary-700 hover:underline">
+          <Link to="/login" className="text-brand hover:underline">
             {t('register.login')}
           </Link>
         </p>
@@ -232,7 +233,7 @@ export function RegisterPage() {
           {t('register.privacyNotice')}{' '}
           <Link
             to="/privacy-policy"
-            className="text-primary-700 hover:underline"
+            className="text-brand hover:underline"
           >
             {t('register.privacyPolicyLink')}
           </Link>

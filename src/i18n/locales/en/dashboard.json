@@ -9,5 +9,6 @@
   "platformAdmin": {
     "title": "Platform admin",
     "body": "You're signed in as a platform administrator. Company dashboards will appear here in a later release."
-  }
+  },
+  "welcomeSubtitle": "Here's what's happening across your company today."
 }

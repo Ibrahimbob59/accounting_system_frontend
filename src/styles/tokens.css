@@ -1,192 +1,234 @@
+/* ==========================================================================
+   FLOWSTACK DESIGN TOKENS
+   Source of truth: "Flowstack ERP — Design System & Developer Handoff".
+   Every value below traces to a row in that document. If a value here and the
+   handoff disagree, the handoff wins — fix this file, not the component.
+
+   Four independent axes live in this file, and they are deliberately
+   independent — changing one must never require touching another:
+     1. BRAND     — the single accent (emerald). One color, three tokens.
+     2. NEUTRALS  — page/surface/border/text. The ONLY axis light/dark swaps.
+     3. SEMANTIC  — danger/warning/info/neutral badges. Identical in both modes.
+     4. FEEL      — density (spacious|compact) and corners (rounded|sharp),
+                    toggled by data attributes on <html>.
+   ========================================================================== */
+
 :root {
-   /* ==========================================================================
-     THEME — primary / secondary / tertiary
-     The ONLY colors that change per white-label client. Editing a theme means
-     editing exactly these three scales — nothing else in this file should
-     need to change for a client re-skin, and these three should not change
-     for anything else (see the dark-mode block below: light/dark flips the
-     neutral surface scale only, brand colors stay constant in both modes).
-     ========================================================================== */
+   /* =======================================================================
+      1. BRAND — handoff §1
+      Emerald green. Not purple, not a gradient. Exactly one accent color in
+      the whole product; `--brand-hover` and `--brand-soft` are derived from
+      it, so a rebrand is a one-line change to `--brand`.
+      `--brand-soft` intentionally mixes toward white rather than being a
+      hand-picked tint — that keeps it locked to the accent through a reskin.
+      It stays identical in dark mode (see the dark block below), which is why
+      it is declared here and not among the neutrals.
+      ======================================================================= */
+   --brand: #10b981;
+   --brand-hover: #0e9f6e;
+   --brand-soft: color-mix(in srgb, var(--brand) 12%, white);
 
-   /* Each scale below has exactly ONE literal hex value — the -900 seed.
-     Every other step is color-mix(in oklch, seed N%, white): the same tint
-     ramp (88% / 55% / 30% / 18% / 10%) reused across all three scales, so a
-     full re-skin means picking one hex per color group, not six. This is
-     the same derivation technique as the neutral surface scale further
-     down this file — see that section's comment for why oklch, not srgb.
-     The 88% step (vs. a more even-looking ~80%) is deliberate, not
-     decorative: --secondary-700 at this step is the button background, and
-     it must clear 4.5:1 contrast against --text-on-primary for button-label
-     accessibility — measured empirically (80% only cleared 4.05:1, an
-     accessibility regression; 88% clears 4.83:1). If you change a seed hue
-     drastically, re-measure that pairing rather than assuming it still
-     holds — see docs/CONVENTIONS.md → Theming and dark mode. */
+   /* Numbered brand scale. Kept because existing components address the
+      accent by step (`bg-secondary-700`); every step is a mix of --brand, so
+      the whole ramp follows a rebrand automatically. */
+   --secondary-900: var(--brand-hover);
+   --secondary-700: var(--brand);
+   --secondary-500: color-mix(in srgb, var(--brand) 55%, white);
+   --secondary-300: color-mix(in srgb, var(--brand) 30%, white);
+   --secondary-100: var(--brand-soft);
 
-   /* Primary — "Ink". Structure/identity: sidebar, headings, nav. Never used
-     for actions. */
-   --primary-900: #1b2a4a;
-   --primary-700: color-mix(in oklch, var(--primary-900) 88%, white);
-   --primary-500: color-mix(in oklch, var(--primary-900) 55%, white);
-   --primary-300: color-mix(in oklch, var(--primary-900) 30%, white);
-   --primary-200: color-mix(in oklch, var(--primary-900) 18%, white);
-   --primary-100: color-mix(in oklch, var(--primary-900) 10%, white);
+   /* Ink scale — structure, not action: headings and dark chrome. Never a
+      button. This is the "primary" of the original system, retuned to the
+      handoff's slate text ramp. */
+   --primary-900: #0f172a; /* --text-strong */
+   --primary-700: #374151; /* --text-body */
+   --primary-500: #6b7280; /* --text-muted */
+   --primary-300: #9ca3af;
+   --primary-200: #e5e7eb;
+   --primary-100: #f1f5f9;
 
-   /* Secondary — "Brass". The one warm accent: actions (buttons, links) and
-     the ledger-rule motif. Note: this is our brand scale (bg-secondary-700,
-     always numbered) — distinct from shadcn's own unnumbered --secondary
-     semantic token below (a vendor neutral "secondary button" style). Same
-     numbered-vs-flat distinction as --primary-900 vs shadcn's --primary. */
-   --secondary-900: #7a5424;
-   --secondary-700: color-mix(in oklch, var(--secondary-900) 88%, white);
-   /* button/link color — 4.83:1 vs. --text-on-primary, measured */
-   --secondary-500: color-mix(in oklch, var(--secondary-900) 55%, white);
-   --secondary-300: color-mix(in oklch, var(--secondary-900) 30%, white);
-   --secondary-100: color-mix(in oklch, var(--secondary-900) 10%, white);
-
-   /* Tertiary — reserved third brand accent (tertiary buttons/badges/tags),
-     not consumed anywhere yet. Placeholder muted teal — swap freely, it has
-     no meaning baked in elsewhere the way primary/secondary do. */
+   /* Reserved third accent — not consumed anywhere. Kept as a slot so a
+      future tertiary has a defined home rather than a new hex in a component. */
    --tertiary-900: #1f4d47;
-   --tertiary-700: color-mix(in oklch, var(--tertiary-900) 88%, white);
-   --tertiary-500: color-mix(in oklch, var(--tertiary-900) 55%, white);
-   --tertiary-300: color-mix(in oklch, var(--tertiary-900) 30%, white);
-   --tertiary-100: color-mix(in oklch, var(--tertiary-900) 10%, white);
+   --tertiary-700: color-mix(in srgb, var(--tertiary-900) 88%, white);
+   --tertiary-500: color-mix(in srgb, var(--tertiary-900) 55%, white);
+   --tertiary-300: color-mix(in srgb, var(--tertiary-900) 30%, white);
+   --tertiary-100: color-mix(in srgb, var(--tertiary-900) 10%, white);
 
-   /* ==========================================================================
-      STRUCTURAL — typography, radius, shadows
-      Rarely changed: edit only for a genuine system-wide redesign, never for
-      per-client theming.
-     ========================================================================== */
-   --font-display: 'Zilla Slab', 'Inter', 'Noto Sans Arabic', Georgia, serif;
+   /* =======================================================================
+      2. NEUTRALS — handoff §1, light mode
+      The only axis the light/dark toggle touches.
+      ======================================================================= */
+   --page-bg: #f7f8fa;
+   --surface-bg: #ffffff;
+   --border-color: #e5e7eb;
+   --row-border: #f1f5f9; /* table row dividers — lighter than card border */
+   --table-head-bg: #f9fafb;
+   --text-strong: #0f172a;
+   --text-body: #374151;
+   --text-muted-color: #6b7280;
+   --text-placeholder: #9ca3af;
+
+   /* Aliases the app addresses neutrals by. Components read these, never the
+      raw values above — that indirection is what makes the dark block a short
+      remap instead of a second copy of the whole system. */
+   --background: var(--page-bg);
+   --surface: var(--surface-bg);
+   --surface-secondary: #f3f4f6; /* outline-button hover, subtle fills */
+   --card: var(--surface-bg);
+   --modal: var(--surface-bg);
+   --popover: var(--surface-bg);
+
+   --text-primary: var(--text-strong);
+   --text-secondary: var(--text-body);
+   --text-muted: var(--text-muted-color);
+   --text-disabled: var(--text-placeholder);
+   --text-on-primary: #ffffff; /* text on brand / sidebar fills */
+
+   --border: var(--border-color);
+   --border-light: var(--row-border);
+   --divider: var(--row-border);
+
+   /* Sidebar — handoff §1. Deliberately NOT a neutral alias: the sidebar is a
+      fixed dark "chrome" surface in BOTH themes, so it is absent from the dark
+      block below and never moves. */
+   --sidebar: #18181b;
+   --sidebar-border: #27272a;
+   --sidebar-text: #ffffff;
+   --sidebar-text-muted: #94a3b8;
+   --sidebar-hover: rgba(255, 255, 255, 0.06);
+
+   /* =======================================================================
+      3. SEMANTIC — handoff §1 + §5 (badges)
+      Status, not brand. Constant across light and dark, on purpose: a
+      "danger" red that shifted with the theme would stop reading as danger.
+      ======================================================================= */
+   --danger: #dc2626;
+   --danger-border: #fca5a5;
+   --danger-soft: #fef2f2;
+   --warning: #c2410c;
+   --warning-soft: rgba(249, 115, 22, 0.12);
+   --info: #2563eb;
+   --info-soft: rgba(37, 99, 235, 0.1);
+   --neutral-badge-bg: #f1f5f9;
+   --neutral-badge-text: #64748b;
+   /* Success badges reuse the accent — the handoff has no separate green. */
+   --success: var(--brand);
+   --success-soft: var(--brand-soft);
+
+   /* =======================================================================
+      TYPOGRAPHY — handoff §2
+      Sora for display (page titles, stat values, wordmark, code input),
+      Inter for everything else.
+      ======================================================================= */
+   --font-display: 'Sora', 'Noto Sans Arabic', -apple-system, sans-serif;
    --font-sans:
       'Inter', 'Noto Sans Arabic', -apple-system, BlinkMacSystemFont,
       'Segoe UI', sans-serif;
    --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
-   /* rem on purpose — a corner radius scales with the rest of the UI as the
-      root font-size steps up across breakpoints (docs/CONVENTIONS.md →
-     Sizing units). Kept soft and generous by design. */
-   --radius-xs: 0.25rem;
-   --radius-sm: 0.375rem;
-   --radius-md: 0.5rem;
-   --radius-lg: 0.75rem;
-   --radius-xl: 1rem;
-   --radius-2xl: 1.5rem;
+   /* =======================================================================
+      4a. FEEL — corner radius (handoff §3)
+      px, not rem, on purpose: the handoff specifies exact pixel corners, and
+      a corner is a fixed physical detail — it should not scale with the root
+      font size the way type and spacing do. Sharp mode is the toggle below.
+      ======================================================================= */
+   --radius-lg: 16px; /* cards, tables, modals */
+   --radius-xl: 16px;
+   --radius-2xl: 16px;
+   --radius-md: 10px; /* inputs, buttons, nav items */
+   --radius-sm: 9px; /* logo mark, avatar */
+   --radius-xs: 6px;
+   /* Badges are always fully round, unaffected by corner mode (§3). */
+   --radius-pill: 999px;
 
-   /* px on purpose, not rem — a shadow's blur/offset is a physical depth
-      effect tied to the screen, not a text-relative size, so it should NOT
-      grow when the root font-size steps up (same reasoning as border-width).
-      Not yet re-tuned for dark mode — a known, deliberate gap for now.
-      Color is derived from --primary via color-mix(), not a hardcoded rgba —
-      `color-mix(in srgb, X N%, transparent)` is the standard way to get
-      "color X at N% opacity" while keeping it a function of the theme, so
-      shadows re-tint automatically with a client's primary color instead of
-      needing their own hand-picked value. */
-   --shadow-xs: 0 1px 2px color-mix(in srgb, var(--primary-900) 5%, transparent);
-   --shadow-sm:
-      0 1px 3px color-mix(in srgb, var(--primary-900) 8%, transparent),
-      0 1px 2px color-mix(in srgb, var(--primary-900) 4%, transparent);
-   --shadow-md:
-      0 4px 8px -2px color-mix(in srgb, var(--primary-900) 8%, transparent),
-      0 2px 4px -2px color-mix(in srgb, var(--primary-900) 4%, transparent);
-   --shadow-lg:
-      0 12px 16px -4px color-mix(in srgb, var(--primary-900) 8%, transparent),
-      0 4px 6px -2px color-mix(in srgb, var(--primary-900) 3%, transparent);
-   --shadow-xl:
-      0 20px 24px -4px color-mix(in srgb, var(--primary-900) 8%, transparent),
-      0 8px 8px -4px color-mix(in srgb, var(--primary-900) 3%, transparent);
+   /* =======================================================================
+      4b. FEEL — density (handoff §3). Spacious is the default.
+      ======================================================================= */
+   --page-pad: 40px;
+   --card-pad: 24px;
+   --grid-gap: 20px;
+   --topbar-h: 72px;
+   --sidebar-w: 260px;
+   --sidebar-w-collapsed: 76px;
+   --field-pad-y: 12px;
+   --field-pad-x: 14px;
+   --form-gap: 16px;
+   --form-top: 32px;
+   --h1-size: 30px;
+   --stat-size: 32px;
 
-   /* ==========================================================================
-     SEMANTIC — success / warning / danger / info
-     Status colors, not brand. Independent of the theme above (a client's
-     secondary/brass accent can change without their "danger" red changing)
-     and, like the theme, constant across light/dark for now.
-     ========================================================================== */
-   --success: #2f7d5c;
-   --warning: #c97d2e;
-   --danger: #b23b33;
-   --info: #2e5f8a;
-
-   /* ==========================================================================
-     NEUTRAL SURFACE SCALE — derived from --primary, not hardcoded
-     Every background/surface/text/border token below is an alias onto one of
-     these steps, and every step here is itself a color-mix() of --primary-900
-     with white (or black, at the very dark end) — NOT its own hex. This is
-     what makes "change the theme" mean "change primary/secondary/tertiary
-     and nothing else": the whole neutral ramp (and therefore every
-     background/text/border in the app) re-tints automatically to match a new
-     --primary-900, using the SAME percentages, without anyone hand-picking a
-     new gray scale per client. Mixed `in oklch` rather than plain `srgb` so
-     the ten intermediate steps read as evenly-spaced lightness, not
-     compressed at the light end (a known issue with linear sRGB mixing).
-     This is the one scale the light/dark toggle also touches — see the
-     [data-theme="dark"] block, which only remaps these aliases to different
-     steps of this same derived scale.
-     ========================================================================== */
-   --neutral-0: #ffffff;
-   /* pure white on purpose — the one step NOT tinted, so a true paper-white surface is always available regardless of theme */
-   --neutral-50: color-mix(in oklch, var(--primary-900) 3%, white);
-   --neutral-100: color-mix(in oklch, var(--primary-900) 6%, white);
-   --neutral-200: color-mix(in oklch, var(--primary-900) 12%, white);
-   --neutral-300: color-mix(in oklch, var(--primary-900) 20%, white);
-   --neutral-400: color-mix(in oklch, var(--primary-900) 32%, white);
-   --neutral-500: color-mix(in oklch, var(--primary-900) 44%, white);
-   --neutral-600: color-mix(in oklch, var(--primary-900) 58%, white);
-   --neutral-700: color-mix(in oklch, var(--primary-900) 72%, white);
-   --neutral-800: color-mix(in oklch, var(--primary-900) 86%, white);
-   --neutral-900: var(--primary-900);
-   /* 100% mix with white is just --primary-900 itself */
-   --neutral-950: color-mix(in oklch, var(--primary-900) 80%, black);
-   /* darker than --primary-900, for a true near-black dark-mode background */
-
-   /* Light mode (default) — aliases onto the neutral scale above. */
-   --background: var(--neutral-100);
-   --surface: var(--neutral-0);
-   --surface-secondary: var(--neutral-200);
-   --sidebar: var(--primary-900);
-   /* brand, not neutral — constant across themes */
-   --card: var(--neutral-0);
-   --modal: var(--neutral-0);
-   --popover: var(--neutral-0);
-
-   --text-primary: var(--neutral-900);
-   --text-secondary: var(--neutral-800);
-   --text-muted: var(--neutral-700);
-   --text-disabled: var(--neutral-500);
-   --text-on-primary: var(--neutral-50);
-   /* text on --sidebar/--primary-900/--secondary-700 surfaces */
-
-   --border: var(--neutral-300);
-   --border-light: var(--neutral-200);
-   --divider: var(--neutral-200);
+   /* =======================================================================
+      SHADOWS
+      Near-flat by design. The handoff calls for flat fills and explicitly no
+      shadow on buttons; these exist only to lift modals/popovers off the page.
+      ======================================================================= */
+   --shadow-xs: 0 1px 2px rgba(15, 23, 42, 0.04);
+   --shadow-sm: 0 1px 3px rgba(15, 23, 42, 0.06);
+   --shadow-md: 0 4px 8px -2px rgba(15, 23, 42, 0.08);
+   --shadow-lg: 0 12px 16px -4px rgba(15, 23, 42, 0.1);
+   --shadow-xl: 0 20px 24px -4px rgba(15, 23, 42, 0.12);
 }
 
-/* Dark mode — remaps ONLY the neutral aliases above to the other end of the
-   same scale. Everything in the THEME and SEMANTIC sections is deliberately
-   absent here: primary/secondary/tertiary and success/warning/danger/info
-   stay exactly as they are in light mode. Toggle by setting
-   data-theme="dark" on <html> (not built yet — this is the token side of
-   that feature, ready for a theme switcher to consume).
-   --text-on-primary is also deliberately absent: it's identical in both
-   modes (text sits on brand surfaces, which don't change lightness across
-   themes), so it falls through to the :root declaration above rather than
-   being redeclared — :root and :root[data-theme='dark'] both match the
-   same <html> element, so an unset property here simply keeps the :root
-   value. */
+/* --------------------------------------------------------------------------
+   DARK MODE — handoff §1
+   Remaps the NEUTRAL aliases only. Brand, semantic status colors and the
+   sidebar are deliberately absent: they are identical in both modes, so they
+   fall through to :root rather than being restated (both selectors match the
+   same <html>, so an unset property simply keeps its :root value).
+   -------------------------------------------------------------------------- */
 :root[data-theme='dark'] {
-   --background: var(--neutral-950);
-   --surface: var(--neutral-900);
-   --surface-secondary: var(--neutral-800);
-   --card: var(--neutral-900);
-   --modal: var(--neutral-900);
-   --popover: var(--neutral-900);
+   --page-bg: #0b0e11;
+   --surface-bg: #17191d;
+   --border-color: #2a2d33;
+   --row-border: #23262b;
+   --table-head-bg: #1b1e23;
+   --text-strong: #f4f4f5;
+   --text-body: #d1d5db;
+   --text-muted-color: #9ca3af;
+   /* Handoff §5 flags the light-mode placeholder (#9CA3AF) as a contrast risk
+      on a dark surface; stepping it one shade lighter keeps it legible while
+      still reading as placeholder, not content. */
+   --text-placeholder: #8b929c;
 
-   --text-primary: var(--neutral-50);
-   --text-secondary: var(--neutral-400);
-   --text-muted: var(--neutral-600);
-   --text-disabled: var(--neutral-700);
+   --surface-secondary: #22252a; /* outline-button hover, dark equivalent */
+   --danger-soft: rgba(220, 38, 38, 0.12);
+   --neutral-badge-bg: rgba(148, 163, 184, 0.14);
+   --neutral-badge-text: #94a3b8;
 
-   --border: var(--neutral-700);
-   --border-light: var(--neutral-800);
-   --divider: var(--neutral-800);
+   /* Ink scale follows the text ramp so headings stay legible on dark. */
+   --primary-900: #f4f4f5;
+   --primary-700: #d1d5db;
+   --primary-500: #9ca3af;
+   --primary-200: #2a2d33;
+   --primary-100: #23262b;
+}
+
+/* --------------------------------------------------------------------------
+   FEEL TOGGLES — handoff §3
+   Set on <html> (see app/shell/feel.ts). Both are pure token remaps: no
+   component knows which mode is active, which is the whole point.
+   -------------------------------------------------------------------------- */
+:root[data-density='compact'] {
+   --page-pad: 16px;
+   --card-pad: 16px;
+   --grid-gap: 12px;
+   --topbar-h: 56px;
+   --sidebar-w: 220px;
+   --field-pad-y: 9px;
+   --field-pad-x: 12px;
+   --form-gap: 12px;
+   --form-top: 20px;
+   --h1-size: 22px;
+   --stat-size: 24px;
+}
+
+:root[data-corners='sharp'] {
+   --radius-lg: 4px;
+   --radius-xl: 4px;
+   --radius-2xl: 4px;
+   --radius-md: 3px;
+   --radius-sm: 2px;
+   --radius-xs: 2px;
+   /* --radius-pill deliberately not overridden: badges stay fully round. */
 }

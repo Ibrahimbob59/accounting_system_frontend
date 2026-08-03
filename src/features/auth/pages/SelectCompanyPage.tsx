@@ -53,10 +53,10 @@ export function SelectCompanyPage() {
                   type="button"
                   onClick={() => onSelect(company.id)}
                   disabled={switchCompany.isPending}
-                  className="flex w-full items-center gap-3 rounded-lg border border-border bg-surface p-4 text-start transition-colors hover:border-primary-500 hover:bg-surface-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-60"
+                  className="flex w-full items-center gap-3 rounded-lg border border-border bg-surface p-4 text-start transition-colors hover:border-brand hover:bg-surface-secondary disabled:cursor-not-allowed disabled:opacity-60"
                 >
-                  <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-primary-100 text-primary-900">
-                    <Building2 className="size-5" />
+                  <span className="icon-chip">
+                    <Building2 className="size-4" />
                   </span>
                   <span className="flex-1 font-medium text-text-primary">
                     {company.name}

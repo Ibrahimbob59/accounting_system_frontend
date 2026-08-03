@@ -28,7 +28,10 @@ export function AppLayout() {
       />
       <div className="flex min-w-0 flex-1 flex-col overflow-hidden">
         <TopBar onOpenMobileSidebar={() => setMobileOpen(true)} />
-        <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
+        {/* The only scrollable region (handoff §4) — sidebar and top bar are
+            fixed height. `p-page` is the density token, so switching to
+            compact re-pads every page at once. */}
+        <main className="flex-1 overflow-y-auto p-4 sm:p-page">
           <Outlet />
         </main>
       </div>

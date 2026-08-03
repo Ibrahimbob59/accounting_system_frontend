@@ -22,10 +22,10 @@ export function RouteErrorBoundary() {
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center gap-2 bg-background px-6 text-center">
-      <h1 className="font-display text-2xl font-semibold text-text-primary">
+      <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
         {t('error.title')}
       </h1>
-      <p className="ledger-rule mt-3 max-w-sm text-text-secondary">
+      <p className="mt-3 max-w-sm text-text-secondary">
         {t('error.body')}
       </p>
       <div className="mt-6 flex gap-3">

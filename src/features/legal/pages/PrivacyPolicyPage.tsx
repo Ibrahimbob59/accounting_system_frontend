@@ -29,7 +29,7 @@ export function PrivacyPolicyPage() {
         <div className="mx-auto flex h-16 max-w-3xl items-center justify-between px-6">
           <Link
             to="/"
-            className="font-display text-lg font-semibold tracking-tight text-primary-900"
+            className="font-display text-lg font-bold tracking-tight text-text-primary"
           >
             {t('appName', { ns: 'common' })}
           </Link>
@@ -38,7 +38,7 @@ export function PrivacyPolicyPage() {
       </header>
 
       <main className="mx-auto w-full max-w-3xl flex-1 px-6 py-12">
-        <h1 className="ledger-rule font-display text-3xl font-semibold text-text-primary">
+        <h1 className="font-display text-3xl font-bold tracking-[-0.02em] text-text-primary">
           {t('privacyPolicy.title', { ns: 'legal' })}
         </h1>
         <p className="mt-4 text-sm text-text-muted">
@@ -53,7 +53,7 @@ export function PrivacyPolicyPage() {
         <div className="mt-10 space-y-8">
           {sections.map((section, index) => (
             <section key={section.title}>
-              <h2 className="font-display text-lg font-semibold text-text-primary">
+              <h2 className="font-display text-base font-bold text-text-primary">
                 {index + 1}. {section.title}
               </h2>
               <p className="mt-2 text-text-secondary">{section.body}</p>
@@ -62,7 +62,7 @@ export function PrivacyPolicyPage() {
         </div>
 
         <p className="mt-12 text-center text-sm">
-          <Link to="/" className="text-primary-700 hover:underline">
+          <Link to="/" className="text-brand hover:underline">
             {t('notFound.backHome', { ns: 'common' })}
           </Link>
         </p>

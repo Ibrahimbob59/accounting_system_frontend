@@ -16,11 +16,11 @@ export const TextareaField = React.forwardRef<
 >(({ id, label, error, className, ...props }, ref) => {
   const errorId = `${id}-error`
   return (
-    <div className="space-y-1">
+    <div className="space-y-2">
       <Label htmlFor={id} className="field-label">
         {label}
       </Label>
-      <div className="field-line items-stretch" data-invalid={error ? true : undefined}>
+      <div className="field-box items-stretch" data-invalid={error ? true : undefined}>
         <Textarea
           id={id}
           ref={ref}
@@ -31,7 +31,7 @@ export const TextareaField = React.forwardRef<
         />
       </div>
       {error && (
-        <p id={errorId} className="text-sm text-danger">
+        <p id={errorId} role="alert" className="text-[13px] text-danger">
           {error}
         </p>
       )}

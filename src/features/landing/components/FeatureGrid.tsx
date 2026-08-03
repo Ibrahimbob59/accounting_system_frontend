@@ -24,10 +24,10 @@ export function FeatureGrid() {
   return (
     <section className="mx-auto max-w-4xl px-6 py-20">
       <div className="max-w-2xl">
-        <h2 className="font-display text-3xl font-semibold tracking-tight text-text-primary">
+        <h2 className="font-display text-3xl font-bold tracking-[-0.02em] text-text-primary">
           {t('features.heading')}
         </h2>
-        <p className="ledger-rule mt-3 text-text-secondary">
+        <p className="mt-3 text-text-secondary">
           {t('features.subheading')}
         </p>
       </div>
@@ -41,7 +41,7 @@ export function FeatureGrid() {
             className="flex flex-col gap-2 py-6 sm:flex-row sm:items-baseline sm:gap-8"
           >
             <div className="flex items-center gap-3 sm:w-64 sm:shrink-0">
-              <Icon className="size-5 shrink-0 text-secondary-700" />
+              <Icon className="size-5 shrink-0 text-brand" />
               <dt className="font-semibold text-text-primary">
                 {t(`features.${key}.title`)}
               </dt>

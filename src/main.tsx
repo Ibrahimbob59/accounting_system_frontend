@@ -5,9 +5,16 @@ import '@/styles/globals.css'
 import '@/i18n'
 import App from '@/App'
 import { applyTheme, getInitialTheme } from '@/app/shell/theme'
+import {
+  applyFeel,
+  getStoredCorners,
+  getStoredDensity,
+} from '@/app/shell/feel'
 
-// Set the theme before first paint so there's no light-to-dark flash.
+// Set theme and feel before first paint so there's no light-to-dark flash and
+// no reflow as spacing/radius tokens swap in.
 applyTheme(getInitialTheme())
+applyFeel(getStoredDensity(), getStoredCorners())
 
 // TODO(backend): remove this block once the real backend is running — see
 // src/mocks/README.md. Serves fake API responses so the app is usable with no

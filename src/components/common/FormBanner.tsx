@@ -13,9 +13,11 @@ export function FormBanner({ variant, children }: FormBannerProps) {
     <div
       role="alert"
       className={cn(
-        'rounded-md border px-3 py-2 text-sm',
-        variant === 'error' && 'border-danger/30 bg-danger/10 text-danger',
-        variant === 'success' && 'border-success/30 bg-success/10 text-success'
+        // Uses the same soft-fill tokens as StatusBadge rather than an
+        // opacity of the text color, so the fills survive dark mode.
+        'rounded-md px-3 py-2.5 text-start text-sm',
+        variant === 'error' && 'bg-danger-soft text-danger',
+        variant === 'success' && 'bg-brand-soft text-brand'
       )}
     >
       {children}
