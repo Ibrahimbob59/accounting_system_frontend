@@ -3,9 +3,9 @@ import { useQuery } from '@tanstack/react-query'
 import { companiesApi } from '@/features/companies/api/companies.api'
 
 /**
- * Settings for one company. Cached for a while because `useBaseCurrency` reads
- * it on every money-rendering screen — settings change rarely, and refetching
- * per mount would put a request behind every balance shown.
+ * Settings for one company (base currency, fiscal year, feature flags, …).
+ * Cached for a while — settings change rarely, so consumers avoid refetching
+ * per mount.
  */
 export function useCompanySettings(id: string | undefined) {
   return useQuery({

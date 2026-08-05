@@ -7,11 +7,11 @@ import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { DataTable } from '@/components/common/DataTable'
 import { useCurrencyLookup } from '@/features/currencies/hooks/useCurrencyLookup'
-import { useBaseCurrency } from '@/features/companies/hooks/useBaseCurrency'
 import { formatMoney } from '@/lib/format'
 import { usePartnerBalance } from '@/features/partners/hooks/usePartnerBalance'
 import { usePartnerTransactions } from '@/features/partners/hooks/usePartnerTransactions'
 import type {
+  PartnerBaseCurrencyBalance,
   PartnerCurrencyBalance,
   PartnerTransaction,
 } from '@/features/partners/types/partners.types'
@@ -25,10 +25,9 @@ import type {
 export function PartnerLedgerTab({ partnerId }: { partnerId: string }) {
   const { t, i18n } = useTranslation('partners')
   const [asOf, setAsOf] = useState('')
-  // Rows carry their own currency code; the summary cards are base-currency
-  // numbers with no code, so they need the company's configured one.
+  // Rows carry their own currency code; the summary cards now name their base
+  // currency in the payload (baseCurrency), so we only look up decimal places.
   const currency = useCurrencyLookup()
-  const baseCurrency = useBaseCurrency()
   const balance = usePartnerBalance(partnerId, asOf || undefined)
   const transactions = usePartnerTransactions(partnerId, { page: 1, limit: 50 })
 
@@ -102,27 +101,43 @@ export function PartnerLedgerTab({ partnerId }: { partnerId: string }) {
     },
   ]
 
+  // Uniform base currency → one figure; mixed base → one figure per currency
+  // (never summed), sourced from byBaseCurrency.
+  const showBase = (
+    scalar: number | null | undefined,
+    pick: (r: PartnerBaseCurrencyBalance) => number
+  ): string => {
+    if (!balance.data) return '—'
+    const b = balance.data
+    if (scalar != null)
+      return formatMoney(
+        scalar,
+        b.baseCurrency ? currency(b.baseCurrency) : undefined,
+        i18n.language
+      )
+    return b.byBaseCurrency
+      .map((r) => formatMoney(pick(r), currency(r.currency), i18n.language))
+      .join(' · ')
+  }
+
   return (
     <div className="space-y-6">
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div className="grid gap-4 sm:grid-cols-3 sm:flex-1">
           <SummaryCard
             label={t('detail.ledger.totalDebit')}
-            value={balance.data
-                ? formatMoney(balance.data.totalDebitBase, baseCurrency, i18n.language)
-                : '—'}
+            value={showBase(balance.data?.totalDebitBase, (r) => r.totalDebitBase)}
           />
           <SummaryCard
             label={t('detail.ledger.totalCredit')}
-            value={balance.data
-                ? formatMoney(balance.data.totalCreditBase, baseCurrency, i18n.language)
-                : '—'}
+            value={showBase(
+              balance.data?.totalCreditBase,
+              (r) => r.totalCreditBase
+            )}
           />
           <SummaryCard
             label={t('detail.ledger.netBalance')}
-            value={balance.data
-                ? formatMoney(balance.data.balanceBase, baseCurrency, i18n.language)
-                : '—'}
+            value={showBase(balance.data?.balanceBase, (r) => r.balanceBase)}
             emphasize
           />
         </div>

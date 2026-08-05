@@ -56,15 +56,46 @@ export interface PartnerCurrencyBalance {
   net: number
 }
 
+/** One base-currency slice of a partner balance (>1 only for a mixed-base
+ *  partner — see backend docs/URGENT.md). */
+export interface PartnerBaseCurrencyBalance {
+  currency: string
+  totalDebitBase: number
+  totalCreditBase: number
+  balanceBase: number
+}
+
+export interface PartnerBalancePresentationRate {
+  from: string
+  rate: number
+  rateType: string
+  rateDate: string
+}
+
+/** The partner balance converted into a requested currency (?presentIn). */
+export interface PartnerBalancePresentation {
+  currency: string
+  totalDebitBase: number | null
+  totalCreditBase: number | null
+  balanceBase: number | null
+  rates: PartnerBalancePresentationRate[]
+}
+
 export interface PartnerBalance {
   partnerId: string
   ref: string
   name: string
   asOf: string
-  totalDebitBase: number
-  totalCreditBase: number
-  balanceBase: number
+  /** Base currency of the *Base figures; null when the partner holds >1 base currency. */
+  baseCurrency: string | null
+  totalDebitBase: number | null
+  totalCreditBase: number | null
+  balanceBase: number | null
+  /** Per-base-currency figures (one entry normally; several for a mixed-base partner). */
+  byBaseCurrency: PartnerBaseCurrencyBalance[]
+  /** Per-ORIGINAL-currency breakdown (already self-describing). */
   byCurrency: PartnerCurrencyBalance[]
+  presentation?: PartnerBalancePresentation | null
 }
 
 export interface PartnerTransaction {

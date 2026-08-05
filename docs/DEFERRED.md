@@ -86,40 +86,33 @@ have `usePermission` read from there. Every gate updates automatically.
 
 ---
 
-## D-004 — Base-currency amounts are not self-describing
+## D-004 — Base-currency amounts are not self-describing — RESOLVED
 
-**Fully documented in the backend repo: `docs/URGENT.md`** (commit `9fc9140`).
-Read that first — it holds the incident report, root cause, the complete
-inventory of affected endpoints, the approaches that don't work, the proposed
-schema fix and the test plan. This entry is only the frontend-side summary.
+**Resolved.** The backend fix landed (`docs/URGENT.md` §6): each posted line now
+stores its `baseCurrencyCode`, and the balance responses report it. This repo
+was updated to match:
 
-**Today:** base currency is freely editable. Balance amounts are labelled using
-the company's *current* `baseCurrencyCode`, joined to the currency registry by
-`useBaseCurrency` (`src/features/companies/hooks/useBaseCurrency.ts`) and
-rendered via `formatMoney`.
+1. `AccountBalance` / `PartnerBalance` types gained `currency` / `baseCurrency`
+   (+ `byBaseCurrency`, `presentation`); the base scalar fields are now nullable.
+2. `AccountDetailPage` and `PartnerLedgerTab` read the currency **straight from
+   the balance payload** — and, in the rare mixed-base case (`currency` null),
+   render one figure per currency from `byBaseCurrency` instead of a wrong sum.
+3. **`useBaseCurrency` and its settings+registry join are deleted** — the screens
+   no longer make two extra requests to render one number.
+4. `formatMoney` is kept, still sourcing `decimalPlaces` from `GET /currencies`
+   (LBP is 0-decimal), and still renders unlabelled when currency is unknown.
 
-**Why:** `/accounts/:id/balance` and the partner `*Base` fields return plain
-numbers with **no currency field**, so the client has to infer it. Nothing in
-the backend records which currency a stored `amountBase` was computed in —
-`amountBase` is frozen at posting, `Company.baseCurrencyCode` is mutable, and
-nothing links them. Change the setting and a 100 USD balance reports "100 LBP".
+**Kept as the record of what the bug was.** Original symptom: base currency was
+freely editable and balance amounts were labelled from the company's *current*
+`baseCurrencyCode` (via the old `useBaseCurrency`), so changing the setting made
+a 100 USD balance report "100 LBP". Root cause was a missing fact in the backend
+schema, not a frontend bug — see the backend `docs/URGENT.md`.
 
-**Not a frontend bug, and not fixable here.** An earlier attempt locked the
-base-currency picker once postings existed; it was reverted. It removed a
-legitimate capability (presentation vs functional currency, IAS 21) and put an
-accounting policy decision in a client, where it can't be enforced anyway.
-
-**Blocked on (backend):** `docs/URGENT.md` §6 — store `baseCurrencyCode` on
-`JournalLine` beside `amountBase`, then return it from the balance responses.
-
-**Then, in this repo** (`docs/URGENT.md` §7):
-1. Read the currency straight from the balance payload.
-2. Delete `useBaseCurrency` and its two-request join.
-3. Keep `formatMoney` and keep taking `decimalPlaces` from `GET /currencies` —
-   LBP is a 0-decimal currency.
-4. Keep rendering unlabelled when the currency is genuinely unknown.
-5. If the backend adds `?presentIn=`, surface the returned rate and rate date
-   next to any converted figure — never a converted number on its own.
+**Still available, not yet surfaced in the UI:** the backend now supports
+`?presentIn=XXX` (Tier 2) to convert a balance to a chosen currency with the
+rate + rate date. A presentation-currency selector is a future enhancement; when
+added, show the returned rate/rateDate next to any converted figure — never a
+converted number on its own.
 
 ---
 

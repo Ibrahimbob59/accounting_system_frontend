@@ -61,26 +61,59 @@ export interface AccountTreeNode extends Account {
   children: AccountTreeNode[]
 }
 
+/** The rate used to convert one source base currency into the presentation
+ *  currency (backend Tier 2, ?presentIn). */
+export interface PresentationRate {
+  from: string
+  rate: number
+  rateType: string
+  rateDate: string
+}
+
+/** A balance converted into a requested presentation currency (?presentIn).
+ *  Figures are null when a required rate is missing. Display only. */
+export interface BalancePresentation {
+  currency: string
+  totalDebitBase: number | null
+  totalCreditBase: number | null
+  balance: number | null
+  naturalBalance: number | null
+  rates: PresentationRate[]
+}
+
+/** One base-currency slice of a balance (>1 only for a mixed-base account). */
+export interface BaseCurrencyBalance {
+  currency: string
+  totalDebitBase: number
+  totalCreditBase: number
+  balance: number
+  naturalBalance: number
+}
+
 /**
  * `GET /accounts/:id/balance` — derived from POSTED journal lines only.
  *
- * Note these are plain numbers already converted to the company's base
- * currency, NOT the backend's 4-field Money object; there's no per-currency
- * breakdown here (contrast PartnerBalance, which has `byCurrency`). So the
- * currency shown alongside them must come from company settings, not from
- * this response.
+ * The response is now SELF-DESCRIBING: `currency` is the base currency the
+ * figures are in, read from the stored per-line baseCurrencyCode (never the
+ * mutable company setting — that was the base-currency mislabel bug, see the
+ * backend `docs/URGENT.md`). In the rare mixed-base case the scalar totals are
+ * null and `byBaseCurrency` carries a figure per currency (never summed).
  */
 export interface AccountBalance {
   accountId: string
   accountNumber: string
   accountName: string
   normalBalance: NormalBalance
-  totalDebitBase: number
-  totalCreditBase: number
-  /** Signed: Σ debit − Σ credit, regardless of the account's normal side. */
-  balance: number
-  /** `balance` flipped so a normal-side balance reads positive. */
-  naturalBalance: number
+  /** Base currency of the figures; null when the account holds >1 base currency. */
+  currency: string | null
+  totalDebitBase: number | null
+  totalCreditBase: number | null
+  /** Signed: Σ debit − Σ credit. Null when base currency is mixed. */
+  balance: number | null
+  /** `balance` flipped so a normal-side balance reads positive. Null when mixed. */
+  naturalBalance: number | null
+  byBaseCurrency: BaseCurrencyBalance[]
+  presentation?: BalancePresentation | null
   asOf: string
 }
 

@@ -269,10 +269,13 @@ export function buildPartnerBalance(partner: Partner): PartnerBalance {
     ref: partner.ref,
     name: partner.name,
     asOf: now().slice(0, 10),
+    baseCurrency: 'USD',
     totalDebitBase: 0,
     totalCreditBase: 0,
     balanceBase: 0,
+    byBaseCurrency: [],
     byCurrency: [],
+    presentation: null,
   }
 }
 

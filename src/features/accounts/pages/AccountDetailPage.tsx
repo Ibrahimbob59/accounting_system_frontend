@@ -15,7 +15,7 @@ import { useUpdateAccount } from '@/features/accounts/hooks/useUpdateAccount'
 import { useDeleteAccount } from '@/features/accounts/hooks/useDeleteAccount'
 import { localizedAccountName } from '@/features/accounts/types/accounts.types'
 import { isPermissionDenied, usePermission } from '@/features/auth/lib/permissions'
-import { useBaseCurrency } from '@/features/companies/hooks/useBaseCurrency'
+import { useCurrencyLookup } from '@/features/currencies/hooks/useCurrencyLookup'
 import { formatMoney } from '@/lib/format'
 import { confirm, toast } from '@/lib/swal'
 import { ApiException } from '@/types/api'
@@ -29,9 +29,9 @@ export function AccountDetailPage() {
   const { data: account, isLoading, isError, error } = useAccount(id)
   const balance = useAccountBalance(id, asOf)
   const allAccounts = useAllAccounts()
-  // Balance amounts are plain numbers in the company's base currency — the
-  // code and decimal places have to come from settings + the registry.
-  const baseCurrency = useBaseCurrency()
+  // The balance response now names its own currency (from the stored
+  // baseCurrencyCode); we only look up the decimal places from the registry.
+  const lookupCurrency = useCurrencyLookup()
   const updateAccount = useUpdateAccount()
   const deleteAccount = useDeleteAccount()
   const canUpdate = usePermission('account.update')
@@ -234,34 +234,45 @@ export function AccountDetailPage() {
             {t('detail.balance.unavailable')}
           </p>
         ) : (
-          <>
-            <InfoRow
-              label={t('detail.balance.totalDebit')}
-              value={formatMoney(
-                balance.data.totalDebitBase,
-                baseCurrency,
-                i18n.language
-              )}
-            />
-            <InfoRow
-              label={t('detail.balance.totalCredit')}
-              value={formatMoney(
-                balance.data.totalCreditBase,
-                baseCurrency,
-                i18n.language
-              )}
-            />
-            {/* naturalBalance, not balance: it's already flipped so a normal-side
-                balance reads positive, which is what an accountant expects. */}
-            <InfoRow
-              label={t('detail.balance.balance')}
-              value={formatMoney(
-                balance.data.naturalBalance,
-                baseCurrency,
-                i18n.language
-              )}
-            />
-          </>
+          (() => {
+            const b = balance.data
+            const currency = b.currency ? lookupCurrency(b.currency) : undefined
+            // Uniform base currency → one figure; mixed base → one figure per
+            // currency (never summed), sourced from byBaseCurrency.
+            const show = (
+              scalar: number | null,
+              pick: (r: (typeof b.byBaseCurrency)[number]) => number
+            ): string =>
+              scalar !== null
+                ? formatMoney(scalar, currency, i18n.language)
+                : b.byBaseCurrency
+                    .map((r) =>
+                      formatMoney(
+                        pick(r),
+                        lookupCurrency(r.currency),
+                        i18n.language
+                      )
+                    )
+                    .join(' · ')
+            return (
+              <>
+                <InfoRow
+                  label={t('detail.balance.totalDebit')}
+                  value={show(b.totalDebitBase, (r) => r.totalDebitBase)}
+                />
+                <InfoRow
+                  label={t('detail.balance.totalCredit')}
+                  value={show(b.totalCreditBase, (r) => r.totalCreditBase)}
+                />
+                {/* naturalBalance, not balance: it's already flipped so a normal-
+                    side balance reads positive, which is what an accountant expects. */}
+                <InfoRow
+                  label={t('detail.balance.balance')}
+                  value={show(b.naturalBalance, (r) => r.naturalBalance)}
+                />
+              </>
+            )
+          })()
         )}
       </Section>
     </div>
