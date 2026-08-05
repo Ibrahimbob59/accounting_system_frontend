@@ -123,7 +123,12 @@
       "totalDebit": "إجمالي المدين",
       "totalCredit": "إجمالي الدائن",
       "balance": "الرصيد",
-      "unavailable": "الرصيد غير متاح لهذا الحساب."
+      "unavailable": "الرصيد غير متاح لهذا الحساب.",
+      "presentation": {
+        "converted": "معروض بعملة {{currency}}، مُحوّل بسعر {{rateType}} كما في {{date}}.",
+        "convertedMulti": "معروض بعملة {{currency}}، مُحوّل بأسعار {{rateType}}.",
+        "mixedNoRate": "لا يتوفر سعر تحويل إلى {{currency}} — تُعرض كل عملة أساس على حدة."
+      }
     }
   },
   "validation": {

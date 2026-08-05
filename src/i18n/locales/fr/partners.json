@@ -149,6 +149,11 @@
         "account": "Compte",
         "debit": "Débit",
         "credit": "Crédit"
+      },
+      "presentation": {
+        "converted": "Affiché en {{currency}}, converti au taux {{rateType}} au {{date}}.",
+        "convertedMulti": "Affiché en {{currency}}, converti aux taux {{rateType}}.",
+        "mixedNoRate": "Aucun taux de conversion en {{currency}} disponible — chaque devise de base est affichée séparément."
       }
     },
     "deleteConfirm": {

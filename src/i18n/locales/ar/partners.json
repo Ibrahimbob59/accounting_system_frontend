@@ -149,6 +149,11 @@
         "account": "الحساب",
         "debit": "مدين",
         "credit": "دائن"
+      },
+      "presentation": {
+        "converted": "معروض بعملة {{currency}}، مُحوّل بسعر {{rateType}} كما في {{date}}.",
+        "convertedMulti": "معروض بعملة {{currency}}، مُحوّل بأسعار {{rateType}}.",
+        "mixedNoRate": "لا يتوفر سعر تحويل إلى {{currency}} — تُعرض كل عملة أساس على حدة."
       }
     },
     "deleteConfirm": {

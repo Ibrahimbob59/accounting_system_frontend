@@ -149,6 +149,11 @@
         "account": "Account",
         "debit": "Debit",
         "credit": "Credit"
+      },
+      "presentation": {
+        "converted": "Shown in {{currency}}, converted at the {{rateType}} rate as of {{date}}.",
+        "convertedMulti": "Shown in {{currency}}, converted at {{rateType}} rates.",
+        "mixedNoRate": "No {{currency}} conversion rate available — showing each base currency separately."
       }
     },
     "deleteConfirm": {

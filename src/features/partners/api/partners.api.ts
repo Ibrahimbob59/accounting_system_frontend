@@ -36,9 +36,16 @@ export const partnersApi = {
     return http.delete<void>(`/partners/${id}`)
   },
 
-  getPartnerBalance(id: string, asOf?: string): Promise<PartnerBalance> {
+  getPartnerBalance(
+    id: string,
+    asOf?: string,
+    presentIn?: string
+  ): Promise<PartnerBalance> {
+    const params: Record<string, string> = {}
+    if (asOf) params.asOf = asOf
+    if (presentIn) params.presentIn = presentIn
     return http.get<PartnerBalance>(`/partners/${id}/balance`, {
-      params: asOf ? { asOf } : undefined,
+      params: Object.keys(params).length ? params : undefined,
     })
   },
 

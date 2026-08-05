@@ -32,10 +32,18 @@ export const accountsApi = {
     return http.get<Account>(`/accounts/${id}`)
   },
 
-  /** `asOf` is an ISO date; omitted means "as of now". */
-  getBalance(id: string, asOf?: string): Promise<AccountBalance> {
+  /** `asOf` is an ISO date; omitted means "as of now". `presentIn` (a currency
+   * code) asks the backend to convert the balance into that currency (Tier 2). */
+  getBalance(
+    id: string,
+    asOf?: string,
+    presentIn?: string
+  ): Promise<AccountBalance> {
+    const params: Record<string, string> = {}
+    if (asOf) params.asOf = asOf
+    if (presentIn) params.presentIn = presentIn
     return http.get<AccountBalance>(`/accounts/${id}/balance`, {
-      params: asOf ? { asOf } : undefined,
+      params: Object.keys(params).length ? params : undefined,
     })
   },
 

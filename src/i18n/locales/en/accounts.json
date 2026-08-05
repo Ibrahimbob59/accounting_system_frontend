@@ -123,7 +123,12 @@
       "totalDebit": "Total debit",
       "totalCredit": "Total credit",
       "balance": "Balance",
-      "unavailable": "Balance is unavailable for this account."
+      "unavailable": "Balance is unavailable for this account.",
+      "presentation": {
+        "converted": "Shown in {{currency}}, converted at the {{rateType}} rate as of {{date}}.",
+        "convertedMulti": "Shown in {{currency}}, converted at {{rateType}} rates.",
+        "mixedNoRate": "No {{currency}} conversion rate available — showing each base currency separately."
+      }
     }
   },
   "validation": {

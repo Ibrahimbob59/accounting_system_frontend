@@ -14,8 +14,12 @@ import { useAllAccounts } from '@/features/accounts/hooks/useAllAccounts'
 import { useUpdateAccount } from '@/features/accounts/hooks/useUpdateAccount'
 import { useDeleteAccount } from '@/features/accounts/hooks/useDeleteAccount'
 import { localizedAccountName } from '@/features/accounts/types/accounts.types'
-import { isPermissionDenied, usePermission } from '@/features/auth/lib/permissions'
+import {
+  isPermissionDenied,
+  usePermission,
+} from '@/features/auth/lib/permissions'
 import { useCurrencyLookup } from '@/features/currencies/hooks/useCurrencyLookup'
+import { useActiveCompanyBaseCurrency } from '@/features/companies/hooks/useActiveCompanyBaseCurrency'
 import { formatMoney } from '@/lib/format'
 import { confirm, toast } from '@/lib/swal'
 import { ApiException } from '@/types/api'
@@ -27,10 +31,12 @@ export function AccountDetailPage() {
   const [asOf, setAsOf] = useState('')
 
   const { data: account, isLoading, isError, error } = useAccount(id)
-  const balance = useAccountBalance(id, asOf)
+  // The balance response names its own base currency; we present a single figure
+  // in the active company's currency (via ?presentIn), falling back to the
+  // per-currency breakdown only when no conversion rate exists.
+  const companyCurrency = useActiveCompanyBaseCurrency()
+  const balance = useAccountBalance(id, asOf, companyCurrency)
   const allAccounts = useAllAccounts()
-  // The balance response now names its own currency (from the stored
-  // baseCurrencyCode); we only look up the decimal places from the registry.
   const lookupCurrency = useCurrencyLookup()
   const updateAccount = useUpdateAccount()
   const deleteAccount = useDeleteAccount()
@@ -237,39 +243,102 @@ export function AccountDetailPage() {
           (() => {
             const b = balance.data
             const currency = b.currency ? lookupCurrency(b.currency) : undefined
-            // Uniform base currency → one figure; mixed base → one figure per
-            // currency (never summed), sourced from byBaseCurrency.
+            // 'native'    → figures already in the company currency; one number.
+            // 'converted' → converted into it (?presentIn) at a real rate; show
+            //               the converted TOTAL with the frozen per-currency
+            //               components beneath it, and the rate in a caption.
+            // 'breakdown' → couldn't convert (no rate); one figure per base
+            //               currency, never summed (the honest fallback).
+            const mode: 'native' | 'converted' | 'breakdown' =
+              b.currency && b.currency === companyCurrency
+                ? 'native'
+                : b.presentation && b.presentation.naturalBalance !== null
+                  ? 'converted'
+                  : b.currency
+                    ? 'native'
+                    : 'breakdown'
             const show = (
               scalar: number | null,
+              presFig: number | null | undefined,
               pick: (r: (typeof b.byBaseCurrency)[number]) => number
-            ): string =>
-              scalar !== null
-                ? formatMoney(scalar, currency, i18n.language)
-                : b.byBaseCurrency
-                    .map((r) =>
-                      formatMoney(
-                        pick(r),
-                        lookupCurrency(r.currency),
-                        i18n.language
-                      )
+            ): ReactNode => {
+              const components =
+                b.byBaseCurrency
+                  .map((r) =>
+                    formatMoney(
+                      pick(r),
+                      lookupCurrency(r.currency),
+                      i18n.language
                     )
-                    .join(' · ')
+                  )
+                  .join(' · ') || '—'
+              if (mode === 'converted' && b.presentation && presFig != null)
+                return (
+                  <>
+                    {formatMoney(
+                      presFig,
+                      lookupCurrency(b.presentation.currency),
+                      i18n.language
+                    )}
+                    <span className="mt-0.5 block text-xs text-text-muted">
+                      {components}
+                    </span>
+                  </>
+                )
+              if (mode === 'native' && scalar !== null)
+                return formatMoney(scalar, currency, i18n.language)
+              return components
+            }
+            const note: string | null =
+              mode === 'converted' && b.presentation
+                ? t(
+                    b.presentation.rates.length > 1
+                      ? 'detail.balance.presentation.convertedMulti'
+                      : 'detail.balance.presentation.converted',
+                    {
+                      currency: b.presentation.currency,
+                      rateType: b.presentation.rates[0]?.rateType ?? '',
+                      date: b.presentation.rates[0]?.rateDate ?? '',
+                    }
+                  )
+                : companyCurrency && b.currency !== companyCurrency
+                  ? t('detail.balance.presentation.mixedNoRate', {
+                      currency: companyCurrency,
+                    })
+                  : null
             return (
               <>
                 <InfoRow
                   label={t('detail.balance.totalDebit')}
-                  value={show(b.totalDebitBase, (r) => r.totalDebitBase)}
+                  value={show(
+                    b.totalDebitBase,
+                    b.presentation?.totalDebitBase,
+                    (r) => r.totalDebitBase
+                  )}
                 />
                 <InfoRow
                   label={t('detail.balance.totalCredit')}
-                  value={show(b.totalCreditBase, (r) => r.totalCreditBase)}
+                  value={show(
+                    b.totalCreditBase,
+                    b.presentation?.totalCreditBase,
+                    (r) => r.totalCreditBase
+                  )}
                 />
                 {/* naturalBalance, not balance: it's already flipped so a normal-
                     side balance reads positive, which is what an accountant expects. */}
                 <InfoRow
                   label={t('detail.balance.balance')}
-                  value={show(b.naturalBalance, (r) => r.naturalBalance)}
+                  value={show(
+                    b.naturalBalance,
+                    b.presentation?.naturalBalance,
+                    (r) => r.naturalBalance
+                  )}
                 />
+                {note && (
+                  <p className="col-span-full text-xs text-text-muted">
+                    {note}
+                  </p>
+                )}
               </>
             )
           })()
