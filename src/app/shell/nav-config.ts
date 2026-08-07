@@ -1,8 +1,10 @@
 import {
   BookOpen,
+  BookText,
   Building2,
   Contact,
   LayoutDashboard,
+  Scale,
   UsersRound,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -42,6 +44,16 @@ export const NAV_ITEMS: NavItem[] = [
     labelKey: 'shell:nav.accounts',
     path: '/app/accounts',
     icon: BookOpen,
+  },
+  {
+    labelKey: 'shell:nav.journalEntries',
+    path: '/app/journal-entries',
+    icon: BookText,
+  },
+  {
+    labelKey: 'shell:nav.trialBalance',
+    path: '/app/reports/trial-balance',
+    icon: Scale,
   },
   {
     labelKey: 'shell:nav.users',

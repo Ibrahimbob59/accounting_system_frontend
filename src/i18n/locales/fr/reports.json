@@ -1,0 +1,34 @@
+{
+  "trialBalance": {
+    "title": "Balance générale",
+    "subtitle": "Le solde net de chaque compte en colonnes débit/crédit. Les totaux doivent concorder."
+  },
+  "filters": {
+    "asOf": "Au",
+    "numberPrefix": "Préfixe de compte",
+    "numberPrefixPlaceholder": "ex. 6, 7",
+    "presentIn": "Afficher en",
+    "presentNone": "Devises de base",
+    "rollUp": "Regrouper par groupes"
+  },
+  "table": {
+    "heading": "En {{currency}}",
+    "balanced": "Équilibrée",
+    "unbalanced": "Déséquilibrée",
+    "account": "Compte",
+    "group": "Groupe",
+    "debit": "Débit",
+    "credit": "Crédit",
+    "total": "Total",
+    "empty": "Aucun mouvement de compte pour ce périmètre."
+  },
+  "presentation": {
+    "converted": "Convertie en {{currency}} au taux {{rateType}} au {{date}}.",
+    "convertedMulti": "Convertie en {{currency}} aux taux applicables.",
+    "mixedNoRate": "Aucun taux de conversion en {{currency}} disponible — affichage de chaque devise de base séparément."
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci."
+  }
+}

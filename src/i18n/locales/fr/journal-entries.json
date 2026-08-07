@@ -1,0 +1,158 @@
+{
+  "title": "Journal",
+  "subtitle": "Toutes les écritures manuelles au grand livre.",
+  "empty": "Aucune écriture pour le moment.",
+  "newEntry": "Nouvelle écriture",
+  "draftPlaceholder": "Brouillon",
+  "noDescription": "(sans description)",
+  "columns": {
+    "number": "Numéro",
+    "date": "Date",
+    "description": "Description",
+    "amount": "Montant",
+    "status": "Statut"
+  },
+  "filters": {
+    "status": "Statut",
+    "all": "Tous",
+    "dateFrom": "Du",
+    "dateTo": "Au"
+  },
+  "status": {
+    "DRAFT": "Brouillon",
+    "POSTED": "Comptabilisée",
+    "REVERSAL": "Extourne"
+  },
+  "side": {
+    "DEBIT": "Débit",
+    "CREDIT": "Crédit"
+  },
+  "pagination": {
+    "summary": "Page {{page}} sur {{totalPages}} ({{total}} au total)",
+    "prev": "Précédent",
+    "next": "Suivant"
+  },
+  "create": {
+    "title": "Nouvelle écriture",
+    "subtitle": "Les lignes sont enregistrées en brouillon ; la comptabilisation fige l'écriture et met à jour le grand livre.",
+    "submit": "Enregistrer le brouillon",
+    "created": "Écriture brouillon créée."
+  },
+  "edit": {
+    "title": "Modifier le brouillon",
+    "submit": "Enregistrer les modifications",
+    "saved": "Modifications enregistrées.",
+    "back": "Retour à l'écriture"
+  },
+  "form": {
+    "date": "Date",
+    "reference": "Référence",
+    "referencePlaceholder": "ex. n° de chèque, réf. document",
+    "description": "Description",
+    "descriptionPlaceholder": "ex. Amortissement de fin de mois",
+    "linesTitle": "Lignes",
+    "addLine": "Ajouter une ligne",
+    "validation": {
+      "dateRequired": "Une date est requise",
+      "minLines": "Une écriture nécessite au moins deux lignes",
+      "accountRequired": "Choisissez un compte",
+      "amountPositive": "Saisissez un montant supérieur à 0",
+      "currencyRequired": "Choisissez une devise",
+      "ratePositive": "Le taux doit être supérieur à 0"
+    },
+    "line": {
+      "account": "Compte",
+      "accountPlaceholder": "Sélectionner un compte",
+      "side": "Sens",
+      "amount": "Montant",
+      "currency": "Devise",
+      "partner": "Partenaire",
+      "partnerNone": "Aucun",
+      "remove": "Supprimer la ligne",
+      "more": "Plus (taux, libellé)",
+      "rate": "Taux",
+      "ratePlaceholder": "Auto (taux à la date)",
+      "memo": "Libellé de ligne"
+    },
+    "balance": {
+      "debit": "Débits",
+      "credit": "Crédits",
+      "balanced": "Équilibré",
+      "off": "Écart de {{amount}}",
+      "multiCurrencyNote": "Plusieurs devises — le serveur vérifie l'équilibre dans la devise de base après application des taux de change."
+    }
+  },
+  "actions": {
+    "edit": "Modifier",
+    "post": "Comptabiliser",
+    "delete": "Supprimer",
+    "reverse": "Extourner",
+    "posted": "Écriture comptabilisée.",
+    "deleted": "Brouillon supprimé.",
+    "reversed": "Écriture d'extourne créée.",
+    "postConfirm": {
+      "title": "Comptabiliser cette écriture ?",
+      "body": "La comptabilisation attribue son numéro et l'intègre au grand livre. Elle ne peut plus être modifiée ensuite — seulement extournée.",
+      "confirm": "Comptabiliser",
+      "cancel": "Annuler"
+    },
+    "deleteConfirm": {
+      "title": "Supprimer ce brouillon ?",
+      "body": "Ce brouillon sera supprimé. Cette action est irréversible.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    }
+  },
+  "reverse": {
+    "title": "Extourner cette écriture",
+    "body": "Crée une nouvelle écriture comptabilisée avec les sens inversés, afin que les deux s'annulent. Les montants de base sont copiés de l'originale.",
+    "date": "Date d'extourne",
+    "reason": "Motif",
+    "reasonPlaceholder": "ex. Comptabilisée dans la mauvaise période",
+    "confirm": "Extourner",
+    "cancel": "Annuler"
+  },
+  "detail": {
+    "back": "Retour au journal",
+    "notSet": "Non renseigné",
+    "notPosted": "Non comptabilisée",
+    "date": "Date",
+    "reference": "Référence",
+    "description": "Description",
+    "postedAt": "Comptabilisée le",
+    "balanced": "Les débits égalent les crédits.",
+    "unbalanced": "Cette écriture n'est pas équilibrée.",
+    "baseNote": "Les totaux sont dans la devise de base ({{currency}}).",
+    "sections": {
+      "details": "Détails",
+      "lines": "Lignes"
+    },
+    "lines": {
+      "account": "Compte",
+      "memo": "Libellé",
+      "debit": "Débit",
+      "credit": "Crédit",
+      "total": "Total"
+    }
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci.",
+    "unbalanced": "Les débits doivent égaler les crédits dans la devise de base.",
+    "empty": "Une écriture nécessite au moins deux lignes.",
+    "accountNotFound": "L'un des comptes sélectionnés n'existe plus.",
+    "accountInactive": "L'un des comptes sélectionnés est inactif.",
+    "controlNeedsPartner": "Une ligne sur un compte de contrôle (clients/fournisseurs) nécessite un partenaire.",
+    "currencyMismatch": "La devise d'une ligne n'est pas autorisée sur ce compte.",
+    "rateRequired": "Aucun taux de change à cette date — saisissez un taux explicite sur la ligne en devise étrangère.",
+    "currencyNotFound": "L'une des devises sélectionnées n'est pas reconnue.",
+    "branchNotFound": "Cette succursale n'existe plus.",
+    "partnerNotFound": "L'un des partenaires sélectionnés n'existe plus.",
+    "notDraft": "Seul un brouillon peut être modifié.",
+    "alreadyPosted": "Cette écriture est déjà comptabilisée.",
+    "notPosted": "Seule une écriture comptabilisée peut être extournée.",
+    "alreadyReversed": "Cette écriture a déjà été extournée.",
+    "notFound": "Cette écriture est introuvable."
+  }
+}

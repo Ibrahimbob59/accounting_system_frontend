@@ -1,0 +1,158 @@
+{
+  "title": "Journal",
+  "subtitle": "Every manual posting to the general ledger.",
+  "empty": "No journal entries yet.",
+  "newEntry": "New entry",
+  "draftPlaceholder": "Draft",
+  "noDescription": "(no description)",
+  "columns": {
+    "number": "Number",
+    "date": "Date",
+    "description": "Description",
+    "amount": "Amount",
+    "status": "Status"
+  },
+  "filters": {
+    "status": "Status",
+    "all": "All",
+    "dateFrom": "From",
+    "dateTo": "To"
+  },
+  "status": {
+    "DRAFT": "Draft",
+    "POSTED": "Posted",
+    "REVERSAL": "Reversal"
+  },
+  "side": {
+    "DEBIT": "Debit",
+    "CREDIT": "Credit"
+  },
+  "pagination": {
+    "summary": "Page {{page}} of {{totalPages}} ({{total}} total)",
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "create": {
+    "title": "New journal entry",
+    "subtitle": "Lines are saved as a draft; posting freezes the entry and moves the ledger.",
+    "submit": "Save draft",
+    "created": "Draft entry created."
+  },
+  "edit": {
+    "title": "Edit draft entry",
+    "submit": "Save changes",
+    "saved": "Changes saved.",
+    "back": "Back to entry"
+  },
+  "form": {
+    "date": "Date",
+    "reference": "Reference",
+    "referencePlaceholder": "e.g. cheque no., document ref",
+    "description": "Description",
+    "descriptionPlaceholder": "e.g. Month-end depreciation",
+    "linesTitle": "Lines",
+    "addLine": "Add line",
+    "validation": {
+      "dateRequired": "A date is required",
+      "minLines": "An entry needs at least two lines",
+      "accountRequired": "Choose an account",
+      "amountPositive": "Enter an amount greater than 0",
+      "currencyRequired": "Choose a currency",
+      "ratePositive": "Rate must be greater than 0"
+    },
+    "line": {
+      "account": "Account",
+      "accountPlaceholder": "Select account",
+      "side": "Side",
+      "amount": "Amount",
+      "currency": "Currency",
+      "partner": "Partner",
+      "partnerNone": "None",
+      "remove": "Remove line",
+      "more": "More (rate, memo)",
+      "rate": "Rate",
+      "ratePlaceholder": "Auto (entry-date rate)",
+      "memo": "Line memo"
+    },
+    "balance": {
+      "debit": "Debits",
+      "credit": "Credits",
+      "balanced": "Balanced",
+      "off": "Off by {{amount}}",
+      "multiCurrencyNote": "Multiple currencies — the server checks the balance in the base currency after applying exchange rates."
+    }
+  },
+  "actions": {
+    "edit": "Edit",
+    "post": "Post",
+    "delete": "Delete",
+    "reverse": "Reverse",
+    "posted": "Entry posted.",
+    "deleted": "Draft deleted.",
+    "reversed": "Reversing entry created.",
+    "postConfirm": {
+      "title": "Post this entry?",
+      "body": "Posting assigns its number and makes it part of the ledger. It can't be edited afterwards — only reversed.",
+      "confirm": "Post",
+      "cancel": "Cancel"
+    },
+    "deleteConfirm": {
+      "title": "Delete this draft?",
+      "body": "This draft entry will be removed. This can't be undone.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    }
+  },
+  "reverse": {
+    "title": "Reverse this entry",
+    "body": "Creates a new posted entry with the sides swapped, so the two net to zero. The base amounts are copied from the original.",
+    "date": "Reversal date",
+    "reason": "Reason",
+    "reasonPlaceholder": "e.g. Posted to the wrong period",
+    "confirm": "Reverse",
+    "cancel": "Cancel"
+  },
+  "detail": {
+    "back": "Back to journal",
+    "notSet": "Not set",
+    "notPosted": "Not posted",
+    "date": "Date",
+    "reference": "Reference",
+    "description": "Description",
+    "postedAt": "Posted on",
+    "balanced": "Debits equal credits.",
+    "unbalanced": "This entry does not balance.",
+    "baseNote": "Totals are in the base currency ({{currency}}).",
+    "sections": {
+      "details": "Details",
+      "lines": "Lines"
+    },
+    "lines": {
+      "account": "Account",
+      "memo": "Memo",
+      "debit": "Debit",
+      "credit": "Credit",
+      "total": "Total"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this.",
+    "unbalanced": "Debits must equal credits in the base currency.",
+    "empty": "An entry needs at least two lines.",
+    "accountNotFound": "One of the selected accounts no longer exists.",
+    "accountInactive": "One of the selected accounts is inactive.",
+    "controlNeedsPartner": "A control account (receivables/payables) line needs a partner.",
+    "currencyMismatch": "A line's currency isn't allowed on that account.",
+    "rateRequired": "No exchange rate on that date — enter an explicit rate on the foreign-currency line.",
+    "currencyNotFound": "One of the selected currencies isn't recognised.",
+    "branchNotFound": "That branch no longer exists.",
+    "partnerNotFound": "One of the selected partners no longer exists.",
+    "notDraft": "Only a draft entry can be edited.",
+    "alreadyPosted": "This entry is already posted.",
+    "notPosted": "Only a posted entry can be reversed.",
+    "alreadyReversed": "This entry has already been reversed.",
+    "notFound": "This entry couldn't be found."
+  }
+}

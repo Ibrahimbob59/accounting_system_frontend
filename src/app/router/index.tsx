@@ -21,6 +21,11 @@ import { AccountsListPage } from '@/features/accounts/pages/AccountsListPage'
 import { AccountCreatePage } from '@/features/accounts/pages/AccountCreatePage'
 import { AccountEditPage } from '@/features/accounts/pages/AccountEditPage'
 import { AccountDetailPage } from '@/features/accounts/pages/AccountDetailPage'
+import { JournalEntriesListPage } from '@/features/journal-entries/pages/JournalEntriesListPage'
+import { JournalEntryCreatePage } from '@/features/journal-entries/pages/JournalEntryCreatePage'
+import { JournalEntryDetailPage } from '@/features/journal-entries/pages/JournalEntryDetailPage'
+import { JournalEntryEditPage } from '@/features/journal-entries/pages/JournalEntryEditPage'
+import { TrialBalancePage } from '@/features/reports/pages/TrialBalancePage'
 import { CompaniesListPage } from '@/features/companies/pages/CompaniesListPage'
 import { CompanyCreatePage } from '@/features/companies/pages/CompanyCreatePage'
 import { CompanyEditPage } from '@/features/companies/pages/CompanyEditPage'
@@ -100,6 +105,26 @@ export const router = createBrowserRouter([
               { path: 'new', element: <AccountCreatePage /> },
               { path: ':id', element: <AccountDetailPage /> },
               { path: ':id/edit', element: <AccountEditPage /> },
+            ],
+          },
+          {
+            path: 'journal-entries',
+            handle: { crumbKey: 'shell:nav.journalEntries' },
+            children: [
+              { index: true, element: <JournalEntriesListPage /> },
+              { path: 'new', element: <JournalEntryCreatePage /> },
+              { path: ':id', element: <JournalEntryDetailPage /> },
+              { path: ':id/edit', element: <JournalEntryEditPage /> },
+            ],
+          },
+          {
+            path: 'reports',
+            children: [
+              {
+                path: 'trial-balance',
+                handle: { crumbKey: 'shell:nav.trialBalance' },
+                element: <TrialBalancePage />,
+              },
             ],
           },
           {

@@ -1,0 +1,34 @@
+{
+  "trialBalance": {
+    "title": "ميزان المراجعة",
+    "subtitle": "الرصيد الصافي لكل حساب في عمودَي مدين/دائن. يجب أن تتطابق الإجماليات."
+  },
+  "filters": {
+    "asOf": "حتى تاريخ",
+    "numberPrefix": "بادئة الحساب",
+    "numberPrefixPlaceholder": "مثال: 6، 7",
+    "presentIn": "العرض بـ",
+    "presentNone": "عملات الأساس",
+    "rollUp": "التجميع في مجموعات"
+  },
+  "table": {
+    "heading": "بعملة {{currency}}",
+    "balanced": "متوازن",
+    "unbalanced": "غير متوازن",
+    "account": "الحساب",
+    "group": "المجموعة",
+    "debit": "مدين",
+    "credit": "دائن",
+    "total": "الإجمالي",
+    "empty": "لا توجد حركة حسابات ضمن هذا النطاق."
+  },
+  "presentation": {
+    "converted": "محوّل إلى {{currency}} بسعر {{rateType}} كما في {{date}}.",
+    "convertedMulti": "محوّل إلى {{currency}} بالأسعار المعمول بها.",
+    "mixedNoRate": "لا يتوفر سعر تحويل إلى {{currency}} — يتم عرض كل عملة أساس على حدة."
+  },
+  "errors": {
+    "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "permissionDeniedSection": "ليس لديك إذن لعرض هذا."
+  }
+}

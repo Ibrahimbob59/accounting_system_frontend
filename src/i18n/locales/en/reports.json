@@ -1,0 +1,34 @@
+{
+  "trialBalance": {
+    "title": "Trial balance",
+    "subtitle": "Every account's net balance in debit/credit columns. The totals must agree."
+  },
+  "filters": {
+    "asOf": "As of",
+    "numberPrefix": "Account prefix",
+    "numberPrefixPlaceholder": "e.g. 6, 7",
+    "presentIn": "Show in",
+    "presentNone": "Base currencies",
+    "rollUp": "Roll up into groups"
+  },
+  "table": {
+    "heading": "In {{currency}}",
+    "balanced": "Balanced",
+    "unbalanced": "Out of balance",
+    "account": "Account",
+    "group": "Group",
+    "debit": "Debit",
+    "credit": "Credit",
+    "total": "Total",
+    "empty": "No account activity for this scope."
+  },
+  "presentation": {
+    "converted": "Converted into {{currency}} at the {{rateType}} rate as of {{date}}.",
+    "convertedMulti": "Converted into {{currency}} at the applicable rates.",
+    "mixedNoRate": "No {{currency}} conversion rate available — showing each base currency separately."
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "permissionDeniedSection": "You don't have permission to view this."
+  }
+}

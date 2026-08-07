@@ -67,3 +67,21 @@ export function formatMoney(
     decimals: currency?.decimalPlaces,
   })
 }
+
+/**
+ * A calendar date in the active locale, e.g. "23 Jul 2026" / "٢٣ يوليو ٢٠٢٦".
+ *
+ * `month: 'short'` rather than a numeric date on purpose: "07/08/2026" is
+ * read day-first in most of the app's locales and month-first in others, so a
+ * spelled month removes the ambiguity in a financial record. Accepts either an
+ * ISO string (what the API returns) or a Date.
+ */
+export function formatDate(value: string | Date, locale?: string): string {
+  const date = value instanceof Date ? value : new Date(value)
+  if (Number.isNaN(date.getTime())) return ''
+  return date.toLocaleDateString(locale, {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
+  })
+}
