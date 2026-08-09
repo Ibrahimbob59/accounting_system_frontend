@@ -1,0 +1,76 @@
+{
+  "title": "Stock",
+  "subtitle": "What you hold, where, and what it's worth.",
+  "tabs": {
+    "onHand": "On hand",
+    "locations": "Locations"
+  },
+  "onHand": {
+    "location": "Location",
+    "allLocations": "All locations",
+    "breakdown": "Breakdown",
+    "total": "Total",
+    "byLocation": "By location",
+    "includeZero": "Include zero stock",
+    "empty": "No stock to show for this scope.",
+    "item": "Item",
+    "locationCol": "Location",
+    "qty": "Qty",
+    "avgCost": "Avg cost",
+    "value": "Value",
+    "variant": "(variant)"
+  },
+  "locations": {
+    "subtitle": "Your internal stock locations. Virtual counterparties are managed by the system.",
+    "add": "New location",
+    "empty": "No internal locations yet.",
+    "code": "Code",
+    "codePlaceholder": "e.g. WH-MAIN",
+    "name": "Name",
+    "nameAr": "Arabic name",
+    "nameFr": "French name",
+    "nameEn": "English name",
+    "branch": "Branch",
+    "branchPlaceholder": "Select a branch",
+    "noBranches": "No branches exist yet — a location must belong to a branch.",
+    "inactive": "Inactive",
+    "createTitle": "New location",
+    "editTitle": "Edit location",
+    "created": "Location created.",
+    "saved": "Changes saved.",
+    "deleted": "Location deleted.",
+    "edit": "Edit location",
+    "delete": "Delete location",
+    "cancel": "Cancel",
+    "save": "Save",
+    "validation": {
+      "required": "This field is required",
+      "branchRequired": "Choose a branch"
+    },
+    "deleteConfirm": {
+      "title": "Delete this location?",
+      "body": "\"{{name}}\" will be removed. It must hold no stock first.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this.",
+    "locationVirtualReadonly": "Virtual locations are managed by the system and can't be edited.",
+    "locationBranchDefault": "This is a branch's default location and can't be deleted.",
+    "locationNotFound": "This location couldn't be found.",
+    "locationCodeExists": "A location with this code already exists.",
+    "sameLocation": "The source and destination locations must differ.",
+    "insufficientStock": "Not enough stock at the source location.",
+    "unitCostRequired": "A unit cost is required for an inbound movement.",
+    "adjustmentNoChange": "The counted quantity matches the current on-hand — nothing to adjust.",
+    "variantRequired": "This item has variants — choose one.",
+    "itemHasNoVariants": "This item has no variants.",
+    "partnerRequired": "This movement needs a partner.",
+    "itemNotFound": "The selected item no longer exists.",
+    "variantNotFound": "The selected variant no longer exists.",
+    "uomNotFound": "The selected unit no longer exists."
+  }
+}

@@ -9,6 +9,7 @@ import {
   Scale,
   Tags,
   UsersRound,
+  Warehouse,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
@@ -57,6 +58,11 @@ export const NAV_ITEMS: NavItem[] = [
     labelKey: 'shell:nav.uom',
     path: '/app/uom',
     icon: Ruler,
+  },
+  {
+    labelKey: 'shell:nav.stock',
+    path: '/app/stock',
+    icon: Warehouse,
   },
   {
     labelKey: 'shell:nav.accounts',

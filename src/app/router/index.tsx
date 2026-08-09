@@ -32,6 +32,7 @@ import { ItemDetailPage } from '@/features/items/pages/ItemDetailPage'
 import { ItemEditPage } from '@/features/items/pages/ItemEditPage'
 import { CatalogPage } from '@/features/catalog/pages/CatalogPage'
 import { UomPage } from '@/features/uom/pages/UomPage'
+import { StockPage } from '@/features/stock/pages/StockPage'
 import { CompaniesListPage } from '@/features/companies/pages/CompaniesListPage'
 import { CompanyCreatePage } from '@/features/companies/pages/CompanyCreatePage'
 import { CompanyEditPage } from '@/features/companies/pages/CompanyEditPage'
@@ -122,6 +123,11 @@ export const router = createBrowserRouter([
             path: 'uom',
             handle: { crumbKey: 'shell:nav.uom' },
             element: <UomPage />,
+          },
+          {
+            path: 'stock',
+            handle: { crumbKey: 'shell:nav.stock' },
+            element: <StockPage />,
           },
           {
             path: 'accounts',

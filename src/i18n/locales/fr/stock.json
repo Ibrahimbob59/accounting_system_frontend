@@ -1,0 +1,76 @@
+{
+  "title": "Stock",
+  "subtitle": "Ce que vous détenez, où, et sa valeur.",
+  "tabs": {
+    "onHand": "En stock",
+    "locations": "Emplacements"
+  },
+  "onHand": {
+    "location": "Emplacement",
+    "allLocations": "Tous les emplacements",
+    "breakdown": "Ventilation",
+    "total": "Total",
+    "byLocation": "Par emplacement",
+    "includeZero": "Inclure le stock nul",
+    "empty": "Aucun stock à afficher pour ce périmètre.",
+    "item": "Article",
+    "locationCol": "Emplacement",
+    "qty": "Qté",
+    "avgCost": "Coût moyen",
+    "value": "Valeur",
+    "variant": "(variante)"
+  },
+  "locations": {
+    "subtitle": "Vos emplacements de stock internes. Les contreparties virtuelles sont gérées par le système.",
+    "add": "Nouvel emplacement",
+    "empty": "Aucun emplacement interne pour le moment.",
+    "code": "Code",
+    "codePlaceholder": "ex. WH-MAIN",
+    "name": "Nom",
+    "nameAr": "Nom arabe",
+    "nameFr": "Nom français",
+    "nameEn": "Nom anglais",
+    "branch": "Succursale",
+    "branchPlaceholder": "Choisir une succursale",
+    "noBranches": "Aucune succursale n'existe encore — un emplacement doit appartenir à une succursale.",
+    "inactive": "Inactif",
+    "createTitle": "Nouvel emplacement",
+    "editTitle": "Modifier l'emplacement",
+    "created": "Emplacement créé.",
+    "saved": "Modifications enregistrées.",
+    "deleted": "Emplacement supprimé.",
+    "edit": "Modifier l'emplacement",
+    "delete": "Supprimer l'emplacement",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "validation": {
+      "required": "Ce champ est requis",
+      "branchRequired": "Choisissez une succursale"
+    },
+    "deleteConfirm": {
+      "title": "Supprimer cet emplacement ?",
+      "body": "« {{name}} » sera supprimé. Il ne doit d'abord contenir aucun stock.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    }
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci.",
+    "locationVirtualReadonly": "Les emplacements virtuels sont gérés par le système et ne peuvent pas être modifiés.",
+    "locationBranchDefault": "C'est l'emplacement par défaut d'une succursale et il ne peut pas être supprimé.",
+    "locationNotFound": "Cet emplacement est introuvable.",
+    "locationCodeExists": "Un emplacement avec ce code existe déjà.",
+    "sameLocation": "Les emplacements source et destination doivent être différents.",
+    "insufficientStock": "Stock insuffisant à l'emplacement source.",
+    "unitCostRequired": "Un coût unitaire est requis pour un mouvement entrant.",
+    "adjustmentNoChange": "La quantité comptée correspond au stock actuel — rien à ajuster.",
+    "variantRequired": "Cet article a des variantes — choisissez-en une.",
+    "itemHasNoVariants": "Cet article n'a pas de variantes.",
+    "partnerRequired": "Ce mouvement nécessite un partenaire.",
+    "itemNotFound": "L'article sélectionné n'existe plus.",
+    "variantNotFound": "La variante sélectionnée n'existe plus.",
+    "uomNotFound": "L'unité sélectionnée n'existe plus."
+  }
+}

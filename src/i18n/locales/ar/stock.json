@@ -1,0 +1,76 @@
+{
+  "title": "المخزون",
+  "subtitle": "ما تملكه، وأين، وقيمته.",
+  "tabs": {
+    "onHand": "المتوفر",
+    "locations": "المواقع"
+  },
+  "onHand": {
+    "location": "الموقع",
+    "allLocations": "كل المواقع",
+    "breakdown": "التفصيل",
+    "total": "الإجمالي",
+    "byLocation": "حسب الموقع",
+    "includeZero": "تضمين المخزون الصفري",
+    "empty": "لا يوجد مخزون لعرضه ضمن هذا النطاق.",
+    "item": "الصنف",
+    "locationCol": "الموقع",
+    "qty": "الكمية",
+    "avgCost": "متوسط التكلفة",
+    "value": "القيمة",
+    "variant": "(متغير)"
+  },
+  "locations": {
+    "subtitle": "مواقع مخزونك الداخلية. تُدار الأطراف الافتراضية بواسطة النظام.",
+    "add": "موقع جديد",
+    "empty": "لا توجد مواقع داخلية بعد.",
+    "code": "الرمز",
+    "codePlaceholder": "مثال: WH-MAIN",
+    "name": "الاسم",
+    "nameAr": "الاسم بالعربية",
+    "nameFr": "الاسم بالفرنسية",
+    "nameEn": "الاسم بالإنجليزية",
+    "branch": "الفرع",
+    "branchPlaceholder": "اختر فرعاً",
+    "noBranches": "لا توجد فروع بعد — يجب أن ينتمي الموقع إلى فرع.",
+    "inactive": "غير نشط",
+    "createTitle": "موقع جديد",
+    "editTitle": "تعديل الموقع",
+    "created": "تم إنشاء الموقع.",
+    "saved": "تم حفظ التغييرات.",
+    "deleted": "تم حذف الموقع.",
+    "edit": "تعديل الموقع",
+    "delete": "حذف الموقع",
+    "cancel": "إلغاء",
+    "save": "حفظ",
+    "validation": {
+      "required": "هذا الحقل مطلوب",
+      "branchRequired": "اختر فرعاً"
+    },
+    "deleteConfirm": {
+      "title": "حذف هذا الموقع؟",
+      "body": "سيتم حذف «{{name}}». يجب ألا يحتوي على مخزون أولاً.",
+      "confirm": "حذف",
+      "cancel": "إلغاء"
+    }
+  },
+  "errors": {
+    "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "permissionDenied": "ليس لديك إذن للقيام بذلك.",
+    "permissionDeniedSection": "ليس لديك إذن لعرض هذا.",
+    "locationVirtualReadonly": "المواقع الافتراضية يديرها النظام ولا يمكن تعديلها.",
+    "locationBranchDefault": "هذا هو الموقع الافتراضي لفرع ولا يمكن حذفه.",
+    "locationNotFound": "تعذر العثور على هذا الموقع.",
+    "locationCodeExists": "يوجد موقع بهذا الرمز بالفعل.",
+    "sameLocation": "يجب أن يختلف موقع المصدر عن الوجهة.",
+    "insufficientStock": "المخزون غير كافٍ في موقع المصدر.",
+    "unitCostRequired": "تكلفة الوحدة مطلوبة للحركة الواردة.",
+    "adjustmentNoChange": "الكمية المحسوبة تطابق المتوفر الحالي — لا شيء لتعديله.",
+    "variantRequired": "هذا الصنف له متغيرات — اختر واحداً.",
+    "itemHasNoVariants": "هذا الصنف ليس له متغيرات.",
+    "partnerRequired": "تحتاج هذه الحركة إلى شريك.",
+    "itemNotFound": "الصنف المختار لم يعد موجوداً.",
+    "variantNotFound": "المتغير المختار لم يعد موجوداً.",
+    "uomNotFound": "الوحدة المختارة لم تعد موجودة."
+  }
+}
