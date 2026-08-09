@@ -17,5 +17,10 @@
     "body": "Une erreur inattendue s'est produite. Essayez de recharger la page.",
     "reload": "Recharger la page",
     "backHome": "Retour à l'accueil"
+  },
+  "pagination": {
+    "summary": "Page {{page}} sur {{totalPages}} ({{total}} au total)",
+    "prev": "Précédent",
+    "next": "Suivant"
   }
 }

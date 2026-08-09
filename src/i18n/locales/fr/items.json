@@ -1,0 +1,75 @@
+{
+  "title": "Articles",
+  "subtitle": "Les produits et services que vous achetez et vendez.",
+  "newItem": "Nouvel article",
+  "empty": "Aucun article ne correspond à ces filtres.",
+  "columns": {
+    "code": "Code",
+    "name": "Nom",
+    "category": "Catégorie",
+    "salePrice": "Prix de vente"
+  },
+  "filters": {
+    "search": "Rechercher",
+    "searchPlaceholder": "Rechercher par code ou nom…",
+    "category": "Catégorie",
+    "status": "Statut",
+    "all": "Tous"
+  },
+  "status": {
+    "active": "Actif",
+    "inactive": "Inactif"
+  },
+  "badges": {
+    "service": "Service"
+  },
+  "vatTreatment": {
+    "STANDARD": "Standard",
+    "ZERO": "Taux zéro",
+    "EXEMPT": "Exonéré"
+  },
+  "form": {
+    "name": "Nom",
+    "nameAr": "Nom arabe",
+    "nameFr": "Nom français",
+    "nameEn": "Nom anglais",
+    "description": "Description",
+    "category": "Catégorie",
+    "brand": "Marque",
+    "family": "Famille",
+    "baseUom": "Unité de base",
+    "salesUom": "Unité de vente",
+    "purchaseUom": "Unité d'achat",
+    "costPrice": "Prix de revient",
+    "salePrice": "Prix de vente",
+    "priceCurrency": "Devise du prix",
+    "vatTreatment": "Régime de TVA",
+    "defaultTaxRate": "Taux de TVA par défaut",
+    "trackInventory": "Suit le stock",
+    "hasSize": "A des tailles",
+    "hasColour": "A des couleurs",
+    "trackSerial": "Suit les numéros de série",
+    "trackExpiry": "Suit la péremption",
+    "revenueAccount": "Compte de produits",
+    "cogsAccount": "Compte de coût des ventes"
+  },
+  "detail": {
+    "back": "Retour aux articles",
+    "notSet": "Non renseigné",
+    "yes": "Oui",
+    "no": "Non",
+    "accountDefault": "Par défaut (catégorie / société)",
+    "sections": {
+      "identity": "Identité",
+      "classification": "Classification",
+      "units": "Unités de mesure",
+      "pricing": "Prix & TVA",
+      "tracking": "Suivi",
+      "accounting": "Comptabilité"
+    }
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci."
+  }
+}

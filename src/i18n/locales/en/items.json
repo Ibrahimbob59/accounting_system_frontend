@@ -1,0 +1,75 @@
+{
+  "title": "Items",
+  "subtitle": "The products and services you buy and sell.",
+  "newItem": "New item",
+  "empty": "No items match these filters.",
+  "columns": {
+    "code": "Code",
+    "name": "Name",
+    "category": "Category",
+    "salePrice": "Sale price"
+  },
+  "filters": {
+    "search": "Search",
+    "searchPlaceholder": "Search by code or name…",
+    "category": "Category",
+    "status": "Status",
+    "all": "All"
+  },
+  "status": {
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "badges": {
+    "service": "Service"
+  },
+  "vatTreatment": {
+    "STANDARD": "Standard",
+    "ZERO": "Zero-rated",
+    "EXEMPT": "Exempt"
+  },
+  "form": {
+    "name": "Name",
+    "nameAr": "Arabic name",
+    "nameFr": "French name",
+    "nameEn": "English name",
+    "description": "Description",
+    "category": "Category",
+    "brand": "Brand",
+    "family": "Family",
+    "baseUom": "Base unit",
+    "salesUom": "Sales unit",
+    "purchaseUom": "Purchase unit",
+    "costPrice": "Cost price",
+    "salePrice": "Sale price",
+    "priceCurrency": "Price currency",
+    "vatTreatment": "VAT treatment",
+    "defaultTaxRate": "Default VAT rate",
+    "trackInventory": "Tracks inventory",
+    "hasSize": "Has sizes",
+    "hasColour": "Has colours",
+    "trackSerial": "Tracks serial numbers",
+    "trackExpiry": "Tracks expiry",
+    "revenueAccount": "Revenue account",
+    "cogsAccount": "COGS account"
+  },
+  "detail": {
+    "back": "Back to items",
+    "notSet": "Not set",
+    "yes": "Yes",
+    "no": "No",
+    "accountDefault": "Category / company default",
+    "sections": {
+      "identity": "Identity",
+      "classification": "Classification",
+      "units": "Units of measure",
+      "pricing": "Pricing & VAT",
+      "tracking": "Tracking",
+      "accounting": "Accounting"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "permissionDeniedSection": "You don't have permission to view this."
+  }
+}

@@ -16,6 +16,7 @@ import enAccounts from './locales/en/accounts.json'
 import enCompanies from './locales/en/companies.json'
 import enJournalEntries from './locales/en/journal-entries.json'
 import enReports from './locales/en/reports.json'
+import enItems from './locales/en/items.json'
 import frCommon from './locales/fr/common.json'
 import frAuth from './locales/fr/auth.json'
 import frLanding from './locales/fr/landing.json'
@@ -30,6 +31,7 @@ import frAccounts from './locales/fr/accounts.json'
 import frCompanies from './locales/fr/companies.json'
 import frJournalEntries from './locales/fr/journal-entries.json'
 import frReports from './locales/fr/reports.json'
+import frItems from './locales/fr/items.json'
 import arCommon from './locales/ar/common.json'
 import arAuth from './locales/ar/auth.json'
 import arLanding from './locales/ar/landing.json'
@@ -44,6 +46,7 @@ import arAccounts from './locales/ar/accounts.json'
 import arCompanies from './locales/ar/companies.json'
 import arJournalEntries from './locales/ar/journal-entries.json'
 import arReports from './locales/ar/reports.json'
+import arItems from './locales/ar/items.json'
 
 export const RTL_LANGUAGES = ['ar'] as const
 
@@ -75,6 +78,7 @@ export const resources = {
     companies: enCompanies,
     journalEntries: enJournalEntries,
     reports: enReports,
+    items: enItems,
   },
   fr: {
     common: frCommon,
@@ -91,6 +95,7 @@ export const resources = {
     companies: frCompanies,
     journalEntries: frJournalEntries,
     reports: frReports,
+    items: frItems,
   },
   ar: {
     common: arCommon,
@@ -107,6 +112,7 @@ export const resources = {
     companies: arCompanies,
     journalEntries: arJournalEntries,
     reports: arReports,
+    items: arItems,
   },
 } as const
 

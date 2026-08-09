@@ -1,0 +1,75 @@
+{
+  "title": "الأصناف",
+  "subtitle": "المنتجات والخدمات التي تشتريها وتبيعها.",
+  "newItem": "صنف جديد",
+  "empty": "لا توجد أصناف تطابق عوامل التصفية.",
+  "columns": {
+    "code": "الرمز",
+    "name": "الاسم",
+    "category": "الفئة",
+    "salePrice": "سعر البيع"
+  },
+  "filters": {
+    "search": "بحث",
+    "searchPlaceholder": "ابحث بالرمز أو الاسم…",
+    "category": "الفئة",
+    "status": "الحالة",
+    "all": "الكل"
+  },
+  "status": {
+    "active": "نشط",
+    "inactive": "غير نشط"
+  },
+  "badges": {
+    "service": "خدمة"
+  },
+  "vatTreatment": {
+    "STANDARD": "قياسي",
+    "ZERO": "بنسبة صفر",
+    "EXEMPT": "معفى"
+  },
+  "form": {
+    "name": "الاسم",
+    "nameAr": "الاسم بالعربية",
+    "nameFr": "الاسم بالفرنسية",
+    "nameEn": "الاسم بالإنجليزية",
+    "description": "الوصف",
+    "category": "الفئة",
+    "brand": "العلامة التجارية",
+    "family": "العائلة",
+    "baseUom": "الوحدة الأساسية",
+    "salesUom": "وحدة البيع",
+    "purchaseUom": "وحدة الشراء",
+    "costPrice": "سعر التكلفة",
+    "salePrice": "سعر البيع",
+    "priceCurrency": "عملة السعر",
+    "vatTreatment": "معالجة الضريبة",
+    "defaultTaxRate": "نسبة الضريبة الافتراضية",
+    "trackInventory": "يتتبع المخزون",
+    "hasSize": "له مقاسات",
+    "hasColour": "له ألوان",
+    "trackSerial": "يتتبع الأرقام التسلسلية",
+    "trackExpiry": "يتتبع الصلاحية",
+    "revenueAccount": "حساب الإيرادات",
+    "cogsAccount": "حساب تكلفة المبيعات"
+  },
+  "detail": {
+    "back": "العودة إلى الأصناف",
+    "notSet": "غير محدد",
+    "yes": "نعم",
+    "no": "لا",
+    "accountDefault": "الافتراضي (الفئة / الشركة)",
+    "sections": {
+      "identity": "الهوية",
+      "classification": "التصنيف",
+      "units": "وحدات القياس",
+      "pricing": "التسعير والضريبة",
+      "tracking": "التتبع",
+      "accounting": "المحاسبة"
+    }
+  },
+  "errors": {
+    "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "permissionDeniedSection": "ليس لديك إذن لعرض هذا."
+  }
+}

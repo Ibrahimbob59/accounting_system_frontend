@@ -4,6 +4,7 @@ import {
   Building2,
   Contact,
   LayoutDashboard,
+  Package,
   Scale,
   UsersRound,
 } from 'lucide-react'
@@ -39,6 +40,11 @@ export const NAV_ITEMS: NavItem[] = [
     labelKey: 'shell:nav.partners',
     path: '/app/partners',
     icon: Contact,
+  },
+  {
+    labelKey: 'shell:nav.items',
+    path: '/app/items',
+    icon: Package,
   },
   {
     labelKey: 'shell:nav.accounts',

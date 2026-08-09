@@ -26,6 +26,8 @@ import { JournalEntryCreatePage } from '@/features/journal-entries/pages/Journal
 import { JournalEntryDetailPage } from '@/features/journal-entries/pages/JournalEntryDetailPage'
 import { JournalEntryEditPage } from '@/features/journal-entries/pages/JournalEntryEditPage'
 import { TrialBalancePage } from '@/features/reports/pages/TrialBalancePage'
+import { ItemsListPage } from '@/features/items/pages/ItemsListPage'
+import { ItemDetailPage } from '@/features/items/pages/ItemDetailPage'
 import { CompaniesListPage } from '@/features/companies/pages/CompaniesListPage'
 import { CompanyCreatePage } from '@/features/companies/pages/CompanyCreatePage'
 import { CompanyEditPage } from '@/features/companies/pages/CompanyEditPage'
@@ -95,6 +97,14 @@ export const router = createBrowserRouter([
               { path: 'new', element: <PartnerCreatePage /> },
               { path: ':id', element: <PartnerDetailPage /> },
               { path: ':id/edit', element: <PartnerEditPage /> },
+            ],
+          },
+          {
+            path: 'items',
+            handle: { crumbKey: 'shell:nav.items' },
+            children: [
+              { index: true, element: <ItemsListPage /> },
+              { path: ':id', element: <ItemDetailPage /> },
             ],
           },
           {
