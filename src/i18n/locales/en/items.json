@@ -76,6 +76,68 @@
       "pricePositive": "Enter a price of 0 or more"
     }
   },
+  "variants": {
+    "title": "Variants",
+    "add": "Add variant",
+    "generate": "Generate",
+    "empty": "No variants yet.",
+    "size": "Size",
+    "colour": "Colour",
+    "sku": "SKU",
+    "skuPlaceholder": "Optional, unique per company",
+    "active": "Active",
+    "edit": "Edit variant",
+    "delete": "Delete variant",
+    "save": "Save",
+    "cancel": "Cancel",
+    "created": "Variant added.",
+    "saved": "Changes saved.",
+    "deleted": "Variant deleted.",
+    "addTitle": "Add variant",
+    "editTitle": "Edit variant",
+    "generateTitle": "Generate variants",
+    "generateBody": "Create every combination of the ticked sizes and colours. Existing combinations are skipped.",
+    "sizes": "Sizes",
+    "colours": "Colours",
+    "noSizes": "No sizes defined. Add some in Catalog first.",
+    "noColours": "No colours defined. Add some in Catalog first.",
+    "generated": "Generated {{created}} variant(s), {{skipped}} skipped.",
+    "deleteConfirm": {
+      "title": "Delete this variant?",
+      "body": "The variant will be removed. Documents that reference it are not affected.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    }
+  },
+  "barcodes": {
+    "title": "Barcodes",
+    "add": "Add barcode",
+    "empty": "No barcodes yet.",
+    "code": "Barcode",
+    "codePlaceholder": "e.g. 6291041500213",
+    "variant": "Variant",
+    "variantNone": "Whole item",
+    "variantGeneric": "Variant",
+    "itemLevel": "Whole item",
+    "isPrimary": "Primary barcode",
+    "primary": "Primary",
+    "required": "Enter a barcode.",
+    "edit": "Edit barcode",
+    "delete": "Delete barcode",
+    "save": "Save",
+    "cancel": "Cancel",
+    "created": "Barcode added.",
+    "saved": "Changes saved.",
+    "deleted": "Barcode deleted.",
+    "addTitle": "Add barcode",
+    "editTitle": "Edit barcode",
+    "deleteConfirm": {
+      "title": "Delete this barcode?",
+      "body": "\"{{code}}\" will be removed.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    }
+  },
   "detail": {
     "back": "Back to items",
     "notSet": "Not set",
@@ -112,6 +174,13 @@
     "lookupNotFound": "A selected category/brand/family no longer exists.",
     "currencyNotFound": "The selected currency isn't recognised.",
     "taxRateNotFound": "The selected VAT rate no longer exists.",
-    "notFound": "This item couldn't be found."
+    "notFound": "This item couldn't be found.",
+    "variantAttributeRequired": "A variant needs at least a size or a colour.",
+    "variantCombinationExists": "That size/colour combination already exists.",
+    "variantSkuExists": "That SKU is already used by another variant.",
+    "variantMatrixEmpty": "Pick at least one size or colour to generate.",
+    "variantNotFound": "This variant couldn't be found.",
+    "barcodeExists": "That barcode is already in use.",
+    "barcodeNotFound": "This barcode couldn't be found."
   }
 }

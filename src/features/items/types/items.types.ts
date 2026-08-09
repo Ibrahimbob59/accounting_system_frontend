@@ -145,6 +145,57 @@ export function makeItemSchema(t: TFunction<'items'>) {
 
 export type ItemFormValues = z.infer<ReturnType<typeof makeItemSchema>>
 
+// -----------------------------------------------------------------------------
+// Variants & barcodes (backend items sub-resources). A variant is one
+// size/colour combination of an item; a barcode maps a code to the item or one
+// of its variants.
+// -----------------------------------------------------------------------------
+
+export interface ItemVariant {
+  id: string
+  itemId: string
+  sizeId: string | null
+  colourId: string | null
+  sku: string | null
+  isActive: boolean
+  createdAt: string
+  updatedAt: string
+}
+
+/** Create one variant — at least one of size/colour is required. */
+export interface VariantInput {
+  sizeId?: string
+  colourId?: string
+  sku?: string
+}
+
+/** Generate the size × colour matrix; existing combinations are skipped. */
+export interface GenerateVariantsInput {
+  sizeIds?: string[]
+  colourIds?: string[]
+}
+
+export interface GenerateResult {
+  created: number
+  skipped: number
+}
+
+export interface ItemBarcode {
+  id: string
+  itemId: string
+  variantId: string | null
+  barcode: string
+  isPrimary: boolean
+  createdAt: string
+  updatedAt: string
+}
+
+export interface BarcodeInput {
+  barcode: string
+  variantId?: string
+  isPrimary?: boolean
+}
+
 /**
  * The item name for the active language, falling back to the base `name`.
  * Used in dense contexts (table rows, pickers); the detail page shows all three.

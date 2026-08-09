@@ -8,6 +8,8 @@ import { StatusBadge } from '@/components/common/StatusBadge'
 import { useItem } from '@/features/items/hooks/useItem'
 import { useDeleteItem } from '@/features/items/hooks/useItemMutations'
 import { itemErrorMessage } from '@/features/items/lib/item-errors'
+import { VariantsSection } from '@/features/items/components/VariantsSection'
+import { BarcodesSection } from '@/features/items/components/BarcodesSection'
 import { localizedItemName } from '@/features/items/types/items.types'
 import {
   useBrands,
@@ -245,6 +247,11 @@ export function ItemDetailPage() {
           value={accountName(item.cogsAccountId)}
         />
       </Section>
+
+      {/* Variants only apply to an item that carries size/colour attributes. */}
+      {(item.hasSize || item.hasColour) && <VariantsSection item={item} />}
+
+      <BarcodesSection item={item} />
     </div>
   )
 }

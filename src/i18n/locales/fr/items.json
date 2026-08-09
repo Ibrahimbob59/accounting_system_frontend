@@ -76,6 +76,68 @@
       "pricePositive": "Saisissez un prix de 0 ou plus"
     }
   },
+  "variants": {
+    "title": "Variantes",
+    "add": "Ajouter une variante",
+    "generate": "Générer",
+    "empty": "Aucune variante pour le moment.",
+    "size": "Taille",
+    "colour": "Couleur",
+    "sku": "SKU",
+    "skuPlaceholder": "Optionnel, unique par société",
+    "active": "Active",
+    "edit": "Modifier la variante",
+    "delete": "Supprimer la variante",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "created": "Variante ajoutée.",
+    "saved": "Modifications enregistrées.",
+    "deleted": "Variante supprimée.",
+    "addTitle": "Ajouter une variante",
+    "editTitle": "Modifier la variante",
+    "generateTitle": "Générer des variantes",
+    "generateBody": "Créer toutes les combinaisons des tailles et couleurs cochées. Les combinaisons existantes sont ignorées.",
+    "sizes": "Tailles",
+    "colours": "Couleurs",
+    "noSizes": "Aucune taille définie. Ajoutez-en dans le Catalogue.",
+    "noColours": "Aucune couleur définie. Ajoutez-en dans le Catalogue.",
+    "generated": "{{created}} variante(s) générée(s), {{skipped}} ignorée(s).",
+    "deleteConfirm": {
+      "title": "Supprimer cette variante ?",
+      "body": "La variante sera supprimée. Les documents qui la référencent ne sont pas affectés.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    }
+  },
+  "barcodes": {
+    "title": "Codes-barres",
+    "add": "Ajouter un code-barres",
+    "empty": "Aucun code-barres pour le moment.",
+    "code": "Code-barres",
+    "codePlaceholder": "ex. 6291041500213",
+    "variant": "Variante",
+    "variantNone": "Article entier",
+    "variantGeneric": "Variante",
+    "itemLevel": "Article entier",
+    "isPrimary": "Code-barres principal",
+    "primary": "Principal",
+    "required": "Saisissez un code-barres.",
+    "edit": "Modifier le code-barres",
+    "delete": "Supprimer le code-barres",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "created": "Code-barres ajouté.",
+    "saved": "Modifications enregistrées.",
+    "deleted": "Code-barres supprimé.",
+    "addTitle": "Ajouter un code-barres",
+    "editTitle": "Modifier le code-barres",
+    "deleteConfirm": {
+      "title": "Supprimer ce code-barres ?",
+      "body": "« {{code}} » sera supprimé.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    }
+  },
   "detail": {
     "back": "Retour aux articles",
     "notSet": "Non renseigné",
@@ -112,6 +174,13 @@
     "lookupNotFound": "Une catégorie/marque/famille sélectionnée n'existe plus.",
     "currencyNotFound": "La devise sélectionnée n'est pas reconnue.",
     "taxRateNotFound": "Le taux de TVA sélectionné n'existe plus.",
-    "notFound": "Cet article est introuvable."
+    "notFound": "Cet article est introuvable.",
+    "variantAttributeRequired": "Une variante nécessite au moins une taille ou une couleur.",
+    "variantCombinationExists": "Cette combinaison taille/couleur existe déjà.",
+    "variantSkuExists": "Ce SKU est déjà utilisé par une autre variante.",
+    "variantMatrixEmpty": "Choisissez au moins une taille ou une couleur à générer.",
+    "variantNotFound": "Cette variante est introuvable.",
+    "barcodeExists": "Ce code-barres est déjà utilisé.",
+    "barcodeNotFound": "Ce code-barres est introuvable."
   }
 }
