@@ -28,7 +28,19 @@
     "ZERO": "Taux zéro",
     "EXEMPT": "Exonéré"
   },
+  "create": {
+    "title": "Nouvel article",
+    "submit": "Créer l'article",
+    "created": "Article créé."
+  },
+  "edit": {
+    "title": "Modifier {{code}}",
+    "submit": "Enregistrer les modifications",
+    "saved": "Modifications enregistrées.",
+    "back": "Retour à l'article"
+  },
   "form": {
+    "code": "Code",
     "name": "Nom",
     "nameAr": "Nom arabe",
     "nameFr": "Nom français",
@@ -40,18 +52,29 @@
     "baseUom": "Unité de base",
     "salesUom": "Unité de vente",
     "purchaseUom": "Unité d'achat",
+    "selectUom": "Choisir une unité",
     "costPrice": "Prix de revient",
     "salePrice": "Prix de vente",
     "priceCurrency": "Devise du prix",
     "vatTreatment": "Régime de TVA",
     "defaultTaxRate": "Taux de TVA par défaut",
     "trackInventory": "Suit le stock",
+    "trackInventoryHint": "Désactivé pour les services / articles hors stock (produits + TVA uniquement, sans coût des ventes).",
     "hasSize": "A des tailles",
     "hasColour": "A des couleurs",
     "trackSerial": "Suit les numéros de série",
     "trackExpiry": "Suit la péremption",
+    "isActive": "Actif",
     "revenueAccount": "Compte de produits",
-    "cogsAccount": "Compte de coût des ventes"
+    "cogsAccount": "Compte de coût des ventes",
+    "accountsHint": "Laisser vide pour utiliser la catégorie, puis le compte de contrôle de la société.",
+    "accountDefault": "Par défaut (catégorie / société)",
+    "none": "Aucun",
+    "validation": {
+      "required": "Ce champ est requis",
+      "baseUomRequired": "Choisissez une unité de base",
+      "pricePositive": "Saisissez un prix de 0 ou plus"
+    }
   },
   "detail": {
     "back": "Retour aux articles",
@@ -59,6 +82,17 @@
     "yes": "Oui",
     "no": "Non",
     "accountDefault": "Par défaut (catégorie / société)",
+    "deleted": "Article supprimé.",
+    "actions": {
+      "edit": "Modifier",
+      "delete": "Supprimer"
+    },
+    "deleteConfirm": {
+      "title": "Supprimer cet article ?",
+      "body": "L'article {{code}} sera désactivé. Les documents qui le référencent ne sont pas affectés.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    },
     "sections": {
       "identity": "Identité",
       "classification": "Classification",
@@ -70,6 +104,14 @@
   },
   "errors": {
     "generic": "Une erreur s'est produite. Veuillez réessayer.",
-    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci."
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci.",
+    "codeExists": "Un article avec ce code existe déjà.",
+    "uomCategoryMismatch": "L'unité de vente/achat doit être dans la même catégorie que l'unité de base.",
+    "uomNotFound": "L'une des unités sélectionnées n'existe plus.",
+    "lookupNotFound": "Une catégorie/marque/famille sélectionnée n'existe plus.",
+    "currencyNotFound": "La devise sélectionnée n'est pas reconnue.",
+    "taxRateNotFound": "Le taux de TVA sélectionné n'existe plus.",
+    "notFound": "Cet article est introuvable."
   }
 }

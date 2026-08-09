@@ -28,7 +28,19 @@
     "ZERO": "بنسبة صفر",
     "EXEMPT": "معفى"
   },
+  "create": {
+    "title": "صنف جديد",
+    "submit": "إنشاء الصنف",
+    "created": "تم إنشاء الصنف."
+  },
+  "edit": {
+    "title": "تعديل {{code}}",
+    "submit": "حفظ التغييرات",
+    "saved": "تم حفظ التغييرات.",
+    "back": "العودة إلى الصنف"
+  },
   "form": {
+    "code": "الرمز",
     "name": "الاسم",
     "nameAr": "الاسم بالعربية",
     "nameFr": "الاسم بالفرنسية",
@@ -40,18 +52,29 @@
     "baseUom": "الوحدة الأساسية",
     "salesUom": "وحدة البيع",
     "purchaseUom": "وحدة الشراء",
+    "selectUom": "اختر وحدة",
     "costPrice": "سعر التكلفة",
     "salePrice": "سعر البيع",
     "priceCurrency": "عملة السعر",
     "vatTreatment": "معالجة الضريبة",
     "defaultTaxRate": "نسبة الضريبة الافتراضية",
     "trackInventory": "يتتبع المخزون",
+    "trackInventoryHint": "معطّل للخدمات / الأصناف غير المخزّنة (إيرادات وضريبة فقط، بدون تكلفة مبيعات).",
     "hasSize": "له مقاسات",
     "hasColour": "له ألوان",
     "trackSerial": "يتتبع الأرقام التسلسلية",
     "trackExpiry": "يتتبع الصلاحية",
+    "isActive": "نشط",
     "revenueAccount": "حساب الإيرادات",
-    "cogsAccount": "حساب تكلفة المبيعات"
+    "cogsAccount": "حساب تكلفة المبيعات",
+    "accountsHint": "اتركه فارغاً للرجوع إلى الفئة، ثم حساب المراقبة للشركة.",
+    "accountDefault": "الافتراضي (الفئة / الشركة)",
+    "none": "بدون",
+    "validation": {
+      "required": "هذا الحقل مطلوب",
+      "baseUomRequired": "اختر وحدة أساسية",
+      "pricePositive": "أدخل سعراً يساوي 0 أو أكثر"
+    }
   },
   "detail": {
     "back": "العودة إلى الأصناف",
@@ -59,6 +82,17 @@
     "yes": "نعم",
     "no": "لا",
     "accountDefault": "الافتراضي (الفئة / الشركة)",
+    "deleted": "تم حذف الصنف.",
+    "actions": {
+      "edit": "تعديل",
+      "delete": "حذف"
+    },
+    "deleteConfirm": {
+      "title": "حذف هذا الصنف؟",
+      "body": "سيتم إلغاء تفعيل الصنف {{code}}. لن تتأثر المستندات التي تشير إليه.",
+      "confirm": "حذف",
+      "cancel": "إلغاء"
+    },
     "sections": {
       "identity": "الهوية",
       "classification": "التصنيف",
@@ -70,6 +104,14 @@
   },
   "errors": {
     "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
-    "permissionDeniedSection": "ليس لديك إذن لعرض هذا."
+    "permissionDenied": "ليس لديك إذن للقيام بذلك.",
+    "permissionDeniedSection": "ليس لديك إذن لعرض هذا.",
+    "codeExists": "يوجد صنف بهذا الرمز بالفعل.",
+    "uomCategoryMismatch": "يجب أن تكون وحدة البيع/الشراء في نفس فئة الوحدة الأساسية.",
+    "uomNotFound": "إحدى الوحدات المختارة لم تعد موجودة.",
+    "lookupNotFound": "فئة/علامة تجارية/عائلة مختارة لم تعد موجودة.",
+    "currencyNotFound": "العملة المختارة غير معروفة.",
+    "taxRateNotFound": "نسبة الضريبة المختارة لم تعد موجودة.",
+    "notFound": "تعذر العثور على هذا الصنف."
   }
 }

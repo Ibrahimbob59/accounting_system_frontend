@@ -1,10 +1,13 @@
 import type { ReactNode } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, Loader2 } from 'lucide-react'
+import { ArrowLeft, Loader2, Pencil, Trash2 } from 'lucide-react'
 
+import { Button } from '@/components/ui/button'
 import { StatusBadge } from '@/components/common/StatusBadge'
 import { useItem } from '@/features/items/hooks/useItem'
+import { useDeleteItem } from '@/features/items/hooks/useItemMutations'
+import { itemErrorMessage } from '@/features/items/lib/item-errors'
 import { localizedItemName } from '@/features/items/types/items.types'
 import {
   useBrands,
@@ -17,16 +20,24 @@ import { localizedUomName } from '@/features/uom/types/uom.types'
 import { useTaxRates } from '@/features/taxes/hooks/useTaxRates'
 import { useAllAccounts } from '@/features/accounts/hooks/useAllAccounts'
 import { localizedAccountName } from '@/features/accounts/types/accounts.types'
-import { isPermissionDenied } from '@/features/auth/lib/permissions'
+import {
+  isPermissionDenied,
+  usePermission,
+} from '@/features/auth/lib/permissions'
 import { useCurrencyLookup } from '@/features/currencies/hooks/useCurrencyLookup'
 import { formatMoney } from '@/lib/format'
+import { confirm, toast } from '@/lib/swal'
 
 export function ItemDetailPage() {
   const { t, i18n } = useTranslation('items')
+  const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
   const lang = i18n.language
 
   const { data: item, isLoading, isError, error } = useItem(id)
+  const deleteItem = useDeleteItem()
+  const canUpdate = usePermission('item.update')
+  const canDelete = usePermission('item.delete')
   const categories = useItemCategories()
   const brands = useBrands()
   const families = useFamilies()
@@ -89,6 +100,24 @@ export function ItemDetailPage() {
     formatMoney(amount, lookupCurrency(item.priceCurrency), lang)
   const yesNo = (v: boolean) => (v ? t('detail.yes') : t('detail.no'))
 
+  const handleDelete = async () => {
+    const ok = await confirm({
+      title: t('detail.deleteConfirm.title'),
+      description: t('detail.deleteConfirm.body', { code: item.code }),
+      confirmLabel: t('detail.deleteConfirm.confirm'),
+      cancelLabel: t('detail.deleteConfirm.cancel'),
+      variant: 'danger',
+    })
+    if (!ok) return
+    deleteItem.mutate(item.id, {
+      onSuccess: () => {
+        toast('success', t('detail.deleted'))
+        navigate('/app/items')
+      },
+      onError: (err) => toast('error', itemErrorMessage(err, t)),
+    })
+  }
+
   return (
     <div className="space-y-6">
       <Link
@@ -99,18 +128,41 @@ export function ItemDetailPage() {
         {t('detail.back')}
       </Link>
 
-      <div className="flex flex-wrap items-center gap-2">
-        <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
-          <span className="font-mono">{item.code}</span>
-          {' — '}
-          {localizedItemName(item, lang)}
-        </h1>
-        {!item.trackInventory && (
-          <StatusBadge variant="info">{t('badges.service')}</StatusBadge>
-        )}
-        {!item.isActive && (
-          <StatusBadge variant="neutral">{t('status.inactive')}</StatusBadge>
-        )}
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-wrap items-center gap-2">
+          <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
+            <span className="font-mono">{item.code}</span>
+            {' — '}
+            {localizedItemName(item, lang)}
+          </h1>
+          {!item.trackInventory && (
+            <StatusBadge variant="info">{t('badges.service')}</StatusBadge>
+          )}
+          {!item.isActive && (
+            <StatusBadge variant="neutral">{t('status.inactive')}</StatusBadge>
+          )}
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {canUpdate && (
+            <Button variant="outline" asChild>
+              <Link to={`/app/items/${item.id}/edit`}>
+                <Pencil className="size-4" />
+                {t('detail.actions.edit')}
+              </Link>
+            </Button>
+          )}
+          {canDelete && (
+            <Button
+              variant="destructive"
+              onClick={() => void handleDelete()}
+              disabled={deleteItem.isPending}
+            >
+              <Trash2 className="size-4" />
+              {t('detail.actions.delete')}
+            </Button>
+          )}
+        </div>
       </div>
 
       <Section title={t('detail.sections.identity')}>

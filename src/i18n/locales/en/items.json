@@ -28,7 +28,19 @@
     "ZERO": "Zero-rated",
     "EXEMPT": "Exempt"
   },
+  "create": {
+    "title": "New item",
+    "submit": "Create item",
+    "created": "Item created."
+  },
+  "edit": {
+    "title": "Edit {{code}}",
+    "submit": "Save changes",
+    "saved": "Changes saved.",
+    "back": "Back to item"
+  },
   "form": {
+    "code": "Code",
     "name": "Name",
     "nameAr": "Arabic name",
     "nameFr": "French name",
@@ -40,18 +52,29 @@
     "baseUom": "Base unit",
     "salesUom": "Sales unit",
     "purchaseUom": "Purchase unit",
+    "selectUom": "Select a unit",
     "costPrice": "Cost price",
     "salePrice": "Sale price",
     "priceCurrency": "Price currency",
     "vatTreatment": "VAT treatment",
     "defaultTaxRate": "Default VAT rate",
     "trackInventory": "Tracks inventory",
+    "trackInventoryHint": "Off for services / non-stock items (revenue + VAT only, no COGS).",
     "hasSize": "Has sizes",
     "hasColour": "Has colours",
     "trackSerial": "Tracks serial numbers",
     "trackExpiry": "Tracks expiry",
+    "isActive": "Active",
     "revenueAccount": "Revenue account",
-    "cogsAccount": "COGS account"
+    "cogsAccount": "COGS account",
+    "accountsHint": "Leave blank to fall back to the category, then the company control account.",
+    "accountDefault": "Category / company default",
+    "none": "None",
+    "validation": {
+      "required": "This field is required",
+      "baseUomRequired": "Choose a base unit",
+      "pricePositive": "Enter a price of 0 or more"
+    }
   },
   "detail": {
     "back": "Back to items",
@@ -59,6 +82,17 @@
     "yes": "Yes",
     "no": "No",
     "accountDefault": "Category / company default",
+    "deleted": "Item deleted.",
+    "actions": {
+      "edit": "Edit",
+      "delete": "Delete"
+    },
+    "deleteConfirm": {
+      "title": "Delete this item?",
+      "body": "Item {{code}} will be deactivated. Documents that reference it are not affected.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    },
     "sections": {
       "identity": "Identity",
       "classification": "Classification",
@@ -70,6 +104,14 @@
   },
   "errors": {
     "generic": "Something went wrong. Please try again.",
-    "permissionDeniedSection": "You don't have permission to view this."
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this.",
+    "codeExists": "An item with this code already exists.",
+    "uomCategoryMismatch": "The sales/purchase unit must be in the same category as the base unit.",
+    "uomNotFound": "One of the selected units no longer exists.",
+    "lookupNotFound": "A selected category/brand/family no longer exists.",
+    "currencyNotFound": "The selected currency isn't recognised.",
+    "taxRateNotFound": "The selected VAT rate no longer exists.",
+    "notFound": "This item couldn't be found."
   }
 }
