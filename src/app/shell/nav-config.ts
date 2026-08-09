@@ -5,6 +5,7 @@ import {
   Contact,
   LayoutDashboard,
   Package,
+  Ruler,
   Scale,
   Tags,
   UsersRound,
@@ -51,6 +52,11 @@ export const NAV_ITEMS: NavItem[] = [
     labelKey: 'shell:nav.catalog',
     path: '/app/catalog',
     icon: Tags,
+  },
+  {
+    labelKey: 'shell:nav.uom',
+    path: '/app/uom',
+    icon: Ruler,
   },
   {
     labelKey: 'shell:nav.accounts',

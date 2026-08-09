@@ -1,0 +1,86 @@
+{
+  "title": "Unités de mesure",
+  "subtitle": "Les unités ne se convertissent qu'au sein de leur catégorie (référence · plus grande · plus petite).",
+  "created": "Créé.",
+  "saved": "Modifications enregistrées.",
+  "form": {
+    "cancel": "Annuler",
+    "save": "Enregistrer"
+  },
+  "validation": {
+    "required": "Ce champ est requis",
+    "factorPositive": "Saisissez un facteur supérieur à 0",
+    "roundingPositive": "Saisissez un arrondi supérieur à 0",
+    "factorRequired": "Une unité non-référence nécessite un facteur"
+  },
+  "type": {
+    "REFERENCE": "Référence",
+    "BIGGER": "Plus grande",
+    "SMALLER": "Plus petite"
+  },
+  "category": {
+    "add": "Nouvelle catégorie",
+    "edit": "Modifier la catégorie",
+    "delete": "Supprimer la catégorie",
+    "empty": "Aucune catégorie d'unités. Créez-en une pour ajouter des unités.",
+    "name": "Nom",
+    "nameAr": "Nom arabe",
+    "nameFr": "Nom français",
+    "nameEn": "Nom anglais",
+    "createTitle": "Nouvelle catégorie d'unités",
+    "editTitle": "Modifier la catégorie d'unités",
+    "deleted": "Catégorie supprimée.",
+    "deleteConfirm": {
+      "title": "Supprimer cette catégorie ?",
+      "body": "« {{name}} » sera supprimée. Elle ne doit d'abord contenir aucune unité.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    }
+  },
+  "unit": {
+    "add": "Nouvelle unité",
+    "edit": "Modifier l'unité",
+    "delete": "Supprimer l'unité",
+    "empty": "Aucune unité dans cette catégorie.",
+    "name": "Nom",
+    "nameAr": "Nom arabe",
+    "nameFr": "Nom français",
+    "nameEn": "Nom anglais",
+    "type": "Type",
+    "factor": "Facteur",
+    "factorReference": "1 (référence)",
+    "factorHint": "Facteur = unités de référence par unité (référence = 1, une douzaine = 12, un gramme vs référence kg = 0,001).",
+    "rounding": "Arrondi",
+    "roundingPlaceholder": "0,01",
+    "isActive": "Active",
+    "inactive": "Inactive",
+    "createTitle": "Nouvelle unité",
+    "editTitle": "Modifier l'unité",
+    "deleted": "Unité supprimée.",
+    "deleteConfirm": {
+      "title": "Supprimer cette unité ?",
+      "body": "« {{name}} » sera supprimée.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    }
+  },
+  "convert": {
+    "title": "Convertir",
+    "qty": "Qté",
+    "from": "De",
+    "to": "Vers",
+    "action": "Convertir",
+    "result": "= {{result}} {{unit}}"
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci.",
+    "categoryInUse": "Cette catégorie contient encore des unités. Supprimez-les d'abord.",
+    "referenceExists": "Cette catégorie a déjà une unité de référence.",
+    "factorRequired": "Une unité non-référence nécessite un facteur.",
+    "categoryMismatch": "Ces unités sont dans des catégories différentes.",
+    "categoryNotFound": "La catégorie n'existe plus.",
+    "notFound": "Cette unité est introuvable."
+  }
+}

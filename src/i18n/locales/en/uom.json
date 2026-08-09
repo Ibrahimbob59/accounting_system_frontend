@@ -1,0 +1,86 @@
+{
+  "title": "Units of measure",
+  "subtitle": "Units convert only within their category (reference · bigger · smaller).",
+  "created": "Created.",
+  "saved": "Changes saved.",
+  "form": {
+    "cancel": "Cancel",
+    "save": "Save"
+  },
+  "validation": {
+    "required": "This field is required",
+    "factorPositive": "Enter a factor greater than 0",
+    "roundingPositive": "Enter a rounding greater than 0",
+    "factorRequired": "A non-reference unit needs a factor"
+  },
+  "type": {
+    "REFERENCE": "Reference",
+    "BIGGER": "Bigger",
+    "SMALLER": "Smaller"
+  },
+  "category": {
+    "add": "New category",
+    "edit": "Edit category",
+    "delete": "Delete category",
+    "empty": "No unit categories yet. Create one to add units.",
+    "name": "Name",
+    "nameAr": "Arabic name",
+    "nameFr": "French name",
+    "nameEn": "English name",
+    "createTitle": "New unit category",
+    "editTitle": "Edit unit category",
+    "deleted": "Category deleted.",
+    "deleteConfirm": {
+      "title": "Delete this category?",
+      "body": "\"{{name}}\" will be removed. It must have no units first.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    }
+  },
+  "unit": {
+    "add": "New unit",
+    "edit": "Edit unit",
+    "delete": "Delete unit",
+    "empty": "No units in this category yet.",
+    "name": "Name",
+    "nameAr": "Arabic name",
+    "nameFr": "French name",
+    "nameEn": "English name",
+    "type": "Type",
+    "factor": "Factor",
+    "factorReference": "1 (reference)",
+    "factorHint": "Factor = reference units per one of this unit (reference = 1, a dozen = 12, a gram vs. a kg reference = 0.001).",
+    "rounding": "Rounding",
+    "roundingPlaceholder": "0.01",
+    "isActive": "Active",
+    "inactive": "Inactive",
+    "createTitle": "New unit",
+    "editTitle": "Edit unit",
+    "deleted": "Unit deleted.",
+    "deleteConfirm": {
+      "title": "Delete this unit?",
+      "body": "\"{{name}}\" will be removed.",
+      "confirm": "Delete",
+      "cancel": "Cancel"
+    }
+  },
+  "convert": {
+    "title": "Convert",
+    "qty": "Qty",
+    "from": "From",
+    "to": "To",
+    "action": "Convert",
+    "result": "= {{result}} {{unit}}"
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this.",
+    "categoryInUse": "This category still has units. Delete them first.",
+    "referenceExists": "This category already has a reference unit.",
+    "factorRequired": "A non-reference unit needs a factor.",
+    "categoryMismatch": "Those units are in different categories.",
+    "categoryNotFound": "The category no longer exists.",
+    "notFound": "This unit couldn't be found."
+  }
+}
