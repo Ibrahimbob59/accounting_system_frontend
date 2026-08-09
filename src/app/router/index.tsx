@@ -34,6 +34,7 @@ import { CatalogPage } from '@/features/catalog/pages/CatalogPage'
 import { UomPage } from '@/features/uom/pages/UomPage'
 import { StockPage } from '@/features/stock/pages/StockPage'
 import { SalesInvoicesListPage } from '@/features/invoicing/pages/SalesInvoicesListPage'
+import { SalesInvoiceCreatePage } from '@/features/invoicing/pages/SalesInvoiceCreatePage'
 import { SalesInvoiceDetailPage } from '@/features/invoicing/pages/SalesInvoiceDetailPage'
 import { CompaniesListPage } from '@/features/companies/pages/CompaniesListPage'
 import { CompanyCreatePage } from '@/features/companies/pages/CompanyCreatePage'
@@ -136,6 +137,7 @@ export const router = createBrowserRouter([
             handle: { crumbKey: 'shell:nav.salesInvoices' },
             children: [
               { index: true, element: <SalesInvoicesListPage /> },
+              { path: 'new', element: <SalesInvoiceCreatePage /> },
               { path: ':id', element: <SalesInvoiceDetailPage /> },
             ],
           },

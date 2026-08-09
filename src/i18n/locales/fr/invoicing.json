@@ -21,6 +21,69 @@
     "POSTED": "Comptabilisée",
     "CANCELLED": "Annulée"
   },
+  "create": {
+    "title": "Nouvelle facture de vente",
+    "subtitle": "Enregistrée en brouillon ; la confirmation comptabilise et diminue le stock.",
+    "submit": "Enregistrer le brouillon",
+    "created": "Facture brouillon créée."
+  },
+  "form": {
+    "customer": "Client",
+    "selectCustomer": "Choisir un client",
+    "currency": "Devise",
+    "rate": "Taux",
+    "rateHint": "Auto (taux à la date)",
+    "invoiceDate": "Date de facture",
+    "dueDate": "Échéance",
+    "location": "Emplacement d'expédition",
+    "locationHint": "Requis pour les articles en stock",
+    "customerRef": "Référence client",
+    "notes": "Notes",
+    "linesTitle": "Lignes",
+    "addLine": "Ajouter une ligne",
+    "previewNote": "Aperçu uniquement — le serveur calcule les totaux, la TVA et le coût des ventes.",
+    "validation": {
+      "customerRequired": "Choisissez un client",
+      "currencyRequired": "Choisissez une devise",
+      "dateRequired": "Une date de facture est requise",
+      "minLines": "Ajoutez au moins une ligne",
+      "itemRequired": "Choisissez un article",
+      "qtyPositive": "Saisissez une quantité supérieure à 0",
+      "pricePositive": "Saisissez un prix de 0 ou plus",
+      "discountRange": "La remise doit être entre 0 et 100",
+      "ratePositive": "Le taux doit être supérieur à 0"
+    },
+    "line": {
+      "item": "Article",
+      "selectItem": "Choisir un article",
+      "qty": "Qté",
+      "price": "Prix",
+      "discount": "Rem %",
+      "tax": "TVA",
+      "noTax": "Défaut article",
+      "variant": "Variante",
+      "selectVariant": "Choisir une variante",
+      "remove": "Supprimer la ligne"
+    }
+  },
+  "actions": {
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "posted": "Facture comptabilisée.",
+    "deleted": "Brouillon supprimé.",
+    "confirmDialog": {
+      "title": "Confirmer cette facture ?",
+      "body": "La confirmation attribue son numéro, diminue le stock et comptabilise l'écriture. Elle ne peut plus être modifiée.",
+      "confirm": "Confirmer et comptabiliser",
+      "cancel": "Annuler"
+    },
+    "deleteDialog": {
+      "title": "Supprimer ce brouillon ?",
+      "body": "Cette facture brouillon sera supprimée. Cette action est irréversible.",
+      "confirm": "Supprimer",
+      "cancel": "Annuler"
+    }
+  },
   "detail": {
     "back": "Retour aux factures de vente",
     "notSet": "Non renseigné",
@@ -56,6 +119,22 @@
   },
   "errors": {
     "generic": "Une erreur s'est produite. Veuillez réessayer.",
-    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci."
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci.",
+    "locationRequired": "Choisissez un emplacement d'expédition — cette facture contient des articles en stock.",
+    "locationInvalid": "Cet emplacement ne peut pas être utilisé pour cette facture.",
+    "notDraft": "Seule une facture brouillon peut être modifiée.",
+    "posted": "Cette facture est déjà comptabilisée.",
+    "invoiceNotFound": "Cette facture est introuvable.",
+    "creditNoteNotFound": "Cet avoir est introuvable.",
+    "itemNotFound": "L'un des articles sélectionnés n'existe plus.",
+    "variantRequired": "Un article à variantes nécessite une variante sur sa ligne.",
+    "taxRateNotFound": "Un taux de TVA sélectionné n'existe plus.",
+    "uomNotFound": "Une unité sélectionnée n'existe plus.",
+    "partnerNotFound": "Le client sélectionné n'existe plus.",
+    "partnerNotCustomer": "Ce partenaire n'est pas marqué comme client.",
+    "branchNotFound": "La succursale sélectionnée n'existe plus.",
+    "invalidDate": "Vérifiez les dates de facture / d'échéance.",
+    "virtualLocationMissing": "Les emplacements de stock de la société ne sont pas entièrement configurés."
   }
 }

@@ -1,21 +1,33 @@
 import type { ReactNode } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import { ArrowLeft, ExternalLink, Loader2 } from 'lucide-react'
+import { ArrowLeft, ExternalLink, Loader2, Send, Trash2 } from 'lucide-react'
 
+import { Button } from '@/components/ui/button'
 import { InvoiceStatusBadge } from '@/features/invoicing/components/InvoiceStatusBadge'
 import { useSalesInvoice } from '@/features/invoicing/hooks/useSalesInvoices'
+import {
+  useConfirmSalesInvoice,
+  useDeleteSalesInvoice,
+} from '@/features/invoicing/hooks/useSalesInvoiceMutations'
+import { invoicingErrorMessage } from '@/features/invoicing/lib/invoicing-errors'
 import { useAllPartners } from '@/features/partners/hooks/useAllPartners'
 import { useAllItems } from '@/features/items/hooks/useAllItems'
 import { localizedItemName } from '@/features/items/types/items.types'
-import { isPermissionDenied } from '@/features/auth/lib/permissions'
+import {
+  isPermissionDenied,
+  usePermission,
+} from '@/features/auth/lib/permissions'
 import { useCurrencyLookup } from '@/features/currencies/hooks/useCurrencyLookup'
 import { useActiveCompanyBaseCurrency } from '@/features/companies/hooks/useActiveCompanyBaseCurrency'
 import { formatMoney, formatDate } from '@/lib/format'
+import { confirm, toast } from '@/lib/swal'
 
 export function SalesInvoiceDetailPage() {
   const { t, i18n } = useTranslation('invoicing')
   const lang = i18n.language
+  const navigate = useNavigate()
   const { id } = useParams<{ id: string }>()
 
   const { data: invoice, isLoading, isError, error } = useSalesInvoice(id)
@@ -23,6 +35,12 @@ export function SalesInvoiceDetailPage() {
   const allItems = useAllItems()
   const lookupCurrency = useCurrencyLookup()
   const companyBase = useActiveCompanyBaseCurrency()
+
+  const confirmInvoice = useConfirmSalesInvoice()
+  const deleteInvoice = useDeleteSalesInvoice()
+  const [posting, setPosting] = useState(false)
+  const canPost = usePermission('sales.post')
+  const canDelete = usePermission('sales.delete')
 
   if (isLoading) {
     return (
@@ -58,6 +76,43 @@ export function SalesInvoiceDetailPage() {
       : itemId.slice(0, 8)
   }
 
+  const isDraft = invoice.status === 'DRAFT'
+  const busy = posting || deleteInvoice.isPending
+
+  const handleConfirm = async () => {
+    const ok = await confirm({
+      title: t('actions.confirmDialog.title'),
+      description: t('actions.confirmDialog.body'),
+      confirmLabel: t('actions.confirmDialog.confirm'),
+      cancelLabel: t('actions.confirmDialog.cancel'),
+    })
+    if (!ok) return
+    setPosting(true)
+    confirmInvoice.mutate(invoice.id, {
+      onSuccess: () => toast('success', t('actions.posted')),
+      onError: (err) => toast('error', invoicingErrorMessage(err, t)),
+      onSettled: () => setPosting(false),
+    })
+  }
+
+  const handleDelete = async () => {
+    const ok = await confirm({
+      title: t('actions.deleteDialog.title'),
+      description: t('actions.deleteDialog.body'),
+      confirmLabel: t('actions.deleteDialog.confirm'),
+      cancelLabel: t('actions.deleteDialog.cancel'),
+      variant: 'danger',
+    })
+    if (!ok) return
+    deleteInvoice.mutate(invoice.id, {
+      onSuccess: () => {
+        toast('success', t('actions.deleted'))
+        navigate('/app/sales-invoices')
+      },
+      onError: (err) => toast('error', invoicingErrorMessage(err, t)),
+    })
+  }
+
   return (
     <div className="space-y-6">
       <Link
@@ -68,11 +123,34 @@ export function SalesInvoiceDetailPage() {
         {t('detail.back')}
       </Link>
 
-      <div className="flex flex-wrap items-center gap-3">
-        <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
-          <span className="font-mono">{invoice.invoiceNo}</span>
-        </h1>
-        <InvoiceStatusBadge status={invoice.status} />
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div className="flex flex-wrap items-center gap-3">
+          <h1 className="font-display text-[length:var(--h1-size)] font-bold tracking-[-0.02em] text-text-primary">
+            <span className="font-mono">{invoice.invoiceNo}</span>
+          </h1>
+          <InvoiceStatusBadge status={invoice.status} />
+        </div>
+
+        {isDraft && (
+          <div className="flex flex-wrap gap-2">
+            {canPost && (
+              <Button onClick={() => void handleConfirm()} disabled={busy}>
+                <Send className="size-4" />
+                {t('actions.confirm')}
+              </Button>
+            )}
+            {canDelete && (
+              <Button
+                variant="destructive"
+                onClick={() => void handleDelete()}
+                disabled={busy}
+              >
+                <Trash2 className="size-4" />
+                {t('actions.delete')}
+              </Button>
+            )}
+          </div>
+        )}
       </div>
 
       <Section title={t('detail.sections.details')}>
