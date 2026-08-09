@@ -68,6 +68,17 @@
     "qty": "Qty",
     "value": "Value"
   },
+  "itemStock": {
+    "title": "Stock",
+    "onHand": "On hand:",
+    "base": "Base",
+    "variant": "Variant",
+    "location": "Location",
+    "qty": "Qty",
+    "value": "Value",
+    "empty": "No stock on hand for this item.",
+    "unavailable": "Stock is unavailable for this item."
+  },
   "onHand": {
     "location": "Location",
     "allLocations": "All locations",

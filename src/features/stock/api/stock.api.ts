@@ -3,6 +3,7 @@ import type { ApiSuccess } from '@/types/api'
 import type {
   AdjustStockInput,
   BulkOnHandQuery,
+  ItemStock,
   ListMovementsQuery,
   OnHandRow,
   StockMovement,
@@ -14,6 +15,10 @@ import type {
 export const stockApi = {
   bulkOnHand(query?: BulkOnHandQuery): Promise<ApiSuccess<OnHandRow[]>> {
     return http.getPage<OnHandRow[]>('/stock/on-hand/bulk', { params: query })
+  },
+
+  itemStock(itemId: string): Promise<ItemStock> {
+    return http.get<ItemStock>(`/items/${itemId}/stock`)
   },
 
   listMovements(

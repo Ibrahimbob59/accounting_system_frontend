@@ -170,6 +170,32 @@ export interface ValuationResult {
   items: ItemValuationRow[]
 }
 
+// -----------------------------------------------------------------------------
+// Item stock breakdown (GET /items/:itemId/stock) — Phase 3
+// -----------------------------------------------------------------------------
+
+export interface LocationStock {
+  locationId: string
+  locationCode: string
+  qty: number
+  value: number
+}
+
+export interface VariantStock {
+  variantId: string | null
+  qty: number
+  value: number
+  locations: LocationStock[]
+}
+
+export interface ItemStock {
+  itemId: string
+  totalQty: number
+  totalValue: number
+  currency: string
+  breakdown: VariantStock[]
+}
+
 /** The localized location name for the active language, falling back to `name`. */
 export function localizedLocationName(
   location: Pick<StockLocation, 'name' | 'nameAr' | 'nameFr' | 'nameEn'>,

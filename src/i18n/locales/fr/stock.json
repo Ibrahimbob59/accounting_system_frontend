@@ -68,6 +68,17 @@
     "qty": "Qté",
     "value": "Valeur"
   },
+  "itemStock": {
+    "title": "Stock",
+    "onHand": "En stock :",
+    "base": "Base",
+    "variant": "Variante",
+    "location": "Emplacement",
+    "qty": "Qté",
+    "value": "Valeur",
+    "empty": "Aucun stock pour cet article.",
+    "unavailable": "Le stock est indisponible pour cet article."
+  },
   "onHand": {
     "location": "Emplacement",
     "allLocations": "Tous les emplacements",
