@@ -1,0 +1,71 @@
+{
+  "title": "Catalog",
+  "subtitle": "Categories and labels used to classify your items.",
+  "add": "New {{kind}}",
+  "empty": "Nothing here yet.",
+  "created": "Created.",
+  "saved": "Changes saved.",
+  "deleted": "Deleted.",
+  "kinds": {
+    "itemCategory": "category",
+    "brand": "brand",
+    "family": "family",
+    "size": "size",
+    "colour": "colour"
+  },
+  "kindsPlural": {
+    "itemCategory": "Categories",
+    "brand": "Brands",
+    "family": "Families",
+    "size": "Sizes",
+    "colour": "Colours"
+  },
+  "table": {
+    "name": "Name",
+    "parent": "Parent",
+    "revenue": "Revenue",
+    "cogs": "COGS",
+    "sortOrder": "Sort",
+    "accountDefault": "Default"
+  },
+  "actions": {
+    "edit": "Edit",
+    "delete": "Delete"
+  },
+  "deleteConfirm": {
+    "title": "Delete this entry?",
+    "body": "\"{{name}}\" will be removed. Items that reference it are not affected.",
+    "confirm": "Delete",
+    "cancel": "Cancel"
+  },
+  "form": {
+    "createTitle": "New {{kind}}",
+    "editTitle": "Edit {{kind}}",
+    "name": "Name",
+    "nameAr": "Arabic name",
+    "nameFr": "French name",
+    "nameEn": "English name",
+    "parent": "Parent category",
+    "noParent": "None (top level)",
+    "revenueAccount": "Revenue account",
+    "cogsAccount": "COGS account",
+    "accountDefault": "Company default",
+    "sortOrder": "Sort order",
+    "cancel": "Cancel",
+    "save": "Save",
+    "validation": {
+      "required": "This field is required",
+      "sortOrder": "Enter a whole number of 0 or more"
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this.",
+    "nameExists": "An entry with this name already exists.",
+    "hasChildren": "This category has sub-categories. Delete or move those first.",
+    "parentNotFound": "The chosen parent category no longer exists.",
+    "cycle": "That parent would create a loop in the category tree.",
+    "notFound": "This entry couldn't be found."
+  }
+}

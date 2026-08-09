@@ -34,6 +34,32 @@ export const LOOKUP_PATHS = {
 
 export type LookupKind = keyof typeof LOOKUP_PATHS
 
+/** Every lookup kind, in display order — categories first (the richest). */
+export const LOOKUP_KINDS: LookupKind[] = [
+  'itemCategory',
+  'brand',
+  'family',
+  'size',
+  'colour',
+]
+
+/**
+ * Create/update payload. The simple lookups use only name + trilingual +
+ * sortOrder; categories additionally accept parentId and the revenue/COGS
+ * account overrides. Sending the category-only fields for a simple lookup is
+ * harmless — the backend whitelists them off via its own DTOs.
+ */
+export interface CatalogLookupInput {
+  name: string
+  nameAr?: string
+  nameFr?: string
+  nameEn?: string
+  sortOrder?: number
+  parentId?: string
+  revenueAccountId?: string
+  cogsAccountId?: string
+}
+
 /** The localized lookup name for the active language, falling back to `name`. */
 export function localizedLookupName(
   lookup: Pick<CatalogLookup, 'name' | 'nameAr' | 'nameFr' | 'nameEn'>,

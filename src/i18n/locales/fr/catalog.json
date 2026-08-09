@@ -1,0 +1,71 @@
+{
+  "title": "Catalogue",
+  "subtitle": "Catégories et libellés utilisés pour classer vos articles.",
+  "add": "Nouvelle {{kind}}",
+  "empty": "Rien pour le moment.",
+  "created": "Créé.",
+  "saved": "Modifications enregistrées.",
+  "deleted": "Supprimé.",
+  "kinds": {
+    "itemCategory": "catégorie",
+    "brand": "marque",
+    "family": "famille",
+    "size": "taille",
+    "colour": "couleur"
+  },
+  "kindsPlural": {
+    "itemCategory": "Catégories",
+    "brand": "Marques",
+    "family": "Familles",
+    "size": "Tailles",
+    "colour": "Couleurs"
+  },
+  "table": {
+    "name": "Nom",
+    "parent": "Parent",
+    "revenue": "Produits",
+    "cogs": "Coût",
+    "sortOrder": "Ordre",
+    "accountDefault": "Par défaut"
+  },
+  "actions": {
+    "edit": "Modifier",
+    "delete": "Supprimer"
+  },
+  "deleteConfirm": {
+    "title": "Supprimer cette entrée ?",
+    "body": "« {{name}} » sera supprimé. Les articles qui le référencent ne sont pas affectés.",
+    "confirm": "Supprimer",
+    "cancel": "Annuler"
+  },
+  "form": {
+    "createTitle": "Nouvelle {{kind}}",
+    "editTitle": "Modifier {{kind}}",
+    "name": "Nom",
+    "nameAr": "Nom arabe",
+    "nameFr": "Nom français",
+    "nameEn": "Nom anglais",
+    "parent": "Catégorie parente",
+    "noParent": "Aucune (niveau supérieur)",
+    "revenueAccount": "Compte de produits",
+    "cogsAccount": "Compte de coût des ventes",
+    "accountDefault": "Par défaut (société)",
+    "sortOrder": "Ordre de tri",
+    "cancel": "Annuler",
+    "save": "Enregistrer",
+    "validation": {
+      "required": "Ce champ est requis",
+      "sortOrder": "Saisissez un entier de 0 ou plus"
+    }
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci.",
+    "nameExists": "Une entrée avec ce nom existe déjà.",
+    "hasChildren": "Cette catégorie a des sous-catégories. Supprimez ou déplacez-les d'abord.",
+    "parentNotFound": "La catégorie parente choisie n'existe plus.",
+    "cycle": "Ce parent créerait une boucle dans l'arbre des catégories.",
+    "notFound": "Cette entrée est introuvable."
+  }
+}

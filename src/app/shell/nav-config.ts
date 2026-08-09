@@ -6,6 +6,7 @@ import {
   LayoutDashboard,
   Package,
   Scale,
+  Tags,
   UsersRound,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -45,6 +46,11 @@ export const NAV_ITEMS: NavItem[] = [
     labelKey: 'shell:nav.items',
     path: '/app/items',
     icon: Package,
+  },
+  {
+    labelKey: 'shell:nav.catalog',
+    path: '/app/catalog',
+    icon: Tags,
   },
   {
     labelKey: 'shell:nav.accounts',
