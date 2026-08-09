@@ -83,6 +83,93 @@ export interface BulkOnHandQuery {
   limit?: number
 }
 
+// -----------------------------------------------------------------------------
+// Movements + operations + valuation (Phase 2)
+// -----------------------------------------------------------------------------
+
+/** Why a movement happened (backend StockMovementType). RECEIPT/OPENING bring
+ * stock in; ISSUE sends it out; TRANSFER is internal→internal; ADJUSTMENT
+ * reconciles a physical count. */
+export const MOVEMENT_TYPES = [
+  'RECEIPT',
+  'ISSUE',
+  'TRANSFER',
+  'ADJUSTMENT',
+  'OPENING',
+] as const
+export type MovementType = (typeof MOVEMENT_TYPES)[number]
+
+export interface StockMovement {
+  id: string
+  companyId: string
+  movementNo: string
+  type: MovementType
+  movementDate: string
+  itemId: string
+  variantId: string | null
+  fromLocationId: string
+  toLocationId: string
+  partnerId: string | null
+  qty: number
+  unitCost: number
+  value: number
+  costCurrency: string
+  reason: string | null
+  reference: string | null
+  branchId: string | null
+  createdAt: string
+}
+
+export interface ListMovementsQuery {
+  page?: number
+  limit?: number
+  itemId?: string
+  variantId?: string
+  locationId?: string
+  partnerId?: string
+  type?: MovementType
+  from?: string
+  to?: string
+}
+
+/** Count-based adjustment: state the counted qty; the server posts the delta. */
+export interface AdjustStockInput {
+  itemId: string
+  variantId?: string
+  locationId: string
+  countedQty: number
+  uomId?: string
+  /** Required when the count is higher than on-hand (inbound). */
+  unitCost?: number
+  movementDate?: string
+  reason?: string
+}
+
+/** Internal-to-internal transfer (value-neutral; quantity relocates). */
+export interface TransferStockInput {
+  itemId: string
+  variantId?: string
+  fromLocationId: string
+  toLocationId: string
+  qty: number
+  uomId?: string
+  movementDate?: string
+  reason?: string
+}
+
+export interface ItemValuationRow {
+  itemId: string
+  qty: number
+  value: number
+}
+
+export interface ValuationResult {
+  asOf: string
+  totalValue: number
+  currency: string
+  items: ItemValuationRow[]
+}
+
 /** The localized location name for the active language, falling back to `name`. */
 export function localizedLocationName(
   location: Pick<StockLocation, 'name' | 'nameAr' | 'nameFr' | 'nameEn'>,

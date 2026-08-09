@@ -3,7 +3,70 @@
   "subtitle": "What you hold, where, and what it's worth.",
   "tabs": {
     "onHand": "On hand",
+    "movements": "Movements",
+    "valuation": "Valuation",
     "locations": "Locations"
+  },
+  "type": {
+    "RECEIPT": "Receipt",
+    "ISSUE": "Issue",
+    "TRANSFER": "Transfer",
+    "ADJUSTMENT": "Adjustment",
+    "OPENING": "Opening"
+  },
+  "ops": {
+    "item": "Item",
+    "selectItem": "Select an item",
+    "variant": "Variant",
+    "selectVariant": "Select a variant",
+    "location": "Location",
+    "selectLocation": "Select a location",
+    "date": "Date",
+    "reason": "Reason",
+    "cancel": "Cancel"
+  },
+  "movements": {
+    "item": "Item",
+    "allItems": "All items",
+    "type": "Type",
+    "allTypes": "All types",
+    "from": "From",
+    "to": "To",
+    "empty": "No movements match these filters.",
+    "no": "Number",
+    "route": "From → To",
+    "qty": "Qty",
+    "value": "Value"
+  },
+  "adjust": {
+    "title": "Adjust stock",
+    "body": "Enter the physically counted quantity; the difference is posted against the adjustment location.",
+    "action": "Adjust",
+    "submit": "Post adjustment",
+    "countedQty": "Counted quantity",
+    "unitCost": "Unit cost",
+    "unitCostHint": "Required if the count is higher",
+    "incomplete": "Choose an item, a location and a counted quantity.",
+    "done": "Adjustment posted."
+  },
+  "transfer": {
+    "title": "Transfer stock",
+    "body": "Move quantity between two internal locations. Value is unchanged.",
+    "action": "Transfer",
+    "submit": "Post transfer",
+    "from": "From location",
+    "to": "To location",
+    "qty": "Quantity",
+    "incomplete": "Choose an item, both locations and a quantity.",
+    "done": "Transfer posted."
+  },
+  "valuation": {
+    "asOf": "As of",
+    "totalValue": "Total value",
+    "empty": "No inventory value to show.",
+    "item": "Item",
+    "qty": "Qty",
+    "value": "Value"
   },
   "onHand": {
     "location": "Location",

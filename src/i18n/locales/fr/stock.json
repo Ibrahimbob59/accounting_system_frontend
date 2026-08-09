@@ -3,7 +3,70 @@
   "subtitle": "Ce que vous détenez, où, et sa valeur.",
   "tabs": {
     "onHand": "En stock",
+    "movements": "Mouvements",
+    "valuation": "Valorisation",
     "locations": "Emplacements"
+  },
+  "type": {
+    "RECEIPT": "Réception",
+    "ISSUE": "Sortie",
+    "TRANSFER": "Transfert",
+    "ADJUSTMENT": "Ajustement",
+    "OPENING": "Ouverture"
+  },
+  "ops": {
+    "item": "Article",
+    "selectItem": "Choisir un article",
+    "variant": "Variante",
+    "selectVariant": "Choisir une variante",
+    "location": "Emplacement",
+    "selectLocation": "Choisir un emplacement",
+    "date": "Date",
+    "reason": "Motif",
+    "cancel": "Annuler"
+  },
+  "movements": {
+    "item": "Article",
+    "allItems": "Tous les articles",
+    "type": "Type",
+    "allTypes": "Tous les types",
+    "from": "Du",
+    "to": "Au",
+    "empty": "Aucun mouvement ne correspond à ces filtres.",
+    "no": "Numéro",
+    "route": "De → Vers",
+    "qty": "Qté",
+    "value": "Valeur"
+  },
+  "adjust": {
+    "title": "Ajuster le stock",
+    "body": "Saisissez la quantité physiquement comptée ; l'écart est passé sur l'emplacement d'ajustement.",
+    "action": "Ajuster",
+    "submit": "Passer l'ajustement",
+    "countedQty": "Quantité comptée",
+    "unitCost": "Coût unitaire",
+    "unitCostHint": "Requis si le comptage est supérieur",
+    "incomplete": "Choisissez un article, un emplacement et une quantité comptée.",
+    "done": "Ajustement passé."
+  },
+  "transfer": {
+    "title": "Transférer le stock",
+    "body": "Déplacer une quantité entre deux emplacements internes. La valeur est inchangée.",
+    "action": "Transférer",
+    "submit": "Passer le transfert",
+    "from": "Emplacement source",
+    "to": "Emplacement destination",
+    "qty": "Quantité",
+    "incomplete": "Choisissez un article, les deux emplacements et une quantité.",
+    "done": "Transfert passé."
+  },
+  "valuation": {
+    "asOf": "Au",
+    "totalValue": "Valeur totale",
+    "empty": "Aucune valeur d'inventaire à afficher.",
+    "item": "Article",
+    "qty": "Qté",
+    "value": "Valeur"
   },
   "onHand": {
     "location": "Emplacement",

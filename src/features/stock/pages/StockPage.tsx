@@ -3,9 +3,11 @@ import { useTranslation } from 'react-i18next'
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
 import { OnHandTab } from '@/features/stock/components/OnHandTab'
+import { MovementsTab } from '@/features/stock/components/MovementsTab'
+import { ValuationTab } from '@/features/stock/components/ValuationTab'
 import { LocationsTab } from '@/features/stock/components/LocationsTab'
 
-type StockTab = 'on-hand' | 'locations'
+type StockTab = 'on-hand' | 'movements' | 'valuation' | 'locations'
 
 export function StockPage() {
   const { t } = useTranslation('stock')
@@ -28,6 +30,12 @@ export function StockPage() {
           <TabsTrigger value="on-hand" className="flex-none px-1 py-2.5">
             {t('tabs.onHand')}
           </TabsTrigger>
+          <TabsTrigger value="movements" className="flex-none px-1 py-2.5">
+            {t('tabs.movements')}
+          </TabsTrigger>
+          <TabsTrigger value="valuation" className="flex-none px-1 py-2.5">
+            {t('tabs.valuation')}
+          </TabsTrigger>
           <TabsTrigger value="locations" className="flex-none px-1 py-2.5">
             {t('tabs.locations')}
           </TabsTrigger>
@@ -35,6 +43,12 @@ export function StockPage() {
 
         <TabsContent value="on-hand" className="pt-6">
           <OnHandTab />
+        </TabsContent>
+        <TabsContent value="movements" className="pt-6">
+          <MovementsTab />
+        </TabsContent>
+        <TabsContent value="valuation" className="pt-6">
+          <ValuationTab />
         </TabsContent>
         <TabsContent value="locations" className="pt-6">
           <LocationsTab />
