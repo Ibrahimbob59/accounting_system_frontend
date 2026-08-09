@@ -1,0 +1,61 @@
+{
+  "sales": {
+    "title": "Factures de vente",
+    "subtitle": "Les factures que vous émettez aux clients.",
+    "newInvoice": "Nouvelle facture",
+    "empty": "Aucune facture de vente pour le moment."
+  },
+  "columns": {
+    "number": "Numéro",
+    "date": "Date",
+    "customer": "Client",
+    "total": "Total",
+    "status": "Statut"
+  },
+  "filters": {
+    "status": "Statut",
+    "all": "Tous"
+  },
+  "status": {
+    "DRAFT": "Brouillon",
+    "POSTED": "Comptabilisée",
+    "CANCELLED": "Annulée"
+  },
+  "detail": {
+    "back": "Retour aux factures de vente",
+    "notSet": "Non renseigné",
+    "customer": "Client",
+    "invoiceDate": "Date de facture",
+    "dueDate": "Échéance",
+    "currency": "Devise",
+    "customerRef": "Référence client",
+    "notes": "Notes",
+    "journalEntry": "Écriture comptable",
+    "viewEntry": "Voir l'écriture",
+    "postedAt": "Comptabilisée le",
+    "sections": {
+      "details": "Détails",
+      "lines": "Lignes"
+    },
+    "lines": {
+      "item": "Article",
+      "qty": "Qté",
+      "price": "Prix unitaire",
+      "discount": "Rem.",
+      "net": "Net",
+      "vat": "TVA",
+      "total": "Total"
+    },
+    "totals": {
+      "subtotal": "Sous-total",
+      "vat": "TVA",
+      "grand": "Total général",
+      "baseNote": "≈ {{amount}} en {{currency}} au taux de comptabilisation.",
+      "cogs": "Coût des ventes : {{amount}}."
+    }
+  },
+  "errors": {
+    "generic": "Une erreur s'est produite. Veuillez réessayer.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci."
+  }
+}

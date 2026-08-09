@@ -1,0 +1,61 @@
+{
+  "sales": {
+    "title": "فواتير المبيعات",
+    "subtitle": "الفواتير التي تصدرها للعملاء.",
+    "newInvoice": "فاتورة جديدة",
+    "empty": "لا توجد فواتير مبيعات بعد."
+  },
+  "columns": {
+    "number": "الرقم",
+    "date": "التاريخ",
+    "customer": "العميل",
+    "total": "الإجمالي",
+    "status": "الحالة"
+  },
+  "filters": {
+    "status": "الحالة",
+    "all": "الكل"
+  },
+  "status": {
+    "DRAFT": "مسودة",
+    "POSTED": "مُرحَّلة",
+    "CANCELLED": "ملغاة"
+  },
+  "detail": {
+    "back": "العودة إلى فواتير المبيعات",
+    "notSet": "غير محدد",
+    "customer": "العميل",
+    "invoiceDate": "تاريخ الفاتورة",
+    "dueDate": "تاريخ الاستحقاق",
+    "currency": "العملة",
+    "customerRef": "مرجع العميل",
+    "notes": "ملاحظات",
+    "journalEntry": "قيد اليومية",
+    "viewEntry": "عرض القيد",
+    "postedAt": "رُحِّلت في",
+    "sections": {
+      "details": "التفاصيل",
+      "lines": "البنود"
+    },
+    "lines": {
+      "item": "الصنف",
+      "qty": "الكمية",
+      "price": "سعر الوحدة",
+      "discount": "خصم",
+      "net": "الصافي",
+      "vat": "الضريبة",
+      "total": "الإجمالي"
+    },
+    "totals": {
+      "subtotal": "المجموع الفرعي",
+      "vat": "الضريبة",
+      "grand": "الإجمالي العام",
+      "baseNote": "≈ {{amount}} بعملة {{currency}} بسعر الترحيل.",
+      "cogs": "تكلفة البضاعة المباعة: {{amount}}."
+    }
+  },
+  "errors": {
+    "generic": "حدث خطأ ما. يرجى المحاولة مرة أخرى.",
+    "permissionDeniedSection": "ليس لديك إذن لعرض هذا."
+  }
+}

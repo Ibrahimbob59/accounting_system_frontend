@@ -6,6 +6,7 @@
     "catalog": "Catalog",
     "uom": "Units",
     "stock": "Stock",
+    "salesInvoices": "Sales Invoices",
     "users": "Team",
     "accounts": "Chart of Accounts",
     "journalEntries": "Journal",

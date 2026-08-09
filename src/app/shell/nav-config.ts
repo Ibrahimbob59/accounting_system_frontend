@@ -3,6 +3,7 @@ import {
   BookText,
   Building2,
   Contact,
+  FileText,
   LayoutDashboard,
   Package,
   Ruler,
@@ -63,6 +64,11 @@ export const NAV_ITEMS: NavItem[] = [
     labelKey: 'shell:nav.stock',
     path: '/app/stock',
     icon: Warehouse,
+  },
+  {
+    labelKey: 'shell:nav.salesInvoices',
+    path: '/app/sales-invoices',
+    icon: FileText,
   },
   {
     labelKey: 'shell:nav.accounts',

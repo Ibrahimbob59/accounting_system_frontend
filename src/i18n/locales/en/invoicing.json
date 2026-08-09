@@ -1,0 +1,61 @@
+{
+  "sales": {
+    "title": "Sales invoices",
+    "subtitle": "Invoices you issue to customers.",
+    "newInvoice": "New invoice",
+    "empty": "No sales invoices yet."
+  },
+  "columns": {
+    "number": "Number",
+    "date": "Date",
+    "customer": "Customer",
+    "total": "Total",
+    "status": "Status"
+  },
+  "filters": {
+    "status": "Status",
+    "all": "All"
+  },
+  "status": {
+    "DRAFT": "Draft",
+    "POSTED": "Posted",
+    "CANCELLED": "Cancelled"
+  },
+  "detail": {
+    "back": "Back to sales invoices",
+    "notSet": "Not set",
+    "customer": "Customer",
+    "invoiceDate": "Invoice date",
+    "dueDate": "Due date",
+    "currency": "Currency",
+    "customerRef": "Customer reference",
+    "notes": "Notes",
+    "journalEntry": "Journal entry",
+    "viewEntry": "View entry",
+    "postedAt": "Posted on",
+    "sections": {
+      "details": "Details",
+      "lines": "Lines"
+    },
+    "lines": {
+      "item": "Item",
+      "qty": "Qty",
+      "price": "Unit price",
+      "discount": "Disc.",
+      "net": "Net",
+      "vat": "VAT",
+      "total": "Total"
+    },
+    "totals": {
+      "subtotal": "Subtotal",
+      "vat": "VAT",
+      "grand": "Grand total",
+      "baseNote": "≈ {{amount}} in {{currency}} at the posting rate.",
+      "cogs": "Cost of goods sold: {{amount}}."
+    }
+  },
+  "errors": {
+    "generic": "Something went wrong. Please try again.",
+    "permissionDeniedSection": "You don't have permission to view this."
+  }
+}
