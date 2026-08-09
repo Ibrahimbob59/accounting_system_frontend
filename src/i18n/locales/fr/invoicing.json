@@ -84,6 +84,30 @@
       "cancel": "Annuler"
     }
   },
+  "credit": {
+    "title": "Avoirs",
+    "subtitle": "Les avoirs émis aux clients — ils annulent une vente et réapprovisionnent le stock.",
+    "newCreditNote": "Nouvel avoir",
+    "empty": "Aucun avoir pour le moment.",
+    "back": "Retour aux avoirs",
+    "date": "Date de l'avoir",
+    "reason": "Motif",
+    "againstInvoice": "Sur facture",
+    "noInvoice": "Aucune (autonome)",
+    "viewInvoice": "Voir la facture",
+    "restockLocation": "Emplacement de réapprovisionnement",
+    "posted": "Avoir comptabilisé.",
+    "create": {
+      "title": "Nouvel avoir",
+      "subtitle": "Enregistré en brouillon ; la confirmation comptabilise et réapprovisionne le stock.",
+      "submit": "Enregistrer le brouillon",
+      "created": "Avoir brouillon créé."
+    },
+    "confirmDialog": {
+      "title": "Confirmer cet avoir ?",
+      "body": "La confirmation attribue son numéro, réapprovisionne le stock et comptabilise l'écriture. Il ne peut plus être modifié."
+    }
+  },
   "detail": {
     "back": "Retour aux factures de vente",
     "notSet": "Non renseigné",

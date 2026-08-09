@@ -84,6 +84,30 @@
       "cancel": "Cancel"
     }
   },
+  "credit": {
+    "title": "Credit notes",
+    "subtitle": "Credits you issue to customers — they reverse a sale and restock goods.",
+    "newCreditNote": "New credit note",
+    "empty": "No credit notes yet.",
+    "back": "Back to credit notes",
+    "date": "Credit note date",
+    "reason": "Reason",
+    "againstInvoice": "Against invoice",
+    "noInvoice": "None (standalone)",
+    "viewInvoice": "View invoice",
+    "restockLocation": "Restock-to location",
+    "posted": "Credit note posted.",
+    "create": {
+      "title": "New credit note",
+      "subtitle": "Saved as a draft; confirming it posts the ledger and restocks goods.",
+      "submit": "Save draft",
+      "created": "Draft credit note created."
+    },
+    "confirmDialog": {
+      "title": "Confirm this credit note?",
+      "body": "Confirming assigns its number, restocks the goods and posts the journal entry. It can't be edited afterwards."
+    }
+  },
   "detail": {
     "back": "Back to sales invoices",
     "notSet": "Not set",

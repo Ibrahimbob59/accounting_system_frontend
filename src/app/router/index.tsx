@@ -36,6 +36,9 @@ import { StockPage } from '@/features/stock/pages/StockPage'
 import { SalesInvoicesListPage } from '@/features/invoicing/pages/SalesInvoicesListPage'
 import { SalesInvoiceCreatePage } from '@/features/invoicing/pages/SalesInvoiceCreatePage'
 import { SalesInvoiceDetailPage } from '@/features/invoicing/pages/SalesInvoiceDetailPage'
+import { CreditNotesListPage } from '@/features/invoicing/pages/CreditNotesListPage'
+import { CreditNoteCreatePage } from '@/features/invoicing/pages/CreditNoteCreatePage'
+import { CreditNoteDetailPage } from '@/features/invoicing/pages/CreditNoteDetailPage'
 import { CompaniesListPage } from '@/features/companies/pages/CompaniesListPage'
 import { CompanyCreatePage } from '@/features/companies/pages/CompanyCreatePage'
 import { CompanyEditPage } from '@/features/companies/pages/CompanyEditPage'
@@ -139,6 +142,15 @@ export const router = createBrowserRouter([
               { index: true, element: <SalesInvoicesListPage /> },
               { path: 'new', element: <SalesInvoiceCreatePage /> },
               { path: ':id', element: <SalesInvoiceDetailPage /> },
+            ],
+          },
+          {
+            path: 'credit-notes',
+            handle: { crumbKey: 'shell:nav.creditNotes' },
+            children: [
+              { index: true, element: <CreditNotesListPage /> },
+              { path: 'new', element: <CreditNoteCreatePage /> },
+              { path: ':id', element: <CreditNoteDetailPage /> },
             ],
           },
           {
