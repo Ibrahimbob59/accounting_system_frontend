@@ -1,0 +1,263 @@
+{
+  "filters": { "all": "Tous", "status": "Statut" },
+  "form": {
+    "supplier": "Fournisseur",
+    "selectSupplier": "Sélectionner un fournisseur",
+    "currency": "Devise",
+    "rate": "Taux",
+    "rateHint": "LBP pour 1 USD",
+    "orderDate": "Date de commande",
+    "expectedDate": "Date prévue",
+    "billDate": "Date de facture",
+    "dueDate": "Échéance",
+    "supplierRef": "Référence fournisseur",
+    "notes": "Notes",
+    "linesTitle": "Lignes",
+    "addLine": "Ajouter une ligne",
+    "previewNote": "Les totaux sont recalculés côté serveur à l'enregistrement.",
+    "line": {
+      "item": "Article",
+      "selectItem": "Sélectionner un article",
+      "qty": "Qté",
+      "cost": "Coût unitaire",
+      "tax": "TVA",
+      "noTax": "Sans TVA",
+      "remove": "Supprimer la ligne",
+      "variant": "Variante",
+      "selectVariant": "Sélectionner une variante"
+    },
+    "validation": {
+      "itemRequired": "Un article est requis.",
+      "qtyPositive": "La quantité doit être supérieure à zéro.",
+      "costPositive": "Le coût unitaire doit être positif ou nul.",
+      "supplierRequired": "Un fournisseur est requis.",
+      "currencyRequired": "Une devise est requise.",
+      "ratePositive": "Le taux doit être un nombre positif.",
+      "dateRequired": "Une date est requise.",
+      "minLines": "Ajoutez au moins une ligne."
+    }
+  },
+  "detail": {
+    "totals": { "subtotal": "Sous-total", "vat": "TVA", "grand": "Total" }
+  },
+  "po": {
+    "status": {
+      "DRAFT": "Brouillon",
+      "CONFIRMED": "Confirmée",
+      "PARTIALLY_RECEIVED": "Partiellement reçue",
+      "RECEIVED": "Reçue",
+      "BILLED": "Facturée",
+      "CANCELLED": "Annulée"
+    },
+    "columns": {
+      "number": "Numéro",
+      "date": "Date",
+      "supplier": "Fournisseur",
+      "total": "Total",
+      "status": "Statut"
+    },
+    "list": {
+      "title": "Bons de commande",
+      "subtitle": "Commandez auprès des fournisseurs, puis recevez et facturez.",
+      "new": "Nouveau bon de commande",
+      "empty": "Aucun bon de commande pour le moment."
+    },
+    "create": {
+      "title": "Nouveau bon de commande",
+      "subtitle": "Créez un brouillon ; confirmez-le pour commencer la réception.",
+      "submit": "Créer la commande",
+      "created": "Bon de commande créé."
+    },
+    "edit": {
+      "title": "Modifier {{number}}",
+      "submit": "Enregistrer",
+      "saved": "Bon de commande mis à jour."
+    },
+    "detail": {
+      "back": "Retour aux bons de commande",
+      "notSet": "—",
+      "sections": {
+        "details": "Détails",
+        "lines": "Lignes",
+        "receipts": "Réceptions"
+      },
+      "supplier": "Fournisseur",
+      "orderDate": "Date de commande",
+      "expectedDate": "Date prévue",
+      "currency": "Devise",
+      "notes": "Notes",
+      "lines": {
+        "item": "Article",
+        "ordered": "Commandé",
+        "received": "Reçu",
+        "cost": "Coût unitaire",
+        "net": "Net",
+        "vat": "TVA",
+        "total": "Total"
+      }
+    },
+    "actions": {
+      "confirm": "Confirmer",
+      "edit": "Modifier",
+      "receive": "Réceptionner",
+      "createBill": "Créer une facture",
+      "delete": "Supprimer",
+      "cancel": "Annuler la commande",
+      "confirmed": "Bon de commande confirmé.",
+      "cancelled": "Bon de commande annulé.",
+      "deleted": "Bon de commande supprimé.",
+      "confirmDialog": {
+        "title": "Confirmer cette commande ?",
+        "body": "La commande devient prête à la réception et ne peut plus être modifiée.",
+        "confirm": "Confirmer",
+        "cancel": "Retour"
+      },
+      "cancelDialog": {
+        "title": "Annuler cette commande ?",
+        "body": "La commande sera marquée comme annulée.",
+        "confirm": "Annuler la commande",
+        "cancel": "Retour"
+      },
+      "deleteDialog": {
+        "title": "Supprimer ce brouillon ?",
+        "body": "Ce brouillon sera supprimé. Action irréversible.",
+        "confirm": "Supprimer",
+        "cancel": "Retour"
+      }
+    }
+  },
+  "receive": {
+    "title": "Réceptionner — {{number}}",
+    "subtitle": "Saisissez les quantités reçues ; le stock entre au coût.",
+    "location": "Emplacement de destination",
+    "selectLocation": "Sélectionner un emplacement",
+    "date": "Date de réception",
+    "item": "Article",
+    "outstanding": "Restant",
+    "qty": "Reçu",
+    "nothingOutstanding": "Plus rien à recevoir sur cette commande.",
+    "cancel": "Annuler",
+    "confirm": "Réceptionner",
+    "received": "Marchandises reçues.",
+    "validation": {
+      "locationRequired": "Choisissez un emplacement de destination.",
+      "noLines": "Saisissez une quantité reçue pour au moins une ligne."
+    }
+  },
+  "bill": {
+    "status": {
+      "DRAFT": "Brouillon",
+      "POSTED": "Comptabilisée",
+      "CANCELLED": "Annulée"
+    },
+    "columns": {
+      "number": "Numéro",
+      "date": "Date",
+      "supplier": "Fournisseur",
+      "supplierRef": "Réf. fournisseur",
+      "total": "Total",
+      "status": "Statut"
+    },
+    "list": {
+      "title": "Factures fournisseurs",
+      "subtitle": "Factures des fournisseurs ; la confirmation comptabilise.",
+      "new": "Nouvelle facture fournisseur",
+      "empty": "Aucune facture fournisseur pour le moment."
+    },
+    "create": {
+      "title": "Nouvelle facture fournisseur",
+      "subtitle": "Enregistrez une facture fournisseur ; confirmez pour comptabiliser.",
+      "submit": "Créer la facture",
+      "created": "Facture fournisseur créée."
+    },
+    "fromPO": "Préremplie depuis le bon de commande {{number}}.",
+    "detail": {
+      "back": "Retour aux factures fournisseurs",
+      "notSet": "—",
+      "sections": { "details": "Détails", "lines": "Lignes" },
+      "supplier": "Fournisseur",
+      "billDate": "Date de facture",
+      "dueDate": "Échéance",
+      "currency": "Devise",
+      "supplierRef": "Référence fournisseur",
+      "notes": "Notes",
+      "purchaseOrder": "Bon de commande",
+      "viewPO": "Voir la commande",
+      "journalEntry": "Écriture comptable",
+      "viewEntry": "Voir l'écriture",
+      "lines": {
+        "item": "Article",
+        "qty": "Qté",
+        "cost": "Coût unitaire",
+        "net": "Net",
+        "vat": "TVA",
+        "total": "Total"
+      },
+      "totals": { "baseNote": "Total en {{currency}} : {{amount}}" }
+    },
+    "actions": {
+      "confirm": "Confirmer et comptabiliser",
+      "delete": "Supprimer",
+      "posted": "Facture fournisseur comptabilisée.",
+      "deleted": "Facture fournisseur supprimée.",
+      "confirmDialog": {
+        "title": "Confirmer et comptabiliser cette facture ?",
+        "body": "Cela comptabilise l'écriture (stock/charge + TVA déductible contre fournisseurs) et est irréversible.",
+        "confirm": "Confirmer et comptabiliser",
+        "cancel": "Retour"
+      },
+      "deleteDialog": {
+        "title": "Supprimer ce brouillon ?",
+        "body": "Ce brouillon de facture sera supprimé. Action irréversible.",
+        "confirm": "Supprimer",
+        "cancel": "Retour"
+      }
+    }
+  },
+  "receipt": {
+    "columns": { "number": "Numéro", "date": "Date", "lines": "Lignes" },
+    "list": {
+      "title": "Réceptions",
+      "subtitle": "Stock reçu sur les bons de commande.",
+      "empty": "Aucune réception pour le moment."
+    },
+    "detail": {
+      "back": "Retour aux réceptions",
+      "notSet": "—",
+      "date": "Date de réception",
+      "purchaseOrder": "Bon de commande",
+      "viewPO": "Voir la commande",
+      "notes": "Notes",
+      "sections": { "lines": "Lignes" },
+      "lines": { "item": "Article", "qty": "Reçu", "unitCost": "Coût unitaire" }
+    }
+  },
+  "errors": {
+    "poNotFound": "Ce bon de commande est introuvable.",
+    "poNotDraft": "Seul un bon de commande brouillon peut être modifié.",
+    "poNotConfirmed": "Le bon de commande n'est pas confirmé.",
+    "poCancelled": "Le bon de commande est déjà annulé.",
+    "poLineMismatch": "Une ligne n'appartient pas à ce bon de commande.",
+    "overBilled": "Cela facturerait plus que ce qui a été commandé.",
+    "receiveExceeds": "La quantité reçue dépasse la quantité commandée.",
+    "receiptNotFound": "Cette réception est introuvable.",
+    "billNotFound": "Cette facture fournisseur est introuvable.",
+    "billNotDraft": "Seule une facture brouillon peut être comptabilisée.",
+    "billPosted": "Une facture comptabilisée ne peut être modifiée ; contre-passez-la.",
+    "partnerNotFound": "Le fournisseur sélectionné est introuvable.",
+    "partnerNotSupplier": "Ce partenaire n'est pas un fournisseur.",
+    "itemNotFound": "Un article d'une ligne est introuvable.",
+    "variantRequired": "Cet article a des variantes ; choisissez-en une.",
+    "uomNotFound": "L'unité de mesure est introuvable.",
+    "taxRateNotFound": "Le taux de TVA est introuvable.",
+    "locationInvalid": "La destination doit être un emplacement interne.",
+    "locationRequired": "Un emplacement de destination est requis.",
+    "branchNotFound": "La succursale est introuvable.",
+    "controlAccountMissing": "Un compte de contrôle requis n'est pas configuré.",
+    "periodLocked": "La période comptable de cette date est verrouillée.",
+    "invalidDate": "La date n'est pas valide.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci.",
+    "generic": "Une erreur s'est produite. Veuillez réessayer."
+  }
+}

@@ -6,7 +6,10 @@ import {
   FileMinus,
   FileText,
   LayoutDashboard,
+  ClipboardList,
   Package,
+  PackageCheck,
+  Receipt,
   Ruler,
   Scale,
   Tags,
@@ -81,6 +84,21 @@ export const NAV_ITEMS: NavItem[] = [
     labelKey: 'shell:nav.payments',
     path: '/app/payments',
     icon: Wallet,
+  },
+  {
+    labelKey: 'shell:nav.purchaseOrders',
+    path: '/app/purchase-orders',
+    icon: ClipboardList,
+  },
+  {
+    labelKey: 'shell:nav.goodsReceipts',
+    path: '/app/goods-receipts',
+    icon: PackageCheck,
+  },
+  {
+    labelKey: 'shell:nav.vendorBills',
+    path: '/app/vendor-bills',
+    icon: Receipt,
   },
   {
     labelKey: 'shell:nav.accounts',

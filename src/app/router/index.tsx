@@ -42,6 +42,15 @@ import { CreditNoteDetailPage } from '@/features/invoicing/pages/CreditNoteDetai
 import { PaymentsListPage } from '@/features/payments/pages/PaymentsListPage'
 import { PaymentCreatePage } from '@/features/payments/pages/PaymentCreatePage'
 import { PaymentDetailPage } from '@/features/payments/pages/PaymentDetailPage'
+import { PurchaseOrdersListPage } from '@/features/purchasing/pages/PurchaseOrdersListPage'
+import { PurchaseOrderCreatePage } from '@/features/purchasing/pages/PurchaseOrderCreatePage'
+import { PurchaseOrderEditPage } from '@/features/purchasing/pages/PurchaseOrderEditPage'
+import { PurchaseOrderDetailPage } from '@/features/purchasing/pages/PurchaseOrderDetailPage'
+import { GoodsReceiptsListPage } from '@/features/purchasing/pages/GoodsReceiptsListPage'
+import { GoodsReceiptDetailPage } from '@/features/purchasing/pages/GoodsReceiptDetailPage'
+import { VendorBillsListPage } from '@/features/purchasing/pages/VendorBillsListPage'
+import { VendorBillCreatePage } from '@/features/purchasing/pages/VendorBillCreatePage'
+import { VendorBillDetailPage } from '@/features/purchasing/pages/VendorBillDetailPage'
 import { CompaniesListPage } from '@/features/companies/pages/CompaniesListPage'
 import { CompanyCreatePage } from '@/features/companies/pages/CompanyCreatePage'
 import { CompanyEditPage } from '@/features/companies/pages/CompanyEditPage'
@@ -163,6 +172,33 @@ export const router = createBrowserRouter([
               { index: true, element: <PaymentsListPage /> },
               { path: 'new', element: <PaymentCreatePage /> },
               { path: ':id', element: <PaymentDetailPage /> },
+            ],
+          },
+          {
+            path: 'purchase-orders',
+            handle: { crumbKey: 'shell:nav.purchaseOrders' },
+            children: [
+              { index: true, element: <PurchaseOrdersListPage /> },
+              { path: 'new', element: <PurchaseOrderCreatePage /> },
+              { path: ':id', element: <PurchaseOrderDetailPage /> },
+              { path: ':id/edit', element: <PurchaseOrderEditPage /> },
+            ],
+          },
+          {
+            path: 'goods-receipts',
+            handle: { crumbKey: 'shell:nav.goodsReceipts' },
+            children: [
+              { index: true, element: <GoodsReceiptsListPage /> },
+              { path: ':id', element: <GoodsReceiptDetailPage /> },
+            ],
+          },
+          {
+            path: 'vendor-bills',
+            handle: { crumbKey: 'shell:nav.vendorBills' },
+            children: [
+              { index: true, element: <VendorBillsListPage /> },
+              { path: 'new', element: <VendorBillCreatePage /> },
+              { path: ':id', element: <VendorBillDetailPage /> },
             ],
           },
           {

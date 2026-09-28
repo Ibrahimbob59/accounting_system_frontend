@@ -1,0 +1,263 @@
+{
+  "filters": { "all": "All", "status": "Status" },
+  "form": {
+    "supplier": "Supplier",
+    "selectSupplier": "Select a supplier",
+    "currency": "Currency",
+    "rate": "Rate",
+    "rateHint": "LBP per 1 USD",
+    "orderDate": "Order date",
+    "expectedDate": "Expected date",
+    "billDate": "Bill date",
+    "dueDate": "Due date",
+    "supplierRef": "Supplier reference",
+    "notes": "Notes",
+    "linesTitle": "Lines",
+    "addLine": "Add line",
+    "previewNote": "Totals are recomputed server-side on save.",
+    "line": {
+      "item": "Item",
+      "selectItem": "Select an item",
+      "qty": "Qty",
+      "cost": "Unit cost",
+      "tax": "VAT",
+      "noTax": "No VAT",
+      "remove": "Remove line",
+      "variant": "Variant",
+      "selectVariant": "Select a variant"
+    },
+    "validation": {
+      "itemRequired": "An item is required.",
+      "qtyPositive": "Quantity must be greater than zero.",
+      "costPositive": "Unit cost must be zero or more.",
+      "supplierRequired": "A supplier is required.",
+      "currencyRequired": "A currency is required.",
+      "ratePositive": "Rate must be a positive number.",
+      "dateRequired": "A date is required.",
+      "minLines": "Add at least one line."
+    }
+  },
+  "detail": {
+    "totals": { "subtotal": "Subtotal", "vat": "VAT", "grand": "Grand total" }
+  },
+  "po": {
+    "status": {
+      "DRAFT": "Draft",
+      "CONFIRMED": "Confirmed",
+      "PARTIALLY_RECEIVED": "Partially received",
+      "RECEIVED": "Received",
+      "BILLED": "Billed",
+      "CANCELLED": "Cancelled"
+    },
+    "columns": {
+      "number": "Number",
+      "date": "Date",
+      "supplier": "Supplier",
+      "total": "Total",
+      "status": "Status"
+    },
+    "list": {
+      "title": "Purchase Orders",
+      "subtitle": "Order goods from suppliers, then receive and bill them.",
+      "new": "New purchase order",
+      "empty": "No purchase orders yet."
+    },
+    "create": {
+      "title": "New purchase order",
+      "subtitle": "Draft an order; confirm it to start receiving goods.",
+      "submit": "Create order",
+      "created": "Purchase order created."
+    },
+    "edit": {
+      "title": "Edit {{number}}",
+      "submit": "Save changes",
+      "saved": "Purchase order updated."
+    },
+    "detail": {
+      "back": "Back to purchase orders",
+      "notSet": "—",
+      "sections": {
+        "details": "Details",
+        "lines": "Lines",
+        "receipts": "Goods receipts"
+      },
+      "supplier": "Supplier",
+      "orderDate": "Order date",
+      "expectedDate": "Expected date",
+      "currency": "Currency",
+      "notes": "Notes",
+      "lines": {
+        "item": "Item",
+        "ordered": "Ordered",
+        "received": "Received",
+        "cost": "Unit cost",
+        "net": "Net",
+        "vat": "VAT",
+        "total": "Total"
+      }
+    },
+    "actions": {
+      "confirm": "Confirm",
+      "edit": "Edit",
+      "receive": "Receive goods",
+      "createBill": "Create bill",
+      "delete": "Delete",
+      "cancel": "Cancel order",
+      "confirmed": "Purchase order confirmed.",
+      "cancelled": "Purchase order cancelled.",
+      "deleted": "Purchase order deleted.",
+      "confirmDialog": {
+        "title": "Confirm this order?",
+        "body": "The order becomes ready to receive and can no longer be edited.",
+        "confirm": "Confirm",
+        "cancel": "Cancel"
+      },
+      "cancelDialog": {
+        "title": "Cancel this order?",
+        "body": "The order will be marked cancelled.",
+        "confirm": "Cancel order",
+        "cancel": "Back"
+      },
+      "deleteDialog": {
+        "title": "Delete this draft?",
+        "body": "This draft order will be removed. This cannot be undone.",
+        "confirm": "Delete",
+        "cancel": "Back"
+      }
+    }
+  },
+  "receive": {
+    "title": "Receive goods — {{number}}",
+    "subtitle": "Enter the quantities received; stock moves in at cost.",
+    "location": "Destination location",
+    "selectLocation": "Select a location",
+    "date": "Receipt date",
+    "item": "Item",
+    "outstanding": "Outstanding",
+    "qty": "Received",
+    "nothingOutstanding": "Nothing left to receive on this order.",
+    "cancel": "Cancel",
+    "confirm": "Receive",
+    "received": "Goods received.",
+    "validation": {
+      "locationRequired": "Choose a destination location.",
+      "noLines": "Enter a received quantity for at least one line."
+    }
+  },
+  "bill": {
+    "status": {
+      "DRAFT": "Draft",
+      "POSTED": "Posted",
+      "CANCELLED": "Cancelled"
+    },
+    "columns": {
+      "number": "Number",
+      "date": "Date",
+      "supplier": "Supplier",
+      "supplierRef": "Supplier ref",
+      "total": "Total",
+      "status": "Status"
+    },
+    "list": {
+      "title": "Vendor Bills",
+      "subtitle": "Supplier invoices; confirming posts to the ledger.",
+      "new": "New vendor bill",
+      "empty": "No vendor bills yet."
+    },
+    "create": {
+      "title": "New vendor bill",
+      "subtitle": "Record a supplier invoice; confirm it to post the accounting entry.",
+      "submit": "Create bill",
+      "created": "Vendor bill created."
+    },
+    "fromPO": "Prefilled from purchase order {{number}}.",
+    "detail": {
+      "back": "Back to vendor bills",
+      "notSet": "—",
+      "sections": { "details": "Details", "lines": "Lines" },
+      "supplier": "Supplier",
+      "billDate": "Bill date",
+      "dueDate": "Due date",
+      "currency": "Currency",
+      "supplierRef": "Supplier reference",
+      "notes": "Notes",
+      "purchaseOrder": "Purchase order",
+      "viewPO": "View order",
+      "journalEntry": "Journal entry",
+      "viewEntry": "View entry",
+      "lines": {
+        "item": "Item",
+        "qty": "Qty",
+        "cost": "Unit cost",
+        "net": "Net",
+        "vat": "VAT",
+        "total": "Total"
+      },
+      "totals": { "baseNote": "Grand total in {{currency}}: {{amount}}" }
+    },
+    "actions": {
+      "confirm": "Confirm & post",
+      "delete": "Delete",
+      "posted": "Vendor bill posted.",
+      "deleted": "Vendor bill deleted.",
+      "confirmDialog": {
+        "title": "Confirm & post this bill?",
+        "body": "This posts the accounting entry (inventory/expense + input VAT vs. accounts payable) and cannot be undone.",
+        "confirm": "Confirm & post",
+        "cancel": "Cancel"
+      },
+      "deleteDialog": {
+        "title": "Delete this draft?",
+        "body": "This draft bill will be removed. This cannot be undone.",
+        "confirm": "Delete",
+        "cancel": "Back"
+      }
+    }
+  },
+  "receipt": {
+    "columns": { "number": "Number", "date": "Date", "lines": "Lines" },
+    "list": {
+      "title": "Goods Receipts",
+      "subtitle": "Stock received against purchase orders.",
+      "empty": "No goods receipts yet."
+    },
+    "detail": {
+      "back": "Back to goods receipts",
+      "notSet": "—",
+      "date": "Receipt date",
+      "purchaseOrder": "Purchase order",
+      "viewPO": "View order",
+      "notes": "Notes",
+      "sections": { "lines": "Lines" },
+      "lines": { "item": "Item", "qty": "Received", "unitCost": "Unit cost" }
+    }
+  },
+  "errors": {
+    "poNotFound": "This purchase order was not found.",
+    "poNotDraft": "Only a draft purchase order can be edited.",
+    "poNotConfirmed": "The purchase order is not confirmed.",
+    "poCancelled": "The purchase order is already cancelled.",
+    "poLineMismatch": "A line does not belong to this purchase order.",
+    "overBilled": "This would bill more than was ordered.",
+    "receiveExceeds": "The received quantity exceeds what was ordered.",
+    "receiptNotFound": "This goods receipt was not found.",
+    "billNotFound": "This vendor bill was not found.",
+    "billNotDraft": "Only a draft bill can be posted.",
+    "billPosted": "A posted bill cannot be changed; reverse it instead.",
+    "partnerNotFound": "The selected supplier was not found.",
+    "partnerNotSupplier": "That partner is not a supplier.",
+    "itemNotFound": "An item on a line was not found.",
+    "variantRequired": "This item has variants; choose a variant.",
+    "uomNotFound": "The unit of measure was not found.",
+    "taxRateNotFound": "The VAT rate was not found.",
+    "locationInvalid": "The destination must be an internal location.",
+    "locationRequired": "A destination location is required.",
+    "branchNotFound": "The branch was not found.",
+    "controlAccountMissing": "A required control account is not configured.",
+    "periodLocked": "The accounting period for this date is locked.",
+    "invalidDate": "The date is not valid.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this.",
+    "generic": "Something went wrong. Please try again."
+  }
+}
