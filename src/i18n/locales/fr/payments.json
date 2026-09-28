@@ -1,0 +1,141 @@
+{
+  "status": {
+    "POSTED": "Comptabilisé",
+    "VOID": "Annulé"
+  },
+  "direction": {
+    "IN": "Encaissement client",
+    "OUT": "Paiement fournisseur"
+  },
+  "method": {
+    "CASH": "Espèces",
+    "CARD": "Carte",
+    "CHEQUE": "Chèque",
+    "TRANSFER": "Virement bancaire",
+    "PREPAID": "Prépayé"
+  },
+  "documentType": {
+    "SALES_INVOICE": "Facture de vente",
+    "VENDOR_BILL": "Facture fournisseur"
+  },
+  "list": {
+    "title": "Paiements",
+    "subtitle": "Encaissements clients et paiements fournisseurs.",
+    "newPayment": "Nouveau paiement",
+    "empty": "Aucun paiement pour le moment."
+  },
+  "columns": {
+    "number": "Numéro",
+    "date": "Date",
+    "direction": "Type",
+    "partner": "Partenaire",
+    "method": "Mode",
+    "amount": "Montant",
+    "status": "Statut"
+  },
+  "filters": {
+    "all": "Tous",
+    "direction": "Type",
+    "status": "Statut"
+  },
+  "create": {
+    "title": "Nouveau paiement",
+    "subtitle": "Enregistrez un encaissement ou un paiement et affectez-le aux documents ouverts.",
+    "submit": "Enregistrer le paiement",
+    "created": "Paiement enregistré."
+  },
+  "form": {
+    "direction": "Type",
+    "customer": "Client",
+    "supplier": "Fournisseur",
+    "selectPartner": "Sélectionner un partenaire",
+    "cashAccount": "Compte caisse / banque",
+    "selectCashAccount": "Sélectionner un compte",
+    "method": "Mode",
+    "currency": "Devise",
+    "rate": "Taux",
+    "rateHint": "LBP pour 1 USD",
+    "amount": "Montant",
+    "paymentDate": "Date",
+    "reference": "Référence",
+    "referenceHint": "N° de chèque / réf. virement",
+    "notes": "Notes",
+    "allocations": {
+      "title": "Affecter aux documents ouverts",
+      "hint": "Tout montant non affecté reste sur le compte du partenaire.",
+      "pickPartner": "Choisissez un partenaire pour voir ses documents ouverts.",
+      "none": "Aucun document ouvert dans cette devise.",
+      "document": "Document",
+      "date": "Date",
+      "balance": "Solde ouvert",
+      "apply": "Affecter",
+      "fill": "Remplir",
+      "paymentAmount": "Montant du paiement",
+      "allocated": "Affecté",
+      "onAccount": "Sur compte",
+      "overAllocated": "Montant affecté supérieur au montant du paiement."
+    },
+    "validation": {
+      "partnerRequired": "Un partenaire est requis.",
+      "cashAccountRequired": "Un compte caisse/banque est requis.",
+      "currencyRequired": "Une devise est requise.",
+      "ratePositive": "Le taux doit être un nombre positif.",
+      "amountPositive": "Le montant doit être supérieur à zéro.",
+      "dateRequired": "Une date est requise."
+    }
+  },
+  "detail": {
+    "back": "Retour aux paiements",
+    "notSet": "—",
+    "sections": {
+      "details": "Détails",
+      "allocations": "Affectations"
+    },
+    "direction": "Type",
+    "cashAccount": "Compte caisse / banque",
+    "method": "Mode",
+    "paymentDate": "Date",
+    "currency": "Devise",
+    "amount": "Montant",
+    "amountBase": "Montant ({{currency}})",
+    "reference": "Référence",
+    "notes": "Notes",
+    "journalEntry": "Écriture comptable",
+    "viewEntry": "Voir l'écriture",
+    "voidedAt": "Annulé le",
+    "onAccountAll": "Entièrement sur compte — non affecté à un document.",
+    "alloc": {
+      "document": "Document",
+      "amount": "Montant",
+      "amountBase": "Base"
+    }
+  },
+  "actions": {
+    "void": "Annuler",
+    "voided": "Paiement annulé.",
+    "voidDialog": {
+      "title": "Annuler ce paiement ?",
+      "body": "Cela contre-passe son écriture comptable et libère les affectations. Action irréversible.",
+      "confirm": "Annuler le paiement",
+      "cancel": "Retour"
+    }
+  },
+  "errors": {
+    "paymentNotFound": "Ce paiement est introuvable.",
+    "alreadyVoid": "Ce paiement est déjà annulé.",
+    "partnerNotFound": "Le partenaire sélectionné est introuvable.",
+    "partnerNotCustomer": "Ce partenaire n'est pas un client.",
+    "partnerNotSupplier": "Ce partenaire n'est pas un fournisseur.",
+    "cashAccountNotFound": "Le compte caisse/banque est introuvable.",
+    "cashAccountInvalid": "Le compte sélectionné n'est pas un compte de caisse ou de banque.",
+    "allocationCurrencyMismatch": "Un paiement ne peut être affecté qu'à des documents dans la même devise.",
+    "allocationExceedsBalance": "Une affectation dépasse le solde ouvert du document.",
+    "allocationDocumentNotFound": "L'un des documents affectés est introuvable.",
+    "controlAccountMissing": "Le compte de contrôle client/fournisseur n'est pas configuré.",
+    "periodLocked": "La période comptable de cette date est verrouillée.",
+    "invalidDate": "La date n'est pas valide.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci.",
+    "generic": "Une erreur s'est produite. Veuillez réessayer."
+  }
+}

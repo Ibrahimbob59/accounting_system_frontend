@@ -11,6 +11,7 @@ import {
   Scale,
   Tags,
   UsersRound,
+  Wallet,
   Warehouse,
 } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -75,6 +76,11 @@ export const NAV_ITEMS: NavItem[] = [
     labelKey: 'shell:nav.creditNotes',
     path: '/app/credit-notes',
     icon: FileMinus,
+  },
+  {
+    labelKey: 'shell:nav.payments',
+    path: '/app/payments',
+    icon: Wallet,
   },
   {
     labelKey: 'shell:nav.accounts',

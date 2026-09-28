@@ -1,0 +1,141 @@
+{
+  "status": {
+    "POSTED": "Posted",
+    "VOID": "Void"
+  },
+  "direction": {
+    "IN": "Customer receipt",
+    "OUT": "Supplier payment"
+  },
+  "method": {
+    "CASH": "Cash",
+    "CARD": "Card",
+    "CHEQUE": "Cheque",
+    "TRANSFER": "Bank transfer",
+    "PREPAID": "Prepaid"
+  },
+  "documentType": {
+    "SALES_INVOICE": "Sales invoice",
+    "VENDOR_BILL": "Vendor bill"
+  },
+  "list": {
+    "title": "Payments",
+    "subtitle": "Customer receipts and supplier payments.",
+    "newPayment": "New payment",
+    "empty": "No payments yet."
+  },
+  "columns": {
+    "number": "Number",
+    "date": "Date",
+    "direction": "Type",
+    "partner": "Partner",
+    "method": "Method",
+    "amount": "Amount",
+    "status": "Status"
+  },
+  "filters": {
+    "all": "All",
+    "direction": "Type",
+    "status": "Status"
+  },
+  "create": {
+    "title": "New payment",
+    "subtitle": "Record a receipt or a payment and allocate it to open documents.",
+    "submit": "Record payment",
+    "created": "Payment recorded."
+  },
+  "form": {
+    "direction": "Type",
+    "customer": "Customer",
+    "supplier": "Supplier",
+    "selectPartner": "Select a partner",
+    "cashAccount": "Cash / bank account",
+    "selectCashAccount": "Select an account",
+    "method": "Method",
+    "currency": "Currency",
+    "rate": "Rate",
+    "rateHint": "LBP per 1 USD",
+    "amount": "Amount",
+    "paymentDate": "Date",
+    "reference": "Reference",
+    "referenceHint": "Cheque no. / transfer ref",
+    "notes": "Notes",
+    "allocations": {
+      "title": "Allocate to open documents",
+      "hint": "Anything not allocated stays on the partner's account.",
+      "pickPartner": "Choose a partner to see their open documents.",
+      "none": "No open documents in this currency.",
+      "document": "Document",
+      "date": "Date",
+      "balance": "Open balance",
+      "apply": "Apply",
+      "fill": "Fill",
+      "paymentAmount": "Payment amount",
+      "allocated": "Allocated",
+      "onAccount": "On account",
+      "overAllocated": "Allocated more than the payment amount."
+    },
+    "validation": {
+      "partnerRequired": "A partner is required.",
+      "cashAccountRequired": "A cash/bank account is required.",
+      "currencyRequired": "A currency is required.",
+      "ratePositive": "Rate must be a positive number.",
+      "amountPositive": "Amount must be greater than zero.",
+      "dateRequired": "A date is required."
+    }
+  },
+  "detail": {
+    "back": "Back to payments",
+    "notSet": "—",
+    "sections": {
+      "details": "Details",
+      "allocations": "Allocations"
+    },
+    "direction": "Type",
+    "cashAccount": "Cash / bank account",
+    "method": "Method",
+    "paymentDate": "Date",
+    "currency": "Currency",
+    "amount": "Amount",
+    "amountBase": "Amount ({{currency}})",
+    "reference": "Reference",
+    "notes": "Notes",
+    "journalEntry": "Journal entry",
+    "viewEntry": "View entry",
+    "voidedAt": "Voided at",
+    "onAccountAll": "Fully on account — not allocated to any document.",
+    "alloc": {
+      "document": "Document",
+      "amount": "Amount",
+      "amountBase": "Base"
+    }
+  },
+  "actions": {
+    "void": "Void",
+    "voided": "Payment voided.",
+    "voidDialog": {
+      "title": "Void this payment?",
+      "body": "This reverses its journal entry and releases any allocations. This cannot be undone.",
+      "confirm": "Void payment",
+      "cancel": "Cancel"
+    }
+  },
+  "errors": {
+    "paymentNotFound": "This payment was not found.",
+    "alreadyVoid": "This payment is already void.",
+    "partnerNotFound": "The selected partner was not found.",
+    "partnerNotCustomer": "That partner is not a customer.",
+    "partnerNotSupplier": "That partner is not a supplier.",
+    "cashAccountNotFound": "The cash/bank account was not found.",
+    "cashAccountInvalid": "The selected account is not a cash or bank account.",
+    "allocationCurrencyMismatch": "A payment can only be allocated to documents in the same currency.",
+    "allocationExceedsBalance": "An allocation exceeds the document's open balance.",
+    "allocationDocumentNotFound": "One of the allocated documents was not found.",
+    "controlAccountMissing": "The receivable/payable control account is not configured.",
+    "periodLocked": "The accounting period for this date is locked.",
+    "invalidDate": "The date is not valid.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this.",
+    "generic": "Something went wrong. Please try again."
+  }
+}

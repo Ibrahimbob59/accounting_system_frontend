@@ -1,0 +1,141 @@
+{
+  "status": {
+    "POSTED": "مُرحّل",
+    "VOID": "ملغى"
+  },
+  "direction": {
+    "IN": "قبض من عميل",
+    "OUT": "دفع لمورّد"
+  },
+  "method": {
+    "CASH": "نقداً",
+    "CARD": "بطاقة",
+    "CHEQUE": "شيك",
+    "TRANSFER": "تحويل مصرفي",
+    "PREPAID": "مدفوع مسبقاً"
+  },
+  "documentType": {
+    "SALES_INVOICE": "فاتورة مبيعات",
+    "VENDOR_BILL": "فاتورة مورّد"
+  },
+  "list": {
+    "title": "المدفوعات",
+    "subtitle": "مقبوضات العملاء ومدفوعات الموردين.",
+    "newPayment": "دفعة جديدة",
+    "empty": "لا توجد مدفوعات بعد."
+  },
+  "columns": {
+    "number": "الرقم",
+    "date": "التاريخ",
+    "direction": "النوع",
+    "partner": "الطرف",
+    "method": "الطريقة",
+    "amount": "المبلغ",
+    "status": "الحالة"
+  },
+  "filters": {
+    "all": "الكل",
+    "direction": "النوع",
+    "status": "الحالة"
+  },
+  "create": {
+    "title": "دفعة جديدة",
+    "subtitle": "سجّل مقبوضاً أو مدفوعاً ووزّعه على المستندات المفتوحة.",
+    "submit": "تسجيل الدفعة",
+    "created": "تم تسجيل الدفعة."
+  },
+  "form": {
+    "direction": "النوع",
+    "customer": "العميل",
+    "supplier": "المورّد",
+    "selectPartner": "اختر طرفاً",
+    "cashAccount": "حساب الصندوق / المصرف",
+    "selectCashAccount": "اختر حساباً",
+    "method": "الطريقة",
+    "currency": "العملة",
+    "rate": "السعر",
+    "rateHint": "ل.ل مقابل 1 دولار",
+    "amount": "المبلغ",
+    "paymentDate": "التاريخ",
+    "reference": "المرجع",
+    "referenceHint": "رقم الشيك / مرجع التحويل",
+    "notes": "ملاحظات",
+    "allocations": {
+      "title": "التوزيع على المستندات المفتوحة",
+      "hint": "أي مبلغ غير موزّع يبقى على حساب الطرف.",
+      "pickPartner": "اختر طرفاً لعرض مستنداته المفتوحة.",
+      "none": "لا توجد مستندات مفتوحة بهذه العملة.",
+      "document": "المستند",
+      "date": "التاريخ",
+      "balance": "الرصيد المفتوح",
+      "apply": "تطبيق",
+      "fill": "تعبئة",
+      "paymentAmount": "مبلغ الدفعة",
+      "allocated": "الموزّع",
+      "onAccount": "على الحساب",
+      "overAllocated": "الموزّع أكبر من مبلغ الدفعة."
+    },
+    "validation": {
+      "partnerRequired": "الطرف مطلوب.",
+      "cashAccountRequired": "حساب الصندوق/المصرف مطلوب.",
+      "currencyRequired": "العملة مطلوبة.",
+      "ratePositive": "يجب أن يكون السعر رقماً موجباً.",
+      "amountPositive": "يجب أن يكون المبلغ أكبر من صفر.",
+      "dateRequired": "التاريخ مطلوب."
+    }
+  },
+  "detail": {
+    "back": "العودة إلى المدفوعات",
+    "notSet": "—",
+    "sections": {
+      "details": "التفاصيل",
+      "allocations": "التوزيعات"
+    },
+    "direction": "النوع",
+    "cashAccount": "حساب الصندوق / المصرف",
+    "method": "الطريقة",
+    "paymentDate": "التاريخ",
+    "currency": "العملة",
+    "amount": "المبلغ",
+    "amountBase": "المبلغ ({{currency}})",
+    "reference": "المرجع",
+    "notes": "ملاحظات",
+    "journalEntry": "القيد المحاسبي",
+    "viewEntry": "عرض القيد",
+    "voidedAt": "أُلغي في",
+    "onAccountAll": "بالكامل على الحساب — غير موزّع على أي مستند.",
+    "alloc": {
+      "document": "المستند",
+      "amount": "المبلغ",
+      "amountBase": "بالعملة الأساسية"
+    }
+  },
+  "actions": {
+    "void": "إلغاء",
+    "voided": "تم إلغاء الدفعة.",
+    "voidDialog": {
+      "title": "إلغاء هذه الدفعة؟",
+      "body": "سيعكس هذا قيدها المحاسبي ويحرّر أي توزيعات. لا يمكن التراجع.",
+      "confirm": "إلغاء الدفعة",
+      "cancel": "تراجع"
+    }
+  },
+  "errors": {
+    "paymentNotFound": "لم يتم العثور على هذه الدفعة.",
+    "alreadyVoid": "هذه الدفعة ملغاة بالفعل.",
+    "partnerNotFound": "لم يتم العثور على الطرف المحدد.",
+    "partnerNotCustomer": "هذا الطرف ليس عميلاً.",
+    "partnerNotSupplier": "هذا الطرف ليس مورّداً.",
+    "cashAccountNotFound": "لم يتم العثور على حساب الصندوق/المصرف.",
+    "cashAccountInvalid": "الحساب المحدد ليس حساب صندوق أو مصرف.",
+    "allocationCurrencyMismatch": "لا يمكن توزيع الدفعة إلا على مستندات بنفس العملة.",
+    "allocationExceedsBalance": "أحد التوزيعات يتجاوز الرصيد المفتوح للمستند.",
+    "allocationDocumentNotFound": "لم يتم العثور على أحد المستندات الموزّعة.",
+    "controlAccountMissing": "حساب مراقبة الذمم المدينة/الدائنة غير مُهيأ.",
+    "periodLocked": "الفترة المحاسبية لهذا التاريخ مقفلة.",
+    "invalidDate": "التاريخ غير صالح.",
+    "permissionDenied": "لا تملك صلاحية القيام بذلك.",
+    "permissionDeniedSection": "لا تملك صلاحية عرض هذا.",
+    "generic": "حدث خطأ ما. حاول مرة أخرى."
+  }
+}

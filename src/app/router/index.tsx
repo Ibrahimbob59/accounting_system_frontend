@@ -39,6 +39,9 @@ import { SalesInvoiceDetailPage } from '@/features/invoicing/pages/SalesInvoiceD
 import { CreditNotesListPage } from '@/features/invoicing/pages/CreditNotesListPage'
 import { CreditNoteCreatePage } from '@/features/invoicing/pages/CreditNoteCreatePage'
 import { CreditNoteDetailPage } from '@/features/invoicing/pages/CreditNoteDetailPage'
+import { PaymentsListPage } from '@/features/payments/pages/PaymentsListPage'
+import { PaymentCreatePage } from '@/features/payments/pages/PaymentCreatePage'
+import { PaymentDetailPage } from '@/features/payments/pages/PaymentDetailPage'
 import { CompaniesListPage } from '@/features/companies/pages/CompaniesListPage'
 import { CompanyCreatePage } from '@/features/companies/pages/CompanyCreatePage'
 import { CompanyEditPage } from '@/features/companies/pages/CompanyEditPage'
@@ -151,6 +154,15 @@ export const router = createBrowserRouter([
               { index: true, element: <CreditNotesListPage /> },
               { path: 'new', element: <CreditNoteCreatePage /> },
               { path: ':id', element: <CreditNoteDetailPage /> },
+            ],
+          },
+          {
+            path: 'payments',
+            handle: { crumbKey: 'shell:nav.payments' },
+            children: [
+              { index: true, element: <PaymentsListPage /> },
+              { path: 'new', element: <PaymentCreatePage /> },
+              { path: ':id', element: <PaymentDetailPage /> },
             ],
           },
           {

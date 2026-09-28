@@ -8,6 +8,7 @@
     "stock": "Stock",
     "salesInvoices": "Sales Invoices",
     "creditNotes": "Credit Notes",
+    "payments": "Payments",
     "users": "Team",
     "accounts": "Chart of Accounts",
     "journalEntries": "Journal",
