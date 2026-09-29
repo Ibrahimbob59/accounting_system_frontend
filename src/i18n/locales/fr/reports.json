@@ -5,11 +5,70 @@
   },
   "filters": {
     "asOf": "Au",
+    "from": "Du",
+    "to": "Au",
     "numberPrefix": "Préfixe de compte",
     "numberPrefixPlaceholder": "ex. 6, 7",
     "presentIn": "Afficher en",
     "presentNone": "Devises de base",
     "rollUp": "Regrouper par groupes"
+  },
+  "vatReturn": {
+    "title": "Déclaration de TVA",
+    "subtitle": "TVA collectée sur les ventes moins TVA déductible sur les achats pour la période.",
+    "outputVat": "TVA collectée (ventes)",
+    "inputVat": "TVA déductible (achats)",
+    "netVat": "TVA nette",
+    "noData": "Aucune activité de TVA pour cette période.",
+    "direction": {
+      "PAYABLE": "À payer",
+      "RECOVERABLE": "Récupérable",
+      "NIL": "Nulle"
+    }
+  },
+  "generalLedger": {
+    "title": "Grand livre",
+    "subtitle": "Les mouvements comptabilisés d'un compte avec un solde cumulé.",
+    "account": "Compte",
+    "selectAccount": "Sélectionner un compte",
+    "pickAccount": "Choisissez un compte pour voir son grand livre.",
+    "opening": "Solde d'ouverture",
+    "closing": "Solde de clôture",
+    "columns": {
+      "date": "Date",
+      "entry": "Écriture",
+      "description": "Description",
+      "debit": "Débit",
+      "credit": "Crédit",
+      "balance": "Solde"
+    }
+  },
+  "incomeStatement": {
+    "title": "Compte de résultat",
+    "subtitle": "Produits moins charges pour la période.",
+    "revenue": "Produits",
+    "totalRevenue": "Total des produits",
+    "noRevenue": "Aucun produit sur cette période.",
+    "expenses": "Charges",
+    "totalExpenses": "Total des charges",
+    "noExpenses": "Aucune charge sur cette période.",
+    "netProfit": "Bénéfice net",
+    "netLoss": "Perte nette"
+  },
+  "balanceSheet": {
+    "title": "Bilan",
+    "subtitle": "Actif face au passif et aux capitaux propres à une date.",
+    "assets": "Actif",
+    "totalAssets": "Total de l'actif",
+    "noAssets": "Aucun actif.",
+    "liabilities": "Passif",
+    "totalLiabilities": "Total du passif",
+    "noLiabilities": "Aucun passif.",
+    "equity": "Capitaux propres",
+    "totalEquity": "Total des capitaux propres",
+    "noEquity": "Aucun capitaux propres.",
+    "balanced": "Équilibré",
+    "unbalanced": "Déséquilibré"
   },
   "table": {
     "heading": "En {{currency}}",

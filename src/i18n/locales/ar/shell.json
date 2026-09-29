@@ -16,6 +16,10 @@
     "accounts": "دليل الحسابات",
     "journalEntries": "دفتر اليومية",
     "trialBalance": "ميزان المراجعة",
+    "vatReturn": "إقرار ض.ق.م",
+    "generalLedger": "دفتر الأستاذ العام",
+    "incomeStatement": "قائمة الدخل",
+    "balanceSheet": "الميزانية العمومية",
     "companies": "الشركات"
   },
   "breadcrumbs": {

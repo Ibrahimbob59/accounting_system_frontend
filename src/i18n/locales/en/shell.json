@@ -16,6 +16,10 @@
     "accounts": "Chart of Accounts",
     "journalEntries": "Journal",
     "trialBalance": "Trial Balance",
+    "vatReturn": "VAT Return",
+    "generalLedger": "General Ledger",
+    "incomeStatement": "Income Statement",
+    "balanceSheet": "Balance Sheet",
     "companies": "Companies"
   },
   "breadcrumbs": {

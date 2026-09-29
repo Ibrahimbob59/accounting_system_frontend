@@ -16,6 +16,10 @@
     "accounts": "Plan comptable",
     "journalEntries": "Journal",
     "trialBalance": "Balance générale",
+    "vatReturn": "Déclaration de TVA",
+    "generalLedger": "Grand livre",
+    "incomeStatement": "Compte de résultat",
+    "balanceSheet": "Bilan",
     "companies": "Sociétés"
   },
   "breadcrumbs": {

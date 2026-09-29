@@ -26,6 +26,10 @@ import { JournalEntryCreatePage } from '@/features/journal-entries/pages/Journal
 import { JournalEntryDetailPage } from '@/features/journal-entries/pages/JournalEntryDetailPage'
 import { JournalEntryEditPage } from '@/features/journal-entries/pages/JournalEntryEditPage'
 import { TrialBalancePage } from '@/features/reports/pages/TrialBalancePage'
+import { VatReturnPage } from '@/features/reports/pages/VatReturnPage'
+import { GeneralLedgerPage } from '@/features/reports/pages/GeneralLedgerPage'
+import { IncomeStatementPage } from '@/features/reports/pages/IncomeStatementPage'
+import { BalanceSheetPage } from '@/features/reports/pages/BalanceSheetPage'
 import { ItemsListPage } from '@/features/items/pages/ItemsListPage'
 import { ItemCreatePage } from '@/features/items/pages/ItemCreatePage'
 import { ItemDetailPage } from '@/features/items/pages/ItemDetailPage'
@@ -228,6 +232,26 @@ export const router = createBrowserRouter([
                 path: 'trial-balance',
                 handle: { crumbKey: 'shell:nav.trialBalance' },
                 element: <TrialBalancePage />,
+              },
+              {
+                path: 'vat-return',
+                handle: { crumbKey: 'shell:nav.vatReturn' },
+                element: <VatReturnPage />,
+              },
+              {
+                path: 'general-ledger',
+                handle: { crumbKey: 'shell:nav.generalLedger' },
+                element: <GeneralLedgerPage />,
+              },
+              {
+                path: 'income-statement',
+                handle: { crumbKey: 'shell:nav.incomeStatement' },
+                element: <IncomeStatementPage />,
+              },
+              {
+                path: 'balance-sheet',
+                handle: { crumbKey: 'shell:nav.balanceSheet' },
+                element: <BalanceSheetPage />,
               },
             ],
           },

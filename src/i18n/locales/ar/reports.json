@@ -5,11 +5,70 @@
   },
   "filters": {
     "asOf": "حتى تاريخ",
+    "from": "من",
+    "to": "إلى",
     "numberPrefix": "بادئة الحساب",
     "numberPrefixPlaceholder": "مثال: 6، 7",
     "presentIn": "العرض بـ",
     "presentNone": "عملات الأساس",
     "rollUp": "التجميع في مجموعات"
+  },
+  "vatReturn": {
+    "title": "إقرار ضريبة القيمة المضافة",
+    "subtitle": "ضريبة المخرجات على المبيعات ناقص ضريبة المدخلات على المشتريات للفترة.",
+    "outputVat": "ضريبة المخرجات (المبيعات)",
+    "inputVat": "ضريبة المدخلات (المشتريات)",
+    "netVat": "صافي الضريبة",
+    "noData": "لا توجد حركة ضريبية لهذه الفترة.",
+    "direction": {
+      "PAYABLE": "مستحقة الدفع",
+      "RECOVERABLE": "قابلة للاسترداد",
+      "NIL": "صفر"
+    }
+  },
+  "generalLedger": {
+    "title": "دفتر الأستاذ العام",
+    "subtitle": "حركات حساب واحد المُرحّلة مع رصيد جارٍ.",
+    "account": "الحساب",
+    "selectAccount": "اختر حساباً",
+    "pickAccount": "اختر حساباً لعرض دفتر أستاذه.",
+    "opening": "الرصيد الافتتاحي",
+    "closing": "الرصيد الختامي",
+    "columns": {
+      "date": "التاريخ",
+      "entry": "القيد",
+      "description": "الوصف",
+      "debit": "مدين",
+      "credit": "دائن",
+      "balance": "الرصيد"
+    }
+  },
+  "incomeStatement": {
+    "title": "قائمة الدخل",
+    "subtitle": "الإيرادات ناقص المصروفات للفترة.",
+    "revenue": "الإيرادات",
+    "totalRevenue": "إجمالي الإيرادات",
+    "noRevenue": "لا توجد إيرادات في هذه الفترة.",
+    "expenses": "المصروفات",
+    "totalExpenses": "إجمالي المصروفات",
+    "noExpenses": "لا توجد مصروفات في هذه الفترة.",
+    "netProfit": "صافي الربح",
+    "netLoss": "صافي الخسارة"
+  },
+  "balanceSheet": {
+    "title": "الميزانية العمومية",
+    "subtitle": "الأصول مقابل الخصوم وحقوق الملكية كما في تاريخ.",
+    "assets": "الأصول",
+    "totalAssets": "إجمالي الأصول",
+    "noAssets": "لا توجد أصول.",
+    "liabilities": "الخصوم",
+    "totalLiabilities": "إجمالي الخصوم",
+    "noLiabilities": "لا توجد خصوم.",
+    "equity": "حقوق الملكية",
+    "totalEquity": "إجمالي حقوق الملكية",
+    "noEquity": "لا توجد حقوق ملكية.",
+    "balanced": "متوازنة",
+    "unbalanced": "غير متوازنة"
   },
   "table": {
     "heading": "بعملة {{currency}}",

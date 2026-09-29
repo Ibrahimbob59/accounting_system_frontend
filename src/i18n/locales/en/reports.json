@@ -5,11 +5,70 @@
   },
   "filters": {
     "asOf": "As of",
+    "from": "From",
+    "to": "To",
     "numberPrefix": "Account prefix",
     "numberPrefixPlaceholder": "e.g. 6, 7",
     "presentIn": "Show in",
     "presentNone": "Base currencies",
     "rollUp": "Roll up into groups"
+  },
+  "vatReturn": {
+    "title": "VAT return",
+    "subtitle": "Output VAT on sales minus input VAT on purchases for the period.",
+    "outputVat": "Output VAT (sales)",
+    "inputVat": "Input VAT (purchases)",
+    "netVat": "Net VAT",
+    "noData": "No VAT activity for this period.",
+    "direction": {
+      "PAYABLE": "Payable",
+      "RECOVERABLE": "Recoverable",
+      "NIL": "Nil"
+    }
+  },
+  "generalLedger": {
+    "title": "General ledger",
+    "subtitle": "One account's posted movements with a running balance.",
+    "account": "Account",
+    "selectAccount": "Select an account",
+    "pickAccount": "Choose an account to see its ledger.",
+    "opening": "Opening balance",
+    "closing": "Closing balance",
+    "columns": {
+      "date": "Date",
+      "entry": "Entry",
+      "description": "Description",
+      "debit": "Debit",
+      "credit": "Credit",
+      "balance": "Balance"
+    }
+  },
+  "incomeStatement": {
+    "title": "Income statement",
+    "subtitle": "Revenue minus expenses for the period.",
+    "revenue": "Revenue",
+    "totalRevenue": "Total revenue",
+    "noRevenue": "No revenue in this period.",
+    "expenses": "Expenses",
+    "totalExpenses": "Total expenses",
+    "noExpenses": "No expenses in this period.",
+    "netProfit": "Net profit",
+    "netLoss": "Net loss"
+  },
+  "balanceSheet": {
+    "title": "Balance sheet",
+    "subtitle": "Assets versus liabilities and equity as of a date.",
+    "assets": "Assets",
+    "totalAssets": "Total assets",
+    "noAssets": "No assets.",
+    "liabilities": "Liabilities",
+    "totalLiabilities": "Total liabilities",
+    "noLiabilities": "No liabilities.",
+    "equity": "Equity",
+    "totalEquity": "Total equity",
+    "noEquity": "No equity.",
+    "balanced": "Balanced",
+    "unbalanced": "Out of balance"
   },
   "table": {
     "heading": "In {{currency}}",
