@@ -4,7 +4,12 @@
   "cards": {
     "partners": "Total des partenaires",
     "users": "Membres de l'équipe",
-    "accounts": "Plan comptable"
+    "accounts": "Plan comptable",
+    "items": "Articles",
+    "salesInvoices": "Factures de vente",
+    "purchaseOrders": "Bons de commande",
+    "vendorBills": "Factures fournisseurs",
+    "payments": "Paiements"
   },
   "platformAdmin": {
     "title": "Administrateur de la plateforme",

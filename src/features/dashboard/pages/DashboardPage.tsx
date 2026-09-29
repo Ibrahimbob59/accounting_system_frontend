@@ -1,11 +1,27 @@
 import { useTranslation } from 'react-i18next'
-import { BookOpen, Users, UsersRound } from 'lucide-react'
+import {
+  BookOpen,
+  ClipboardList,
+  FileText,
+  Package,
+  Receipt,
+  Users,
+  UsersRound,
+  Wallet,
+} from 'lucide-react'
 
 import { useAuthStore } from '@/features/auth/store/auth-store'
 import { StatCard } from '@/features/dashboard/components/StatCard'
 import { usePartnersCount } from '@/features/dashboard/hooks/usePartnersCount'
 import { useUsersCount } from '@/features/dashboard/hooks/useUsersCount'
 import { useAccountsCount } from '@/features/dashboard/hooks/useAccountsCount'
+import {
+  useItemsCount,
+  usePaymentsCount,
+  usePurchaseOrdersCount,
+  useSalesInvoicesCount,
+  useVendorBillsCount,
+} from '@/features/dashboard/hooks/useDashboardCounts'
 
 /**
  * The `/app` index page. Company-scoped stat cards for a normal user; a plain
@@ -20,9 +36,15 @@ export function DashboardPage() {
   const isPlatformAdmin = companies.length === 0
 
   // Skip the company-scoped calls entirely for a platform admin.
-  const partners = usePartnersCount(!isPlatformAdmin)
-  const users = useUsersCount(!isPlatformAdmin)
-  const accounts = useAccountsCount(!isPlatformAdmin)
+  const active = !isPlatformAdmin
+  const partners = usePartnersCount(active)
+  const users = useUsersCount(active)
+  const accounts = useAccountsCount(active)
+  const items = useItemsCount(active)
+  const salesInvoices = useSalesInvoicesCount(active)
+  const purchaseOrders = usePurchaseOrdersCount(active)
+  const vendorBills = useVendorBillsCount(active)
+  const payments = usePaymentsCount(active)
 
   if (isPlatformAdmin) {
     return (
@@ -42,9 +64,7 @@ export function DashboardPage() {
           ? t('welcome', { name: user.firstName })
           : t('welcomeGeneric')}
       </h1>
-      <p className="mt-2 text-[15px] text-text-muted">
-        {t('welcomeSubtitle')}
-      </p>
+      <p className="mt-2 text-[15px] text-text-muted">{t('welcomeSubtitle')}</p>
 
       <div className="mt-9 grid gap-grid sm:grid-cols-2 lg:grid-cols-3">
         <StatCard
@@ -67,6 +87,41 @@ export function DashboardPage() {
           value={accounts.data}
           isLoading={accounts.isLoading}
           isError={accounts.isError}
+        />
+        <StatCard
+          label={t('cards.items')}
+          icon={Package}
+          value={items.data}
+          isLoading={items.isLoading}
+          isError={items.isError}
+        />
+        <StatCard
+          label={t('cards.salesInvoices')}
+          icon={FileText}
+          value={salesInvoices.data}
+          isLoading={salesInvoices.isLoading}
+          isError={salesInvoices.isError}
+        />
+        <StatCard
+          label={t('cards.purchaseOrders')}
+          icon={ClipboardList}
+          value={purchaseOrders.data}
+          isLoading={purchaseOrders.isLoading}
+          isError={purchaseOrders.isError}
+        />
+        <StatCard
+          label={t('cards.vendorBills')}
+          icon={Receipt}
+          value={vendorBills.data}
+          isLoading={vendorBills.isLoading}
+          isError={vendorBills.isError}
+        />
+        <StatCard
+          label={t('cards.payments')}
+          icon={Wallet}
+          value={payments.data}
+          isLoading={payments.isLoading}
+          isError={payments.isError}
         />
       </div>
     </div>

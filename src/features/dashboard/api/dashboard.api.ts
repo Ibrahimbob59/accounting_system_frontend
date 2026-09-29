@@ -6,14 +6,32 @@ import type { ApiSuccess } from '@/types/api'
  * rows — `getPage` keeps the envelope so the hook can read that total. No
  * business logic here (per CONVENTIONS.md); the hooks pull `meta.total` out.
  */
+const count = (path: string, params: Record<string, unknown> = {}) =>
+  http.getPage<unknown[]>(path, { params: { limit: 1, ...params } })
+
 export const dashboardApi = {
   partnersCount(): Promise<ApiSuccess<unknown[]>> {
-    return http.getPage<unknown[]>('/partners', { params: { limit: 1 } })
+    return count('/partners')
   },
   usersCount(): Promise<ApiSuccess<unknown[]>> {
-    return http.getPage<unknown[]>('/users', { params: { limit: 1 } })
+    return count('/users')
   },
   accountsCount(): Promise<ApiSuccess<unknown[]>> {
-    return http.getPage<unknown[]>('/accounts', { params: { limit: 1 } })
+    return count('/accounts')
+  },
+  itemsCount(): Promise<ApiSuccess<unknown[]>> {
+    return count('/items')
+  },
+  salesInvoicesCount(): Promise<ApiSuccess<unknown[]>> {
+    return count('/sales-invoices')
+  },
+  purchaseOrdersCount(): Promise<ApiSuccess<unknown[]>> {
+    return count('/purchase-orders')
+  },
+  vendorBillsCount(): Promise<ApiSuccess<unknown[]>> {
+    return count('/vendor-bills')
+  },
+  paymentsCount(): Promise<ApiSuccess<unknown[]>> {
+    return count('/payments')
   },
 }

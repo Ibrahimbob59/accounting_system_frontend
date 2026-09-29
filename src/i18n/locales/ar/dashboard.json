@@ -4,7 +4,12 @@
   "cards": {
     "partners": "إجمالي الشركاء",
     "users": "أعضاء الفريق",
-    "accounts": "دليل الحسابات"
+    "accounts": "دليل الحسابات",
+    "items": "الأصناف",
+    "salesInvoices": "فواتير المبيعات",
+    "purchaseOrders": "أوامر الشراء",
+    "vendorBills": "فواتير الموردين",
+    "payments": "المدفوعات"
   },
   "platformAdmin": {
     "title": "مسؤول المنصة",

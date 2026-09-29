@@ -4,7 +4,12 @@
   "cards": {
     "partners": "Total Partners",
     "users": "Team members",
-    "accounts": "Chart of Accounts"
+    "accounts": "Chart of Accounts",
+    "items": "Items",
+    "salesInvoices": "Sales invoices",
+    "purchaseOrders": "Purchase orders",
+    "vendorBills": "Vendor bills",
+    "payments": "Payments"
   },
   "platformAdmin": {
     "title": "Platform admin",
