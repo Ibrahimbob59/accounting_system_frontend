@@ -6,6 +6,8 @@
     "catalog": "الكتالوج",
     "uom": "الوحدات",
     "stock": "المخزون",
+    "stockCounts": "جرد المخزون",
+    "stockTransfers": "تحويلات المخزون",
     "salesInvoices": "فواتير المبيعات",
     "creditNotes": "الإشعارات الدائنة",
     "payments": "المدفوعات",
@@ -20,7 +22,15 @@
     "generalLedger": "دفتر الأستاذ العام",
     "incomeStatement": "قائمة الدخل",
     "balanceSheet": "الميزانية العمومية",
-    "companies": "الشركات"
+    "companies": "الشركات",
+    "groups": {
+      "sales": "المبيعات",
+      "purchasing": "المشتريات",
+      "inventory": "المخزون",
+      "accounting": "المحاسبة",
+      "reports": "التقارير",
+      "settings": "الإعدادات"
+    }
   },
   "breadcrumbs": {
     "label": "مسار التنقل"

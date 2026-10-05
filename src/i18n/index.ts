@@ -23,6 +23,7 @@ import enStock from './locales/en/stock.json'
 import enInvoicing from './locales/en/invoicing.json'
 import enPayments from './locales/en/payments.json'
 import enPurchasing from './locales/en/purchasing.json'
+import enStockOps from './locales/en/stockOps.json'
 import frCommon from './locales/fr/common.json'
 import frAuth from './locales/fr/auth.json'
 import frLanding from './locales/fr/landing.json'
@@ -44,6 +45,7 @@ import frStock from './locales/fr/stock.json'
 import frInvoicing from './locales/fr/invoicing.json'
 import frPayments from './locales/fr/payments.json'
 import frPurchasing from './locales/fr/purchasing.json'
+import frStockOps from './locales/fr/stockOps.json'
 import arCommon from './locales/ar/common.json'
 import arAuth from './locales/ar/auth.json'
 import arLanding from './locales/ar/landing.json'
@@ -65,6 +67,7 @@ import arStock from './locales/ar/stock.json'
 import arInvoicing from './locales/ar/invoicing.json'
 import arPayments from './locales/ar/payments.json'
 import arPurchasing from './locales/ar/purchasing.json'
+import arStockOps from './locales/ar/stockOps.json'
 
 export const RTL_LANGUAGES = ['ar'] as const
 
@@ -103,6 +106,7 @@ export const resources = {
     invoicing: enInvoicing,
     payments: enPayments,
     purchasing: enPurchasing,
+    stockOps: enStockOps,
   },
   fr: {
     common: frCommon,
@@ -126,6 +130,7 @@ export const resources = {
     invoicing: frInvoicing,
     payments: frPayments,
     purchasing: frPurchasing,
+    stockOps: frStockOps,
   },
   ar: {
     common: arCommon,
@@ -149,6 +154,7 @@ export const resources = {
     invoicing: arInvoicing,
     payments: arPayments,
     purchasing: arPurchasing,
+    stockOps: arStockOps,
   },
 } as const
 

@@ -1,0 +1,196 @@
+{
+  "filters": { "all": "All", "status": "Status" },
+  "form": {
+    "notes": "Notes",
+    "addLine": "Add line",
+    "removeLine": "Remove line",
+    "validation": {
+      "itemRequired": "An item is required.",
+      "qtyPositive": "Quantity must be greater than zero.",
+      "qtyNonNegative": "Quantity must be zero or more.",
+      "costNonNegative": "Unit cost must be zero or more.",
+      "locationRequired": "A location is required.",
+      "fromRequired": "A source location is required.",
+      "toRequired": "A destination location is required.",
+      "sameLocation": "Source and destination must differ.",
+      "dateRequired": "A date is required.",
+      "minLines": "Add at least one line."
+    }
+  },
+  "count": {
+    "status": {
+      "DRAFT": "Draft",
+      "POSTED": "Posted",
+      "CANCELLED": "Cancelled"
+    },
+    "columns": {
+      "number": "Number",
+      "date": "Date",
+      "location": "Location",
+      "status": "Status"
+    },
+    "list": {
+      "title": "Stock Counts",
+      "subtitle": "Reconcile physical counts; variances post an adjustment and a journal.",
+      "new": "New count",
+      "empty": "No stock counts yet."
+    },
+    "create": {
+      "title": "New stock count",
+      "subtitle": "Enter the counted quantities; posting books the variance.",
+      "submit": "Create count",
+      "created": "Stock count created."
+    },
+    "form": {
+      "location": "Location",
+      "selectLocation": "Select a location",
+      "date": "Count date",
+      "linesTitle": "Counted items",
+      "line": {
+        "item": "Item",
+        "selectItem": "Select an item",
+        "counted": "Counted",
+        "unitCost": "Unit cost",
+        "variant": "Variant",
+        "selectVariant": "Select a variant"
+      }
+    },
+    "detail": {
+      "back": "Back to stock counts",
+      "notSet": "—",
+      "location": "Location",
+      "date": "Count date",
+      "notes": "Notes",
+      "varianceValue": "Net variance value",
+      "journalEntry": "Journal entry",
+      "viewEntry": "View entry",
+      "lines": "Lines",
+      "col": {
+        "item": "Item",
+        "system": "System",
+        "counted": "Counted",
+        "variance": "Variance",
+        "value": "Value"
+      }
+    },
+    "actions": {
+      "post": "Post count",
+      "delete": "Delete",
+      "posted": "Stock count posted.",
+      "deleted": "Stock count deleted.",
+      "postDialog": {
+        "title": "Post this count?",
+        "body": "Each variance posts an adjustment movement and the count posts one journal entry. This cannot be undone.",
+        "confirm": "Post count",
+        "cancel": "Cancel"
+      },
+      "deleteDialog": {
+        "title": "Delete this draft?",
+        "body": "This draft count will be removed. This cannot be undone.",
+        "confirm": "Delete",
+        "cancel": "Back"
+      }
+    }
+  },
+  "transfer": {
+    "status": {
+      "DRAFT": "Draft",
+      "APPROVED": "Approved",
+      "POSTED": "Posted",
+      "CANCELLED": "Cancelled"
+    },
+    "columns": {
+      "number": "Number",
+      "date": "Date",
+      "from": "From",
+      "to": "To",
+      "status": "Status"
+    },
+    "list": {
+      "title": "Stock Transfers",
+      "subtitle": "Move stock between branches; value-neutral on posting.",
+      "new": "New transfer",
+      "empty": "No stock transfers yet."
+    },
+    "create": {
+      "title": "New stock transfer",
+      "subtitle": "Move stock from one internal location to another.",
+      "submit": "Create transfer",
+      "created": "Stock transfer created."
+    },
+    "form": {
+      "from": "From location",
+      "to": "To location",
+      "selectLocation": "Select a location",
+      "date": "Transfer date",
+      "linesTitle": "Items to transfer",
+      "line": {
+        "item": "Item",
+        "selectItem": "Select an item",
+        "qty": "Quantity",
+        "variant": "Variant",
+        "selectVariant": "Select a variant"
+      }
+    },
+    "detail": {
+      "back": "Back to stock transfers",
+      "notSet": "—",
+      "from": "From location",
+      "to": "To location",
+      "date": "Transfer date",
+      "notes": "Notes",
+      "approvedAt": "Approved at",
+      "postedAt": "Posted at",
+      "lines": "Lines",
+      "col": { "item": "Item", "qty": "Quantity" }
+    },
+    "actions": {
+      "approve": "Approve",
+      "post": "Post transfer",
+      "delete": "Delete",
+      "approved": "Transfer approved.",
+      "posted": "Stock transfer posted.",
+      "deleted": "Stock transfer deleted.",
+      "cancelDialog": "Cancel",
+      "approveDialog": {
+        "title": "Approve this transfer?",
+        "body": "Marks the transfer approved, ready to post.",
+        "confirm": "Approve"
+      },
+      "postDialog": {
+        "title": "Post this transfer?",
+        "body": "Moves each line to the destination location. This cannot be undone.",
+        "confirm": "Post transfer"
+      },
+      "deleteDialog": {
+        "title": "Delete this transfer?",
+        "body": "This transfer will be removed. This cannot be undone.",
+        "confirm": "Delete"
+      }
+    }
+  },
+  "errors": {
+    "countNotFound": "This stock count was not found.",
+    "countNotDraft": "Only a draft count can be posted.",
+    "countPosted": "A posted count cannot be deleted.",
+    "transferNotFound": "This stock transfer was not found.",
+    "transferNotDraft": "Only a draft transfer can be approved.",
+    "transferNotPostable": "Only a draft or approved transfer can be posted.",
+    "transferPosted": "A posted transfer cannot be deleted.",
+    "sameLocation": "Source and destination locations must differ.",
+    "insufficientStock": "Not enough stock on hand to transfer that quantity.",
+    "locationInvalid": "The location must be an internal location.",
+    "itemNotFound": "An item on a line was not found.",
+    "variantRequired": "This item has variants; choose a variant.",
+    "itemHasNoVariants": "This item has no variants.",
+    "variantNotFound": "The chosen variant was not found.",
+    "branchNotFound": "The branch was not found.",
+    "adjustmentLocationMissing": "No adjustment location is configured for this company.",
+    "controlAccountMissing": "A required inventory control account is not configured.",
+    "periodLocked": "The accounting period for this date is locked.",
+    "invalidDate": "The date is not valid.",
+    "permissionDenied": "You don't have permission to do that.",
+    "permissionDeniedSection": "You don't have permission to view this.",
+    "generic": "Something went wrong. Please try again."
+  }
+}

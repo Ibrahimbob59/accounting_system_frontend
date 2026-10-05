@@ -6,6 +6,8 @@
     "catalog": "Catalog",
     "uom": "Units",
     "stock": "Stock",
+    "stockCounts": "Stock Counts",
+    "stockTransfers": "Stock Transfers",
     "salesInvoices": "Sales Invoices",
     "creditNotes": "Credit Notes",
     "payments": "Payments",
@@ -20,7 +22,15 @@
     "generalLedger": "General Ledger",
     "incomeStatement": "Income Statement",
     "balanceSheet": "Balance Sheet",
-    "companies": "Companies"
+    "companies": "Companies",
+    "groups": {
+      "sales": "Sales",
+      "purchasing": "Purchasing",
+      "inventory": "Inventory",
+      "accounting": "Accounting",
+      "reports": "Reports",
+      "settings": "Settings"
+    }
   },
   "breadcrumbs": {
     "label": "Breadcrumb"

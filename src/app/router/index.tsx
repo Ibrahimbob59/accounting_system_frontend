@@ -37,6 +37,12 @@ import { ItemEditPage } from '@/features/items/pages/ItemEditPage'
 import { CatalogPage } from '@/features/catalog/pages/CatalogPage'
 import { UomPage } from '@/features/uom/pages/UomPage'
 import { StockPage } from '@/features/stock/pages/StockPage'
+import { StockCountsListPage } from '@/features/stock/pages/StockCountsListPage'
+import { StockCountCreatePage } from '@/features/stock/pages/StockCountCreatePage'
+import { StockCountDetailPage } from '@/features/stock/pages/StockCountDetailPage'
+import { StockTransfersListPage } from '@/features/stock/pages/StockTransfersListPage'
+import { StockTransferCreatePage } from '@/features/stock/pages/StockTransferCreatePage'
+import { StockTransferDetailPage } from '@/features/stock/pages/StockTransferDetailPage'
 import { SalesInvoicesListPage } from '@/features/invoicing/pages/SalesInvoicesListPage'
 import { SalesInvoiceCreatePage } from '@/features/invoicing/pages/SalesInvoiceCreatePage'
 import { SalesInvoiceDetailPage } from '@/features/invoicing/pages/SalesInvoiceDetailPage'
@@ -150,6 +156,24 @@ export const router = createBrowserRouter([
             path: 'stock',
             handle: { crumbKey: 'shell:nav.stock' },
             element: <StockPage />,
+          },
+          {
+            path: 'stock-counts',
+            handle: { crumbKey: 'shell:nav.stockCounts' },
+            children: [
+              { index: true, element: <StockCountsListPage /> },
+              { path: 'new', element: <StockCountCreatePage /> },
+              { path: ':id', element: <StockCountDetailPage /> },
+            ],
+          },
+          {
+            path: 'stock-transfers',
+            handle: { crumbKey: 'shell:nav.stockTransfers' },
+            children: [
+              { index: true, element: <StockTransfersListPage /> },
+              { path: 'new', element: <StockTransferCreatePage /> },
+              { path: ':id', element: <StockTransferDetailPage /> },
+            ],
           },
           {
             path: 'sales-invoices',

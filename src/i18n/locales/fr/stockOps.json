@@ -1,0 +1,196 @@
+{
+  "filters": { "all": "Tous", "status": "Statut" },
+  "form": {
+    "notes": "Notes",
+    "addLine": "Ajouter une ligne",
+    "removeLine": "Supprimer la ligne",
+    "validation": {
+      "itemRequired": "Un article est requis.",
+      "qtyPositive": "La quantité doit être supérieure à zéro.",
+      "qtyNonNegative": "La quantité doit être positive ou nulle.",
+      "costNonNegative": "Le coût unitaire doit être positif ou nul.",
+      "locationRequired": "Un emplacement est requis.",
+      "fromRequired": "Un emplacement source est requis.",
+      "toRequired": "Un emplacement de destination est requis.",
+      "sameLocation": "La source et la destination doivent différer.",
+      "dateRequired": "Une date est requise.",
+      "minLines": "Ajoutez au moins une ligne."
+    }
+  },
+  "count": {
+    "status": {
+      "DRAFT": "Brouillon",
+      "POSTED": "Comptabilisé",
+      "CANCELLED": "Annulé"
+    },
+    "columns": {
+      "number": "Numéro",
+      "date": "Date",
+      "location": "Emplacement",
+      "status": "Statut"
+    },
+    "list": {
+      "title": "Inventaires",
+      "subtitle": "Rapprochez les comptages physiques ; les écarts génèrent un ajustement et une écriture.",
+      "new": "Nouvel inventaire",
+      "empty": "Aucun inventaire pour le moment."
+    },
+    "create": {
+      "title": "Nouvel inventaire",
+      "subtitle": "Saisissez les quantités comptées ; la comptabilisation enregistre l'écart.",
+      "submit": "Créer l'inventaire",
+      "created": "Inventaire créé."
+    },
+    "form": {
+      "location": "Emplacement",
+      "selectLocation": "Sélectionner un emplacement",
+      "date": "Date d'inventaire",
+      "linesTitle": "Articles comptés",
+      "line": {
+        "item": "Article",
+        "selectItem": "Sélectionner un article",
+        "counted": "Compté",
+        "unitCost": "Coût unitaire",
+        "variant": "Variante",
+        "selectVariant": "Sélectionner une variante"
+      }
+    },
+    "detail": {
+      "back": "Retour aux inventaires",
+      "notSet": "—",
+      "location": "Emplacement",
+      "date": "Date d'inventaire",
+      "notes": "Notes",
+      "varianceValue": "Valeur nette de l'écart",
+      "journalEntry": "Écriture comptable",
+      "viewEntry": "Voir l'écriture",
+      "lines": "Lignes",
+      "col": {
+        "item": "Article",
+        "system": "Système",
+        "counted": "Compté",
+        "variance": "Écart",
+        "value": "Valeur"
+      }
+    },
+    "actions": {
+      "post": "Comptabiliser",
+      "delete": "Supprimer",
+      "posted": "Inventaire comptabilisé.",
+      "deleted": "Inventaire supprimé.",
+      "postDialog": {
+        "title": "Comptabiliser cet inventaire ?",
+        "body": "Chaque écart génère un mouvement d'ajustement et l'inventaire comptabilise une écriture. Action irréversible.",
+        "confirm": "Comptabiliser",
+        "cancel": "Retour"
+      },
+      "deleteDialog": {
+        "title": "Supprimer ce brouillon ?",
+        "body": "Ce brouillon d'inventaire sera supprimé. Action irréversible.",
+        "confirm": "Supprimer",
+        "cancel": "Retour"
+      }
+    }
+  },
+  "transfer": {
+    "status": {
+      "DRAFT": "Brouillon",
+      "APPROVED": "Approuvé",
+      "POSTED": "Comptabilisé",
+      "CANCELLED": "Annulé"
+    },
+    "columns": {
+      "number": "Numéro",
+      "date": "Date",
+      "from": "De",
+      "to": "Vers",
+      "status": "Statut"
+    },
+    "list": {
+      "title": "Transferts de stock",
+      "subtitle": "Déplacez du stock entre succursales ; neutre en valeur à la comptabilisation.",
+      "new": "Nouveau transfert",
+      "empty": "Aucun transfert pour le moment."
+    },
+    "create": {
+      "title": "Nouveau transfert de stock",
+      "subtitle": "Déplacez du stock d'un emplacement interne à un autre.",
+      "submit": "Créer le transfert",
+      "created": "Transfert créé."
+    },
+    "form": {
+      "from": "Emplacement source",
+      "to": "Emplacement de destination",
+      "selectLocation": "Sélectionner un emplacement",
+      "date": "Date du transfert",
+      "linesTitle": "Articles à transférer",
+      "line": {
+        "item": "Article",
+        "selectItem": "Sélectionner un article",
+        "qty": "Quantité",
+        "variant": "Variante",
+        "selectVariant": "Sélectionner une variante"
+      }
+    },
+    "detail": {
+      "back": "Retour aux transferts",
+      "notSet": "—",
+      "from": "Emplacement source",
+      "to": "Emplacement de destination",
+      "date": "Date du transfert",
+      "notes": "Notes",
+      "approvedAt": "Approuvé le",
+      "postedAt": "Comptabilisé le",
+      "lines": "Lignes",
+      "col": { "item": "Article", "qty": "Quantité" }
+    },
+    "actions": {
+      "approve": "Approuver",
+      "post": "Comptabiliser",
+      "delete": "Supprimer",
+      "approved": "Transfert approuvé.",
+      "posted": "Transfert comptabilisé.",
+      "deleted": "Transfert supprimé.",
+      "cancelDialog": "Retour",
+      "approveDialog": {
+        "title": "Approuver ce transfert ?",
+        "body": "Marque le transfert comme approuvé, prêt à comptabiliser.",
+        "confirm": "Approuver"
+      },
+      "postDialog": {
+        "title": "Comptabiliser ce transfert ?",
+        "body": "Déplace chaque ligne vers l'emplacement de destination. Action irréversible.",
+        "confirm": "Comptabiliser"
+      },
+      "deleteDialog": {
+        "title": "Supprimer ce transfert ?",
+        "body": "Ce transfert sera supprimé. Action irréversible.",
+        "confirm": "Supprimer"
+      }
+    }
+  },
+  "errors": {
+    "countNotFound": "Cet inventaire est introuvable.",
+    "countNotDraft": "Seul un inventaire brouillon peut être comptabilisé.",
+    "countPosted": "Un inventaire comptabilisé ne peut être supprimé.",
+    "transferNotFound": "Ce transfert est introuvable.",
+    "transferNotDraft": "Seul un transfert brouillon peut être approuvé.",
+    "transferNotPostable": "Seul un transfert brouillon ou approuvé peut être comptabilisé.",
+    "transferPosted": "Un transfert comptabilisé ne peut être supprimé.",
+    "sameLocation": "La source et la destination doivent différer.",
+    "insufficientStock": "Stock insuffisant pour transférer cette quantité.",
+    "locationInvalid": "L'emplacement doit être un emplacement interne.",
+    "itemNotFound": "Un article d'une ligne est introuvable.",
+    "variantRequired": "Cet article a des variantes ; choisissez-en une.",
+    "itemHasNoVariants": "Cet article n'a pas de variantes.",
+    "variantNotFound": "La variante choisie est introuvable.",
+    "branchNotFound": "La succursale est introuvable.",
+    "adjustmentLocationMissing": "Aucun emplacement d'ajustement n'est configuré pour cette société.",
+    "controlAccountMissing": "Un compte de contrôle de stock requis n'est pas configuré.",
+    "periodLocked": "La période comptable de cette date est verrouillée.",
+    "invalidDate": "La date n'est pas valide.",
+    "permissionDenied": "Vous n'avez pas la permission de faire cela.",
+    "permissionDeniedSection": "Vous n'avez pas la permission de voir ceci.",
+    "generic": "Une erreur s'est produite. Veuillez réessayer."
+  }
+}

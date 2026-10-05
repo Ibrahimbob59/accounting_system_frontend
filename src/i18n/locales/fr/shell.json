@@ -6,6 +6,8 @@
     "catalog": "Catalogue",
     "uom": "Unités",
     "stock": "Stock",
+    "stockCounts": "Inventaires",
+    "stockTransfers": "Transferts de stock",
     "salesInvoices": "Factures de vente",
     "creditNotes": "Avoirs",
     "payments": "Paiements",
@@ -20,7 +22,15 @@
     "generalLedger": "Grand livre",
     "incomeStatement": "Compte de résultat",
     "balanceSheet": "Bilan",
-    "companies": "Sociétés"
+    "companies": "Sociétés",
+    "groups": {
+      "sales": "Ventes",
+      "purchasing": "Achats",
+      "inventory": "Stock",
+      "accounting": "Comptabilité",
+      "reports": "Rapports",
+      "settings": "Paramètres"
+    }
   },
   "breadcrumbs": {
     "label": "Fil d'Ariane"

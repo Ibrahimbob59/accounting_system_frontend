@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { ChevronLeft, ChevronRight } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
-import { NAV_ITEMS } from '@/app/shell/nav-config'
+import { NAV_GROUPS } from '@/app/shell/nav-config'
 import { useAuthStore } from '@/features/auth/store/auth-store'
 
 interface SidebarProps {
@@ -20,7 +20,9 @@ interface PanelProps {
 }
 
 function initials(first?: string, last?: string): string {
-  return `${first?.charAt(0) ?? ''}${last?.charAt(0) ?? ''}`.toUpperCase() || '?'
+  return (
+    `${first?.charAt(0) ?? ''}${last?.charAt(0) ?? ''}`.toUpperCase() || '?'
+  )
 }
 
 /**
@@ -54,29 +56,46 @@ function SidebarPanel({ collapsed, onToggleCollapse, onNavigate }: PanelProps) {
         )}
       </div>
 
-      <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-4">
-        {NAV_ITEMS.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            end={item.end}
-            onClick={onNavigate}
-            title={collapsed ? t(item.labelKey) : undefined}
-            className={({ isActive }) =>
-              cn(
-                'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-sm font-medium transition-colors',
-                collapsed && 'justify-center',
-                isActive
-                  ? 'bg-brand-soft text-brand'
-                  : 'text-sidebar-muted hover:bg-white/[0.06]'
-              )
-            }
+      <nav className="flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        {NAV_GROUPS.map((group, gi) => (
+          <div
+            key={group.labelKey ?? `group-${gi}`}
+            className={cn(gi > 0 && 'mt-4')}
           >
-            <item.icon className="size-[18px] shrink-0" />
-            <span className={cn(collapsed && 'sr-only')}>
-              {t(item.labelKey)}
-            </span>
-          </NavLink>
+            {group.labelKey &&
+              (collapsed ? (
+                // No room for a heading in the icon rail — a thin divider keeps
+                // the groups visually separated instead.
+                <div className="mx-auto my-1 h-px w-6 bg-sidebar-border" />
+              ) : (
+                <div className="px-3.5 pb-1.5 text-[11px] font-semibold uppercase tracking-wider text-sidebar-muted/70">
+                  {t(group.labelKey)}
+                </div>
+              ))}
+            {group.items.map((item) => (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                end={item.end}
+                onClick={onNavigate}
+                title={collapsed ? t(item.labelKey) : undefined}
+                className={({ isActive }) =>
+                  cn(
+                    'flex items-center gap-3 rounded-md px-3.5 py-2.5 text-sm font-medium transition-colors',
+                    collapsed && 'justify-center',
+                    isActive
+                      ? 'bg-brand-soft text-brand'
+                      : 'text-sidebar-muted hover:bg-white/[0.06]'
+                  )
+                }
+              >
+                <item.icon className="size-[18px] shrink-0" />
+                <span className={cn(collapsed && 'sr-only')}>
+                  {t(item.labelKey)}
+                </span>
+              </NavLink>
+            ))}
+          </div>
         ))}
       </nav>
 

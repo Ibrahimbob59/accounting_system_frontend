@@ -48,6 +48,8 @@ export type PermissionKey =
   | 'stock.read'
   | 'stock.update'
   | 'stock.delete'
+  | 'stock.post'
+  | 'stock.approve'
   | 'sales.create'
   | 'sales.read'
   | 'sales.post'
