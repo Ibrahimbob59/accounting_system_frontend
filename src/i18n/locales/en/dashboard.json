@@ -11,6 +11,47 @@
     "vendorBills": "Vendor bills",
     "payments": "Payments"
   },
+  "quickActions": {
+    "newSalesInvoice": "Sales invoice",
+    "newPayment": "Payment",
+    "newPurchaseOrder": "Purchase order",
+    "newStockCount": "Stock count",
+    "newJournalEntry": "Journal entry",
+    "newPartner": "Partner"
+  },
+  "kpis": {
+    "title": "This year",
+    "revenue": "Revenue",
+    "expenses": "Expenses",
+    "netResult": "Net result",
+    "inventoryValue": "Inventory value",
+    "ytd": "Year to date",
+    "profit": "Profit, year to date",
+    "loss": "Loss, year to date",
+    "atCost": "At moving-average cost"
+  },
+  "attention": {
+    "title": "Needs attention",
+    "subtitle": "Open items waiting on an action.",
+    "allClear": "You're all caught up.",
+    "draftSales": "Draft sales invoices to confirm",
+    "draftBills": "Draft vendor bills to confirm",
+    "draftPOs": "Draft purchase orders to confirm",
+    "posToReceive": "Purchase orders awaiting receipt",
+    "draftCounts": "Stock counts to post",
+    "draftTransfers": "Stock transfers to post"
+  },
+  "recent": {
+    "viewAll": "View all",
+    "salesTitle": "Recent sales invoices",
+    "salesEmpty": "No sales invoices yet.",
+    "paymentsTitle": "Recent payments",
+    "paymentsEmpty": "No payments yet.",
+    "direction": { "IN": "Receipt", "OUT": "Payment" }
+  },
+  "glance": {
+    "title": "Business at a glance"
+  },
   "platformAdmin": {
     "title": "Platform admin",
     "body": "You're signed in as a platform administrator. Company dashboards will appear here in a later release."

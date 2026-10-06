@@ -11,6 +11,47 @@
     "vendorBills": "Factures fournisseurs",
     "payments": "Paiements"
   },
+  "quickActions": {
+    "newSalesInvoice": "Facture de vente",
+    "newPayment": "Paiement",
+    "newPurchaseOrder": "Bon de commande",
+    "newStockCount": "Inventaire",
+    "newJournalEntry": "Écriture",
+    "newPartner": "Partenaire"
+  },
+  "kpis": {
+    "title": "Cette année",
+    "revenue": "Produits",
+    "expenses": "Charges",
+    "netResult": "Résultat net",
+    "inventoryValue": "Valeur du stock",
+    "ytd": "Depuis le début de l'année",
+    "profit": "Bénéfice, depuis le début de l'année",
+    "loss": "Perte, depuis le début de l'année",
+    "atCost": "Au coût moyen pondéré"
+  },
+  "attention": {
+    "title": "À traiter",
+    "subtitle": "Éléments ouverts en attente d'une action.",
+    "allClear": "Vous êtes à jour.",
+    "draftSales": "Factures de vente à confirmer",
+    "draftBills": "Factures fournisseurs à confirmer",
+    "draftPOs": "Bons de commande à confirmer",
+    "posToReceive": "Bons de commande en attente de réception",
+    "draftCounts": "Inventaires à comptabiliser",
+    "draftTransfers": "Transferts de stock à comptabiliser"
+  },
+  "recent": {
+    "viewAll": "Tout voir",
+    "salesTitle": "Factures de vente récentes",
+    "salesEmpty": "Aucune facture de vente pour le moment.",
+    "paymentsTitle": "Paiements récents",
+    "paymentsEmpty": "Aucun paiement pour le moment.",
+    "direction": { "IN": "Encaissement", "OUT": "Paiement" }
+  },
+  "glance": {
+    "title": "Aperçu de l'activité"
+  },
   "platformAdmin": {
     "title": "Administrateur de la plateforme",
     "body": "Vous êtes connecté en tant qu'administrateur de la plateforme. Les tableaux de bord d'entreprise apparaîtront ici dans une version ultérieure."

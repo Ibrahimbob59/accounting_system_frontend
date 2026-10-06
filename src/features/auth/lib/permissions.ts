@@ -66,6 +66,8 @@ export type PermissionKey =
   | 'company.read'
   | 'company.update'
   | 'company.delete'
+  | 'partner.create'
+  | 'partner.read'
 
 export function usePermission(key: PermissionKey): boolean {
   // `key` is intentionally ignored until the backend reports permissions; it's
